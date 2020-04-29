@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
-import { RegistroComponent } from './registro/registro.component';
 import { RegistryComponent } from './registry/registry.component';
 import { IndexUserComponent } from './index-user/index-user.component';
 import { IndexAdminComponent } from './index-admin/index-admin.component';
@@ -14,12 +13,13 @@ import { ProfileComponent } from './profile/profile.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { StatsUserComponent } from './stats-user/stats-user.component';
 import { StatsAdminComponent } from './stats-admin/stats-admin.component';
+import { AppRoutingModule } from './app-routing.module';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    RegistroComponent,
     RegistryComponent,
     IndexUserComponent,
     IndexAdminComponent,
@@ -32,7 +32,9 @@ import { StatsAdminComponent } from './stats-admin/stats-admin.component';
     StatsAdminComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    AppRoutingModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]
