@@ -18,13 +18,13 @@ const routes: Routes = [
   { path: 'chat/entry', component: ChatEntryComponent },
   { path: 'chat/user', component: ChatUserComponent },
   { path: 'entry', component: EntryComponent },
-  { path: 'index/Admin', component: IndexAdminComponent },
-  { path: 'index/User', component: IndexUserComponent },
+  { path: 'index/admin', component: IndexAdminComponent },
+  { path: 'index/user', component: IndexUserComponent },
   { path: 'login', component: LoginComponent },
   { path: 'profile', component: ProfileComponent},
   { path: 'registry', component: RegistryComponent },
-  { path: 'stats/Admin', component: StatsAdminComponent },
-  { path: 'stats/User', component: StatsUserComponent },
+  { path: 'stats/admin', component: StatsAdminComponent },
+  { path: 'stats/user', component: StatsUserComponent },
   { path: '**', component: LoginComponent },
   { path: '', component: LoginComponent }
 ];
