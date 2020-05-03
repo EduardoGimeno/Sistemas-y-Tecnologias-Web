@@ -1,9 +1,11 @@
 var express = require('express');
+var Users = require('../models/user');
 var router = express.Router();
 
 /* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.json({ username: 'Flavio' })
+router.get('/', async (req, res, next) => {
+  const user= await Users.find(); 
+  res.json(user)
 });
 
 module.exports = router;

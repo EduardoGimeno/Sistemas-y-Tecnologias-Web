@@ -9,6 +9,8 @@ const userSchema = new mongoose.Schema({
     telephone: {type: String, required: true},
     country: {type: String, required: true},
     province: String,
-    active: true,
-    banned: false
+    active: Boolean,
+    banned: Boolean
 });
+
+module.exports = mongoose.model('Users',userSchema);
