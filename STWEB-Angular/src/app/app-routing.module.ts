@@ -22,6 +22,7 @@ const routes: Routes = [
   { path: 'index-user', component: IndexUserComponent },
   { path: 'login', component: LoginComponent },
   { path: 'profile', component: ProfileComponent},
+  { path: 'change-password/profile', component: ProfileComponent },
   { path: 'registry', component: RegistryComponent },
   { path: 'stats-admin', component: StatsAdminComponent },
   { path: 'stats-user', component: StatsUserComponent },
