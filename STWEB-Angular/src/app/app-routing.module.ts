@@ -14,17 +14,17 @@ import { StatsAdminComponent } from './stats-admin/stats-admin.component';
 import { StatsUserComponent } from './stats-user/stats-user.component';
 
 const routes: Routes = [
-  { path: 'changePassword', component: ChangePasswordComponent },
-  { path: 'chat/entry', component: ChatEntryComponent },
-  { path: 'chat/user', component: ChatUserComponent },
+  { path: 'change-password', component: ChangePasswordComponent },
+  { path: 'chat-entry', component: ChatEntryComponent },
+  { path: 'chat-user', component: ChatUserComponent },
   { path: 'entry', component: EntryComponent },
-  { path: 'index/admin', component: IndexAdminComponent },
-  { path: 'index/user', component: IndexUserComponent },
+  { path: 'index-admin', component: IndexAdminComponent },
+  { path: 'index-user', component: IndexUserComponent },
   { path: 'login', component: LoginComponent },
   { path: 'profile', component: ProfileComponent},
   { path: 'registry', component: RegistryComponent },
-  { path: 'stats/admin', component: StatsAdminComponent },
-  { path: 'stats/user', component: StatsUserComponent },
+  { path: 'stats-admin', component: StatsAdminComponent },
+  { path: 'stats-user', component: StatsUserComponent },
   { path: '**', component: LoginComponent },
   { path: '', component: LoginComponent }
 ];
