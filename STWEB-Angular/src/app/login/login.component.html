@@ -40,14 +40,14 @@
   </div>
   <br>
   <div class="row justify-content-center">
-    <button type="button" class="btn btn-primary btn-lg" routerLink="/index-user">Acceder</button>
+    <button type="button" class="btn btn-primary btn-lg" (click)="logIn()">Acceder</button>
   </div>
   <br>
   <div class="row justify-content-center">
     <a class="text-info" routerLink="/registry">Todavía no tienes una cuenta? Regístrate</a>
   </div>
   <br>
-  <div class="row justify-content-center" routerLink="/index-user">
+  <div class="row justify-content-center" (click)="logIn()">
     <a class="text-info">Accede con tu cuenta de Google</a>
   </div>
 

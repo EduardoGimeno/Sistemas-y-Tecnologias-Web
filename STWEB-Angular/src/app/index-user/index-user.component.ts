@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserApp } from '../entities/user';
 import { Accommodation } from '../entities/accommodation';
+import { CurrentUserService } from "../current-user.service";
 
 @Component({
   selector: 'app-index-user',
@@ -10,18 +11,7 @@ import { Accommodation } from '../entities/accommodation';
 })
 export class IndexUserComponent implements OnInit {
 
-  user: UserApp = {
-    active: false,
-    banned: false,
-    birthDate: undefined,
-    country: 'España',
-    email: 'nombre@apellidos.com',
-    password: '??',
-    province: 'Zaragoza',
-    surname: 'Apellidos',
-    telephone: '000 00 00 00',
-    name: 'Nombre'
-  };
+  user: UserApp;
 
   entry1: Accommodation = {
     address: "",
@@ -67,13 +57,21 @@ export class IndexUserComponent implements OnInit {
 
   entries: Accommodation[] = [this.entry1, this.entry2, this.entry3];
 
-  constructor(public router: Router) { }
+  constructor(public router: Router, public currentUser: CurrentUserService) { }
 
   ngOnInit(): void {
+    this.user = this.currentUser.getUser();
+    if (this.user == null) {
+      this.router.navigateByUrl('/login');
+    }
   }
 
   numberReturn(length){
     return new Array(length);
+  }
+
+  c() {
+    this.currentUser.logIn();
   }
 
 }
