@@ -13,4 +13,21 @@ export class UserService {
       .set("email", email).set("password", password);
     return this.http.get( 'localhost:8080/logIn', {params: params});
   }
+
+  public register() {
+
+  }
+
+  public modifyPassword() {
+
+  }
+
+  public getUsers(){
+
+  }
+
+  public deleteUser() {
+
+  }
+
 }

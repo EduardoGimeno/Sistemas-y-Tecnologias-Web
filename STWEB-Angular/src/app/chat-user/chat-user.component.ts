@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { UserApp } from '../entities/usuario';
+import { Alojamiento } from '../entities/alojamiento';
+import { CurrentUserService } from "../current-user.service";
 
 @Component({
   selector: 'app-chat-user',
@@ -7,9 +10,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ChatUserComponent implements OnInit {
 
-  constructor() { }
+  user: UserApp;
+
+  constructor(public currentUser: CurrentUserService) { }
 
   ngOnInit(): void {
+    this.user = this.currentUser.checkLog();
   }
 
 }

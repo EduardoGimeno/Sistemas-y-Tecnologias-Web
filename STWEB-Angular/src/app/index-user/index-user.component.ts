@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { UserApp } from '../entities/user';
-import { Accommodation } from '../entities/accommodation';
+import { UserApp } from '../entities/usuario';
+import { Alojamiento } from '../entities/alojamiento';
 import { CurrentUserService } from "../current-user.service";
+import { EntryService } from "../services/entry-service.service";
 
 @Component({
   selector: 'app-index-user',
@@ -13,65 +13,17 @@ export class IndexUserComponent implements OnInit {
 
   user: UserApp;
 
-  entry1: Accommodation = {
-    address: "",
-    capacity: 0,
-    email: "",
-    group: "",
-    municipality: "Zaragoza",
-    name: "Entrada 1",
-    postalCode: 0,
-    province: "Zaragoza",
-    region: "Aragón",
-    stars: 4,
-    telephone: ""
-  }
+  entries: Alojamiento[];
 
-  entry2: Accommodation = {
-    address: "",
-    capacity: 0,
-    email: "",
-    group: "",
-    municipality: "Aladrén",
-    name: "Entrada 2",
-    postalCode: 0,
-    province: "Zaragoza",
-    region: "Aragón",
-    stars: 5,
-    telephone: ""
-  }
-
-  entry3: Accommodation = {
-    address: "",
-    capacity: 0,
-    email: "",
-    group: "",
-    municipality: "Teruel",
-    name: "Entrada 3",
-    postalCode: 0,
-    province: "Teruel",
-    region: "Aragón",
-    stars: 1,
-    telephone: ""
-  }
-
-  entries: Accommodation[] = [this.entry1, this.entry2, this.entry3];
-
-  constructor(public router: Router, public currentUser: CurrentUserService) { }
+  constructor(public currentUser: CurrentUserService, public entryService: EntryService) { }
 
   ngOnInit(): void {
-    this.user = this.currentUser.getUser();
-    if (this.user == null) {
-      this.router.navigateByUrl('/login');
-    }
+    this.user = this.currentUser.checkLog();
+    this.entries = this.entryService.getEntries();
   }
 
   numberReturn(length){
     return new Array(length);
-  }
-
-  c() {
-    this.currentUser.logIn();
   }
 
 }

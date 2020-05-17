@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -15,6 +16,8 @@ import { StatsUserComponent } from './stats-user/stats-user.component';
 import { StatsAdminComponent } from './stats-admin/stats-admin.component';
 import { AppRoutingModule } from './app-routing.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { UserService } from "./services/user-service.service";
+import { CurrentUserService } from "./current-user.service";
 
 @NgModule({
   declarations: [
@@ -34,9 +37,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgbModule
+    NgbModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [CurrentUserService, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

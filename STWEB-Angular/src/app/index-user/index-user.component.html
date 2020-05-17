@@ -14,17 +14,17 @@
         </div>
         <div style="width: 50%; margin-left: 5%; text-align: left">
           <div>
-            <h6>{{ user.name }} {{ user.surname }}</h6>
+            <h6>{{ user.nombre }} {{ user.apellidos }}</h6>
           </div>
           <div>
-            <h6>{{ user.country }}, {{ user.province }}</h6>
+            <h6>{{ user.pais }}, {{ user.provincia }}</h6>
           </div>
         </div>
       </div>
     </div>
 
     <div style="padding-top: 2vh">
-      <button type="button" class="buttonCustom btn btn-primary" (click)="c()">
+      <button type="button" class="buttonCustom btn btn-primary" routerLink="/index-user">
         <svg class="bi bi-house-door-fill" width="1.2em" height="1.2em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
           <path d="M6.5 10.995V14.5a.5.5 0 01-.5.5H2a.5.5 0 01-.5-.5v-7a.5.5 0 01.146-.354l6-6a.5.5 0 01.708 0l6 6a.5.5 0 01.146.354v7a.5.5 0 01-.5.5h-4a.5.5 0 01-.5-.5V11c0-.25-.25-.5-.5-.5H7c-.25 0-.5.25-.5.495z"/>
           <path fill-rule="evenodd" d="M13 2.5V6l-2-2V2.5a.5.5 0 01.5-.5h1a.5.5 0 01.5.5z" clip-rule="evenodd"/>
@@ -56,7 +56,7 @@
       </button>
       <br>
       <button type="button" class="buttonCustom btn btn-danger"
-              style="margin-top: 10vh; margin-bottom: 10vh" routerLink="/login">
+              style="margin-top: 10vh; margin-bottom: 10vh" (click)="currentUser.logOut()" routerLink="/login">
         <svg class="bi bi-box-arrow-left" width="1.2em" height="1.2em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
           <path fill-rule="evenodd" d="M4.354 11.354a.5.5 0 000-.708L1.707 8l2.647-2.646a.5.5 0 10-.708-.708l-3 3a.5.5 0 000 .708l3 3a.5.5 0 00.708 0z" clip-rule="evenodd"/>
           <path fill-rule="evenodd" d="M11.5 8a.5.5 0 00-.5-.5H2a.5.5 0 000 1h9a.5.5 0 00.5-.5z" clip-rule="evenodd"/>
@@ -90,13 +90,14 @@
     </div>
 
     <div class="btn-group" style="width: 85%; margin-bottom: 4vh; padding-top: 3vh">
-      <button type="button" class="btn buttonCustomColor dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Alojamientos hoteleros
-      </button>
-      <div class="dropdown-menu">
-        <a class="dropdown-item" href="#">Alojamientos hoteleros</a>
-        <a class="dropdown-item" href="#">Restaurantes</a>
-      </div>
+      <select class="custom-select">
+        <option value="1">Todos los alojamientos</option>
+        <option value="2">Turismo rural</option>
+        <option value="3">Apartamentos</option>
+        <option value="4">Campings</option>
+        <option value="5">Hoteles</option>
+        <option value="6">Refugios</option>
+      </select>
     </div>
 
     <div *ngFor="let entry of entries" class="card bg-light mb-3" style="width: 90%; display: inline-flex">
@@ -104,10 +105,10 @@
       <div class="card-header" style="border-bottom: 1vh solid #559ffa">
         <div class="row">
           <div style="width: 60%; text-align: center">
-            <h5 class="card-title">{{ entry.name }}</h5>
+            <h5 class="card-title">{{ entry.nombre }}</h5>
           </div>
           <div style="width: 40%; text-align: center;">
-            <svg *ngFor="let star of numberReturn(entry.stars)" class="bi bi-star-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <svg *ngFor="let star of numberReturn(entry.estrellas)" class="bi bi-star-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
               <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
             </svg>
           </div>
@@ -117,10 +118,10 @@
       <div class="card-body">
         <div class="row">
           <div style="width: 25%; text-align: center; margin: auto">
-            <h5>{{ entry.municipality }}</h5>
+            <h5>{{ entry.municipio }}</h5>
           </div>
          <div style="width: 25%; text-align: center; margin: auto">
-            <h6>{{ entry.province }}</h6>
+            <h6>{{ entry.provincia }}</h6>
           </div>
           <div style="width: 50%; text-align: center">
             <button type="button" class="btn btn-primary" style="width: 90%" routerLink="/entry">
@@ -158,54 +159,46 @@
     <div style="padding-top: 2vh">
       <h6 class="textCustomColor">Provincia:</h6>
       <div class="btn-group" style="width: 85%; margin-bottom: 2vh">
-        <button type="button" class="btn buttonCustomColor dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Zaragoza
-        </button>
-        <div class="dropdown-menu">
-          <a class="dropdown-item" href="#">Zaragoza</a>
-          <a class="dropdown-item" href="#">Huesca</a>
-          <a class="dropdown-item" href="#">Huesca</a>
-        </div>
+        <select class="custom-select">
+          <option value="1">Zaragoza</option>
+          <option value="2">Huesca</option>
+          <option value="3">Teruel</option>
+        </select>
       </div>
 
       <h6 class="textCustomColor">Comarca:</h6>
       <div class="btn-group" style="width: 85%; margin-bottom: 2vh">
-        <button type="button" class="btn buttonCustomColor dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Calatayud
-        </button>
-        <div class="dropdown-menu">
-          <a class="dropdown-item" href="#">Calatayud</a>
-        </div>
+        <select class="custom-select">
+          <option value="1">Calatayud</option>
+          <option value="2">Cariñena</option>
+        </select>
       </div>
 
       <h6 class="textCustomColor">Localidad:</h6>
       <div class="btn-group" style="width: 85%; margin-bottom: 2vh">
-        <button type="button" class="btn buttonCustomColor dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Calatayud
-        </button>
-        <div class="dropdown-menu">
-          <a class="dropdown-item" href="#">Calatayud</a>
-        </div>
+        <select class="custom-select">
+          <option value="1">Calatayud</option>
+          <option value="2">Cariñena</option>
+        </select>
       </div>
 
-      <h6 class="textCustomColor">Estrellas / Tenedores:</h6>
+      <h6 class="textCustomColor">Estrellas / Espigas:</h6>
       <div class="btn-group" style="width: 85%; margin-bottom: 2vh">
-        <button type="button" class="btn buttonCustomColor dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          5
-        </button>
-        <div class="dropdown-menu">
-          <a class="dropdown-item" href="#">5</a>
-        </div>
+        <select class="custom-select">
+          <option value="1">1 (Una)</option>
+          <option value="2">2 (Dos)</option>
+          <option value="3">3 (Tres)</option>
+          <option value="4">4 (Cuatro)</option>
+          <option value="5">5 (Cinco)</option>
+        </select>
       </div>
 
       <h6 class="textCustomColor">Idioma (Guías turísticos):</h6>
       <div class="btn-group" style="width: 85%; margin-bottom: 4vh">
-        <button type="button" class="btn buttonCustomColor dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Inglés
-        </button>
-        <div class="dropdown-menu">
-          <a class="dropdown-item" href="#">Inglés</a>
-        </div>
+        <select class="custom-select">
+          <option value="1">Español</option>
+          <option value="2">Inglés</option>
+        </select>
       </div>
 
       <button type="button" class="btn btn-primary" style="width: 60%; margin: auto">

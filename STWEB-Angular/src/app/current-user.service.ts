@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { UserApp } from "./entities/user";
-import { UserService } from "./services/user-service.service";
+import { UserApp } from "./entities/usuario";
+import { Router } from "@angular/router";
+import { CookieService } from "ngx-cookie-service";
 
 @Injectable({
   providedIn: 'root'
@@ -9,31 +10,47 @@ export class CurrentUserService {
 
   private user: UserApp = null;
 
-  constructor(public userService: UserService) {
-  }
+  private token: String;
 
-  public getUser(): UserApp {
-    return this.user;
+  constructor(public router: Router, private cookieService: CookieService) {
+    if (cookieService.check("session")) {
+      if (cookieService.get("session") == "open") {
+        this.logIn();
+      } else {
+        cookieService.set("session", "close");
+      }
+    } else {
+      cookieService.set("session", "close");
+    }
   }
 
   public logIn() {
     this.user = {
-      active: false,
-      banned: false,
-      birthDate: undefined,
-      country: 'España',
+      activo: false,
+      baneado: false,
+      fechaNacimiento: undefined,
+      pais: 'España',
       email: 'nombre@apellidos.com',
-      password: '??',
-      province: 'Zaragoza',
-      surname: 'Apellidos',
-      telephone: '000 00 00 00',
-      name: 'Nombre'
+      contrasena: '??',
+      provincia: 'Zaragoza',
+      apellidos: 'Apellidos',
+      telefono: '000 00 00 00',
+      nombre: 'Nombre'
     };
+    this.cookieService.set("session", "open");
     //this.userService.logIn(email, password);
   }
 
   public logOut() {
     this.user = null;
+    this.cookieService.set("session", "close");
+  }
+
+  public checkLog() {
+    if (this.user == null) {
+      this.router.navigateByUrl('/login');
+    }
+    return this.user;
   }
 
 }
