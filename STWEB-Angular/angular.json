@@ -125,5 +125,8 @@
       }
     }
   },
-  "defaultProject": "STWEB-Angular"
+  "defaultProject": "STWEB-Angular",
+  "cli": {
+    "analytics": false
+  }
 }
