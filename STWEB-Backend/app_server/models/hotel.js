@@ -1,10 +1,10 @@
 const mongoose = require( 'mongoose' );
-require('./app_server/models/accommodation');
+require('./app_server/models/alojamiento');
 
 const hotelSchema = new mongoose.Schema({
-    common: [accommodationSchema],
-    group: String,
-    stars: {type: Number, required: true, min: 1, max: 5}
+    comun: [alojamientoSchema],
+    grupo: String,
+    estrellas: {type: Number, required: true, min: 1, max: 5}
 });
 
-module.exports = mongoose.model('Hotels', hotelSchema);
+module.exports = mongoose.model('Hotel', hotelSchema);
