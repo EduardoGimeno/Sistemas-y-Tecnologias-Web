@@ -9,12 +9,12 @@ userController.getUsers= async function(req,res){
 
 userController.addUser = async function(req , res){
     var user= new User(req.body);
-    console.log(user);
     user.baneado = false;
     user.activo = true;
-    console.log(user);
-    console.log(req.body.nombre);
-    res.json({status:'all fine'})
+    await user.save(function (err) {
+        if (err) res.json({status:'User not created'});
+    })
+    res.json({status:'User created'});
 }
 
 module.exports = userController;
