@@ -13,4 +13,4 @@ const usuarioSchema = new mongoose.Schema({
     baneado: Boolean
 });
 
-module.exports = mongoose.model('Usuario',userSchema);
+module.exports = mongoose.model('Usuario',usuarioSchema);

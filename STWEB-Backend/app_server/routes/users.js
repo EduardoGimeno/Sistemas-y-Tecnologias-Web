@@ -1,11 +1,9 @@
 var express = require('express');
-var Users = require('../models/usuario');
+var userController = require('../controllers/userController');
 var router = express.Router();
 
 /* GET users listing. */
-router.get('/', async (req, res, next) => {
-  const user= await Users.find(); 
-  res.json(user)
-});
+router.get('/', userController.getUsers);
+router.post('/', userController.addUser);
 
 module.exports = router;
