@@ -12,16 +12,15 @@ userController.addUser = async function(req, res){
     var user = new User(req.body);
     user.baneado = false;
     user.activo = true;
+    console.log(user);
     await user.save(function (err, newUser) {
         if (err) {
             res.status(500);
             res.json({error: 'User not created'});
         }
-        else {
-            res.status(200);
-            res.json(newUser.id);
-        }
-    })
+    });
+    res.status(200);
+    res.json(newUser.id);
 }
 
 userController.getUser = async function(req, res) {
@@ -31,11 +30,9 @@ userController.getUser = async function(req, res) {
             res.status(500);
             res.json({error: 'User not found'});
         }
-        else {
-            res.status(200);
-            res.json(user);
-        }
-    })
+    });
+    res.status(200);
+    res.json(user);
 }
 
 module.exports = userController;
