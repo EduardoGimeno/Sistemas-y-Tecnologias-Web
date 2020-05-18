@@ -4,6 +4,7 @@ var router = express.Router();
 
 /* GET users listing. */
 router.get('/', userController.getUsers);
+router.get('/getUser/:id', userController.getUser);
 router.post('/', userController.addUser);
 
 module.exports = router;
