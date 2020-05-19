@@ -92,13 +92,14 @@
       <div class="col-4" style="height: 60vh; border-right: 1vh solid #d9d9d9;
        border-left: 1vh solid #d9d9d9; text-align: center; padding: unset">
 
-        <div class="backgroundAndTextCC active" style="height: 15vh; width: 100%;
-          border-bottom: 2px solid #d9d9d9">
+        <div *ngFor="let conversacion of conversaciones; index as i" (click)="changeConversacion(i)"
+             class="backgroundAndTextCC {{ conversacion.active }}"
+             style="height: 15vh; width: 100%; border-bottom: 2px solid #d9d9d9">
 
           <div class="row" style="height: 40%">
 
             <div class="col" style="text-align: left; margin-top: auto; margin-left: 2vh">
-              Nombre hotel
+              {{ conversacion.nombreEntry }}
             </div>
 
             <div class="col" style="text-align: right; margin-top: auto; margin-right: 2vh">
@@ -117,64 +118,37 @@
 
         </div>
 
-        <div class="backgroundAndTextCC" style="height: 15vh; width: 100%;
-          border-bottom: 2px solid #d9d9d9">
-
-          <div class="row" style="height: 40%">
-
-            <div class="col" style="text-align: left; margin-top: auto; margin-left: 2vh">
-              Nombre hotel
-            </div>
-
-            <div class="col" style="text-align: right; margin-top: auto; margin-right: 2vh">
-              13:11
-            </div>
-
-          </div>
-
-          <div class="row" style="height: 60%; padding-left: 1vh">
-
-            <div class="col" style="text-align: left; margin: auto; margin-left: 2vh">
-              Nombre hotel: "Último..."
-            </div>
-
-          </div>
-
-        </div>
-
       </div>
 
       <div class="col-8" style="height: 75vh">
 
         <div style="height: auto; min-height: 70%;">
+          <div *ngFor="let mensaje of conversacionActive.mensajes">
 
-          <div class="form-control chat" style="text-align: right;
+            <div *ngIf="mensaje.emisor == 'entry'" class="form-control chat" style="text-align: left;
+              width: 80%; margin-right: 15%; margin-top: 3vh; margin-bottom: 3vh">
+              {{ mensaje.texto }}
+              <br><br>
+              {{ conversacionActive.nombreEntry }}, {{ mensaje.hora }}
+            </div>
+
+            <div *ngIf="mensaje.emisor == 'user'" class="form-control chat" style="text-align: right;
             width: 80%; margin-left: 15%; margin-top: 3vh; margin-bottom: 3vh">
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-            nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-            <br><br>
-            Nombre hotel, 14:00
-          </div>
+              {{ mensaje.texto }}
+              <br><br>
+              {{ conversacionActive.nombreUser }}, {{ mensaje.hora }}
+            </div>
 
-          <div class="form-control chat" style="text-align: left;
-            width: 80%; margin-right: 15%; margin-top: 3vh; margin-bottom: 3vh">
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-            nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
-            eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt
-            in culpa qui officia deserunt mollit anim id est laborum."
-            <br><br>
-            Tu, 14:28
           </div>
-
         </div>
 
         <div style="height: 30%">
-          <div contenteditable="true" class="form-control backgroundAndTextCC" style="height: auto;
+          <div id="text" contenteditable="true" class="form-control backgroundAndTextCC" style="height: auto;
            min-height: 100%; text-align: left; width: 95%"></div>
         </div>
+        <button type="button" class="buttonCustom btn buttonCustomColor" (click)="addMessage()">
+          Enviar
+        </button>
 
       </div>
     </div>

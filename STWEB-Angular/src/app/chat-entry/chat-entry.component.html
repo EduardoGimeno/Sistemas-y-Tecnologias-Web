@@ -19,34 +19,32 @@
     <div class="col" style="height: 75vh">
 
       <div style="height: auto; min-height: 70%;">
+        <div *ngFor="let mensaje of conversacion.mensajes">
 
-        <div class="form-control chat" style="text-align: right;
-            width: 80%; margin-left: 15%">
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-          incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-          nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-          <br><br>
-          Tu (Nombre hotel), 14:00
+          <div *ngIf="mensaje.emisor == 'entry'" class="form-control chat" style="text-align: right;
+              width: 80%; margin-left: 15%">
+            {{ mensaje.texto }}
+            <br><br>
+            {{ conversacion.nombreEntry }}, {{ mensaje.hora }}
+          </div>
+
+          <div *ngIf="mensaje.emisor == 'user'" class="form-control chat" style="text-align: left;
+              width: 80%; margin-right: 15%; margin-left: 5%">
+            {{ mensaje.texto }}
+            <br><br>
+            {{ conversacion.nombreUser }}, {{ mensaje.hora }}
+          </div>
+
         </div>
-
-        <div class="form-control chat" style="text-align: left;
-            width: 80%; margin-right: 15%; margin-left: 5%">
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-          incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-          nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-          Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
-          eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt
-          in culpa qui officia deserunt mollit anim id est laborum."
-          <br><br>
-          Usuario (Nombre, Apellidos), 14:28
-        </div>
-
       </div>
 
       <div style="height: 30%">
-        <div contenteditable="true" class="form-control backgroundAndTextCC" style="height: auto;
+        <div id="text" contenteditable="true" class="form-control backgroundAndTextCC" style="height: auto;
            min-height: 100%; text-align: left; margin-right: 5%; margin-left: 5%; width: 90%"></div>
       </div>
+      <button type="button" class="buttonCustom btn buttonCustomColor" (click)="addMessage()">
+        Enviar
+      </button>
 
     </div>
   </div>

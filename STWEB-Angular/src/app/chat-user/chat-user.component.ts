@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { UserApp } from '../entities/usuario';
-import { Alojamiento } from '../entities/alojamiento';
 import { CurrentUserService } from "../current-user.service";
+import { Conversacion } from "../entities/conversacion";
+import { ChatService } from "../services/chat-service.service";
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-chat-user',
@@ -11,11 +13,36 @@ import { CurrentUserService } from "../current-user.service";
 export class ChatUserComponent implements OnInit {
 
   user: UserApp;
+  conversaciones: Conversacion[];
+  conversacionActive: Conversacion;
+  conversacionActiveID: number;
 
-  constructor(public currentUser: CurrentUserService) { }
+  constructor(public currentUser: CurrentUserService, public chatService: ChatService) { }
 
   ngOnInit(): void {
     this.user = this.currentUser.checkLog();
+    this.conversaciones = this.chatService.getChat();
+    this.conversaciones[0].active = 'active';
+    this.changeConversacion(0);
+  }
+
+  public changeConversacion(i: number) {
+    for (let conversacion of this.conversaciones) {
+      conversacion.active = '';
+    }
+    this.conversaciones[i].active = 'active';
+    this.conversacionActive = this.conversaciones[i];
+    this.conversacionActiveID = i;
+  }
+
+  public addMessage() {
+    let newMessage = {
+      texto: $('#text').text(),
+      emisor: 'user',
+      hora: '00:00'
+    }
+    this.conversaciones[this.conversacionActiveID].mensajes.push(newMessage);
+    this.changeConversacion(this.conversacionActiveID);
   }
 
 }

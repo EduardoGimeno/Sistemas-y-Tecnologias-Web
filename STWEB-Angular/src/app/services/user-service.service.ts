@@ -11,7 +11,7 @@ export class UserService {
   public logIn(email: string, password: string) {
     let params = new HttpParams()
       .set("email", email).set("password", password);
-    return this.http.get( 'localhost:8080/logIn', {params: params});
+    return this.http.get( 'localhost:3000/logIn', {params: params});
   }
 
   public register() {
