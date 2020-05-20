@@ -12,15 +12,15 @@ userController.addUser = async function(req, res){
     var user = new User(req.body);
     user.baneado = false;
     user.activo = true;
-    console.log(user);
     await user.save(function (err, newUser) {
         if (err) {
             res.status(500);
             res.json({error: 'User not created'});
+        } else {
+            res.status(200);
+            res.json(newUser);
         }
     });
-    res.status(200);
-    res.json(newUser.id);
 }
 
 userController.getUser = async function(req, res) {
@@ -33,6 +33,22 @@ userController.getUser = async function(req, res) {
     });
     res.status(200);
     res.json(user);
+}
+
+userController.updateUser = async function(req, res) {
+    var user = new User(req.body);
+    await User.findOneAndUpdate(user.id, user, function(err, newUser) {
+        if (err) {
+            res.status(500);
+            res.json({error: 'Unable to update user'});
+        } else {
+            res.status(200);
+            newUser.pais = user.pais;
+            newUser.provincia = user.provincia;
+            newUser.contrasena = user.contrasena;
+            res.json(newUser);
+        }
+    });
 }
 
 module.exports = userController;

@@ -1,4 +1,5 @@
 export class Alojamiento {
+  id: string;
   nombre: string;
   direccion: string;
   codigoPostal: number;
@@ -11,6 +12,7 @@ export class Alojamiento {
   tipoAlojamiento: string;
 
   constructor(a: Alojamiento) {
+    this.id = a.id;
     this.nombre = a.nombre;
     this.direccion = a.direccion;
     this.codigoPostal = a.codigoPostal;

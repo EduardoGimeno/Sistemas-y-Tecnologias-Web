@@ -1,4 +1,5 @@
 export class UserApp {
+  id: string;
   nombre: string;
   apellidos: string;
   fechaNacimiento: Date;

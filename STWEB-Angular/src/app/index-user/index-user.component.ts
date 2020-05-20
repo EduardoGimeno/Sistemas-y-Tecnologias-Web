@@ -3,7 +3,7 @@ import { UserApp } from '../entities/usuario';
 import { Alojamiento } from '../entities/alojamiento';
 import { CurrentUserService } from "../current-user.service";
 import { EntryService } from "../services/entry-service.service";
-import {AlojamientoTurismoRural} from "../entities/alojamientoTurismoRural";
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-index-user',
@@ -18,7 +18,8 @@ export class IndexUserComponent implements OnInit {
 
   showEntries: Alojamiento[] = [];
 
-  constructor(public currentUser: CurrentUserService, public entryService: EntryService) { }
+  constructor(public currentUser: CurrentUserService, public entryService: EntryService,
+              public route: Router) { }
 
   ngOnInit(): void {
     this.user = this.currentUser.checkLog();
@@ -66,5 +67,11 @@ export class IndexUserComponent implements OnInit {
       this.showEntries = this.entries;
     }
   }
+
+  navigateToEntry(entry) {
+    this.route.navigateByUrl('/entry?tipo=' + entry.tipoAlojamiento.toLowerCase().substr(0,3) +
+      '&id=' + entry.id);
+  }
+
 
 }
