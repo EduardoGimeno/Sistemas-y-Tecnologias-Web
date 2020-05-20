@@ -1,5 +1,5 @@
 var express = require('express');
-var querystring = require('querystring');
+var url = require("url");
 var User = require('../models/usuario');
 var userController = {};
 
@@ -49,6 +49,25 @@ userController.updateUser = async function(req, res) {
             res.json(newUser);
         }
     });
+}
+
+userController.login = async function(req, res) {
+    var queryData = url.parse(req.url, true).query;
+    var email = queryData.email;
+    var password = queryData.password;
+    const user = await User.findOne({email: email}, function(err) {
+        if (err) {
+            res.status(400);
+            res.json({error: 'email not found'});
+        }
+    });
+    if (user.contrasena === password) {
+        res.status(200);
+        res.json(user);
+    } else {
+        res.status(400);
+        res.json({error: 'password not correct'});
+    }
 }
 
 module.exports = userController;
