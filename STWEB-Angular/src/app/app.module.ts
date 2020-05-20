@@ -19,6 +19,20 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { UserService } from "./services/user-service.service";
 import { CurrentUserService } from "./current-user.service";
 
+import { SocialLoginModule, AuthServiceConfig } from "angularx-social-login";
+import { GoogleLoginProvider } from "angularx-social-login";
+
+let config = new AuthServiceConfig([
+  {
+    id: GoogleLoginProvider.PROVIDER_ID,
+    provider: new GoogleLoginProvider("319287338704-acqsrm632ttivo73vq5an9fbp5evvjli.apps.googleusercontent.com")
+  }
+]);
+
+export function provideConfig() {
+  return config;
+}
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,9 +52,15 @@ import { CurrentUserService } from "./current-user.service";
     BrowserModule,
     AppRoutingModule,
     NgbModule,
-    HttpClientModule
+    HttpClientModule,
+    SocialLoginModule
   ],
-  providers: [CurrentUserService, UserService],
+  providers: [
+    CurrentUserService, UserService,
+    { provide: AuthServiceConfig,
+      useFactory: provideConfig
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -47,8 +47,12 @@
     <a class="text-info" routerLink="/registry">Todavía no tienes una cuenta? Regístrate</a>
   </div>
   <br>
-  <div class="row justify-content-center" (click)="logIn()">
-    <a class="text-info">Accede con tu cuenta de Google</a>
+  <div class="row justify-content-center" (click)="signInWithGoogle()">
+    <div class="g-signin2" data-onsuccess="onSignIn"></div>
+    <button class="btn btn-social btn-google">
+    <span class="fa fa-google"></span> Accede con tu cuenta de Google</button>
   </div>
+
+
 
 </div>
