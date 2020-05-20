@@ -11,80 +11,100 @@ import {Hotel} from "../entities/hotel";
   providedIn: 'root'
 })
 export class EntryService {
+  entry1: Apartamento = new Apartamento({
+    id: 'id',
+    direccion: "Calle del apartamento",
+    capacidad: 0,
+    email: "",
+    municipio: "Zaragoza",
+    nombre: "Apartamento",
+    codigoPostal: 0,
+    provincia: "Zaragoza",
+    comarca: "Aragón",
+    telefono: "000 00 00 00",
+    tipoAlojamiento: "h"
+  });
+  entry2: Camping = new Camping({
+    id: 'id',
+    direccion: "Calle del camping",
+    capacidad: 0,
+    email: "",
+    municipio: "Cariñena",
+    nombre: "Camping",
+    codigoPostal: 0,
+    provincia: "Zaragoza",
+    comarca: "Aragón",
+    telefono: "000 00 00 00",
+    tipoAlojamiento: "e"
+  });
+  entry3: AlojamientoTurismoRural = new AlojamientoTurismoRural({
+    id: 'id',
+    direccion: "Calle del turismo rural",
+    capacidad: 0,
+    email: "",
+    municipio: "Teruel",
+    nombre: "Turismo rural",
+    codigoPostal: 0,
+    provincia: "Teruel",
+    comarca: "Aragón",
+    telefono: "000 00 00 00",
+    espigas: 5,
+    tipo: "tipo",
+    tipoAlojamiento: "z"
+  });
+  entry4: Hotel = new Hotel({
+    id: 'id',
+    direccion: "Calle del hotel",
+    capacidad: 0,
+    email: "",
+    municipio: "Teruel",
+    nombre: "Hotel",
+    codigoPostal: 0,
+    provincia: "Teruel",
+    comarca: "Aragón",
+    telefono: "000 00 00 00",
+    estrellas: 4,
+    grupo: "tipo",
+    tipoAlojamiento: "z"
+  });
+  entry5: Refugio = new Refugio({
+    id: 'id',
+    direccion: "Calle del refugio",
+    capacidad: 0,
+    email: "",
+    municipio: "Teruel",
+    nombre: "Refugio",
+    codigoPostal: 0,
+    provincia: "Teruel",
+    comarca: "Aragón",
+    telefono: "000 00 00 00",
+    tipoAlojamiento: "z"
+  });
 
   constructor(private http: HttpClient) { }
 
   public getEntries() {
-    let entry1: Apartamento = {
-      direccion: "",
-      capacidad: 0,
-      email: "",
-      municipio: "Zaragoza",
-      nombre: "Apartamento",
-      codigoPostal: 0,
-      provincia: "Zaragoza",
-      comarca: "Aragón",
-      telefono: "",
-      tipoAlojamiento: "h"
-    }
-    let entry2: Camping = {
-      direccion: "",
-      capacidad: 0,
-      email: "",
-      municipio: "Cariñena",
-      nombre: "Camping",
-      codigoPostal: 0,
-      provincia: "Zaragoza",
-      comarca: "Aragón",
-      telefono: "",
-      tipoAlojamiento: "e"
-    }
-    let entry3: AlojamientoTurismoRural = {
-      direccion: "",
-      capacidad: 0,
-      email: "",
-      municipio: "Teruel",
-      nombre: "Turismo rural",
-      codigoPostal: 0,
-      provincia: "Teruel",
-      comarca: "Aragón",
-      telefono: "",
-      espigas: 5,
-      tipo: "tipo",
-      tipoAlojamiento: "z"
-    }
-    let entry4: Hotel = {
-      direccion: "",
-      capacidad: 0,
-      email: "",
-      municipio: "Teruel",
-      nombre: "Hotel",
-      codigoPostal: 0,
-      provincia: "Teruel",
-      comarca: "Aragón",
-      telefono: "",
-      estrellas: 4,
-      grupo: "tipo",
-      tipoAlojamiento: "z"
-    }
-    let entry5: Refugio = {
-      direccion: "",
-      capacidad: 0,
-      email: "",
-      municipio: "Teruel",
-      nombre: "Refugio",
-      codigoPostal: 0,
-      provincia: "Teruel",
-      comarca: "Aragón",
-      telefono: "",
-      tipoAlojamiento: "z"
-    }
-    entry1 = new Apartamento(entry1);
-    entry2 = new Camping(entry2);
-    entry3 = new AlojamientoTurismoRural(entry3);
-    entry4 = new Hotel(entry4);
-    entry5 = new Refugio(entry5);
-    return [entry1, entry2, entry3, entry4, entry5];
+    return [this.entry1, this.entry2, this.entry3, this.entry4, this.entry5];
+  }
+
+  public getHotel(id) {
+    return this.entry4;
+  }
+
+  public getTurismoRural(id) {
+    return this.entry3;
+  }
+
+  public getApartamento(id) {
+    return this.entry1;
+  }
+
+  public getCamping(id) {
+    return this.entry2;
+  }
+
+  public getRefugio(id) {
+    return this.entry5;
   }
 
 }

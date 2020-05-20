@@ -26,6 +26,7 @@ export class CurrentUserService {
 
   public logIn() {
     this.user = {
+      id: 'id',
       activo: false,
       baneado: false,
       fechaNacimiento: undefined,
