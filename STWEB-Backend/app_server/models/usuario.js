@@ -10,7 +10,9 @@ const usuarioSchema = new mongoose.Schema({
     pais: {type: String, required: true},
     provincia: String,
     activo: Boolean,
-    baneado: Boolean
+    baneado: Boolean,
+    inicioBan: Date,
+    finBan: Date
 });
 
 module.exports = mongoose.model('Usuario',usuarioSchema);
