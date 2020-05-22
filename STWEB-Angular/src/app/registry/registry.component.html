@@ -10,13 +10,13 @@
   <div class="col-sm-3">
   </div>
   <div class="col-sm-3">
-    <label for="inputName">Nombre</label>
-    <input class="form-control" id="inputName">
+    <label>Nombre</label>
+    <input #nombre class="form-control">
   </div>
 
   <div class="col-sm-3">
-    <label for="inputApellidos">Apellidos</label>
-    <input class="form-control" id="inputApellidos">
+    <label>Apellidos</label>
+    <input #apellidos class="form-control">
   </div>
   <div class="col-sm-3">
   </div>
@@ -28,13 +28,13 @@
   <div class="col-sm-3">
   </div>
   <div class="col-sm-3">
-    <label for="inputNacimiento">Fecha de nacimiento</label>
-    <input class="form-control" id="inputNacimiento">
+    <label>Fecha de nacimiento</label>
+    <input #nacimiento class="form-control">
   </div>
 
   <div class="col-sm-3">
-    <label for="inputTel">Teléfono </label>
-    <input class="form-control" id="inputTel">
+    <label>Teléfono </label>
+    <input #telefono class="form-control">
   </div>
   <div class="col-sm-3">
   </div>
@@ -46,13 +46,13 @@
   <div class="col-sm-3">
   </div>
   <div class="col-sm-3">
-    <label for="inputCountry">País</label>
-    <input class="form-control" id="inputCountry">
+    <label>País</label>
+    <input #pais class="form-control">
   </div>
 
   <div class="col-sm-3">
-    <label for="inputProv"> Provincia </label>
-    <input class="form-control" id="inputProv">
+    <label> Provincia </label>
+    <input #provincia class="form-control">
   </div>
   <div class="col-sm-3">
   </div>
@@ -64,8 +64,8 @@
   <div class="col-sm-3">
   </div>
   <div class="col-sm-3">
-    <label for="exampleInputEmail1">Correo Electrónico</label>
-    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Introduzca su e-mail">
+    <label>Correo Electrónico</label>
+    <input #email type="email" class="form-control" aria-describedby="emailHelp" placeholder="Introduzca su e-mail">
   </div>
   <div class="col-sm-3">
     <br>
@@ -81,12 +81,12 @@
   <div class="col-sm-3">
   </div>
   <div class="col-sm-3">
-    <label for="inputPassword1">Contraseña</label>
-    <input type="password" class="form-control" id="inputPassword1">
+    <label>Contraseña</label>
+    <input #password1 type="password" class="form-control">
   </div>
   <div class="col-sm-3">
-    <label for="inputPassword2">Confirmar contraseña</label>
-    <input type="password" class="form-control" id="inputPassword2">
+    <label>Confirmar contraseña</label>
+    <input #password2 type="password" class="form-control">
   </div>
   <div class="col-sm-3">
   </div>
@@ -95,7 +95,8 @@
 <br>
 
 <div class="row justify-content-center">
-  <button type="button" routerLink="/index-user" class="btn btn-primary btn-lg">Confirmar Registro</button>
+  <button type="button" (click)="registerUser(nombre.value, apellidos.value, nacimiento.value, telefono.value, pais.value,
+  provincia.value, email.value, password1.value, password2.value)" class="btn btn-primary btn-lg">Confirmar Registro</button>
 </div>
 
 <br>
