@@ -103,7 +103,7 @@
             <div class="col" style="text-align: left; margin-top: auto; margin-left: 25%">
               <div class="form-group">
                 <label class="control-label">País</label>
-                <select class="custom-select">
+                <select #pais class="custom-select">
                   <option selected="">{{ user.pais }}</option>
                   <option value="1">España</option>
                   <option value="2">Italia</option>
@@ -114,7 +114,7 @@
             <div class="col" style="text-align: left; margin-top: auto; margin-right: 25%">
               <div class="form-group">
                 <label class="control-label">Provincia</label>
-                <select class="custom-select">
+                <select #provincia class="custom-select">
                   <option selected="">{{ user.provincia }}</option>
                   <option value="1">Huesca</option>
                   <option value="2">Zaragoza</option>
@@ -129,13 +129,14 @@
             <div class="col" style="text-align: left; margin-top: auto; margin-left: 25%">
               <label class="control-label">Email</label>
               <br>
-              <label class="control-label">{{ user.email }}</label>
+              <input #email type="email" class="form-control" aria-describedby="emailHelp" placeholder={{ user.email }}>
             </div>
           </div>
           <br>
           <div class="row" style="height: 40%">
             <div class="col" style="text-align: center; margin-top: auto; margin-left: 25%">
-              <button type="button" class="btn btn-primary">Guardar cambios</button>
+              <button type="button" (click)="update(pais.value, provincia.value, email.value)"
+                      class="btn btn-primary btn-lg">Guardar cambios</button>
             </div>
             <div class="col" style="text-align: center; margin-top: auto; margin-right: 25%">
               <button type="button" routerLink="/change-password" class="btn btn-primary">Cambiar contraseña</button>

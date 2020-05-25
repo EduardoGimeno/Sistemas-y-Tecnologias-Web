@@ -19,13 +19,19 @@ export class UserService {
     return this.http.post( 'localhost:3000/register', user);
   }
 
-  public modifyPassword(id: number, password: string) {
+  public modifyPassword(id: string, password: string) {
     return this.http.patch( 'localhost:3000/modifyPassword/' + id, password);
   }
 
   public getUsers(){
     return this.http.get('localhost:3000/getUsers');
   }
+
+  public updateUser(pais: string, provincia: string, email: string) {
+    let params = new HttpParams()
+        .set("pais", pais).set("provincia", provincia).set("email", email);
+      return this.http.patch( 'localhost:3000/updateUser', {params: params});
+    }
 
   public deleteUser(id: number) {
     return this.http.delete('localhost:3000/delete/' + id);
