@@ -4,7 +4,12 @@ var User = require('../models/usuario');
 var userController = {};
 
 userController.getUsers = async function(req, res) {
-    const user = await User.find();
+    const user = await User.find(function(err) {
+        if (err) {
+            res.status(500);
+            res.json({error: 'search error'});
+        }
+    });
     res.json(user);
 }
 
@@ -87,7 +92,7 @@ userController.searchUsers = async function(req, res) {
                                    function(err) {
                                        if (err) {
                                             res.status(400);
-                                            res.json({error: 'users not found'}); 
+                                            res.json({error: 'search error'}); 
                                        }
                                    });
     res.status(200);
