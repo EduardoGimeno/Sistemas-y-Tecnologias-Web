@@ -104,10 +104,10 @@
               <div class="form-group">
                 <label class="control-label">País</label>
                 <select #pais class="custom-select">
-                  <option selected="">{{ user.pais }}</option>
-                  <option value="1">España</option>
-                  <option value="2">Italia</option>
-                  <option value="3">Francia</option>
+                  <option value="" selected disabled hidden>{{ user.pais }}</option>
+                  <option value="España">España</option>
+                  <option value="Italia">Italia</option>
+                  <option value="Francia">Francia</option>
                 </select>
               </div>
             </div>
@@ -115,10 +115,10 @@
               <div class="form-group">
                 <label class="control-label">Provincia</label>
                 <select #provincia class="custom-select">
-                  <option selected="">{{ user.provincia }}</option>
-                  <option value="1">Huesca</option>
-                  <option value="2">Zaragoza</option>
-                  <option value="3">Teruel</option>
+                  <option value="" selected disabled hidden>{{ user.provincia }}</option>
+                  <option value="Huesca">Huesca</option>
+                  <option value="Zaragoza">Zaragoza</option>
+                  <option value="Teruel">Teruel</option>
                 </select>
               </div>
             </div>
@@ -129,9 +129,11 @@
             <div class="col" style="text-align: left; margin-top: auto; margin-left: 25%">
               <label class="control-label">Email</label>
               <br>
-              <input #email type="email" class="form-control" aria-describedby="emailHelp" placeholder={{ user.email }}>
+              <input #email type="email" class="form-control" aria-describedby="emailHelp" placeholder="{{ user.email }}">
             </div>
           </div>
+          <br>
+          <br>
           <br>
           <div class="row" style="height: 40%">
             <div class="col" style="text-align: center; margin-top: auto; margin-left: 25%">

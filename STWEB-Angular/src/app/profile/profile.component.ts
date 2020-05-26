@@ -12,14 +12,23 @@ export class ProfileComponent implements OnInit {
 
   user: UserApp;
 
-  constructor(public currentUser: CurrentUserService, public userService: UserService) { }
+  constructor(public currentUser: CurrentUserService) { }
 
   ngOnInit(): void {
     this.user = this.currentUser.checkLog();
   }
 
   update(pais: string, provincia: string, email: string) {
-      this.userService.updateUser(pais, provincia, email);
+    if (pais == "" || pais == null) {
+      pais = this.user.pais;
+    }
+    if (provincia == "" || provincia == null) {
+      provincia = this.user.provincia;
+    }
+    if (email == "" || email == null) {
+      email = this.user.email;
+    }
+    this.user = this.currentUser.updateUser(pais, provincia, email);
   }
 
 }

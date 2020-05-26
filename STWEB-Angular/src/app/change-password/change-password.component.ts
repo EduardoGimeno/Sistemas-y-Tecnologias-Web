@@ -12,14 +12,18 @@ export class ChangePasswordComponent implements OnInit {
 
   user: UserApp;
 
-  constructor(public currentUser: CurrentUserService, public userService: UserService) { }
+  constructor(public currentUser: CurrentUserService) { }
 
   ngOnInit(): void {
     this.user = this.currentUser.checkLog();
   }
 
-  modifyPass(id: string, password: string){
-    this.userService.modifyPassword(id, password);
+  modifyPass(OldPassword: string, NewPassword: string, NewPassword2: string) {
+    if (this.user.contrasena == OldPassword && NewPassword != "" && NewPassword != null && NewPassword == NewPassword2) {
+      this.user = this.currentUser.modifyPassword(NewPassword);
+      console.log("CONTRASEÑA VIEJA: " + OldPassword);
+      console.log("CONTRASEÑA ACTUAL: " + NewPassword);
+    }
   }
 
 }
