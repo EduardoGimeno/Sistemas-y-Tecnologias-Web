@@ -33,8 +33,14 @@ export class EntryComponent implements OnInit {
         this.entry = this.entryService.getRefugio(id);
       } else if (tipoEntry == 'cam') {
         this.entry = this.entryService.getCamping(id);
+      } else if (tipoEntry == 'res') {
+        this.entry = this.entryService.getRestaurante(id);
+      } else if (tipoEntry == 'ofi') {
+        this.entry = this.entryService.getOficinaTurismo(id);
+      } else if (tipoEntry == 'pun') {
+        this.entry = this.entryService.getPuntoInformacion(id);
       }
-        });
+    });
   }
 
   numberReturn(length){

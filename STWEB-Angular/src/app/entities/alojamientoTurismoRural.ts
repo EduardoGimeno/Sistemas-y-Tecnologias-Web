@@ -8,6 +8,6 @@ export class AlojamientoTurismoRural extends Alojamiento {
     super(a);
     this.espigas = a.espigas;
     this.tipo = a.tipo;
-    this.tipoAlojamiento = "Turismo rural";
+    this.tipoEntry = "Turismo rural";
   }
 }

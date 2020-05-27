@@ -7,6 +7,6 @@ export class Hotel extends Alojamiento {
     super(h);
     this.grupo = h.grupo;
     this.estrellas = h.estrellas;
-    this.tipoAlojamiento = "Hotel";
+    this.tipoEntry = "Hotel";
   }
 }

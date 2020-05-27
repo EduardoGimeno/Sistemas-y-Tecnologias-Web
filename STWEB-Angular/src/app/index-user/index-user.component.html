@@ -105,21 +105,21 @@
 
     <div *ngFor="let entry of showEntries" class="card bg-light mb-3" style="width: 90%; display: inline-flex">
 
-      <div class="card-header {{ entry.tipoAlojamiento }}">
+      <div class="card-header {{ entry.tipoEntry }}">
         <div class="row">
           <div style="width: 20%; text-align: center">
-            <h6>{{ entry.tipoAlojamiento }}</h6>
+            <h6>{{ entry.tipoEntry }}</h6>
           </div>
           <div style="width: 50%; text-align: center">
             <h5 class="card-title">{{ entry.nombre }}</h5>
           </div>
           <div style="width: 30%; text-align: center;">
-            <div *ngIf="entry.tipoAlojamiento == 'Hotel'">
+            <div *ngIf="entry.tipoEntry == 'Hotel'">
               <svg *ngFor="let star of numberReturn(entry.estrellas)" class="bi bi-star-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                 <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
               </svg>
             </div>
-            <div *ngIf="entry.tipoAlojamiento == 'Turismo rural'">
+            <div *ngIf="entry.tipoEntry == 'Turismo rural'">
               <svg *ngFor="let star of numberReturn(entry.espigas)" class="bi bi-star-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                 <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
               </svg>
@@ -172,49 +172,71 @@
     <div style="padding-top: 2vh">
       <h6 class="textCustomColor">Provincia:</h6>
       <div class="btn-group" style="width: 85%; margin-bottom: 2vh">
-        <select class="custom-select">
-          <option value="1">Zaragoza</option>
-          <option value="2">Huesca</option>
-          <option value="3">Teruel</option>
+        <select id="selectionProvincia" class="custom-select">
+          <option value="">Todas</option>
+          <option value="Zaragoza">Zaragoza</option>
+          <option value="Huesca">Huesca</option>
+          <option value="Teruel">Teruel</option>
         </select>
       </div>
 
       <h6 class="textCustomColor">Comarca:</h6>
       <div class="btn-group" style="width: 85%; margin-bottom: 2vh">
-        <select class="custom-select">
-          <option value="1">Calatayud</option>
-          <option value="2">Cariñena</option>
+        <select id="selectionComarca" class="custom-select">
+          <option value="">Todas</option>
+          <option value="Calatayud">Calatayud</option>
+          <option value="Cariñena">Cariñena</option>
         </select>
       </div>
 
-      <h6 class="textCustomColor">Localidad:</h6>
+      <h6 class="textCustomColor">Municipio:</h6>
       <div class="btn-group" style="width: 85%; margin-bottom: 2vh">
-        <select class="custom-select">
-          <option value="1">Calatayud</option>
-          <option value="2">Cariñena</option>
+        <select id="selectionMunicipio" class="custom-select">
+          <option value="">Todos</option>
+          <option value="Calatayud">Calatayud</option>
+          <option value="Cariñena">Cariñena</option>
         </select>
       </div>
 
       <h6 class="textCustomColor">Estrellas / Espigas:</h6>
-      <div class="btn-group" style="width: 85%; margin-bottom: 2vh">
-        <select class="custom-select">
-          <option value="1">1 (Una)</option>
-          <option value="2">2 (Dos)</option>
-          <option value="3">3 (Tres)</option>
-          <option value="4">4 (Cuatro)</option>
-          <option value="5">5 (Cinco)</option>
-        </select>
+      <div class="row">
+        <div style="width: 50%">
+          <h6 class="textCustomColor">Mínimo</h6>
+          <div class="btn-group" style="width: 65%; margin-bottom: 2vh">
+            <select id="selectionEstrellasMin" class="custom-select">
+              <option value="1">1 (Una)</option>
+              <option value="2">2 (Dos)</option>
+              <option value="3">3 (Tres)</option>
+              <option value="4">4 (Cuatro)</option>
+              <option value="5">5 (Cinco)</option>
+            </select>
+          </div>
+        </div>
+
+        <div style="width: 50%">
+          <h6 class="textCustomColor">Máximo</h6>
+          <div class="btn-group" style="width: 65%; margin-bottom: 2vh">
+            <select id="selectionEstrellasMax" class="custom-select">
+              <option value="5">5 (Cinco)</option>
+              <option value="4">4 (Cuatro)</option>
+              <option value="3">3 (Tres)</option>
+              <option value="2">2 (Dos)</option>
+              <option value="1">1 (Una)</option>
+            </select>
+          </div>
+        </div>
       </div>
 
       <h6 class="textCustomColor">Idioma (Guías turísticos):</h6>
       <div class="btn-group" style="width: 85%; margin-bottom: 4vh">
-        <select class="custom-select">
-          <option value="1">Español</option>
-          <option value="2">Inglés</option>
+        <select id="selectionIdioma" class="custom-select" disabled="disabled">
+          <option value="">Todos</option>
+          <option value="Español">Español</option>
+          <option value="Inglés">Inglés</option>
         </select>
       </div>
 
-      <button type="button" class="btn btn-primary" style="width: 60%; margin: auto">
+      <button type="button" class="btn btn-primary" style="width: 60%; margin: auto" (click)="search()">
         <h2>Buscar</h2>
       </button>
     </div>

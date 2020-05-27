@@ -80,7 +80,7 @@
       <div class="card-header {{ entry.tipoAlojamiento }}">
         <div class="row">
           <div style="width: 20%; text-align: center">
-            <h6>{{ entry.tipoAlojamiento }}</h6>
+            <h6>{{ entry.tipoEntry }}</h6>
           </div>
           <div style="width: 50%; text-align: center">
             <h5 class="card-title">{{ entry.nombre }}</h5>
@@ -141,7 +141,7 @@
   <!------------------------------- THIRD COLUMN ----------------------------------------------->
 
 
-  <div class="col-3" style="text-align: center; padding: unset">
+  <div class="col-3" style="text-align: center; padding: unset" *ngIf="entry.tipoEntry != 'Punto de informacion'">
 
     <div style="padding-right: inherit; background-color: #f2f2f2;
      border-bottom: 5px solid #d9d9d9; border-left: 5px solid #d9d9d9;
@@ -160,18 +160,19 @@
 
 
     <div style="margin-bottom: 10vh; margin-top: 5vh">
-      <h4>{{ entry.nombre }}</h4>
-      <h5>Teléfono: {{ entry.telefono }}</h5>
+      <h5 *ngIf="entry.tipoEntry != 'Punto de informacion'">Teléfono: {{ entry.telefono }}</h5>
     </div>
 
-    <h4>
-      Inicia una conversación directamente desde aquí:
-    </h4>
-    <button type="button" class="btn btn-primary" style="width: 70%" routerLink="/chat-user">
-      <svg class="bi bi-envelope-fill" width="5em" height="5em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-        <path d="M.05 3.555L8 8.414l7.95-4.859A2 2 0 0014 2H2A2 2 0 00.05 3.555zM16 4.697l-5.875 3.59L16 11.743V4.697zm-.168 8.108L9.157 8.879 8 9.586l-1.157-.707-6.675 3.926A2 2 0 002 14h12a2 2 0 001.832-1.195zM0 11.743l5.875-3.456L0 4.697v7.046z"/>
-      </svg>
-    </button>
+    <div *ngIf="entry.tipoEntry != 'Oficina de turismo' && entry.tipoEntry != 'Punto de informacion' && entry.tipoEntry != 'Restaurante'">
+      <h4>
+        Inicia una conversación directamente desde aquí:
+      </h4>
+      <button type="button" class="btn btn-primary" style="width: 70%" routerLink="/chat-user">
+        <svg class="bi bi-envelope-fill" width="5em" height="5em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <path d="M.05 3.555L8 8.414l7.95-4.859A2 2 0 0014 2H2A2 2 0 00.05 3.555zM16 4.697l-5.875 3.59L16 11.743V4.697zm-.168 8.108L9.157 8.879 8 9.586l-1.157-.707-6.675 3.926A2 2 0 002 14h12a2 2 0 001.832-1.195zM0 11.743l5.875-3.456L0 4.697v7.046z"/>
+        </svg>
+      </button>
+    </div>
 
   </div>
 

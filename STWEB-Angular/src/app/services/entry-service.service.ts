@@ -6,6 +6,9 @@ import {Apartamento} from "../entities/apartamento";
 import {Camping} from "../entities/camping";
 import {Refugio} from "../entities/refugio";
 import {Hotel} from "../entities/hotel";
+import {Restaurante} from "../entities/restaurante";
+import {OficinaTurismo} from "../entities/oficinaTurismo";
+import {PuntoInformacion} from "../entities/puntoInformacion";
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +25,7 @@ export class EntryService {
     provincia: "Zaragoza",
     comarca: "Aragón",
     telefono: "000 00 00 00",
-    tipoAlojamiento: "h"
+    tipoEntry: "h"
   });
   entry2: Camping = new Camping({
     id: 'id',
@@ -35,7 +38,7 @@ export class EntryService {
     provincia: "Zaragoza",
     comarca: "Aragón",
     telefono: "000 00 00 00",
-    tipoAlojamiento: "e"
+    tipoEntry: "e"
   });
   entry3: AlojamientoTurismoRural = new AlojamientoTurismoRural({
     id: 'id',
@@ -50,7 +53,7 @@ export class EntryService {
     telefono: "000 00 00 00",
     espigas: 5,
     tipo: "tipo",
-    tipoAlojamiento: "z"
+    tipoEntry: "z"
   });
   entry4: Hotel = new Hotel({
     id: 'id',
@@ -65,7 +68,7 @@ export class EntryService {
     telefono: "000 00 00 00",
     estrellas: 4,
     grupo: "tipo",
-    tipoAlojamiento: "z"
+    tipoEntry: "z"
   });
   entry5: Refugio = new Refugio({
     id: 'id',
@@ -78,13 +81,31 @@ export class EntryService {
     provincia: "Teruel",
     comarca: "Aragón",
     telefono: "000 00 00 00",
-    tipoAlojamiento: "z"
+    tipoEntry: "z"
   });
+  entry6: Restaurante = new Restaurante("id", "Nombre", "Direccion", "Provincia",
+    "Municipio", 50003, "Zaragoza", 500, "000 00 00 00", 5);
+  entry7: OficinaTurismo = new OficinaTurismo("id", "Nombre", "Direccion", "Provincia",
+    "000 00 00 00", "07:00 - 20:00");
+  entry8: PuntoInformacion = new PuntoInformacion("id", "Nombre", "Direccion", "Provincia",
+    "Municipio");
 
   constructor(private http: HttpClient) { }
 
   public getEntries() {
     return [this.entry1, this.entry2, this.entry3, this.entry4, this.entry5];
+  }
+
+  public getRestaurantes() {
+    return [this.entry6];
+  }
+
+  public getOficinasTurismo() {
+    return [this.entry7];
+  }
+
+  public getPuntosInformacion() {
+    return [this.entry8];
   }
 
   public getHotel(id) {
@@ -105,6 +126,18 @@ export class EntryService {
 
   public getRefugio(id) {
     return this.entry5;
+  }
+
+  public getRestaurante(id) {
+    return this.entry6;
+  }
+
+  public getOficinaTurismo(id) {
+    return this.entry7;
+  }
+
+  public getPuntoInformacion(id) {
+    return this.entry8;
   }
 
 }

@@ -9,7 +9,7 @@ export class Alojamiento {
   capacidad: number;
   email: string;
   telefono: string;
-  tipoAlojamiento: string;
+  tipoEntry: string;
 
   constructor(a: Alojamiento) {
     this.id = a.id;
@@ -22,6 +22,6 @@ export class Alojamiento {
     this.capacidad = a.capacidad;
     this.email = a.email;
     this.telefono = a.telefono;
-    this.tipoAlojamiento = "Alojamiento";
+    this.tipoEntry = "Alojamiento";
   }
 }
