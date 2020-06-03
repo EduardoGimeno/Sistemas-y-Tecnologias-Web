@@ -16,26 +16,7 @@ var authRouter = require('./app_server/routes/auth')
 var app = express();
 app.use(passport.initialize())
 app.use(passport.session())
-
-passport.serializeUser(function(user, done) {
-  done(null, user);
-});
-
-passport.deserializeUser(function(id, done) {
-  done(null, id);
-});
-
-passport.use(new GoogleStrategy({
-  clientID: keys.clienteID,
-  clientSecret: keys.secretID,
-  callbackURL: "/auth/google/callback"
-},
-function(accessToken, refreshToken, profile, done) {
-    console.log(profile)
-    return done(null,profile);
-}
-));
-
+require('./passport')
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -63,7 +44,7 @@ app.use(function(err, req, res, next) {
   // render the error page
   res.status(err.status || 500);
   console.log(err)
-  res.json({ status: 'Error' })
+  res.json({ status: 'Error', mensaje: err.message })
 });
 
 module.exports = app;
