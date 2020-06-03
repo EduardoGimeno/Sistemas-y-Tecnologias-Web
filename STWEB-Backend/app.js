@@ -11,7 +11,9 @@ var keys = require('./app_server/config/keys')
 
 var indexRouter = require('./app_server/routes/index');
 var usersRouter = require('./app_server/routes/users');
-var authRouter = require('./app_server/routes/auth')
+var hotelsRouter = require('./app_server/routes/hotels');
+var shelterRouter = require('./app_server/routes/shelters');
+var authRouter = require('./app_server/routes/auth');
 
 var app = express();
 app.use(passport.initialize())
@@ -28,6 +30,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/hotels', hotelsRouter);
+app.use('/shelters', shelterRouter);
 app.use('/auth', authRouter);
 
 // catch 404 and forward to error handler

@@ -1,50 +1,48 @@
 var express = require('express');
 var url = require("url");
-var Hotel = require('../models/hotel');
-var hotelController = {};
+var Shelter = require('../models/refugio');
+var shelterController = {};
 
-hotelController.getHotels = async function(req, res) {
-    const hotels = Hotel.find(function(err) {
+shelterController.getShelters = async function(req, res) {
+    const shelter = await Shelter.find(function(err) {
         if (err) {
             res.status(500);
             res.json({error: 'search error'});
         }
     });
-    res.status(200);
-    res.json(hotels);
+    res.json(shelter);
 }
 
-hotelController.addHotel = async function(req, res) {
-    var hotel = new Hotel(req.body);
-    await hotel.save(function (err, newHotel) {
+shelterController.addShelter = async function(req, res){
+    var shelter = new Shelter(req.body);
+    await shelter.save(function (err, newShelter) {
         if (err) {
             res.status(500);
-            res.json({error: 'Hotel not saved'});
+            res.json({error: 'Shelter not created'});
         } else {
             res.status(200);
-            res.json(newHotel);
+            res.json(newShelter);
         }
     });
 }
 
-hotelController.getHotel = async function(req, res) {
+shelterController.getShelter = async function(req, res) {
     var id = req.params.id;
-    const hotel = await Hotel.findById(id, function(err) {
+    const shelter = await Shelter.findById(id, function(err) {
         if (err) {
             res.status(500);
-            res.json({error: 'Hotel not found'});
+            res.json({error: 'Shelter not found'});
         }
     });
     res.status(200);
-    res.json(hotel);
+    res.json(shelter);
 }
 
-hotelController.searchHotel = async function(req, res) {
+shelterController.searchShelters = async function(req, res) {
     var queryData = url.parse(req.url, true).query;
     var province = queryData.province;
     var region = queryData.region;
     var municipality = queryData.municipality;
-    var stars = queryData.stars;
 
     if (province === "null") {
         province = '^[a-z].*';
@@ -54,10 +52,9 @@ hotelController.searchHotel = async function(req, res) {
         municipality = '^[a-z].*';
     }
 
-    const hotels = await Hotel.find({provincia: new RegExp(province,'i'), 
-                                   comcarca: new RegExp(region, 'i'), 
-                                   municipio: new RegExp(municipality, 'i'),
-                                   estrellas: stars},
+    const shelters = await Shelter.find({provincia: new RegExp(province,'i'), 
+                                   region: new RegExp(region, 'i'), 
+                                   municipio: new RegExp(municipality, 'i')},
                                    function(err) {
                                        if (err) {
                                             res.status(400);
@@ -65,7 +62,7 @@ hotelController.searchHotel = async function(req, res) {
                                        }
                                    });
     res.status(200);
-    res.json(hotels);
+    res.json(shelters);
 }
 
-module.exports = hotelController;
+module.exports = shelterController;

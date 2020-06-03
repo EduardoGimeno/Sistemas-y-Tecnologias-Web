@@ -86,9 +86,9 @@ userController.searchUsers = async function(req, res) {
         email = '^[a-z].*';
     }
 
-    const users = await User.find({nombre: {$regex: name, $options: 'i'}, 
-                                   apellidos: {$regex: surname, $options: 'i'}, 
-                                   email: {$regex: email, $options: 'i'}},
+    const users = await User.find({nombre: new RegExp(name,'i'), 
+                                   apellidos: new RegExp(surname, 'i'), 
+                                   email: new RegExp(email, 'i')},
                                    function(err) {
                                        if (err) {
                                             res.status(400);
