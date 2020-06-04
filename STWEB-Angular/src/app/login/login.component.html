@@ -47,10 +47,31 @@
     <a class="text-info" routerLink="/registry">Todavía no tienes una cuenta? Regístrate</a>
   </div>
   <br>
-  <div class="row justify-content-center" (click)="signInWithGoogle()">
-    <div class="g-signin2" data-onsuccess="onSignIn"></div>
-    <button class="btn btn-social btn-google">
-    <span class="fa fa-google"></span> Accede con tu cuenta de Google</button>
+  <div *ngIf="!user">
+    <div class="row justify-content-center" (click)="signInWithGoogle()">
+      <div class="g-signin2" data-onsuccess="onSignIn"></div>
+      <button class="btn btn-social btn-google">
+        <span class="fa fa-google"></span> Accede con tu cuenta de Google</button>
+    </div>
+  </div>
+  <div *ngIf="user" class="card text-center" style="text-align: center; margin-top: auto; margin-left: 35%; margin-right: 35%">
+    <br>
+    <div class="row justify-content-center">
+      <img src="{{ user.photoUrl }}">
+    </div>
+    <br>
+    <div class="row justify-content-center">
+
+      <div>
+        <h4>{{ user.name }}</h4>
+        <p>{{ user.email }}</p>
+      </div>
+    </div>
+    <br>
+    <div class="row justify-content-center">
+      <button type="button"(click)="signOut();" class="btn btn-danger">Cerrar sesión</button>
+    </div>
+    <br>
   </div>
 
 

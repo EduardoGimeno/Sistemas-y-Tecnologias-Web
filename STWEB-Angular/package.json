@@ -24,6 +24,7 @@
     "@ng-bootstrap/ng-bootstrap": "^6.1.0",
     "@types/jquery": "^3.3.36",
     "angular-font-awesome": "^3.1.2",
+    "angular-google-signin": "^0.1.5",
     "angularx-social-login": "^2.3.1",
     "bootstrap": "^4.4.0",
     "font-awesome": "^4.7.0",
