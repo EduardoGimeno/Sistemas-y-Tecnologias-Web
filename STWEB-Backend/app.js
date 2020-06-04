@@ -29,10 +29,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 //Middleware
 
 app.use('/', indexRouter);
+app.use('/auth', authRouter);
 app.use('/users', usersRouter);
 app.use('/hotels', hotelsRouter);
 app.use('/shelters', shelterRouter);
-app.use('/auth', authRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

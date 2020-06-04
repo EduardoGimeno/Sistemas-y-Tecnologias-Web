@@ -27,89 +27,120 @@ userController.getUsers = async function(req, res) {
 }
 
 userController.addUser = async function(req, res){
-    var user = new User(req.body);
-    user.baneado = false;
-    user.activo = true;
-    await user.save(function (err, newUser) {
-        if (err) {
-            res.status(500);
-            res.json({error: 'User not created'});
-        } else {
-            res.status(200);
-            res.json(newUser);
-        }
-    });
+    try{
+        checkToken(req.headers.authentication)
+        var user = new User(req.body);
+        user.baneado = false;
+        user.activo = true;
+        await user.save(function (err, newUser) {
+            if (err) {
+                res.status(500);
+                res.json({error: 'User not created'});
+            } else {
+                res.status(200);
+                res.json(newUser);
+            }
+        });
+    }
+    catch (err){
+        res.status(500);
+        res.json({error : err.message});
+    }
 }
 
 userController.getUser = async function(req, res) {
-    var id = req.params.id;
-    const user = await User.findById(id, function(err) {
-        if (err) {
-            res.status(500);
-            res.json({error: 'User not found'});
-        }
-    });
-    res.status(200);
-    res.json(user);
+    try{
+        checkToken(req.headers.authentication)
+        var id = req.params.id;
+        const user = await User.findById(id, function(err) {
+            if (err) {
+                res.status(500);
+                res.json({error: 'User not found'});
+            }
+        });
+        res.status(200);
+        res.json(user);
+    }catch(err){
+        res.status(500);
+        res.json({error : err.message});
+    }
 }
 
 userController.updateUser = async function(req, res) {
-    var user = new User(req.body);
-    await User.findOneAndUpdate(user.id, user, function(err) {
-        if (err) {
-            res.status(500);
-            res.json({error: 'Unable to update user'});
-        } else {
-            res.status(200);
-            res.json(user);
-        }
-    });
+    try{
+        checkToken(req.headers.authentication)
+        var user = new User(req.body);
+        await User.findOneAndUpdate(user.id, user, function(err) {
+            if (err) {
+                res.status(500);
+                res.json({error: 'Unable to update user'});
+            } else {
+                res.status(200);
+                res.json(user);
+            }
+        });
+    }catch(err){
+        res.status(500);
+        res.json({error : err.message});
+    }
 }
 
 userController.login = async function(req, res) {
-    var queryData = url.parse(req.url, true).query;
-    var email = queryData.email;
-    var password = queryData.password;
-    const user = await User.findOne({email: email}, function(err) {
-        if (err) {
+    try{
+        checkToken(req.headers.authentication)
+        var queryData = url.parse(req.url, true).query;
+        var email = queryData.email;
+        var password = queryData.password;
+        const user = await User.findOne({email: email}, function(err) {
+            if (err) {
+                res.status(400);
+                res.json({error: 'email not found'});
+            }
+        });
+        if (user.contrasena === password) {
+            res.status(200);
+            res.json(user);
+        } else {
             res.status(400);
-            res.json({error: 'email not found'});
+            res.json({error: 'password not correct'});
         }
-    });
-    if (user.contrasena === password) {
-        res.status(200);
-        res.json(user);
-    } else {
-        res.status(400);
-        res.json({error: 'password not correct'});
+    }catch(err){
+        res.status(500);
+        res.json({error : err.message});
     }
 }
 
 userController.searchUsers = async function(req, res) {
-    var queryData = url.parse(req.url, true).query;
-    var name = queryData.name;
-    var surname = queryData.surname;
-    var email = queryData.email;
+    try{
+        checkToken(req.headers.authentication)
+        var queryData = url.parse(req.url, true).query;
+        var name = queryData.name;
+        var surname = queryData.surname;
+        var email = queryData.email;
 
-    if (name === "null") {
-        name = '^[a-z].*';
-    } else if (surname === "null") {
-        surname = '^[a-z].*';
-    } else if (email === "null") {
-        email = '^[a-z].*';
-    }
+        if (name === "null") {
+            name = '^[a-z].*';
+        } else if (surname === "null") {
+            surname = '^[a-z].*';
+        } else if (email === "null") {
+            email = '^[a-z].*';
+        }
 
-    const users = await User.find({nombre: new RegExp(name,'i'), 
-                                   apellidos: new RegExp(surname, 'i'), 
-                                   email: new RegExp(email, 'i')},
-                                   function(err) {
-                                       if (err) {
-                                            res.status(400);
-                                            res.json({error: 'search error'}); 
-                                       }
-                                   });
-    res.status(200);
-    res.json(users);
+        const users = await User.find({nombre: new RegExp(name,'i'), 
+                                    apellidos: new RegExp(surname, 'i'), 
+                                    email: new RegExp(email, 'i')},
+                                    function(err) {
+                                        if (err) {
+                                                res.status(400);
+                                                res.json({error: 'search error'}); 
+                                        }
+                                    });
+        res.status(200);
+        res.json(users);
+        }catch(err){
+            res.status(500);
+            res.json({error : err.message});
+        }
 }
 
 module.exports = userController;
