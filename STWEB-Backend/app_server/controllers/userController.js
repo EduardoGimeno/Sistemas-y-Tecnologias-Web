@@ -1,16 +1,29 @@
 var express = require('express');
 var url = require("url");
 var User = require('../models/usuario');
+var jwtinterface = require('../jsonwebtoken')
 var userController = {};
 
+checkToken = function(token){
+    jwtinterface.verifytoken(token);
+}
+
 userController.getUsers = async function(req, res) {
-    const user = await User.find(function(err) {
+    console.log(req.headers.authentication)
+    console.log("llegue")
+    try{
+        checkToken(req.headers.authentication)
+        const user = await User.find(function(err) {
         if (err) {
             res.status(500);
             res.json({error: 'search error'});
         }
-    });
-    res.json(user);
+        });
+        res.json(user);}
+    catch (err){
+        res.status(500);
+        res.json({error : err.message});
+    }
 }
 
 userController.addUser = async function(req, res){
