@@ -7,7 +7,9 @@ import { UserApp } from "../entities/usuario";
 })
 export class UserService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+
+   }
 
   public logIn(email: string, password: string) {
     let params = new HttpParams()
@@ -33,5 +35,21 @@ export class UserService {
   public deleteUser(id: number) {
     return this.http.delete('localhost:3000/delete/' + id);
   }
+
+  public sendTokenToBackEnd(token: string){
+      this.http.post('localhost:3000/google',
+            {
+               token: token
+            }
+         ).subscribe(
+            onSuccess => {
+               //login was successful
+               //save the token that you got from your REST API in your preferred location i.e. as a Cookie or LocalStorage as you do with normal login
+            }, onFail => {
+               //login was unsuccessful
+               //show an error message
+            }
+         );
+    }
 
 }

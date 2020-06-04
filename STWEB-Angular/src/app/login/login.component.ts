@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CurrentUserService } from "../current-user.service";
+import { UserService } from "../services/user-service.service";
 
 import { AuthService } from "angularx-social-login";
 import { SocialUser } from "angularx-social-login";
@@ -17,7 +18,7 @@ export class LoginComponent implements OnInit {
   private loggedIn: boolean;
 
 
-  constructor(public router: Router, public currentUser: CurrentUserService, private authService: AuthService) { }
+  constructor(public router: Router, public currentUser: CurrentUserService, private authService: AuthService, public userService: UserService) { }
 
   ngOnInit(): void {
     this.authService.authState.subscribe((user) => {
@@ -29,13 +30,14 @@ export class LoginComponent implements OnInit {
 
 
   signInWithGoogle(): void {
-      this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
+      //on success
+      //this will return user data from google. What you need is a user token which you will send it to the server
+      this.authService.signIn(GoogleLoginProvider.PROVIDER_ID).then((googleUser) => {
+            this.userService.sendTokenToBackEnd(googleUser.idToken);
+      });
   }
 
-  onSignIn(googleUser) {
-    var profile = googleUser.getBasicProfile();
-    var id_token = googleUser.getAuthResponse().id_token; //Token para el backend
-  }
+
 
   signOut(): void {
       this.authService.signOut();
