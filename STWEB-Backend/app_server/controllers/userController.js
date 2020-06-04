@@ -8,13 +8,9 @@ checkToken = function(token){
     jwtinterface.verifytoken(token);
 }
 
-createToken = function(user){
-    jwtinterface.signtoken(user)
-}
-
 userController.getUsers = async function(req, res) {
     try{
-        checkToken(req.headers.authentication)
+        //checkToken(req.headers.authentication)
         const user = await User.find(function(err) {
         if (err) {
             res.status(500);
@@ -81,32 +77,6 @@ userController.updateUser = async function(req, res) {
                 res.json(user);
             }
         });
-    }catch(err){
-        res.status(500);
-        res.json({error : err.message});
-    }
-}
-
-userController.login = async function(req, res) {
-    try{
-        var queryData = url.parse(req.url, true).query;
-        console.log(queryData.all)
-        var email = queryData.email;
-        var password = queryData.password;
-        const user = await User.findOne({email: email}, function(err) {
-            if (err) {
-                res.status(400);
-                res.json({error: 'email not found'});
-            }
-        });
-        if (user.contrasena === password) {
-            var newToken = createToken(user);
-            res.status(200);
-            res.json({usuario : user, token : newToken});
-        } else {
-            res.status(400);
-            res.json({error: 'password not correct'});
-        }
     }catch(err){
         res.status(500);
         res.json({error : err.message});
