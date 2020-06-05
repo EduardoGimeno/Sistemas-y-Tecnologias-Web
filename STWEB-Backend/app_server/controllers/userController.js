@@ -10,7 +10,7 @@ checkToken = function(token){
 
 userController.getUsers = async function(req, res) {
     try{
-        //checkToken(req.headers.authentication)
+        checkToken(req.headers.authentication)
         const user = await User.find(function(err) {
         if (err) {
             res.status(500);
