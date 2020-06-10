@@ -14,6 +14,7 @@ var usersRouter = require('./app_server/routes/users');
 var hotelsRouter = require('./app_server/routes/hotels');
 var sheltersRouter = require('./app_server/routes/shelters');
 var apartmentsRouter = require('./app_server/routes/apartments');
+var ruralHousesRouter = require('./app_server/routes/ruralHouses');
 var authRouter = require('./app_server/routes/auth');
 
 var app = express();
@@ -28,13 +29,13 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 //Middleware
-
 app.use('/', indexRouter);
 app.use('/auth', authRouter);
 app.use('/users', usersRouter);
 app.use('/hotels', hotelsRouter);
 app.use('/shelters', sheltersRouter);
 app.use('/apartments', apartmentsRouter);
+app.use('/ruralHouses', ruralHousesRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
