@@ -12,7 +12,8 @@ var keys = require('./app_server/config/keys')
 var indexRouter = require('./app_server/routes/index');
 var usersRouter = require('./app_server/routes/users');
 var hotelsRouter = require('./app_server/routes/hotels');
-var shelterRouter = require('./app_server/routes/shelters');
+var sheltersRouter = require('./app_server/routes/shelters');
+var apartmentsRouter = require('./app_server/routes/apartments');
 var authRouter = require('./app_server/routes/auth');
 
 var app = express();
@@ -32,7 +33,8 @@ app.use('/', indexRouter);
 app.use('/auth', authRouter);
 app.use('/users', usersRouter);
 app.use('/hotels', hotelsRouter);
-app.use('/shelters', shelterRouter);
+app.use('/shelters', sheltersRouter);
+app.use('/apartments', apartmentsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
