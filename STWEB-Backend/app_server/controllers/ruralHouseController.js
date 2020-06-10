@@ -1,35 +1,35 @@
 var express = require('express');
 var url = require('url');
-var Hotel = require('../models/hotel');
-var hotelController = {};
+var RuralHouse = require('../models/alojamientoTurismoRural');
+var ruralHouseController = {};
 
 checkToken = function(token) {
     jwtinterface.verifytoken(token);
 }
 
-hotelController.getHotels = async function(req, res) {
+ruralHouseController.getRuralHouses = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);
         var perPage = 20;
         var page = Math.max(0, req.param('page'));
-        const hotels = Hotel.find(function(err) {
+        const ruralHouses = RuralHouse.find(function(err) {
             if (err) {
                 res.status(500);
                 res.json({error: err.message});
             }
         }).skip(perPage*page).limit(perPage);
         res.status(200);
-        res.json(hotels);
+        res.json(ruralHouses);
     } catch (err) {
         res.status(500);
         res.json({error: err.message});
     }
 }
 
-hotelController.countHotels = async function(req, res) {
+ruralHouseController.countRuralHouses = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);
-        Hotel.count({}, function(err, result) {
+        RuralHouse.count({}, function(err, result) {
             if (err) {
                 res.status(500);
                 res.json({error: err.message});
@@ -43,46 +43,46 @@ hotelController.countHotels = async function(req, res) {
     }
 }
 
-hotelController.addHotel = async function(req, res) {
-    var hotel = new Hotel(req.body);
-    await hotel.save(function (err, newHotel) {
+ruralHouseController.addRuralHouse = async function(req, res) {
+    var ruralHouse = new RuralHouse(req.body);
+    await ruralHouse.save(function (err, newRuralHouse) {
         if (err) {
             res.status(500);
             res.json({error: err.message});
         } else {
             res.status(200);
-            res.json(newHotel);
+            res.json(newRuralHouse);
         }
     });
 }
 
-hotelController.getHotel = async function(req, res) {
+ruralHouseController.getRuralHouse = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);
         var id = req.params.id;
-        const hotel = await Hotel.findById(id, function(err) {
+        const ruralHouse = await RuralHouse.findById(id, function(err) {
             if (err) {
                 res.status(500);
                 res.json({error: err.message});
             }
         });
         res.status(200);
-        res.json(hotel);
+        res.json(ruralHouse);
     } catch(err) {
         res.status(500);
         res.json({error: err.message});
     }
 }
 
-hotelController.searchHotels = async function(req, res) {
+ruralHouseController.searchRuralHouses = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);
         var queryData = url.parse(req.url, true).query;
         var province = queryData.province;
         var region = queryData.region;
         var municipality = queryData.municipality;
-        var minStars = queryData.minStars;
-        var maxStars = queryData.maxStars;
+        var minSpikes = queryData.minSpikes;
+        var maxSpikes = queryData.maxSpikes;
 
         if (province == "null") {
             province = "";
@@ -96,22 +96,22 @@ hotelController.searchHotels = async function(req, res) {
             municipality = "";
         }
 
-        const hotels = await Hotel.find({provincia: new RegExp(province,'i'), 
-                                        comcarca: new RegExp(region, 'i'), 
-                                        municipio: new RegExp(municipality, 'i'),
-                                        estrellas: {$gte: minStars, $lte: maxStars}},
-                                        function(err) {
-                                            if (err) {
-                                                res.status(400);
-                                                res.json({error: err.message}); 
-                                            }
-                                        });
+        const ruralHouses = await RuralHouse.find({provincia: new RegExp(province,'i'), 
+                                                  comcarca: new RegExp(region, 'i'), 
+                                                  municipio: new RegExp(municipality, 'i'),
+                                                  espigas: {$gte: minSpikes, $lte: maxSpikes}},
+                                                  function(err) {
+                                                        if (err) {
+                                                            res.status(400);
+                                                            res.json({error: err.message}); 
+                                                        }
+                                                  });
         res.status(200);
-        res.json(hotels);
+        res.json(ruralHouses);
     } catch(err) {
         res.status(500);
         res.json({error: err.message});
     }
 }
 
-module.exports = hotelController;
+module.exports = ruralHouseController;

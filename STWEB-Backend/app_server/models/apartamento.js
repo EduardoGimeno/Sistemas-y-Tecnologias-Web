@@ -1,8 +1,8 @@
 const mongoose = require( 'mongoose' );
-require('./app_server/models/alojamiento');
+var alojamiento = require('./alojamiento');
 
 const apartamentoSchema = new mongoose.Schema({
-    comun: [alojamientoSchema]
+    comun: [alojamiento.alojamientoSchema]
 });
 
 module.exports = mongoose.model('Apartamento', apartamentoSchema);

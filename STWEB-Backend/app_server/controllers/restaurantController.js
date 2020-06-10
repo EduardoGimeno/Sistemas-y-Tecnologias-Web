@@ -1,35 +1,35 @@
 var express = require('express');
 var url = require('url');
-var Hotel = require('../models/hotel');
-var hotelController = {};
+var Restaurant = require('../models/restaurante');
+var restaurantController = {};
 
 checkToken = function(token) {
     jwtinterface.verifytoken(token);
 }
 
-hotelController.getHotels = async function(req, res) {
+restaurantController.getRestaurants = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);
         var perPage = 20;
         var page = Math.max(0, req.param('page'));
-        const hotels = Hotel.find(function(err) {
+        const restaurants = Restaurant.find(function(err) {
             if (err) {
                 res.status(500);
                 res.json({error: err.message});
             }
         }).skip(perPage*page).limit(perPage);
         res.status(200);
-        res.json(hotels);
+        res.json(restaurants);
     } catch (err) {
         res.status(500);
         res.json({error: err.message});
     }
 }
 
-hotelController.countHotels = async function(req, res) {
+restaurantController.countRestaurants = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);
-        Hotel.count({}, function(err, result) {
+        Restaurant.count({}, function(err, result) {
             if (err) {
                 res.status(500);
                 res.json({error: err.message});
@@ -43,46 +43,46 @@ hotelController.countHotels = async function(req, res) {
     }
 }
 
-hotelController.addHotel = async function(req, res) {
-    var hotel = new Hotel(req.body);
-    await hotel.save(function (err, newHotel) {
+restaurantController.addRestaurant = async function(req, res) {
+    var restaurant = new Restaurant(req.body);
+    await restaurant.save(function (err, newRestaurant) {
         if (err) {
             res.status(500);
             res.json({error: err.message});
         } else {
             res.status(200);
-            res.json(newHotel);
+            res.json(newRestaurant);
         }
     });
 }
 
-hotelController.getHotel = async function(req, res) {
+restaurantController.getRestaurant = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);
         var id = req.params.id;
-        const hotel = await Hotel.findById(id, function(err) {
+        const restaurant = await Restaurant.findById(id, function(err) {
             if (err) {
                 res.status(500);
                 res.json({error: err.message});
             }
         });
         res.status(200);
-        res.json(hotel);
+        res.json(restaurant);
     } catch(err) {
         res.status(500);
         res.json({error: err.message});
     }
 }
 
-hotelController.searchHotels = async function(req, res) {
+restaurantController.searchRestaurants = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);
         var queryData = url.parse(req.url, true).query;
         var province = queryData.province;
         var region = queryData.region;
         var municipality = queryData.municipality;
-        var minStars = queryData.minStars;
-        var maxStars = queryData.maxStars;
+        var minCategory = queryData.minCategory;
+        var maxCategory = queryData.maxCategory;
 
         if (province == "null") {
             province = "";
@@ -96,22 +96,22 @@ hotelController.searchHotels = async function(req, res) {
             municipality = "";
         }
 
-        const hotels = await Hotel.find({provincia: new RegExp(province,'i'), 
-                                        comcarca: new RegExp(region, 'i'), 
-                                        municipio: new RegExp(municipality, 'i'),
-                                        estrellas: {$gte: minStars, $lte: maxStars}},
-                                        function(err) {
-                                            if (err) {
-                                                res.status(400);
-                                                res.json({error: err.message}); 
-                                            }
-                                        });
+        const restaurants = await Restaurant.find({provincia: new RegExp(province,'i'), 
+                                                   comcarca: new RegExp(region, 'i'), 
+                                                   municipio: new RegExp(municipality, 'i'),
+                                                   categoria: {$gte: minCategory, $lte: maxCategory}},
+                                                   function(err) {
+                                                        if (err) {
+                                                            res.status(400);
+                                                            res.json({error: err.message}); 
+                                                        }
+                                                   });
         res.status(200);
-        res.json(hotels);
+        res.json(restaurants);
     } catch(err) {
         res.status(500);
         res.json({error: err.message});
     }
 }
 
-module.exports = hotelController;
+module.exports = restaurantController;

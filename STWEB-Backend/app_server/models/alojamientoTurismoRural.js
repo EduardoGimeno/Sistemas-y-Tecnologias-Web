@@ -1,8 +1,8 @@
 const mongoose = require( 'mongoose' );
-require('./app_server/models/alojamiento');
+var alojamiento = require('./alojamiento');
 
 const alojamientoTurismoRuralSchema = new mongoose.Schema({
-    comun: [alojamientoSchema],
+    comun: [alojamiento.alojamientoSchema],
     espigas: {type: Number, required: true, min: 1, max: 5},
     tipo: {type: String, required: true}
 });

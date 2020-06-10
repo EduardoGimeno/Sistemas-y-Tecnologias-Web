@@ -1,35 +1,35 @@
 var express = require('express');
 var url = require('url');
-var Hotel = require('../models/hotel');
-var hotelController = {};
+var Guide = require('../models/guia');
+var guideController = {};
 
 checkToken = function(token) {
     jwtinterface.verifytoken(token);
 }
 
-hotelController.getHotels = async function(req, res) {
+guideController.getGuides = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);
         var perPage = 20;
         var page = Math.max(0, req.param('page'));
-        const hotels = Hotel.find(function(err) {
+        const guides = Guide.find(function(err) {
             if (err) {
                 res.status(500);
                 res.json({error: err.message});
             }
         }).skip(perPage*page).limit(perPage);
         res.status(200);
-        res.json(hotels);
+        res.json(guides);
     } catch (err) {
         res.status(500);
         res.json({error: err.message});
     }
 }
 
-hotelController.countHotels = async function(req, res) {
+guideController.countGuides = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);
-        Hotel.count({}, function(err, result) {
+        Guide.count({}, function(err, result) {
             if (err) {
                 res.status(500);
                 res.json({error: err.message});
@@ -43,63 +43,44 @@ hotelController.countHotels = async function(req, res) {
     }
 }
 
-hotelController.addHotel = async function(req, res) {
-    var hotel = new Hotel(req.body);
-    await hotel.save(function (err, newHotel) {
+guideController.addGuide = async function(req, res) {
+    var guide = new Guide(req.body);
+    await hotel.save(function (err, newGuide) {
         if (err) {
             res.status(500);
             res.json({error: err.message});
         } else {
             res.status(200);
-            res.json(newHotel);
+            res.json(newGuide);
         }
     });
 }
 
-hotelController.getHotel = async function(req, res) {
+guideController.getGuide = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);
         var id = req.params.id;
-        const hotel = await Hotel.findById(id, function(err) {
+        const guide = await Guide.findById(id, function(err) {
             if (err) {
                 res.status(500);
                 res.json({error: err.message});
             }
         });
         res.status(200);
-        res.json(hotel);
+        res.json(guide);
     } catch(err) {
         res.status(500);
         res.json({error: err.message});
     }
 }
 
-hotelController.searchHotels = async function(req, res) {
+guideController.searchGuides = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);
         var queryData = url.parse(req.url, true).query;
-        var province = queryData.province;
-        var region = queryData.region;
-        var municipality = queryData.municipality;
-        var minStars = queryData.minStars;
-        var maxStars = queryData.maxStars;
+        var idiom = queryData.idiom;
 
-        if (province == "null") {
-            province = "";
-        }
-        
-        if (region == "null") {
-            region = "";
-        }
-        
-        if (municipality == "null") {
-            municipality = "";
-        }
-
-        const hotels = await Hotel.find({provincia: new RegExp(province,'i'), 
-                                        comcarca: new RegExp(region, 'i'), 
-                                        municipio: new RegExp(municipality, 'i'),
-                                        estrellas: {$gte: minStars, $lte: maxStars}},
+        const guides = await Hotel.find({idiom: new RegExp(idiom,'i')},
                                         function(err) {
                                             if (err) {
                                                 res.status(400);
@@ -107,11 +88,11 @@ hotelController.searchHotels = async function(req, res) {
                                             }
                                         });
         res.status(200);
-        res.json(hotels);
+        res.json(guides);
     } catch(err) {
         res.status(500);
         res.json({error: err.message});
     }
 }
 
-module.exports = hotelController;
+module.exports = guideController;

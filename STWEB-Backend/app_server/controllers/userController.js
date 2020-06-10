@@ -1,4 +1,5 @@
 var express = require('express');
+var url = require('url');
 var User = require('../models/usuario');
 var jwtinterface = require('../jsonwebtoken')
 var userController = {};

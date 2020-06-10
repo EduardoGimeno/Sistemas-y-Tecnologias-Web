@@ -1,35 +1,35 @@
 var express = require('express');
 var url = require('url');
-var Hotel = require('../models/hotel');
-var hotelController = {};
+var Camping = require('../models/camping');
+var campingController = {};
 
 checkToken = function(token) {
     jwtinterface.verifytoken(token);
 }
 
-hotelController.getHotels = async function(req, res) {
+campingController.getCampings = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);
         var perPage = 20;
         var page = Math.max(0, req.param('page'));
-        const hotels = Hotel.find(function(err) {
+        const campings = Hotel.find(function(err) {
             if (err) {
                 res.status(500);
                 res.json({error: err.message});
             }
         }).skip(perPage*page).limit(perPage);
         res.status(200);
-        res.json(hotels);
+        res.json(campings);
     } catch (err) {
         res.status(500);
         res.json({error: err.message});
     }
 }
 
-hotelController.countHotels = async function(req, res) {
+campingController.countCampings = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);
-        Hotel.count({}, function(err, result) {
+        Camping.count({}, function(err, result) {
             if (err) {
                 res.status(500);
                 res.json({error: err.message});
@@ -43,9 +43,9 @@ hotelController.countHotels = async function(req, res) {
     }
 }
 
-hotelController.addHotel = async function(req, res) {
-    var hotel = new Hotel(req.body);
-    await hotel.save(function (err, newHotel) {
+campingController.addCamping = async function(req, res) {
+    var camping = new Camping(req.body);
+    await camping.save(function (err, newHotel) {
         if (err) {
             res.status(500);
             res.json({error: err.message});
@@ -56,33 +56,31 @@ hotelController.addHotel = async function(req, res) {
     });
 }
 
-hotelController.getHotel = async function(req, res) {
+campingController.getCamping = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);
         var id = req.params.id;
-        const hotel = await Hotel.findById(id, function(err) {
+        const camping = await Camping.findById(id, function(err) {
             if (err) {
                 res.status(500);
                 res.json({error: err.message});
             }
         });
         res.status(200);
-        res.json(hotel);
+        res.json(camping);
     } catch(err) {
         res.status(500);
         res.json({error: err.message});
     }
 }
 
-hotelController.searchHotels = async function(req, res) {
+campingController.searchCampings = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);
         var queryData = url.parse(req.url, true).query;
         var province = queryData.province;
         var region = queryData.region;
         var municipality = queryData.municipality;
-        var minStars = queryData.minStars;
-        var maxStars = queryData.maxStars;
 
         if (province == "null") {
             province = "";
@@ -96,10 +94,9 @@ hotelController.searchHotels = async function(req, res) {
             municipality = "";
         }
 
-        const hotels = await Hotel.find({provincia: new RegExp(province,'i'), 
+        const campings = await Hotel.find({provincia: new RegExp(province,'i'), 
                                         comcarca: new RegExp(region, 'i'), 
-                                        municipio: new RegExp(municipality, 'i'),
-                                        estrellas: {$gte: minStars, $lte: maxStars}},
+                                        municipio: new RegExp(municipality, 'i')},
                                         function(err) {
                                             if (err) {
                                                 res.status(400);
@@ -107,11 +104,11 @@ hotelController.searchHotels = async function(req, res) {
                                             }
                                         });
         res.status(200);
-        res.json(hotels);
+        res.json(campings);
     } catch(err) {
         res.status(500);
         res.json({error: err.message});
     }
 }
 
-module.exports = hotelController;
+module.exports = campingController;
