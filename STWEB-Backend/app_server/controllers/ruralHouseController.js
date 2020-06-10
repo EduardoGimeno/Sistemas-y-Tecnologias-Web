@@ -1,6 +1,6 @@
 var express = require('express');
 var RuralHouse = require('../models/alojamientoTurismoRural');
-var hotelController = {};
+var ruralHouseController = {};
 
 checkToken = function(token) {
     jwtinterface.verifytoken(token);
@@ -73,7 +73,7 @@ ruralHouseController.getRuralHouse = async function(req, res) {
     }
 }
 
-ruralHouseController.searchRuralHouse = async function(req, res) {
+ruralHouseController.searchRuralHouses = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);
         var queryData = url.parse(req.url, true).query;
@@ -110,4 +110,4 @@ ruralHouseController.searchRuralHouse = async function(req, res) {
     }
 }
 
-module.exports = hotelController;
+module.exports = ruralHouseController;
