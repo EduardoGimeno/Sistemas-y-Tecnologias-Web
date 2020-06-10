@@ -1,5 +1,5 @@
 const mongoose = require( 'mongoose' );
-var alojamiento=require('./alojamiento');
+var alojamiento = require('./alojamiento');
 
 const hotelSchema = new mongoose.Schema({
     comun: [alojamiento.alojamientoSchema],

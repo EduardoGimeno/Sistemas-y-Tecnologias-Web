@@ -1,34 +1,34 @@
 var express = require('express');
-var RuralHouse = require('../models/alojamientoTurismoRural');
-var ruralHouseController = {};
+var Restaurant = require('../models/restaurante');
+var restaurantController = {};
 
 checkToken = function(token) {
     jwtinterface.verifytoken(token);
 }
 
-ruralHouseController.getRuralHouses = async function(req, res) {
+restaurantController.getRestaurants = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);
         var perPage = 20;
         var page = Math.max(0, req.param('page'));
-        const ruralHouses = RuralHouse.find(function(err) {
+        const restaurants = Restaurant.find(function(err) {
             if (err) {
                 res.status(500);
                 res.json({error: err.message});
             }
         }).skip(perPage*page).limit(perPage);
         res.status(200);
-        res.json(ruralHouses);
+        res.json(restaurants);
     } catch (err) {
         res.status(500);
         res.json({error: err.message});
     }
 }
 
-ruralHouseController.countRuralHouses = async function(req, res) {
+restaurantController.countRestaurants = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);
-        RuralHouse.count({}, function(err, result) {
+        Restaurant.count({}, function(err, result) {
             if (err) {
                 res.status(500);
                 res.json({error: err.message});
@@ -42,46 +42,46 @@ ruralHouseController.countRuralHouses = async function(req, res) {
     }
 }
 
-ruralHouseController.addRuralHouse = async function(req, res) {
-    var ruralHouse = new RuralHouse(req.body);
-    await ruralHouse.save(function (err, newRuralHouse) {
+restaurantController.addRestaurant = async function(req, res) {
+    var restaurant = new Restaurant(req.body);
+    await restaurant.save(function (err, newRestaurant) {
         if (err) {
             res.status(500);
             res.json({error: err.message});
         } else {
             res.status(200);
-            res.json(newRuralHouse);
+            res.json(newRestaurant);
         }
     });
 }
 
-ruralHouseController.getRuralHouse = async function(req, res) {
+restaurantController.getRestaurant = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);
         var id = req.params.id;
-        const ruralHouse = await RuralHouse.findById(id, function(err) {
+        const restaurant = await Restaurant.findById(id, function(err) {
             if (err) {
                 res.status(500);
                 res.json({error: err.message});
             }
         });
         res.status(200);
-        res.json(ruralHouse);
+        res.json(restaurant);
     } catch(err) {
         res.status(500);
         res.json({error: err.message});
     }
 }
 
-ruralHouseController.searchRuralHouses = async function(req, res) {
+restaurantController.searchRestaurants = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);
         var queryData = url.parse(req.url, true).query;
         var province = queryData.province;
         var region = queryData.region;
         var municipality = queryData.municipality;
-        var minSpikes = queryData.minSpikes;
-        var maxSpikes = queryData.maxSpikes;
+        var minCategory = queryData.minCategory;
+        var maxCategory = queryData.maxCategory;
 
         if (province == "null") {
             province = "";
@@ -95,22 +95,22 @@ ruralHouseController.searchRuralHouses = async function(req, res) {
             municipality = "";
         }
 
-        const ruralHouses = await RuralHouse.find({provincia: new RegExp(province,'i'), 
-                                                  comcarca: new RegExp(region, 'i'), 
-                                                  municipio: new RegExp(municipality, 'i'),
-                                                  espigas: {$gte: minSpikes, $lte: maxSpikes}},
-                                                  function(err) {
+        const restaurants = await Restaurant.find({provincia: new RegExp(province,'i'), 
+                                                   comcarca: new RegExp(region, 'i'), 
+                                                   municipio: new RegExp(municipality, 'i'),
+                                                   categoria: {$gte: minCategory, $lte: maxCategory}},
+                                                   function(err) {
                                                         if (err) {
                                                             res.status(400);
                                                             res.json({error: err.message}); 
                                                         }
-                                                  });
+                                                   });
         res.status(200);
-        res.json(ruralHouses);
+        res.json(restaurants);
     } catch(err) {
         res.status(500);
         res.json({error: err.message});
     }
 }
 
-module.exports = ruralHouseController;
+module.exports = restaurantController;
