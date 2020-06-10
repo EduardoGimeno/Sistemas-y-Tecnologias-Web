@@ -4,6 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var passport = require('passport');
+var cors = require('cors');
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
 require('./app_server/models/db');
@@ -19,14 +20,15 @@ var campingsRouter = require('./app_server/routes/campings');
 var authRouter = require('./app_server/routes/auth');
 
 var app = express();
-app.use(passport.initialize())
-app.use(passport.session())
+app.use(passport.initialize());
+app.use(passport.session());
 require('./passport')
 
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(cors());
 app.use(express.static(path.join(__dirname, 'public')));
 
 //Middleware
