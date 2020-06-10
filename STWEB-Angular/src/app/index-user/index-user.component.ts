@@ -29,6 +29,8 @@ export class IndexUserComponent implements OnInit {
 
   selectedIndex = 0;
 
+  calidadString: string = "Estrellas";
+
   constructor(public currentUser: CurrentUserService, public entryService: EntryService,
               public route: Router) { }
 
@@ -40,6 +42,7 @@ export class IndexUserComponent implements OnInit {
     this.entriesPuntos = this.entryService.getPuntosInformacion();
     this.showEntries = this.entriesAlojamiento;
     this.disableSelections(0);
+    this.filter(0);
   }
 
   numberReturn(length){
@@ -53,9 +56,18 @@ export class IndexUserComponent implements OnInit {
 
   filter(index) {
     this.showEntries = [];
-    if (index == 1) {
+    this.entryService
+    if (index == 0) {
+      for (let entry of this.entriesAlojamiento) {
+        if (entry.tipoEntry == 'Hotel') {
+          this.calidadString = "Estrellas";
+          this.showEntries.push(entry);
+        }
+      }
+    } else if (index == 1) {
       for (let entry of this.entriesAlojamiento) {
         if (entry.tipoEntry == 'Turismo rural') {
+          this.calidadString = "Espigas";
           this.showEntries.push(entry);
         }
       }
@@ -73,21 +85,16 @@ export class IndexUserComponent implements OnInit {
       }
     } else if (index == 4) {
       for (let entry of this.entriesAlojamiento) {
-        if (entry.tipoEntry == 'Hotel') {
-          this.showEntries.push(entry);
-        }
-      }
-    } else if (index == 5) {
-      for (let entry of this.entriesAlojamiento) {
         if (entry.tipoEntry == 'Refugio') {
           this.showEntries.push(entry);
         }
       }
-    } else if (index == 6) {
+    } else if (index == 5) {
+      this.calidadString = "Tenedores/Tazas";
       this.showEntries = this.entriesRestaurante;
-    } else if (index == 7) {
+    } else if (index == 6) {
       this.showEntries = this.entriesOficinas;
-    } else if (index == 8) {
+    } else if (index == 7) {
       this.showEntries = this.entriesPuntos;
     } else {
       this.showEntries = this.entriesAlojamiento;
@@ -103,7 +110,7 @@ export class IndexUserComponent implements OnInit {
   disableSelections(index: number) {
 
     // Estrellas / Espigas para hoteles y turismo rural
-    if (index == 1 || index == 4) {
+    if (index == 0 || index == 1 || index == 5) {
       $('#selectionEstrellasMin').prop('disabled', false);
       $('#selectionEstrellasMax').prop('disabled', false);
     } else {
@@ -112,7 +119,7 @@ export class IndexUserComponent implements OnInit {
     }
 
     // Municipio para todos menos para oficina de turismo
-    if (index == 7) {
+    if (index == 6) {
       $('#selectionMunicipio').prop('disabled', true);
     } else {
       $('#selectionMunicipio').prop('disabled', false);
@@ -120,7 +127,10 @@ export class IndexUserComponent implements OnInit {
   }
 
   search() {
-    this.filter(this.selectedIndex);
+
+    // HACER LLAMADAS
+
+   /* this.filter(this.selectedIndex);
 
     let provincia = $('#selectionProvincia').val();
     if (provincia != "") {
@@ -159,7 +169,7 @@ export class IndexUserComponent implements OnInit {
         !$('#selectionEstrellasMax').is(':disabled')) {
       let min = +$('#selectionEstrellasMin').val();
       let max = +$('#selectionEstrellasMax').val();
-      if (this.selectedIndex == 1) {
+      if (this.selectedIndex == 0) {
         let entriesAux = this.showEntries;
         this.showEntries = [];
         for (let e of entriesAux) {
@@ -167,7 +177,15 @@ export class IndexUserComponent implements OnInit {
             this.showEntries.push(e);
           }
         }
-      } else if (this.selectedIndex == 4) {
+      } else if (this.selectedIndex == 1) {
+        let entriesAux = this.showEntries;
+        this.showEntries = [];
+        for (let e of entriesAux) {
+          if (e.estrellas >= min && e.estrellas <= max) {
+            this.showEntries.push(e);
+          }
+        }
+      } else if (this.selectedIndex == 5) {
         let entriesAux = this.showEntries;
         this.showEntries = [];
         for (let e of entriesAux) {
@@ -176,7 +194,7 @@ export class IndexUserComponent implements OnInit {
           }
         }
       }
-    }
+    }*/
 
   }
 

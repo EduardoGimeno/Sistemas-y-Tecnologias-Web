@@ -1,5 +1,5 @@
 var express = require('express');
-var hotelController = require('../controllers/ruralHouseController');
+var ruralHouseController = require('../controllers/ruralHouseController');
 var router = express.Router();
 
 router.get('/', ruralHouseController.getRuralHouses);

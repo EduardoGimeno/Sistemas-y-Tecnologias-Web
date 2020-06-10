@@ -2,6 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="109a231d-e49a-49c0-9fbe-e835707bb50d" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../STWEB-Angular/src/app/index-user/index-user.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../STWEB-Angular/src/app/index-user/index-user.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../STWEB-Angular/src/app/index-user/index-user.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../STWEB-Angular/src/app/index-user/index-user.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../STWEB-Angular/src/app/login/login.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../STWEB-Angular/src/app/login/login.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../STWEB-Angular/src/app/login/login.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../STWEB-Angular/src/app/login/login.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../STWEB-Angular/src/app/services/entry-service.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../STWEB-Angular/src/app/services/entry-service.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../STWEB-Angular/src/app/services/user-service.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../STWEB-Angular/src/app/services/user-service.service.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -13,12 +19,15 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1d7hP1OODA2ltWKXwK4zTLdWrDF" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
@@ -41,29 +50,32 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1591782011088</updated>
-      <workItem from="1591782013517" duration="6887000" />
+      <workItem from="1591782013517" duration="14286000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="2" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
   <component name="WindowStateProjectService">
-    <state width="1345" height="179" key="GridCell.Tab.0.bottom" timestamp="1591783778483">
+    <state width="1323" height="179" key="GridCell.Tab.0.bottom" timestamp="1591809006302">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1345" height="179" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1591783778483" />
-    <state width="1345" height="179" key="GridCell.Tab.0.center" timestamp="1591783778483">
+    <state width="1323" height="179" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1591809006302" />
+    <state width="1323" height="179" key="GridCell.Tab.0.center" timestamp="1591809006301">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1345" height="179" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1591783778483" />
-    <state width="1345" height="179" key="GridCell.Tab.0.left" timestamp="1591783778482">
+    <state width="1323" height="179" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1591809006301" />
+    <state width="1323" height="179" key="GridCell.Tab.0.left" timestamp="1591809006300">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1345" height="179" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1591783778482" />
-    <state width="1345" height="179" key="GridCell.Tab.0.right" timestamp="1591783778483">
+    <state width="1323" height="179" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1591809006300" />
+    <state width="1323" height="179" key="GridCell.Tab.0.right" timestamp="1591809006301">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1345" height="179" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1591783778483" />
+    <state width="1323" height="179" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1591809006301" />
   </component>
 </project>

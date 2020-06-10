@@ -14,6 +14,9 @@ import {PuntoInformacion} from "../entities/puntoInformacion";
   providedIn: 'root'
 })
 export class EntryService {
+
+  private urlApp: string = "https://back-turismoaragon.herokuapp.com";
+
   entry1: Apartamento = new Apartamento({
     id: 'id',
     direccion: "Calle del apartamento",
@@ -92,7 +95,10 @@ export class EntryService {
 
   constructor(private http: HttpClient) { }
 
-  public getEntries() {
+  public getEntries(tipo: string, page: string) {
+    let params = new HttpParams()
+      .set("page", page);
+    return this.http.get(this.urlApp + "/" + tipo + "/", )
     return [this.entry1, this.entry2, this.entry3, this.entry4, this.entry5];
   }
 

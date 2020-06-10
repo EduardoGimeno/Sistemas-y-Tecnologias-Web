@@ -1,5 +1,5 @@
-var clienteID = process.env.clienteID
-var secretID = process.env.secretID
-var jwtClave = process.env.jwtClave
+var clienteID = process.env.CLIENTE_ID
+var secretID = process.env.SECRET_ID
+var jwtClave = process.env.JWT_CLAVE
 
 module.exports = {clienteID , secretID, jwtClave}

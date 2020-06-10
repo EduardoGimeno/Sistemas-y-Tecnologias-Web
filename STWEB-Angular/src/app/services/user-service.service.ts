@@ -7,14 +7,16 @@ import { UserApp } from "../entities/usuario";
 })
 export class UserService {
 
+  private urlApp: string = "https://back-turismoaragon.herokuapp.com/users";
+
   constructor(private http: HttpClient) {
 
    }
 
   public logIn(email: string, password: string) {
     let params = new HttpParams()
-      .set("email", email).set("password", password);
-    return this.http.get( 'localhost:3000/logIn', {params: params});
+      .set("username", email).set("password", password);
+    return this.http.get( this.urlApp + '/logIn', {params: params});
   }
 
   public register(user: UserApp) {
@@ -22,7 +24,7 @@ export class UserService {
   }
 
   public getUsers(){
-    return this.http.get('localhost:3000/getUsers');
+    return this.http.get(this.urlApp + '/');
   }
 
   public updateUser(user: UserApp) {
