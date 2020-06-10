@@ -58,7 +58,7 @@ export function provideConfig() {
     HttpClientModule,
     SocialLoginModule,
     AgmCoreModule.forRoot({
-          apiKey: 'AIzaSyCBqxbKfjVQAqz6VAgAj8bHGGYW-XOar-E'
+          apiKey: ''
         })
   ],
   providers: [
