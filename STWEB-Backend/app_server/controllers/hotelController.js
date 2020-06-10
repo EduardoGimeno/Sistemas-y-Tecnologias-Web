@@ -1,4 +1,5 @@
 var express = require('express');
+var url = require('url');
 var Hotel = require('../models/hotel');
 var hotelController = {};
 

@@ -1,6 +1,7 @@
 var express = require('express');
+var url = require('url');
 var Apartment = require('../models/apartamento');
-var hotelController = {};
+var apartmentController = {};
 
 checkToken = function(token) {
     jwtinterface.verifytoken(token);

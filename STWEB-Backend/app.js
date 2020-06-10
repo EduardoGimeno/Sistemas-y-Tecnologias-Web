@@ -17,6 +17,9 @@ var sheltersRouter = require('./app_server/routes/shelters');
 var apartmentsRouter = require('./app_server/routes/apartments');
 var ruralHousesRouter = require('./app_server/routes/ruralHouses');
 var campingsRouter = require('./app_server/routes/campings');
+var touristOfficesRouter = require('./app_server/routes/touristOffices');
+var informationPointsRouter = require('./app_server/routes/informationPoints');
+var guidesRouter = require('./app_server/routes/guides');
 var authRouter = require('./app_server/routes/auth');
 
 var app = express();
@@ -40,6 +43,9 @@ app.use('/shelters', sheltersRouter);
 app.use('/apartments', apartmentsRouter);
 app.use('/ruralHouses', ruralHousesRouter);
 app.use('/campings', campingsRouter);
+app.use('/touristOffices', touristOfficesRouter);
+app.use('/informationPoints', informationPointsRouter);
+app.use('/guides', guidesRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
