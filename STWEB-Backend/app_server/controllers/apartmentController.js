@@ -1,4 +1,5 @@
 var express = require('express');
+var url = require('url');
 var Apartment = require('../models/apartamento');
 var apartmentController = {};
 
