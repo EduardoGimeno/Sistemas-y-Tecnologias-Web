@@ -21,11 +21,14 @@ import { CurrentUserService } from "./current-user.service";
 
 import { SocialLoginModule, AuthServiceConfig } from "angularx-social-login";
 import { GoogleLoginProvider } from "angularx-social-login";
+import { AgmCoreModule } from '@agm/core';
+import { GeocodeService } from './entry/geocode.service';
+import { Location } from './entry/location';
 
 let config = new AuthServiceConfig([
   {
     id: GoogleLoginProvider.PROVIDER_ID,
-    provider: new GoogleLoginProvider("319287338704-acqsrm632ttivo73vq5an9fbp5evvjli.apps.googleusercontent.com")
+    provider: new GoogleLoginProvider("")
   }
 ]);
 
@@ -53,10 +56,13 @@ export function provideConfig() {
     AppRoutingModule,
     NgbModule,
     HttpClientModule,
-    SocialLoginModule
+    SocialLoginModule,
+    AgmCoreModule.forRoot({
+          apiKey: 'AIzaSyCBqxbKfjVQAqz6VAgAj8bHGGYW-XOar-E'
+        })
   ],
   providers: [
-    CurrentUserService, UserService,
+    CurrentUserService, UserService, GeocodeService,
     { provide: AuthServiceConfig,
       useFactory: provideConfig
     }
