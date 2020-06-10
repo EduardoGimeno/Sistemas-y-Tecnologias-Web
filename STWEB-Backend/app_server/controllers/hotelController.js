@@ -3,15 +3,44 @@ var url = require("url");
 var Hotel = require('../models/hotel');
 var hotelController = {};
 
+checkToken = function(token) {
+    jwtinterface.verifytoken(token);
+}
+
 hotelController.getHotels = async function(req, res) {
-    const hotels = Hotel.find(function(err) {
-        if (err) {
-            res.status(500);
-            res.json({error: 'search error'});
-        }
-    });
-    res.status(200);
-    res.json(hotels);
+    try {
+        //checkToken(req.headers.authentication)
+        var perPage = 20;
+        var page = Math.max(0, req.param('page'));
+        const hotels = Hotel.find(function(err) {
+            if (err) {
+                res.status(500);
+                res.json({error: err.message});
+            }
+        }).skip(perPage*page).limit(perPage);
+        res.status(200);
+        res.json(hotels);
+    } catch (err) {
+        res.status(500);
+        res.json({error: err.message});
+    }
+}
+
+hotelController.countHotels = async function(req, res) {
+    try {
+        //checkToken(req.headers.authentication)
+        Hotel.count({}, function(err, result) {
+            if (err) {
+                res.status(500);
+                res.json({error: err.message});
+            } else {
+                res.json(result);
+            }
+        });
+    } catch (err) {
+        res.status(500);
+        res.json({error: err.message});
+    }
 }
 
 hotelController.addHotel = async function(req, res) {
@@ -19,7 +48,7 @@ hotelController.addHotel = async function(req, res) {
     await hotel.save(function (err, newHotel) {
         if (err) {
             res.status(500);
-            res.json({error: 'Hotel not saved'});
+            res.json({error: err.message});
         } else {
             res.status(200);
             res.json(newHotel);
@@ -28,44 +57,60 @@ hotelController.addHotel = async function(req, res) {
 }
 
 hotelController.getHotel = async function(req, res) {
-    var id = req.params.id;
-    const hotel = await Hotel.findById(id, function(err) {
-        if (err) {
-            res.status(500);
-            res.json({error: 'Hotel not found'});
-        }
-    });
-    res.status(200);
-    res.json(hotel);
+    try {
+        //checkToken(req.headers.authentication)
+        var id = req.params.id;
+        const hotel = await Hotel.findById(id, function(err) {
+            if (err) {
+                res.status(500);
+                res.json({error: err.message});
+            }
+        });
+        res.status(200);
+        res.json(hotel);
+    } catch(err) {
+        res.status(500);
+        res.json({error: err.message});
+    }
 }
 
 hotelController.searchHotel = async function(req, res) {
-    var queryData = url.parse(req.url, true).query;
-    var province = queryData.province;
-    var region = queryData.region;
-    var municipality = queryData.municipality;
-    var stars = queryData.stars;
+    try {
+        //checkToken(req.headers.authentication)
+        var queryData = url.parse(req.url, true).query;
+        var province = queryData.province;
+        var region = queryData.region;
+        var municipality = queryData.municipality;
+        var stars = queryData.stars;
 
-    if (province === "null") {
-        province = '^[a-z].*';
-    } else if (region === "null") {
-        region = '^[a-z].*';
-    } else if (municipality === "null") {
-        municipality = '^[a-z].*';
+        if (province == "null") {
+            province = "";
+        }
+        
+        if (region == "null") {
+            region = "";
+        }
+        
+        if (municipality == "null") {
+            municipality = "";
+        }
+
+        const hotels = await Hotel.find({provincia: new RegExp(province,'i'), 
+                                    comcarca: new RegExp(region, 'i'), 
+                                    municipio: new RegExp(municipality, 'i'),
+                                    estrellas: stars},
+                                    function(err) {
+                                        if (err) {
+                                                res.status(400);
+                                                res.json({error: 'search error'}); 
+                                        }
+                                    });
+        res.status(200);
+        res.json(hotels);
+    } catch(err) {
+        res.status(500);
+        res.json({error: err.message});
     }
-
-    const hotels = await Hotel.find({provincia: new RegExp(province,'i'), 
-                                   comcarca: new RegExp(region, 'i'), 
-                                   municipio: new RegExp(municipality, 'i'),
-                                   estrellas: stars},
-                                   function(err) {
-                                       if (err) {
-                                            res.status(400);
-                                            res.json({error: 'search error'}); 
-                                       }
-                                   });
-    res.status(200);
-    res.json(hotels);
 }
 
 module.exports = hotelController;

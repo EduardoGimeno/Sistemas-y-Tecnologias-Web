@@ -20,21 +20,24 @@ passport.serializeUser(function(user, done) {
     callbackURL: "/auth/google/callback"
   },
   async function(accessToken, refreshToken, profile, done) {
-      user = new User()
-      user.nombre= profile._json.given_name
-      user.apellidos = profile._json.family_name
-      user.email = profile._json.email
-      const existUser = await User.find({email : profile._json.email}, function (err,res){
-        if (err) {console.log("Error") ; return done(Error("BD Error"))}
-      })
-      if (existUser.length == 0){
-          await user.save(function (err,res){
-            if (err) {console.log("Error"); return done(Error("BD Error"))}
-          })
+      var user = new User();
+      user.nombre = profile._json.given_name;
+      user.apellidos = profile._json.family_name;
+      user.email = profile._json.email;
+      const existUser = await User.find({email : profile._json.email}, function (err,res) {
+        if (err) {console.log("Error"); 
+          return done(Error("BD Error"));
+        }
+      });
+      if (existUser.length == 0) {
+          await user.save(function (err,res) {
+            if (err) {
+              console.log("Error"); return done(Error("BD Error"));
+            }
+          });
       }
       return done(null,user);
-  }
-  ));
+  }));
 
   passport.use(new JsonStrategy(
     {
@@ -47,9 +50,7 @@ passport.serializeUser(function(user, done) {
           return done(Error("user not found"));
         }
       });
-      console.log(user)
       if (user && user.contrasena === password) {
-        console.log("yas")
         done(null,user);
       } else {
         return done(Error("password incorrect"));

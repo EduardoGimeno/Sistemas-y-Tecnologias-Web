@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
  
  // Defined a database connection string
 
- const dbURI = 'mongodb://localhost/STWEB-Backend';
+ const dbURI = 'mongodb://heroku_5299hwsl:bfhfe1bp4mq61l37uh8mi34knq@ds121299.mlab.com:21299/heroku_5299hwsl';
  
 // Opened a Mongoose connection at application startup
 
