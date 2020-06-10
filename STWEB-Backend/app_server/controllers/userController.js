@@ -10,7 +10,7 @@ checkToken = function(token) {
 
 userController.getUsers = async function(req, res) {
     try {
-        //checkToken(req.headers.authentication)
+        //checkToken(req.headers.authentication);
         var perPage = 20;
         var page = Math.max(0, req.param('page'));
         const users = await User.find(function(err) {
@@ -28,7 +28,7 @@ userController.getUsers = async function(req, res) {
 
 userController.countUsers = async function(req, res) {
     try {
-        //checkToken(req.headers.authentication)
+        //checkToken(req.headers.authentication);
         User.count({}, function(err, result) {
             if (err) {
                 res.status(500);
@@ -43,9 +43,9 @@ userController.countUsers = async function(req, res) {
     }
 }
 
-userController.addUser = async function(req, res){
+userController.addUser = async function(req, res) {
     try {
-        //checkToken(req.headers.authentication)
+        //checkToken(req.headers.authentication);
         var user = new User(req.body);
         user.baneado = false;
         user.activo = true;
@@ -67,7 +67,7 @@ userController.addUser = async function(req, res){
 
 userController.getUser = async function(req, res) {
     try {
-        //checkToken(req.headers.authentication)
+        //checkToken(req.headers.authentication);
         var id = req.params.id;
         const user = await User.findById(id, function(err) {
             if (err) {
@@ -85,7 +85,7 @@ userController.getUser = async function(req, res) {
 
 userController.updateUser = async function(req, res) {
     try {
-        //checkToken(req.headers.authentication)
+        //checkToken(req.headers.authentication);
         var user = new User(req.body);
         await User.findOneAndUpdate(user.id, user, function(err) {
             if (err) {
@@ -104,7 +104,7 @@ userController.updateUser = async function(req, res) {
 
 userController.searchUsers = async function(req, res) {
     try {
-        //checkToken(req.headers.authentication)
+        //checkToken(req.headers.authentication);
         var queryData = url.parse(req.url, true).query;
         var name = queryData.name;
         var surname = queryData.surname;

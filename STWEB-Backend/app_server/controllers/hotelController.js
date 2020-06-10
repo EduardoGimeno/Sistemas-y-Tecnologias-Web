@@ -9,7 +9,7 @@ checkToken = function(token) {
 
 hotelController.getHotels = async function(req, res) {
     try {
-        //checkToken(req.headers.authentication)
+        //checkToken(req.headers.authentication);
         var perPage = 20;
         var page = Math.max(0, req.param('page'));
         const hotels = Hotel.find(function(err) {
@@ -28,7 +28,7 @@ hotelController.getHotels = async function(req, res) {
 
 hotelController.countHotels = async function(req, res) {
     try {
-        //checkToken(req.headers.authentication)
+        //checkToken(req.headers.authentication);
         Hotel.count({}, function(err, result) {
             if (err) {
                 res.status(500);
@@ -58,7 +58,7 @@ hotelController.addHotel = async function(req, res) {
 
 hotelController.getHotel = async function(req, res) {
     try {
-        //checkToken(req.headers.authentication)
+        //checkToken(req.headers.authentication);
         var id = req.params.id;
         const hotel = await Hotel.findById(id, function(err) {
             if (err) {
@@ -76,7 +76,7 @@ hotelController.getHotel = async function(req, res) {
 
 hotelController.searchHotel = async function(req, res) {
     try {
-        //checkToken(req.headers.authentication)
+        //checkToken(req.headers.authentication);
         var queryData = url.parse(req.url, true).query;
         var province = queryData.province;
         var region = queryData.region;
@@ -96,15 +96,15 @@ hotelController.searchHotel = async function(req, res) {
         }
 
         const hotels = await Hotel.find({provincia: new RegExp(province,'i'), 
-                                    comcarca: new RegExp(region, 'i'), 
-                                    municipio: new RegExp(municipality, 'i'),
-                                    estrellas: stars},
-                                    function(err) {
-                                        if (err) {
+                                        comcarca: new RegExp(region, 'i'), 
+                                        municipio: new RegExp(municipality, 'i'),
+                                        estrellas: stars},
+                                        function(err) {
+                                            if (err) {
                                                 res.status(400);
-                                                res.json({error: 'search error'}); 
-                                        }
-                                    });
+                                                res.json({error: err.message}); 
+                                            }
+                                        });
         res.status(200);
         res.json(hotels);
     } catch(err) {

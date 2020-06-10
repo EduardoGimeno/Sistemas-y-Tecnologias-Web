@@ -3,7 +3,8 @@ var shelterController = require('../controllers/shelterController');
 var router = express.Router();
 
 router.get('/', shelterController.getShelters);
-router.get('/get/:id', shelterController.getShelter);
+router.get('/count', shelterController.countShelters);
+router.get('/get', shelterController.getShelter);
 router.get('/search', shelterController.searchShelters);
 router.post('/add', shelterController.addShelter);
 
