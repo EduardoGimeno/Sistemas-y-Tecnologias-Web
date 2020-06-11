@@ -24,6 +24,7 @@ import { GoogleLoginProvider } from "angularx-social-login";
 import { AgmCoreModule } from '@agm/core';
 import { GeocodeService } from './entry/geocode.service';
 import { Location } from './entry/location';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 let config = new AuthServiceConfig([
   {
@@ -59,7 +60,8 @@ export function provideConfig() {
     SocialLoginModule,
     AgmCoreModule.forRoot({
           apiKey: ''
-        })
+        }),
+    FontAwesomeModule
   ],
   providers: [
     CurrentUserService, UserService, GeocodeService,
