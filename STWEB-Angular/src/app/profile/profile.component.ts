@@ -34,7 +34,8 @@ export class ProfileComponent implements OnInit {
     this.user = this.currentUser.updateUser(pais, provincia, email);
   }
 
-  getProvincias(event, pais: string){
+  getProvincias(event, pais){
+    this.provincias = [];
      //Devuelve las provincias de españa (id 205)
      if (pais.value == 'ES'){
       let pais = csc.getCountryByCode("ES");

@@ -2,11 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="109a231d-e49a-49c0-9fbe-e835707bb50d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../STWEB-Angular/src/app/services/user-service.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../STWEB-Angular/src/app/services/user-service.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../STWEB-Angular/src/app/profile/profile.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../STWEB-Angular/src/app/profile/profile.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../STWEB-Angular/src/dist/turismoaragon/3rdpartylicenses.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../STWEB-Angular/src/dist/turismoaragon/favicon.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../STWEB-Angular/src/dist/turismoaragon/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../STWEB-Angular/src/dist/turismoaragon/main-es2015.369c6fca7e090c27be7f.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../STWEB-Angular/src/dist/turismoaragon/main-es5.369c6fca7e090c27be7f.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../STWEB-Angular/src/dist/turismoaragon/polyfills-es2015.e4277e903aed07751db3.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../STWEB-Angular/src/dist/turismoaragon/polyfills-es5.84963675a8c97dd2bc1e.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../STWEB-Angular/src/dist/turismoaragon/runtime-es2015.1eba213af0b233498d9d.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../STWEB-Angular/src/dist/turismoaragon/runtime-es5.1eba213af0b233498d9d.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../STWEB-Angular/src/dist/turismoaragon/scripts.7700fe520a6a640f231b.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../STWEB-Angular/src/dist/turismoaragon/styles.561e375a7f8933d31680.css" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app_server/controllers/parserDataController.js" beforeDir="false" afterPath="$PROJECT_DIR$/app_server/controllers/parserDataController.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app_server/controllers/userController.js" beforeDir="false" afterPath="$PROJECT_DIR$/app_server/controllers/userController.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app_server/models/usuario.js" beforeDir="false" afterPath="$PROJECT_DIR$/app_server/models/usuario.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app_server/routes/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/app_server/routes/auth.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app_server/routes/users.js" beforeDir="false" afterPath="$PROJECT_DIR$/app_server/routes/users.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
@@ -61,7 +73,7 @@
       <option name="presentableId" value="Default" />
       <updated>1591782011088</updated>
       <workItem from="1591782013517" duration="24028000" />
-      <workItem from="1591865530666" duration="6607000" />
+      <workItem from="1591865530666" duration="7301000" />
     </task>
     <servers />
   </component>
