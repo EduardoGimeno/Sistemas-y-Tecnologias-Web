@@ -60,7 +60,7 @@ apartmentController.addApartment = async function(req, res) {
 apartmentController.getApartment = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);
-        var id = req.params.id;
+        var id = req.param('id');
         const apartment = await Hotel.findById(id, function(err) {
             if (err) {
                 res.status(500);

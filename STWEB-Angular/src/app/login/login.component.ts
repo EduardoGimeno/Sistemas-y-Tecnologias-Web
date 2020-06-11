@@ -33,9 +33,12 @@ export class LoginComponent implements OnInit {
   signInWithGoogle(): void {
       //on success
       //this will return user data from google. What you need is a user token which you will send it to the server
-      this.authService.signIn(GoogleLoginProvider.PROVIDER_ID).then((googleUser) => {
+      /*this.authService.signIn(GoogleLoginProvider.PROVIDER_ID).then((googleUser) => {
             this.userService.sendTokenToBackEnd(googleUser.idToken);
-      });
+      });*/
+    this.userService.loginGoogle().subscribe(data => {
+      console.log(data);
+    });
   }
 
 

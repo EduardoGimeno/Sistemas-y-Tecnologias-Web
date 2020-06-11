@@ -1,6 +1,8 @@
 export class Conversacion {
-  nombreEntry: string;
-  nombreUser: string;
+  nomEntrada: string;
+  nomUsuario: string;
+  emailEntrada: string;
+  emailUsuario: string;
   mensajes: {
     texto:string,
     emisor:string,

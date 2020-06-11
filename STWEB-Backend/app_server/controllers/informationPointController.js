@@ -60,7 +60,7 @@ informationPointController.addInformationPoint = async function(req, res) {
 informationPointController.getInformationPoint = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);
-        var id = req.params.id;
+        var id = req.param('id');
         const informationPoint = await InformationPoint.findById(id, function(err) {
             if (err) {
                 res.status(500);

@@ -48,11 +48,13 @@
   </div>
   <br>
   <div *ngIf="!user">
-    <div class="row justify-content-center" (click)="signInWithGoogle()">
-      <div class="g-signin2" data-onsuccess="onSignIn"></div>
-      <button class="btn btn-social btn-google">
-        <span class="fa fa-google"></span> Accede con tu cuenta de Google</button>
-    </div>
+    <a href="https://back-turismoaragon.herokuapp.com/auth/google">
+      <div class="row justify-content-center">
+        <div class="g-signin2" data-onsuccess="onSignIn"></div>
+        <button class="btn btn-social btn-google">
+          <span class="fa fa-google"></span> Accede con tu cuenta de Google</button>
+      </div>
+    </a>
   </div>
   <div *ngIf="user" class="card text-center" style="text-align: center; margin-top: auto; margin-left: 35%; margin-right: 35%">
     <br>

@@ -25,14 +25,14 @@
               width: 80%; margin-left: 15%">
             {{ mensaje.texto }}
             <br><br>
-            {{ conversacion.nombreEntry }}, {{ mensaje.hora }}
+            {{ conversacion.nomEntrada }}, {{ mensaje.hora }}
           </div>
 
           <div *ngIf="mensaje.emisor == 'user'" class="form-control chat" style="text-align: left;
               width: 80%; margin-right: 15%; margin-left: 5%">
             {{ mensaje.texto }}
             <br><br>
-            {{ conversacion.nombreUser }}, {{ mensaje.hora }}
+            {{ conversacion.nomUsuario }}, {{ mensaje.hora }}
           </div>
 
         </div>

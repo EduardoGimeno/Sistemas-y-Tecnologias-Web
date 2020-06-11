@@ -59,7 +59,7 @@ shelterController.addShelter = async function(req, res) {
 shelterController.getShelter = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);
-        var id = req.params.id;
+        var id = req.param('id');
         const shelter = await Shelter.findById(id, function(err) {
             if (err) {
                 res.status(500);

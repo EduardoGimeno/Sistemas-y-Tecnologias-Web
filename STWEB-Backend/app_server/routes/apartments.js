@@ -4,7 +4,7 @@ var router = express.Router();
 
 router.get('/', apartmentController.getApartments);
 router.get('/count', apartmentController.countApartments);
-router.get('/get', apartmentController.getApartments);
+router.get('/get', apartmentController.getApartment);
 router.get('/search', apartmentController.searchApartment);
 router.post('/add', apartmentController.addApartment);
 

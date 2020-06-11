@@ -60,7 +60,7 @@ touristOfficeController.addTouristOffice = async function(req, res) {
 touristOfficeController.getTouristOffice = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);
-        var id = req.params.id;
+        var id = req.param('id');
         const touristOffice = await TouristOffice.findById(id, function(err) {
             if (err) {
                 res.status(500);

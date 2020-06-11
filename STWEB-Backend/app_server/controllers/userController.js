@@ -70,7 +70,7 @@ userController.addUser = async function(req, res) {
 userController.getUser = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);
-        var id = req.params.id;
+        var id = req.param('id');
         const user = await User.findById(id, function(err) {
             if (err) {
                 res.status(500);

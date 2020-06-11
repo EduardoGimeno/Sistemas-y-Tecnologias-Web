@@ -12,8 +12,10 @@ export class ChatService {
 
   getChat() {
     let conversacion1: Conversacion = {
-      nombreEntry: "Alojamiento 1",
-      nombreUser: "Usuario",
+      nomEntrada: "Alojamiento 1",
+      nomUsuario: "Usuario",
+      emailUsuario: "",
+      emailEntrada: "",
       mensajes: [{
         texto: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor' +
           ' incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud' +
@@ -29,8 +31,10 @@ export class ChatService {
       active: ''
     }
     let conversacion2: Conversacion = {
-      nombreEntry: "Alojamiento 2",
-      nombreUser: "Usuario",
+      nomEntrada: "Alojamiento 2",
+      nomUsuario: "Usuario",
+      emailUsuario: "",
+      emailEntrada: "",
       mensajes: [{
         texto: 'Hola',
         emisor: 'user',
@@ -51,8 +55,10 @@ export class ChatService {
 
   getChatById(id: string) {
     let conversacion: Conversacion = {
-      nombreEntry: "Alojamiento 1",
-      nombreUser: "Usuario",
+      nomEntrada: "Alojamiento 1",
+      nomUsuario: "Usuario",
+      emailEntrada: "",
+      emailUsuario: "",
       mensajes: [{
         texto: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor' +
           ' incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud' +

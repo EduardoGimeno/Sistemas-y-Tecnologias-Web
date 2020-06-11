@@ -60,7 +60,7 @@ hotelController.addHotel = async function(req, res) {
 hotelController.getHotel = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);
-        var id = req.params.id;
+        var id = req.param('id');
         const hotel = await Hotel.findById(id, function(err) {
             if (err) {
                 res.status(500);

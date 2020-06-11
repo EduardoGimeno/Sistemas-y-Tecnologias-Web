@@ -8,6 +8,7 @@ import { UserApp } from "../entities/usuario";
 export class UserService {
 
   private urlApp: string = "https://back-turismoaragon.herokuapp.com/users";
+  private urlAppGoogle: string = "https://back-turismoaragon.herokuapp.com/auth/google";
 
   constructor(private http: HttpClient) {
 
@@ -19,6 +20,10 @@ export class UserService {
     let options = { headers: headers };
     let json = {'email': email, 'password': password};
     return this.http.post( this.urlApp + '/login', JSON.stringify(json), options);
+  }
+
+  public loginGoogle() {
+    return this.http.get( this.urlAppGoogle );
   }
 
   public register(user: UserApp) {
