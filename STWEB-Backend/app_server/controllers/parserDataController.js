@@ -7,6 +7,16 @@ checkToken = function(token) {
     jwtinterface.verifytoken(token);
 }
 
+parserDataController.alojamientoTurismoRural = async function(req, res) {}
+parserDataController.apartamentos = async function(req, res) {}
+parserDataController.camping = async function(req, res) {}
+parserDataController.guias = async function(req, res) {}
+parserDataController.hotel = async function(req, res) {}
+parserDataController.oficinaTurismo = async function(req, res) {}
+parserDataController.puntoInformacion = async function(req, res) {}
+parserDataController.refugio = async function(req, res) {}
+parserDataController.restaurante = async function(req, res) {}
+
 parserDataController.parserData = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);
