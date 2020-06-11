@@ -29,11 +29,12 @@ userController.getUsers = async function(req, res) {
 userController.countUsers = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);
-        User.count({}, function(err, result) {
+        await User.count({}, function(err, result) {
             if (err) {
                 res.status(500);
                 res.json({error: err.message});
             } else {
+                res.status(200);
                 res.json(result);
             }
         });
@@ -49,6 +50,7 @@ userController.addUser = async function(req, res) {
         var user = new User(req.body);
         user.baneado = false;
         user.activo = true;
+        user.admin = false;
         await user.save(function (err, newUser) {
             if (err) {
                 res.status(500);
@@ -105,6 +107,8 @@ userController.updateUser = async function(req, res) {
 userController.searchUsers = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);
+        var perPage = 20;
+        var page = Math.max(0, req.param('page'));
         var queryData = url.parse(req.url, true).query;
         var name = queryData.name;
         var surname = queryData.surname;
@@ -130,9 +134,36 @@ userController.searchUsers = async function(req, res) {
                                                 res.status(400);
                                                 res.json({error: err.message}); 
                                             }
-                                       });
+                                       }).skip(perPage*page).limit(perPage);
         res.status(200);
         res.json(users);
+    } catch(err) {
+        res.status(500);
+        res.json({error: err.message});
+    }
+}
+
+userController.sendMail = async function(req, res) {
+    try {
+        //checkToken(req.headers.authentication);
+        var userMail = req.body.email;
+        var text = req.body.text;
+        const send = require('gmail-send')({
+            user: 'descubrearagonSTW@gmail.com',
+            pass: 'STW-1920',
+            to: userMail,
+            subject: 'Descubre Aragon',
+            text: text
+        });
+        await send({}, function (err, response) {
+            if (err) {
+                res.status(500);
+                res.json(err.message);
+            } else {
+                res.status(200);
+                res.json(response);
+            }
+        });
     } catch(err) {
         res.status(500);
         res.json({error: err.message});

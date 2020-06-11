@@ -12,7 +12,8 @@ const usuarioSchema = new mongoose.Schema({
     activo: Boolean,
     baneado: Boolean,
     inicioBan: Date,
-    finBan: Date
+    finBan: Date,
+    admin: Boolean
 });
 
 module.exports = mongoose.model('Usuario',usuarioSchema);

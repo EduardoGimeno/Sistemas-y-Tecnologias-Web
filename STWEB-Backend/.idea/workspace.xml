@@ -2,12 +2,26 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="109a231d-e49a-49c0-9fbe-e835707bb50d" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../STWEB-Angular/src/app/services/user-service.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../STWEB-Angular/src/app/services/user-service.service.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app_server/controllers/parserDataController.js" beforeDir="false" afterPath="$PROJECT_DIR$/app_server/controllers/parserDataController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app_server/controllers/userController.js" beforeDir="false" afterPath="$PROJECT_DIR$/app_server/controllers/userController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app_server/models/usuario.js" beforeDir="false" afterPath="$PROJECT_DIR$/app_server/models/usuario.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app_server/routes/users.js" beforeDir="false" afterPath="$PROJECT_DIR$/app_server/routes/users.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -26,11 +40,13 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/app_server/config" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app_server/routes" />
     <property name="nodejs_package_manager_path" value="npm" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Lenovo\Desktop\STWEB-Angular\Sistemas-y-Tecnologias-Web\STWEB-Backend\app_server\routes" />
+      <recent name="C:\Users\Lenovo\Desktop\STWEB-Angular\Sistemas-y-Tecnologias-Web\STWEB-Backend\app_server\controllers" />
       <recent name="C:\Users\Lenovo\Desktop\STWEB-Angular\Sistemas-y-Tecnologias-Web\STWEB-Backend\app_server\config" />
     </key>
   </component>
@@ -45,6 +61,7 @@
       <option name="presentableId" value="Default" />
       <updated>1591782011088</updated>
       <workItem from="1591782013517" duration="24028000" />
+      <workItem from="1591865530666" duration="6607000" />
     </task>
     <servers />
   </component>

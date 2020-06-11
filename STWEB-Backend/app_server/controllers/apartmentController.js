@@ -12,7 +12,7 @@ apartmentController.getApartments = async function(req, res) {
         //checkToken(req.headers.authentication);
         var perPage = 20;
         var page = Math.max(0, req.param('page'));
-        const apartments = Apartment.find(function(err) {
+        const apartments = await Apartment.find(function(err) {
             if (err) {
                 res.status(500);
                 res.json({error: err.message});
@@ -20,7 +20,7 @@ apartmentController.getApartments = async function(req, res) {
         }).skip(perPage*page).limit(perPage);
         res.status(200);
         res.json(apartments);
-    } catch (err) {
+    } catch(err) {
         res.status(500);
         res.json({error: err.message});
     }
@@ -29,15 +29,16 @@ apartmentController.getApartments = async function(req, res) {
 apartmentController.countApartments = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);
-        Apartment.count({}, function(err, result) {
+        await Apartment.count({}, function(err, result) {
             if (err) {
                 res.status(500);
                 res.json({error: err.message});
             } else {
+                res.status(200);
                 res.json(result);
             }
         });
-    } catch (err) {
+    } catch(err) {
         res.status(500);
         res.json({error: err.message});
     }
@@ -77,6 +78,8 @@ apartmentController.getApartment = async function(req, res) {
 apartmentController.searchApartment = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);
+        var perPage = 20;
+        var page = Math.max(0, req.param('page'));
         var queryData = url.parse(req.url, true).query;
         var province = queryData.province;
         var region = queryData.region;
@@ -94,15 +97,15 @@ apartmentController.searchApartment = async function(req, res) {
             municipality = "";
         }
 
-        const apartments = await Hotel.find({provincia: new RegExp(province,'i'), 
-                                        comcarca: new RegExp(region, 'i'), 
-                                        municipio: new RegExp(municipality, 'i')},
-                                        function(err) {
-                                            if (err) {
-                                                res.status(400);
-                                                res.json({error: err.message}); 
-                                            }
-                                        });
+        const apartments = await Apartment.find({provincia: new RegExp(province,'i'), 
+                                                comcarca: new RegExp(region, 'i'), 
+                                                municipio: new RegExp(municipality, 'i')},
+                                                function(err) {
+                                                    if (err) {
+                                                        res.status(400);
+                                                        res.json({error: err.message}); 
+                                                    }
+                                                }).skip(perPage*page).limit(perPage);
         res.status(200);
         res.json(apartments);
     } catch(err) {

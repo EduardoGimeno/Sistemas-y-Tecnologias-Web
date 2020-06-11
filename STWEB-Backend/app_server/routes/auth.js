@@ -8,7 +8,7 @@ auth.get('/google/callback', passport.authenticate('google'),  (req, res) => {
         var token = jwtinterface.signtoken(req.user);
         console.log(token)
         var responss = "Bearer " + token;
-        res.json({"token": responss})
+        res.json([{"token": responss},req.user])
     });
 
 module.exports = auth;

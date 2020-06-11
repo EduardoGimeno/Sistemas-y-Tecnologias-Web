@@ -10,10 +10,11 @@ router.get('/get', userController.getUser);
 router.post('/login', passport.authenticate('json'), (req,res) =>{
     var token = jwtinterface.signtoken(req.user);
     var responss = "Bearer " + token;
-    res.json({"token": responss});
+    res.json([{"token": responss},req.user]);
 });
 router.get('/search', userController.searchUsers);
 router.post('/add', userController.addUser);
+router.post('/send', userController.sendMail);
 router.put('/update', userController.updateUser);
 
 module.exports = router;

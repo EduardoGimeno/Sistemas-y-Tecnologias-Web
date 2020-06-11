@@ -28,11 +28,12 @@ shelterController.getShelters = async function(req, res) {
 shelterController.countShelters = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);
-        Shelter.count({}, function(err, result) {
+        await Shelter.count({}, function(err, result) {
             if (err) {
                 res.status(500);
                 res.json({error: err.message});
             } else {
+                res.status(200);
                 res.json(result);
             }
         });
@@ -76,6 +77,8 @@ shelterController.getShelter = async function(req, res) {
 shelterController.searchShelters = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);
+        var perPage = 20;
+        var page = Math.max(0, req.param('page'));
         var queryData = url.parse(req.url, true).query;
         var province = queryData.province;
         var region = queryData.region;
@@ -101,7 +104,7 @@ shelterController.searchShelters = async function(req, res) {
                                                     res.status(400);
                                                     res.json({error: err.message}); 
                                                 }
-                                            });
+                                            }).skip(perPage*page).limit(perPage);
         res.status(200);
         res.json(shelters);
     } catch(err) {

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from "@angular/common/http";
+import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 import { UserApp } from "../entities/usuario";
 
 @Injectable({
@@ -14,8 +14,11 @@ export class UserService {
    }
 
   public logIn(email: string, password: string) {
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json'});
+    let options = { headers: headers };
     let json = {'email': email, 'password': password};
-    return this.http.post( this.urlApp + '/login', JSON.stringify({json: json}));
+    return this.http.post( this.urlApp + '/login', JSON.stringify(json), options);
   }
 
   public register(user: UserApp) {

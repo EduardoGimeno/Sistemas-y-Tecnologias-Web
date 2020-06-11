@@ -5,6 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var passport = require('passport');
 var cors = require('cors');
+var request = require('request');
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
 require('./app_server/models/db');
@@ -17,10 +18,12 @@ var sheltersRouter = require('./app_server/routes/shelters');
 var apartmentsRouter = require('./app_server/routes/apartments');
 var ruralHousesRouter = require('./app_server/routes/ruralHouses');
 var campingsRouter = require('./app_server/routes/campings');
+var restaurantsRouter = require('./app_server/routes/restaurants');
 var touristOfficesRouter = require('./app_server/routes/touristOffices');
 var informationPointsRouter = require('./app_server/routes/informationPoints');
 var guidesRouter = require('./app_server/routes/guides');
 var authRouter = require('./app_server/routes/auth');
+var parserData = require('./app_server/routes/parserData');
 
 var app = express();
 app.use(passport.initialize());
@@ -43,9 +46,11 @@ app.use('/shelters', sheltersRouter);
 app.use('/apartments', apartmentsRouter);
 app.use('/ruralHouses', ruralHousesRouter);
 app.use('/campings', campingsRouter);
+app.use('/restaurants', restaurantsRouter);
 app.use('/touristOffices', touristOfficesRouter);
 app.use('/informationPoints', informationPointsRouter);
 app.use('/guides', guidesRouter);
+app.use('/parserdata', parserData);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
