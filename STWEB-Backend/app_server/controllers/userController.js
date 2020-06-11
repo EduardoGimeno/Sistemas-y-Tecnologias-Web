@@ -50,6 +50,7 @@ userController.addUser = async function(req, res) {
         var user = new User(req.body);
         user.baneado = false;
         user.activo = true;
+        user.admin = false;
         await user.save(function (err, newUser) {
             if (err) {
                 res.status(500);
@@ -136,6 +137,33 @@ userController.searchUsers = async function(req, res) {
                                        }).skip(perPage*page).limit(perPage);
         res.status(200);
         res.json(users);
+    } catch(err) {
+        res.status(500);
+        res.json({error: err.message});
+    }
+}
+
+userController.sendMail = async function(req, res) {
+    try {
+        //checkToken(req.headers.authentication);
+        var userMail = req.body.email;
+        var text = req.body.text;
+        const send = require('gmail-send')({
+            user: 'descubrearagonSTW@gmail.com',
+            pass: 'STW-1920',
+            to: userMail,
+            subject: 'Descubre Aragon',
+            text: text
+        });
+        await send({}, function (err, response) {
+            if (err) {
+                res.status(500);
+                res.json(err.message);
+            } else {
+                res.status(200);
+                res.json(response);
+            }
+        });
     } catch(err) {
         res.status(500);
         res.json({error: err.message});
