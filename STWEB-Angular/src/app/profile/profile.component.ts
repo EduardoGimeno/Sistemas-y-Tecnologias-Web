@@ -19,6 +19,7 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.user = this.currentUser.checkLog();
+    this.getProvincias();
   }
 
   update(pais: string, provincia: string, email: string) {
@@ -34,32 +35,13 @@ export class ProfileComponent implements OnInit {
     this.user = this.currentUser.updateUser(pais, provincia, email);
   }
 
-  getProvincias(event, pais){
+  getProvincias(){
     this.provincias = [];
-     //Devuelve las provincias de españa (id 205)
-     if (pais.value == 'ES'){
-      let pais = csc.getCountryByCode("ES");
-      console.log(pais);
-      let provinciasDevueltas = csc.getStatesOfCountry(pais.id);
-      console.log(provinciasDevueltas);
-      for(let provincia of provinciasDevueltas){
-       this.provincias.push(provincia.name);
-      }
-      console.log(this.provincias)
-     }
-     else if(pais.value == 'IT'){
-      let pais = csc.getCountryByCode("IT");
-      console.log(pais);
-      let provinciasDevueltas = csc.getStatesOfCountry(pais.id);
-      console.log(provinciasDevueltas);
-      for(let provincia of provinciasDevueltas){
-       this.provincias.push(provincia.name);
-      }
-      console.log(this.provincias)
-     }
-
-
-
+    let paisN = csc.getCountryByCode(<string>$('#letras').val());
+    let provinciasDevueltas = csc.getStatesOfCountry(paisN.id);
+    for(let provincia of provinciasDevueltas){
+     this.provincias.push(provincia.name);
+    }
   }
 
 }

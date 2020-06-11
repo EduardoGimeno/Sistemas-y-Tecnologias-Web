@@ -103,19 +103,42 @@
             <div class="col" style="text-align: left; margin-top: auto; margin-left: 25%">
               <div class="form-group">
                 <label class="control-label">País</label>
-                <select #pais class="custom-select" (change)="getProvincias($event, pais)">
-                  <option value="" selected disabled hidden>{{ user.pais }}</option>
+                <select #letras id="letras" class="custom-select" (change)="getProvincias()">
                   <option value="ES">España</option>
                   <option value="IT">Italia</option>
-                  <option value="Francia">Francia</option>
+                  <option value="FR">Francia</option>
+                  <option value="GR">Grecia</option>
+                  <option value="BE">Bélgica</option>
+                  <option value="AT">Austria </option>
+                  <option value="BG">Bulgaria</option>
+                  <option value="HR">Croacia</option>
+                  <option value="CY">Chipre</option>
+                  <option value="CZ">Republica checa</option>
+                  <option value="DK">Dinamarca</option>
+                  <option value="EE">Estonia</option>
+                  <option value="FI">Finlandia</option>
+                  <option value="DE">Alemania</option>
+                  <option value="HU">Hungría</option>
+                  <option value="IE">Irlanda</option>
+                  <option value="LT">Lituania</option>
+                  <option value="LU">Luxemburgo</option>
+                  <option value="MT">Malta</option>
+                  <option value="NL">Paises Bajos</option>
+                  <option value="PL">Polonia</option>
+                  <option value="PT">Portugal</option>
+                  <option value="RU">Rumania</option>
+                  <option value="SK">Eslovaquia</option>
+                  <option value="SI">Eslovenia</option>
+                  <option value="SE">Suecia</option>
+                  <option value="GB">Reino Unido</option>
                 </select>
               </div>
             </div>
             <div class="col" style="text-align: left; margin-top: auto; margin-right: 25%">
               <div class="form-group">
                 <label class="control-label">Provincia</label>
-                <select  class="custom-select" (change)="getProvincias($event, pais)">
-                  <option *ngFor="let provincia of provincias">{{ provincia }}</option>
+                <select  class="custom-select" (change)="getProvincias()">
+                  <option  *ngFor="let provincia of provincias">{{ provincia }}</option>
                 </select>
               </div>
             </div>
@@ -135,7 +158,7 @@
           <div class="row" style="height: 40%">
             <div class="col" style="text-align: center; margin-top: auto; margin-left: 25%">
               <button type="button"
-                      class="btn btn-primary btn-lg">Guardar cambios</button>
+                      class="btn btn-primary">Guardar cambios</button>
             </div>
             <div class="col" style="text-align: center; margin-top: auto; margin-right: 25%">
               <button type="button" routerLink="/change-password" class="btn btn-primary">Cambiar contraseña</button>
