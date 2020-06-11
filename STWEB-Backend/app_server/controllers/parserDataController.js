@@ -10,7 +10,47 @@ checkToken = function(token) {
 parserDataController.parserData = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);
-        var importedJSON;
+        //alojamientoTurismoRural
+        request('https://opendata.aragon.es/GA_OD_Core/download?' +
+            'view_id=73&formato=json', function (error, response, body) {
+            console.log("HA LLEGADO");
+            if (!error && response.statusCode == 200) {
+                //importedJSON = body;
+                //console.log(body);
+                importedJSON = JSON.parse(body);
+            }
+        })
+        //apartamentos
+        request('https://opendata.aragon.es/GA_OD_Core/download?' +
+            'view_id=66&formato=json', function (error, response, body) {
+            console.log("HA LLEGADO");
+            if (!error && response.statusCode == 200) {
+                //importedJSON = body;
+                //console.log(body);
+                importedJSON = JSON.parse(body);
+            }
+        })
+        //camping
+        request('https://opendata.aragon.es/GA_OD_Core/download?' +
+            'view_id=68&formato=json', function (error, response, body) {
+            console.log("HA LLEGADO");
+            if (!error && response.statusCode == 200) {
+                //importedJSON = body;
+                //console.log(body);
+                importedJSON = JSON.parse(body);
+            }
+        })
+        //guias
+        request('https://opendata.aragon.es/GA_OD_Core/download?' +
+            'view_id=69&formato=json', function (error, response, body) {
+            console.log("HA LLEGADO");
+            if (!error && response.statusCode == 200) {
+                //importedJSON = body;
+                //console.log(body);
+                importedJSON = JSON.parse(body);
+            }
+        })
+        //hotel
         request('https://opendata.aragon.es/GA_OD_Core/download?' +
             'view_id=65&formato=json', function (error, response, body) {
             console.log("HA LLEGADO");
@@ -18,11 +58,49 @@ parserDataController.parserData = async function(req, res) {
                 //importedJSON = body;
                 //console.log(body);
                 importedJSON = JSON.parse(body);
-                console.log(importedJSON[1][0]);
-                res.status(200);
-                res.json(body);
             }
         })
+        //oficinaTurismo
+        request('https://opendata.aragon.es/GA_OD_Core/download?' +
+            'view_id=70&formato=json', function (error, response, body) {
+            console.log("HA LLEGADO");
+            if (!error && response.statusCode == 200) {
+                //importedJSON = body;
+                //console.log(body);
+                importedJSON = JSON.parse(body);
+            }
+        })
+        //puntoInformacion
+        request('https://opendata.aragon.es/GA_OD_Core/download?' +
+            'view_id=71&formato=json', function (error, response, body) {
+            console.log("HA LLEGADO");
+            if (!error && response.statusCode == 200) {
+                //importedJSON = body;
+                //console.log(body);
+                importedJSON = JSON.parse(body);
+            }
+        })
+        //refugio
+        request('https://opendata.aragon.es/GA_OD_Core/download?' +
+            'view_id=64&formato=json', function (error, response, body) {
+            console.log("HA LLEGADO");
+            if (!error && response.statusCode == 200) {
+                //importedJSON = body;
+                //console.log(body);
+                importedJSON = JSON.parse(body);
+            }
+        })
+        //restaurante
+        request('https://opendata.aragon.es/GA_OD_Core/download?' +
+            'view_id=67&formato=json', function (error, response, body) {
+            console.log("HA LLEGADO");
+            if (!error && response.statusCode == 200) {
+                //importedJSON = body;
+                //console.log(body);
+                importedJSON = JSON.parse(body);
+            }
+        })
+
     } catch (err) {
         res.status(500);
         res.json({error: err.message});
