@@ -20,7 +20,7 @@ apartmentController.getApartments = async function(req, res) {
         }).skip(perPage*page).limit(perPage);
         res.status(200);
         res.json(apartments);
-    } catch (err) {
+    } catch(err) {
         res.status(500);
         res.json({error: err.message});
     }
@@ -38,7 +38,7 @@ apartmentController.countApartments = async function(req, res) {
                 res.json(result);
             }
         });
-    } catch (err) {
+    } catch(err) {
         res.status(500);
         res.json({error: err.message});
     }
