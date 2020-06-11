@@ -10,19 +10,19 @@ checkToken = function(token) {
 parserDataController.parserData = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);
-        var importedJSON = JSON.parse("vacio");
+        var importedJSON;
         request('https://opendata.aragon.es/GA_OD_Core/download?' +
-            'view_id=65&formato=json&name=Alojamientos%20hoteleros%20en%20la%20Comunidad' +
-            '%20Aut%C3%B3noma%20de%20Arag%C3%B3n&nameRes=Alojamientos%20hoteleros%20en%20la' +
-            '%20Comunidad%20Aut%C3%B3noma%20de%20Arag%C3%B3n', function (error, response, body) {
+            'view_id=65&formato=json', function (error, response, body) {
             console.log("HA LLEGADO");
             if (!error && response.statusCode == 200) {
-                importedJSON = body;
-                console.log(importedJSON);
+                //importedJSON = body;
+                //console.log(body);
+                importedJSON = JSON.parse(body);
+                console.log(importedJSON[1][0]);
+                res.status(200);
+                res.json(body);
             }
         })
-        res.status(200);
-        res.json(importedJSON);
     } catch (err) {
         res.status(500);
         res.json({error: err.message});
