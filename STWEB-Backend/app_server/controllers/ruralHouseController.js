@@ -12,7 +12,7 @@ ruralHouseController.getRuralHouses = async function(req, res) {
         //checkToken(req.headers.authentication);
         var perPage = 20;
         var page = Math.max(0, req.param('page'));
-        const ruralHouses = RuralHouse.find(function(err) {
+        const ruralHouses = await RuralHouse.find(function(err) {
             if (err) {
                 res.status(500);
                 res.json({error: err.message});
@@ -29,11 +29,12 @@ ruralHouseController.getRuralHouses = async function(req, res) {
 ruralHouseController.countRuralHouses = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);
-        RuralHouse.count({}, function(err, result) {
+        await RuralHouse.count({}, function(err, result) {
             if (err) {
                 res.status(500);
                 res.json({error: err.message});
             } else {
+                res.status(200);
                 res.json(result);
             }
         });
@@ -77,6 +78,8 @@ ruralHouseController.getRuralHouse = async function(req, res) {
 ruralHouseController.searchRuralHouses = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);
+        var perPage = 20;
+        var page = Math.max(0, req.param('page'));
         var queryData = url.parse(req.url, true).query;
         var province = queryData.province;
         var region = queryData.region;
@@ -105,7 +108,7 @@ ruralHouseController.searchRuralHouses = async function(req, res) {
                                                             res.status(400);
                                                             res.json({error: err.message}); 
                                                         }
-                                                  });
+                                                  }).skip(perPage*page).limit(perPage);
         res.status(200);
         res.json(ruralHouses);
     } catch(err) {

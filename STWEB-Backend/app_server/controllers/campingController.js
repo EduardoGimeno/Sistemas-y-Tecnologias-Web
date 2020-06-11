@@ -12,7 +12,7 @@ campingController.getCampings = async function(req, res) {
         //checkToken(req.headers.authentication);
         var perPage = 20;
         var page = Math.max(0, req.param('page'));
-        const campings = Hotel.find(function(err) {
+        const campings = await Camping.find(function(err) {
             if (err) {
                 res.status(500);
                 res.json({error: err.message});
@@ -29,11 +29,12 @@ campingController.getCampings = async function(req, res) {
 campingController.countCampings = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);
-        Camping.count({}, function(err, result) {
+        await Camping.count({}, function(err, result) {
             if (err) {
                 res.status(500);
                 res.json({error: err.message});
             } else {
+                res.status(200);
                 res.json(result);
             }
         });
@@ -77,6 +78,8 @@ campingController.getCamping = async function(req, res) {
 campingController.searchCampings = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);
+        var perPage = 20;
+        var page = Math.max(0, req.param('page'));
         var queryData = url.parse(req.url, true).query;
         var province = queryData.province;
         var region = queryData.region;
@@ -94,7 +97,7 @@ campingController.searchCampings = async function(req, res) {
             municipality = "";
         }
 
-        const campings = await Hotel.find({provincia: new RegExp(province,'i'), 
+        const campings = await Camping.find({provincia: new RegExp(province,'i'), 
                                         comcarca: new RegExp(region, 'i'), 
                                         municipio: new RegExp(municipality, 'i')},
                                         function(err) {
@@ -102,7 +105,7 @@ campingController.searchCampings = async function(req, res) {
                                                 res.status(400);
                                                 res.json({error: err.message}); 
                                             }
-                                        });
+                                        }).skip(perPage*page).limit(perPage);
         res.status(200);
         res.json(campings);
     } catch(err) {

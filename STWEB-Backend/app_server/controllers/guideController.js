@@ -12,7 +12,7 @@ guideController.getGuides = async function(req, res) {
         //checkToken(req.headers.authentication);
         var perPage = 20;
         var page = Math.max(0, req.param('page'));
-        const guides = Guide.find(function(err) {
+        const guides = await Guide.find(function(err) {
             if (err) {
                 res.status(500);
                 res.json({error: err.message});
@@ -29,11 +29,12 @@ guideController.getGuides = async function(req, res) {
 guideController.countGuides = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);
-        Guide.count({}, function(err, result) {
+        await Guide.count({}, function(err, result) {
             if (err) {
                 res.status(500);
                 res.json({error: err.message});
             } else {
+                res.status(200);
                 res.json(result);
             }
         });
@@ -45,7 +46,7 @@ guideController.countGuides = async function(req, res) {
 
 guideController.addGuide = async function(req, res) {
     var guide = new Guide(req.body);
-    await hotel.save(function (err, newGuide) {
+    await guide.save(function (err, newGuide) {
         if (err) {
             res.status(500);
             res.json({error: err.message});
@@ -77,16 +78,18 @@ guideController.getGuide = async function(req, res) {
 guideController.searchGuides = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);
+        var perPage = 20;
+        var page = Math.max(0, req.param('page'));
         var queryData = url.parse(req.url, true).query;
         var idiom = queryData.idiom;
 
-        const guides = await Hotel.find({idiom: new RegExp(idiom,'i')},
+        const guides = await Guide.find({idiom: new RegExp(idiom,'i')},
                                         function(err) {
                                             if (err) {
                                                 res.status(400);
                                                 res.json({error: err.message}); 
                                             }
-                                        });
+                                        }).skip(perPage*page).limit(perPage);
         res.status(200);
         res.json(guides);
     } catch(err) {

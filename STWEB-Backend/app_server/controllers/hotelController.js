@@ -12,7 +12,7 @@ hotelController.getHotels = async function(req, res) {
         //checkToken(req.headers.authentication);
         var perPage = 20;
         var page = Math.max(0, req.param('page'));
-        const hotels = Hotel.find(function(err) {
+        const hotels = await Hotel.find(function(err) {
             if (err) {
                 res.status(500);
                 res.json({error: err.message});
@@ -29,11 +29,12 @@ hotelController.getHotels = async function(req, res) {
 hotelController.countHotels = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);
-        Hotel.count({}, function(err, result) {
+        await Hotel.count({}, function(err, result) {
             if (err) {
                 res.status(500);
                 res.json({error: err.message});
             } else {
+                res.status(200);
                 res.json(result);
             }
         });
@@ -77,6 +78,8 @@ hotelController.getHotel = async function(req, res) {
 hotelController.searchHotels = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);
+        var perPage = 20;
+        var page = Math.max(0, req.param('page'));
         var queryData = url.parse(req.url, true).query;
         var province = queryData.province;
         var region = queryData.region;
@@ -102,10 +105,10 @@ hotelController.searchHotels = async function(req, res) {
                                         estrellas: {$gte: minStars, $lte: maxStars}},
                                         function(err) {
                                             if (err) {
-                                                res.status(400);
+                                                res.status(500);
                                                 res.json({error: err.message}); 
                                             }
-                                        });
+                                        }).skip(perPage*page).limit(perPage);
         res.status(200);
         res.json(hotels);
     } catch(err) {

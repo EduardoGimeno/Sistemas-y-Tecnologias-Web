@@ -29,11 +29,12 @@ userController.getUsers = async function(req, res) {
 userController.countUsers = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);
-        User.count({}, function(err, result) {
+        await User.count({}, function(err, result) {
             if (err) {
                 res.status(500);
                 res.json({error: err.message});
             } else {
+                res.status(200);
                 res.json(result);
             }
         });
@@ -105,6 +106,8 @@ userController.updateUser = async function(req, res) {
 userController.searchUsers = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);
+        var perPage = 20;
+        var page = Math.max(0, req.param('page'));
         var queryData = url.parse(req.url, true).query;
         var name = queryData.name;
         var surname = queryData.surname;
@@ -130,7 +133,7 @@ userController.searchUsers = async function(req, res) {
                                                 res.status(400);
                                                 res.json({error: err.message}); 
                                             }
-                                       });
+                                       }).skip(perPage*page).limit(perPage);
         res.status(200);
         res.json(users);
     } catch(err) {
