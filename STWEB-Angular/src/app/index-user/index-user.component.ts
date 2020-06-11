@@ -1,12 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { UserApp } from '../entities/usuario';
-import { Alojamiento } from '../entities/alojamiento';
 import { CurrentUserService } from "../current-user.service";
 import { EntryService } from "../services/entry-service.service";
 import { Router } from "@angular/router";
-import { Restaurante } from "../entities/restaurante";
-import {OficinaTurismo} from "../entities/oficinaTurismo";
-import { PuntoInformacion } from "../entities/puntoInformacion";
 
 @Component({
   selector: 'app-index-user',
@@ -17,30 +13,21 @@ export class IndexUserComponent implements OnInit {
 
   user: UserApp;
 
-  entriesAlojamiento;
-
-  entriesRestaurante: Restaurante[];
-
-  entriesOficinas: OficinaTurismo[];
-
-  entriesPuntos: PuntoInformacion[];
-
   showEntries = [];
-
   selectedIndex = 0;
-
   calidadString: string = "Estrellas";
+
+  page = 1;
+  numPages = 10;
+  numTotal = 0;
+
+  busquedaConFiltros: boolean = false;
 
   constructor(public currentUser: CurrentUserService, public entryService: EntryService,
               public route: Router) { }
 
   ngOnInit(): void {
     this.user = this.currentUser.checkLog();
-    this.entriesAlojamiento = this.entryService.getEntries();
-    this.entriesRestaurante = this.entryService.getRestaurantes();
-    this.entriesOficinas = this.entryService.getOficinasTurismo();
-    this.entriesPuntos = this.entryService.getPuntosInformacion();
-    this.showEntries = this.entriesAlojamiento;
     this.disableSelections(0);
     this.filter(0);
   }
@@ -55,51 +42,79 @@ export class IndexUserComponent implements OnInit {
   }
 
   filter(index) {
+    this.busquedaConFiltros = false;
     this.showEntries = [];
-    this.entryService
     if (index == 0) {
-      for (let entry of this.entriesAlojamiento) {
-        if (entry.tipoEntry == 'Hotel') {
-          this.calidadString = "Estrellas";
-          this.showEntries.push(entry);
-        }
-      }
+      this.entryService.getCount("hotels").subscribe(num => {
+        this.numTotal = <number>num;
+      });
+      this.entryService.getHoteles(this.page - 1).subscribe(data => {
+        this.showEntries = <[]>data;
+      });
+      this.calidadString = "Estrellas";
     } else if (index == 1) {
-      for (let entry of this.entriesAlojamiento) {
-        if (entry.tipoEntry == 'Turismo rural') {
-          this.calidadString = "Espigas";
-          this.showEntries.push(entry);
-        }
-      }
+      this.entryService.getCount("ruralHouses").subscribe(num => {
+        this.numTotal = <number>num;
+      });
+      this.entryService.getTurismosRurales(this.page - 1).subscribe(data => {
+        this.showEntries = <[]>data;
+      });
+      this.calidadString = "Espigas";
     } else if (index == 2) {
-      for (let entry of this.entriesAlojamiento) {
-        if (entry.tipoEntry == 'Apartamento') {
-          this.showEntries.push(entry);
-        }
-      }
+      this.entryService.getCount("apartments").subscribe(num => {
+        this.numTotal = <number>num;
+      });
+      this.entryService.getApartamentos(this.page - 1).subscribe(data => {
+        this.showEntries = <[]>data;
+      });
     } else if (index == 3) {
-      for (let entry of this.entriesAlojamiento) {
-        if (entry.tipoEntry == 'Camping') {
-          this.showEntries.push(entry);
-        }
-      }
+      this.entryService.getCount("campings").subscribe(num => {
+        this.numTotal = <number>num;
+      });
+      this.entryService.getCampings(this.page - 1).subscribe(data => {
+        this.showEntries = <[]>data;
+      });
     } else if (index == 4) {
-      for (let entry of this.entriesAlojamiento) {
-        if (entry.tipoEntry == 'Refugio') {
-          this.showEntries.push(entry);
-        }
-      }
+      this.entryService.getCount("shelters").subscribe(num => {
+        this.numTotal = <number>num;
+      });
+      this.entryService.getRefugios(this.page - 1).subscribe(data => {
+        this.showEntries = <[]>data;
+      });
     } else if (index == 5) {
+      this.entryService.getCount("restaurants").subscribe(num => {
+        this.numTotal = <number>num;
+      });
+      this.entryService.getRestaurantes(this.page - 1).subscribe(data => {
+        this.showEntries = <[]>data;
+      });
       this.calidadString = "Tenedores/Tazas";
-      this.showEntries = this.entriesRestaurante;
     } else if (index == 6) {
-      this.showEntries = this.entriesOficinas;
+      this.entryService.getCount("touristOffices").subscribe(num => {
+        this.numTotal = <number>num;
+      });
+      this.entryService.getOficinasTurismo(this.page - 1).subscribe(data => {
+        this.showEntries = <[]>data;
+      });
     } else if (index == 7) {
-      this.showEntries = this.entriesPuntos;
+      this.entryService.getCount("informationPoints").subscribe(num => {
+        this.numTotal = <number>num;
+      });
+      this.entryService.getPuntosInformacion(this.page - 1).subscribe(data => {
+        this.showEntries = <[]>data;
+      });
+    } else if (index == 8) {
+      this.entryService.getCount("guides").subscribe(num => {
+        this.numTotal = <number>num;
+      });
+      this.entryService.getGuias(this.page - 1).subscribe(data => {
+        this.showEntries = <[]>data;
+      });
     } else {
-      this.showEntries = this.entriesAlojamiento;
+      this.filter(0);
     }
     this.disableSelections(index);
+    this.numPages = (this.numTotal / 20);
   }
 
   navigateToEntry(entry) {
@@ -109,7 +124,7 @@ export class IndexUserComponent implements OnInit {
 
   disableSelections(index: number) {
 
-    // Estrellas / Espigas para hoteles y turismo rural
+    // Estrellas / Espigas para hoteles y turismo rural y Tenedores / Tazas para restaurantes
     if (index == 0 || index == 1 || index == 5) {
       $('#selectionEstrellasMin').prop('disabled', false);
       $('#selectionEstrellasMax').prop('disabled', false);
@@ -124,79 +139,99 @@ export class IndexUserComponent implements OnInit {
     } else {
       $('#selectionMunicipio').prop('disabled', false);
     }
+
+    // Solo idioma para guias
+    if (index == 8) {
+      $('#selectionProvincia').prop('disabled', true);
+      $('#selectionMunicipio').prop('disabled', true);
+      $('#selectionComarca').prop('disabled', true);
+      $('#selectionEstrellasMax').prop('disabled', true);
+      $('#selectionEstrellasMin').prop('disabled', true);
+      $('#selectionIdioma').prop('disabled', false);
+    } else {
+      $('#selectionProvincia').prop('disabled', false);
+      $('#selectionComarca').prop('disabled', false);
+      $('#selectionIdioma').prop('disabled', true);
+    }
+
   }
 
   search() {
+    this.busquedaConFiltros = true;
 
-    // HACER LLAMADAS
+    let provincia = <string>$('#selectionProvincia').val();
+    let municipio = <string>$('#selectionMunicipio').val();
+    let comarca = <string>$('#selectionComarca').val();
+    let estrellasMinString = <string>$('#selectionEstrellasMin').val();
+    let estrellasMin: number = +estrellasMinString.split(" ")[0];
+    let estrellasMaxString = <string>$('#selectionEstrellasMax').val();
+    let estrellasMax = +estrellasMaxString.split(" ")[0];
+    let idioma = <string>$('#selectionIdioma').val();
 
-   /* this.filter(this.selectedIndex);
-
-    let provincia = $('#selectionProvincia').val();
-    if (provincia != "") {
-      let entriesAux = this.showEntries;
-      this.showEntries = [];
-      for (let e of entriesAux) {
-        if (e.provincia == provincia) {
-          this.showEntries.push(e);
-        }
-      }
+    if (this.selectedIndex == 0) {
+      this.entryService.searchHoteles(provincia, comarca, municipio, estrellasMin,
+        estrellasMax, this.page - 1).subscribe(data => {
+        this.showEntries = <[]>data;
+      });
+    } else if (this.selectedIndex == 1) {
+      this.entryService.searchTurismoRurales(provincia, comarca, municipio, estrellasMin,
+        estrellasMax, this.page - 1).subscribe(data => {
+        this.showEntries = <[]>data;
+      });
+    } else if (this.selectedIndex == 2) {
+      this.entryService.searchApartamentos(provincia, comarca, municipio,
+        this.page - 1).subscribe(data => {
+        this.showEntries = <[]>data;
+      });
+    } else if (this.selectedIndex == 3) {
+      this.entryService.searchCampings(provincia, comarca, municipio, this.page - 1).subscribe(data => {
+        this.showEntries = <[]>data;
+      });
+    } else if (this.selectedIndex == 4) {
+      this.entryService.searchRefugios(provincia, comarca, municipio, this.page - 1).subscribe(data => {
+        this.showEntries = <[]>data;
+      });
+    } else if (this.selectedIndex == 5) {
+      this.entryService.searchRestaurantes(provincia, comarca, municipio, estrellasMin,
+        estrellasMax, this.page - 1).subscribe(data => {
+        this.showEntries = <[]>data;
+      });
+    } else if (this.selectedIndex == 6) {
+      this.entryService.searchOficinasTurismo(provincia, comarca, this.page - 1).subscribe(data => {
+        this.showEntries = <[]>data;
+      });
+    } else if (this.selectedIndex == 7) {
+      this.entryService.searchPuntosInformacion(provincia, comarca, municipio, this.page - 1).subscribe(data => {
+        this.showEntries = <[]>data;
+      });
+    } else if (this.selectedIndex == 8) {
+      this.entryService.searchGuias(idioma, this.page - 1).subscribe(data => {
+        this.showEntries = <[]>data;
+      });
+    } else {
+      this.selectedIndex = 0;
+      this.search();
     }
-
-    let comarca = $('#selectionComarca').val();
-    if (comarca != "") {
-      let entriesAux = this.showEntries;
-      this.showEntries = [];
-      for (let e of entriesAux) {
-        if (e.comarca == comarca) {
-          this.showEntries.push(e);
-        }
-      }
-    }
-
-    let municipio = $('#selectionMunicipio').val();
-    if (municipio != "") {
-      let entriesAux = this.showEntries;
-      this.showEntries = [];
-      for (let e of entriesAux) {
-        if (e.municipio == municipio) {
-          this.showEntries.push(e);
-        }
-      }
-    }
-
-    if (!$('#selectionEstrellasMin').is(':disabled') &&
-        !$('#selectionEstrellasMax').is(':disabled')) {
-      let min = +$('#selectionEstrellasMin').val();
-      let max = +$('#selectionEstrellasMax').val();
-      if (this.selectedIndex == 0) {
-        let entriesAux = this.showEntries;
-        this.showEntries = [];
-        for (let e of entriesAux) {
-          if (e.espigas >= min && e.espigas <= max) {
-            this.showEntries.push(e);
-          }
-        }
-      } else if (this.selectedIndex == 1) {
-        let entriesAux = this.showEntries;
-        this.showEntries = [];
-        for (let e of entriesAux) {
-          if (e.estrellas >= min && e.estrellas <= max) {
-            this.showEntries.push(e);
-          }
-        }
-      } else if (this.selectedIndex == 5) {
-        let entriesAux = this.showEntries;
-        this.showEntries = [];
-        for (let e of entriesAux) {
-          if (e.estrellas >= min && e.estrellas <= max) {
-            this.showEntries.push(e);
-          }
-        }
-      }
-    }*/
 
   }
 
+
+  paginaSiguiente() {
+    this.page = this.page + 1;
+    if (!this.busquedaConFiltros) {
+      this.filter(this.selectedIndex);
+    } else {
+      this.search();
+    }
+  }
+
+  paginaAnterior() {
+    this.page = this.page - 1;
+    if (!this.busquedaConFiltros) {
+      this.filter(this.selectedIndex);
+    } else {
+      this.search();
+    }
+  }
 
 }

@@ -14,9 +14,8 @@ export class UserService {
    }
 
   public logIn(email: string, password: string) {
-    let params = new HttpParams()
-      .set("username", email).set("password", password);
-    return this.http.get( this.urlApp + '/logIn', {params: params});
+    let json = {'email': email, 'password': password};
+    return this.http.post( this.urlApp + '/login', JSON.stringify({json: json}));
   }
 
   public register(user: UserApp) {
