@@ -1,6 +1,7 @@
 const mongoose = require( 'mongoose' );
 
 const guiaSchema = new mongoose.Schema({
+    signatura: {type: String, required: true},
     nombre: {type: String, required: true},
     apellidos: {type: String, required: true},
     telefono: {type: String, required: true},
@@ -9,7 +10,7 @@ const guiaSchema = new mongoose.Schema({
     frances: {type: Boolean, required: true},
     aleman: {type: Boolean, required: true},
     italiano: {type: Boolean, required: true},
-    otros: String
+    otros: {type: Boolean, required: true}
 });
 
 module.exports = mongoose.model('Guia', guiaSchema);

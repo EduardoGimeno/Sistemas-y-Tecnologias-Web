@@ -22,7 +22,9 @@ export class ChatEntryComponent implements OnInit {
       this.id = params['id'];
     });
     if (this.id != null) {
-      this.conversacion = this.chatService.getChatById(this.id);
+      this.chatService.getChatById(this.id).subscribe(data => {
+        this.conversacion = <Conversacion>data;
+      });
     }
   }
 
@@ -30,9 +32,12 @@ export class ChatEntryComponent implements OnInit {
     let newMessage = {
       texto: $('#text').text(),
       emisor: 'entry',
-      hora: '00:00'
+      hora: new Date(Date.now())
     }
     this.conversacion.mensajes.push(newMessage);
+    this.chatService.updateChatUser(this.conversacion).subscribe(data => {
+      console.log(data);
+    });
   }
 
 }
