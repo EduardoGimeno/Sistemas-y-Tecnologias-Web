@@ -2,23 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="109a231d-e49a-49c0-9fbe-e835707bb50d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../STWEB-Angular/src/dist/turismoaragon/3rdpartylicenses.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../STWEB-Angular/src/dist/turismoaragon/favicon.ico" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../STWEB-Angular/src/dist/turismoaragon/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../STWEB-Angular/src/dist/turismoaragon/main-es2015.7763dcb1a065e2960ee9.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../STWEB-Angular/src/dist/turismoaragon/main-es5.7763dcb1a065e2960ee9.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../STWEB-Angular/src/dist/turismoaragon/polyfills-es2015.e4277e903aed07751db3.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../STWEB-Angular/src/dist/turismoaragon/polyfills-es5.84963675a8c97dd2bc1e.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../STWEB-Angular/src/dist/turismoaragon/runtime-es2015.1eba213af0b233498d9d.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../STWEB-Angular/src/dist/turismoaragon/runtime-es5.1eba213af0b233498d9d.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../STWEB-Angular/src/dist/turismoaragon/scripts.7700fe520a6a640f231b.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../STWEB-Angular/src/dist/turismoaragon/styles.561e375a7f8933d31680.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../STWEB-Angular/src/app/entities/guia.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../STWEB-Angular/src/app/entities/guia.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../STWEB-Angular/src/app/entry/entry.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../STWEB-Angular/src/app/entry/entry.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../STWEB-Angular/src/app/index-user/index-user.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../STWEB-Angular/src/app/index-user/index-user.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../STWEB-Angular/src/app/index-user/index-user.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../STWEB-Angular/src/app/index-user/index-user.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../STWEB-Angular/src/app/services/entry-service.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../STWEB-Angular/src/app/services/entry-service.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../STWEB-Angular/src/app/services/user-service.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../STWEB-Angular/src/app/services/user-service.service.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -61,7 +44,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1591782011088</updated>
-      <workItem from="1591782013517" duration="23875000" />
+      <workItem from="1591782013517" duration="24028000" />
     </task>
     <servers />
   </component>
@@ -72,21 +55,21 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1323" height="179" key="GridCell.Tab.0.bottom" timestamp="1591809006302">
+    <state width="1323" height="179" key="GridCell.Tab.0.bottom" timestamp="1591838374646">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="179" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1591809006302" />
-    <state width="1323" height="179" key="GridCell.Tab.0.center" timestamp="1591809006301">
+    <state width="1323" height="179" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1591838374646" />
+    <state width="1323" height="179" key="GridCell.Tab.0.center" timestamp="1591838374645">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="179" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1591809006301" />
-    <state width="1323" height="179" key="GridCell.Tab.0.left" timestamp="1591809006300">
+    <state width="1323" height="179" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1591838374645" />
+    <state width="1323" height="179" key="GridCell.Tab.0.left" timestamp="1591838374645">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="179" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1591809006300" />
-    <state width="1323" height="179" key="GridCell.Tab.0.right" timestamp="1591809006301">
+    <state width="1323" height="179" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1591838374645" />
+    <state width="1323" height="179" key="GridCell.Tab.0.right" timestamp="1591838374645">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="179" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1591809006301" />
+    <state width="1323" height="179" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1591838374645" />
   </component>
 </project>
