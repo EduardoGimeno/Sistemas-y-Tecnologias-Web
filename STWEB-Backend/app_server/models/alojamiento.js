@@ -11,6 +11,7 @@ const alojamientoSchema = new mongoose.Schema({
     email: {type: String, required: true},
     telefono: {type: String, required: true}
 });
+
 const alojamientoModel = mongoose.model('Alojamiento', alojamientoSchema);
 
-module.exports = {alojamientoModel,alojamientoSchema};
+module.exports = {alojamientoModel, alojamientoSchema};

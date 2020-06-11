@@ -23,7 +23,8 @@ var touristOfficesRouter = require('./app_server/routes/touristOffices');
 var informationPointsRouter = require('./app_server/routes/informationPoints');
 var guidesRouter = require('./app_server/routes/guides');
 var authRouter = require('./app_server/routes/auth');
-var parserData = require('./app_server/routes/parserData');
+var parserDataRouter = require('./app_server/routes/parserData');
+var chatsRouter = require('./app_server/routes/chats');
 
 var app = express();
 app.use(passport.initialize());
@@ -54,7 +55,8 @@ app.use('/restaurants', restaurantsRouter);
 app.use('/touristOffices', touristOfficesRouter);
 app.use('/informationPoints', informationPointsRouter);
 app.use('/guides', guidesRouter);
-app.use('/parserdata', parserData);
+app.use('/parserdata', parserDataRouter);
+app.use('/chats', chatsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
