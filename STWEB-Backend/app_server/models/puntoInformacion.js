@@ -1,6 +1,7 @@
 const mongoose = require( 'mongoose' );
 
 const puntoInformacionSchema = new mongoose.Schema({
+    signatura: {type: String, required: true},
     nombre: {type: String, required: true},
     direccion: {type: String, required: true},
     provincia: {type: String, required: true},
