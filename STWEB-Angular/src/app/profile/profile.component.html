@@ -103,10 +103,10 @@
             <div class="col" style="text-align: left; margin-top: auto; margin-left: 25%">
               <div class="form-group">
                 <label class="control-label">País</label>
-                <select #pais class="custom-select">
+                <select #pais class="custom-select" (change)="getProvincias($event, pais)">
                   <option value="" selected disabled hidden>{{ user.pais }}</option>
-                  <option value="España">España</option>
-                  <option value="Italia">Italia</option>
+                  <option value="ES">España</option>
+                  <option value="IT">Italia</option>
                   <option value="Francia">Francia</option>
                 </select>
               </div>
@@ -114,11 +114,8 @@
             <div class="col" style="text-align: left; margin-top: auto; margin-right: 25%">
               <div class="form-group">
                 <label class="control-label">Provincia</label>
-                <select #provincia class="custom-select">
-                  <option value="" selected disabled hidden>{{ user.provincia }}</option>
-                  <option value="Huesca">Huesca</option>
-                  <option value="Zaragoza">Zaragoza</option>
-                  <option value="Teruel">Teruel</option>
+                <select  class="custom-select" (change)="getProvincias($event, pais)">
+                  <option *ngFor="let provincia of provincias">{{ provincia }}</option>
                 </select>
               </div>
             </div>
@@ -137,7 +134,7 @@
           <br>
           <div class="row" style="height: 40%">
             <div class="col" style="text-align: center; margin-top: auto; margin-left: 25%">
-              <button type="button" (click)="update(pais.value, provincia.value, email.value)"
+              <button type="button"
                       class="btn btn-primary btn-lg">Guardar cambios</button>
             </div>
             <div class="col" style="text-align: center; margin-top: auto; margin-right: 25%">

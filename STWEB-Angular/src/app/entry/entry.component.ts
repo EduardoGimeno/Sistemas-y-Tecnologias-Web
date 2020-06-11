@@ -4,6 +4,7 @@ import { CurrentUserService } from "../current-user.service";
 import { ActivatedRoute } from "@angular/router";
 import { EntryService } from "../services/entry-service.service";
 
+
 import { GeocodeService } from './geocode.service';
 import { Location } from './location';
 
@@ -23,10 +24,14 @@ export class EntryComponent implements OnInit {
 
   user: UserApp;
   entry;
+  //Conseguir las provincias de paises
+
 
   constructor(public currentUser: CurrentUserService, private activatedRoute: ActivatedRoute,
               public entryService: EntryService,  private geocodeService: GeocodeService,
               private ref: ChangeDetectorRef) {
+
+
   }
 
   showLocation() {

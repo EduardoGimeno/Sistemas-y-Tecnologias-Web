@@ -32,6 +32,8 @@
     "angular-google-signin": "^0.1.5",
     "angularx-social-login": "^2.3.1",
     "bootstrap": "^4.4.0",
+    "country-state-city": "^1.0.4",
+    "countryjs": "^1.8.0",
     "express": "^4.17.1",
     "font-awesome": "^4.7.0",
     "google-geocoder": "^0.2.1",
