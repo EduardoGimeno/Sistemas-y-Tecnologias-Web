@@ -5,6 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var passport = require('passport');
 var cors = require('cors');
+var request = require('request');
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
 require('./app_server/models/db');
@@ -22,6 +23,7 @@ var touristOfficesRouter = require('./app_server/routes/touristOffices');
 var informationPointsRouter = require('./app_server/routes/informationPoints');
 var guidesRouter = require('./app_server/routes/guides');
 var authRouter = require('./app_server/routes/auth');
+var parserData = require('./app_server/routes/parserData');
 
 var app = express();
 app.use(passport.initialize());
@@ -48,6 +50,7 @@ app.use('/restaurants', restaurantsRouter);
 app.use('/touristOffices', touristOfficesRouter);
 app.use('/informationPoints', informationPointsRouter);
 app.use('/guides', guidesRouter);
+app.use('/parserdata', parserData);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
