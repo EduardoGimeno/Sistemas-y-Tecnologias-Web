@@ -14,6 +14,7 @@ router.post('/login', passport.authenticate('json'), (req,res) =>{
 });
 router.get('/search', userController.searchUsers);
 router.post('/add', userController.addUser);
+router.post('/send', userController.sendMail);
 router.put('/update', userController.updateUser);
 
 module.exports = router;
