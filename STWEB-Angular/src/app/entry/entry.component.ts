@@ -1,8 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { UserApp } from '../entities/usuario';
 import { CurrentUserService } from "../current-user.service";
 import { ActivatedRoute } from "@angular/router";
 import { EntryService } from "../services/entry-service.service";
+
+import { GeocodeService } from './geocode.service';
+import { Location } from './location';
 
 @Component({
   selector: 'app-entry',
@@ -10,12 +13,31 @@ import { EntryService } from "../services/entry-service.service";
   styleUrls: ['./entry.component.css']
 })
 export class EntryComponent implements OnInit {
+  //Variables para google maps y geocode
+  lat = 40.730610;
+  lng = -73.935242;
+  //DIRECCION A BUSCAR
+  address = 'LARDIES CALLE UNICA SN';
+  location: Location;
+  loading: boolean;
 
   user: UserApp;
   entry;
 
   constructor(public currentUser: CurrentUserService, private activatedRoute: ActivatedRoute,
-              public entryService: EntryService) {
+              public entryService: EntryService,  private geocodeService: GeocodeService,
+              private ref: ChangeDetectorRef) {
+  }
+
+  showLocation() {
+      this.loading = true;
+      this.geocodeService.geocodeAddress(this.address)
+      .subscribe((location: Location) => {
+          this.location = location;
+          this.loading = false;
+          this.ref.detectChanges();
+        }
+      );
   }
 
   ngOnInit(): void {
@@ -24,23 +46,27 @@ export class EntryComponent implements OnInit {
       let tipoEntry = params['tipo'];
       let id = params['id'];
       if (tipoEntry == 'hot') {
-        this.entry = this.entryService.getHotel(id);
-      } else if (tipoEntry == 'apa') {
-        this.entry = this.entryService.getApartamento(id);
-      } else if (tipoEntry == 'tur') {
-        this.entry = this.entryService.getTurismoRural(id);
-      } else if (tipoEntry == 'ref') {
-        this.entry = this.entryService.getRefugio(id);
-      } else if (tipoEntry == 'cam') {
-        this.entry = this.entryService.getCamping(id);
-      } else if (tipoEntry == 'res') {
-        this.entry = this.entryService.getRestaurante(id);
-      } else if (tipoEntry == 'ofi') {
-        this.entry = this.entryService.getOficinaTurismo(id);
-      } else if (tipoEntry == 'pun') {
-        this.entry = this.entryService.getPuntoInformacion(id);
+          this.entry = this.entryService.getHotel(id);
+        } else if (tipoEntry == 'apa') {
+          this.entry = this.entryService.getApartamento(id);
+        } else if (tipoEntry == 'tur') {
+          this.entry = this.entryService.getTurismoRural(id);
+        } else if (tipoEntry == 'ref') {
+          this.entry = this.entryService.getRefugio(id);
+        } else if (tipoEntry == 'cam') {
+          this.entry = this.entryService.getCamping(id);
+        } else if (tipoEntry == 'res') {
+          this.entry = this.entryService.getRestaurante(id);
+        } else if (tipoEntry == 'ofi') {
+          this.entry = this.entryService.getOficinaTurismo(id);
+        } else if (tipoEntry == 'pun') {
+          this.entry = this.entryService.getPuntoInformacion(id);
+        } else if (tipoEntry == 'guia') {
+        this.entry = this.entryService.getGuia(id);
       }
     });
+    this.address = this.entry.municipio + " " + this.entry.direccion;
+    this.showLocation();
   }
 
   numberReturn(length){

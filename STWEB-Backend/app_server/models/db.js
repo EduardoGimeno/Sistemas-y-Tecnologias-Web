@@ -2,8 +2,8 @@ const mongoose = require('mongoose');
  
  // Defined a database connection string
 
- const dbURI = 'mongodb://heroku_5299hwsl:bfhfe1bp4mq61l37uh8mi34knq@ds121299.mlab.com:21299/heroku_5299hwsl';
- 
+ //const dbURI = process.env.DB_URI;
+const dbURI = "mongodb://heroku_5299hwsl:bfhfe1bp4mq61l37uh8mi34knq@ds121299.mlab.com:21299/heroku_5299hwsl";
 // Opened a Mongoose connection at application startup
 
  mongoose.connect(dbURI, {useNewUrlParser: true, useUnifiedTopology: true});

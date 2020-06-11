@@ -18,7 +18,8 @@ export class LoginComponent implements OnInit {
   private loggedIn: boolean;
 
 
-  constructor(public router: Router, public currentUser: CurrentUserService, private authService: AuthService, public userService: UserService) { }
+  constructor(public router: Router, public currentUser: CurrentUserService,
+              private authService: AuthService, public userService: UserService) { }
 
   ngOnInit(): void {
     this.authService.authState.subscribe((user) => {
@@ -44,7 +45,15 @@ export class LoginComponent implements OnInit {
   }
 
   logIn() {
+    let email = <string>$('#email').val();
+    let password = <string>$('#password').val();
     this.currentUser.logIn();
+    this.userService.getUsers().subscribe(data => {
+      console.log(data);
+    });
+    this.userService.logIn(email, password).subscribe(data  => {
+      console.log(data);
+    });
     this.router.navigateByUrl('index-user');
   }
 

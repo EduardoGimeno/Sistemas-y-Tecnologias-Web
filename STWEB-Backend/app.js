@@ -66,4 +66,5 @@ app.use(function(err, req, res, next) {
   res.json({ status: 'Error', mensaje: err.message })
 });
 
+
 module.exports = app;

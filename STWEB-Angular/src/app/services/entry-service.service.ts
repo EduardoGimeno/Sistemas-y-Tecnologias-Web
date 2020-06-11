@@ -1,143 +1,209 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from "@angular/common/http";
-import { Alojamiento } from "../entities/alojamiento";
-import { AlojamientoTurismoRural } from "../entities/alojamientoTurismoRural";
-import {Apartamento} from "../entities/apartamento";
-import {Camping} from "../entities/camping";
-import {Refugio} from "../entities/refugio";
-import {Hotel} from "../entities/hotel";
-import {Restaurante} from "../entities/restaurante";
-import {OficinaTurismo} from "../entities/oficinaTurismo";
-import {PuntoInformacion} from "../entities/puntoInformacion";
 
 @Injectable({
   providedIn: 'root'
 })
 export class EntryService {
-  entry1: Apartamento = new Apartamento({
-    id: 'id',
-    direccion: "Calle del apartamento",
-    capacidad: 0,
-    email: "",
-    municipio: "Zaragoza",
-    nombre: "Apartamento",
-    codigoPostal: 0,
-    provincia: "Zaragoza",
-    comarca: "Aragón",
-    telefono: "000 00 00 00",
-    tipoEntry: "h"
-  });
-  entry2: Camping = new Camping({
-    id: 'id',
-    direccion: "Calle del camping",
-    capacidad: 0,
-    email: "",
-    municipio: "Cariñena",
-    nombre: "Camping",
-    codigoPostal: 0,
-    provincia: "Zaragoza",
-    comarca: "Aragón",
-    telefono: "000 00 00 00",
-    tipoEntry: "e"
-  });
-  entry3: AlojamientoTurismoRural = new AlojamientoTurismoRural({
-    id: 'id',
-    direccion: "Calle del turismo rural",
-    capacidad: 0,
-    email: "",
-    municipio: "Teruel",
-    nombre: "Turismo rural",
-    codigoPostal: 0,
-    provincia: "Teruel",
-    comarca: "Aragón",
-    telefono: "000 00 00 00",
-    espigas: 5,
-    tipo: "tipo",
-    tipoEntry: "z"
-  });
-  entry4: Hotel = new Hotel({
-    id: 'id',
-    direccion: "Calle del hotel",
-    capacidad: 0,
-    email: "",
-    municipio: "Teruel",
-    nombre: "Hotel",
-    codigoPostal: 0,
-    provincia: "Teruel",
-    comarca: "Aragón",
-    telefono: "000 00 00 00",
-    estrellas: 4,
-    grupo: "tipo",
-    tipoEntry: "z"
-  });
-  entry5: Refugio = new Refugio({
-    id: 'id',
-    direccion: "Calle del refugio",
-    capacidad: 0,
-    email: "",
-    municipio: "Teruel",
-    nombre: "Refugio",
-    codigoPostal: 0,
-    provincia: "Teruel",
-    comarca: "Aragón",
-    telefono: "000 00 00 00",
-    tipoEntry: "z"
-  });
-  entry6: Restaurante = new Restaurante("id", "Nombre", "Direccion", "Provincia",
-    "Municipio", 50003, "Zaragoza", 500, "000 00 00 00", 5);
-  entry7: OficinaTurismo = new OficinaTurismo("id", "Nombre", "Direccion", "Provincia",
-    "000 00 00 00", "07:00 - 20:00");
-  entry8: PuntoInformacion = new PuntoInformacion("id", "Nombre", "Direccion", "Provincia",
-    "Municipio");
+
+  private urlApp: string = "https://back-turismoaragon.herokuapp.com";
 
   constructor(private http: HttpClient) { }
 
-  public getEntries() {
-    return [this.entry1, this.entry2, this.entry3, this.entry4, this.entry5];
+  getCount(tipo: string) {
+    return this.http.get(this.urlApp + "/" + tipo + "/count");
   }
 
-  public getRestaurantes() {
-    return [this.entry6];
+  public getHoteles(page: number) {
+    let params = new HttpParams()
+      .set("page", page.toString());
+    return this.http.get(this.urlApp + "/hotels", {params:params});
   }
 
-  public getOficinasTurismo() {
-    return [this.entry7];
+  public getTurismosRurales(page: number) {
+    let params = new HttpParams()
+      .set("page", page.toString());
+    return this.http.get(this.urlApp + "/ruralHouses", {params:params});
   }
 
-  public getPuntosInformacion() {
-    return [this.entry8];
+  public getApartamentos(page: number) {
+    let params = new HttpParams()
+      .set("page", page.toString());
+    return this.http.get(this.urlApp + "/apartments", {params:params});
+  }
+
+  public getCampings(page: number) {
+    let params = new HttpParams()
+      .set("page", page.toString());
+    return this.http.get(this.urlApp + "/campings", {params:params});
+  }
+
+  public getRefugios(page: number) {
+    let params = new HttpParams()
+      .set("page", page.toString());
+    return this.http.get(this.urlApp + "/shelters", {params:params});
+  }
+
+  public getRestaurantes(page: number) {
+    let params = new HttpParams()
+      .set("page", page.toString());
+    return this.http.get(this.urlApp + "/restaurants", {params:params});
+  }
+
+  public getOficinasTurismo(page: number) {
+    let params = new HttpParams()
+      .set("page", page.toString());
+    return this.http.get(this.urlApp + "/touristOffices", {params:params});
+  }
+
+  public getPuntosInformacion(page: number) {
+    let params = new HttpParams()
+      .set("page", page.toString());
+    return this.http.get(this.urlApp + "/informationPoints", {params:params});
+  }
+
+  public getGuias(page: number) {
+    let params = new HttpParams()
+      .set("page", page.toString());
+    return this.http.get(this.urlApp + "/guides", {params:params});
   }
 
   public getHotel(id) {
-    return this.entry4;
+    let params = new HttpParams()
+      .set("id", id.toString());
+    return this.http.get(this.urlApp + "/hotels/get", {params:params});
   }
 
   public getTurismoRural(id) {
-    return this.entry3;
+    let params = new HttpParams()
+      .set("id", id.toString());
+    return this.http.get(this.urlApp + "/ruralHouses/get", {params:params});
   }
 
   public getApartamento(id) {
-    return this.entry1;
+    let params = new HttpParams()
+      .set("id", id.toString());
+    return this.http.get(this.urlApp + "/apartments/get", {params:params});
   }
 
   public getCamping(id) {
-    return this.entry2;
+    let params = new HttpParams()
+      .set("id", id.toString());
+    return this.http.get(this.urlApp + "/campings/get", {params:params});
   }
 
   public getRefugio(id) {
-    return this.entry5;
+    let params = new HttpParams()
+      .set("id", id.toString());
+    return this.http.get(this.urlApp + "/shelters/get", {params:params});
   }
 
   public getRestaurante(id) {
-    return this.entry6;
+    let params = new HttpParams()
+      .set("id", id.toString());
+    return this.http.get(this.urlApp + "/restaurants/get", {params:params});
   }
 
   public getOficinaTurismo(id) {
-    return this.entry7;
+    let params = new HttpParams()
+      .set("id", id.toString());
+    return this.http.get(this.urlApp + "/touristOffices/get", {params:params});
   }
 
   public getPuntoInformacion(id) {
-    return this.entry8;
+    let params = new HttpParams()
+      .set("id", id.toString());
+    return this.http.get(this.urlApp + "/informationPoints/get", {params:params});
+  }
+
+  public getGuia(id) {
+    let params = new HttpParams()
+      .set("id", id.toString());
+    return this.http.get(this.urlApp + "/guides/get", {params:params});
+  }
+
+  public searchHoteles(provincia, region, municipio, estrellasMin, estrellasMax, page) {
+    let params = new HttpParams()
+      .set("province", provincia)
+      .set("region", region)
+      .set("municipality", municipio)
+      .set("minStars", estrellasMin.toString())
+      .set("maxStars", estrellasMax.toString())
+      .set("page", page.toString());
+    return this.http.get(this.urlApp + "/hotels/search", {params:params});
+  }
+
+  public searchTurismoRurales(provincia, region, municipio, espigasMin, espigasMax, page) {
+    let params = new HttpParams()
+      .set("province", provincia)
+      .set("region", region)
+      .set("municipality", municipio)
+      .set("minSpikes", espigasMin.toString())
+      .set("maxSpikes", espigasMax.toString())
+      .set("page", page.toString());
+    return this.http.get(this.urlApp + "/ruralHouses/search", {params:params});
+  }
+
+  public searchApartamentos(provincia, region, municipio, page) {
+    let params = new HttpParams()
+      .set("province", provincia)
+      .set("region", region)
+      .set("municipality", municipio)
+      .set("page", page.toString());
+    return this.http.get(this.urlApp + "/apartments/search", {params:params});
+  }
+
+  public searchCampings(provincia, region, municipio, page) {
+    let params = new HttpParams()
+      .set("province", provincia)
+      .set("region", region)
+      .set("municipality", municipio)
+      .set("page", page.toString());
+    return this.http.get(this.urlApp + "/campings/search", {params:params});
+  }
+
+  public searchRefugios(provincia, region, municipio, page) {
+    let params = new HttpParams()
+      .set("province", provincia)
+      .set("region", region)
+      .set("municipality", municipio)
+      .set("page", page.toString());
+    return this.http.get(this.urlApp + "/shelters/search", {params:params});
+  }
+
+  public searchRestaurantes(provincia, region, municipio, categoriaMin, categoriaMax, page) {
+    let params = new HttpParams()
+      .set("province", provincia)
+      .set("region", region)
+      .set("municipality", municipio)
+      .set("minCategory", categoriaMin.toString())
+      .set("maxCategory", categoriaMax.toString())
+      .set("page", page.toString());
+    return this.http.get(this.urlApp + "/restaurants/search", {params:params});
+  }
+
+  public searchOficinasTurismo(provincia, region, page) {
+    let params = new HttpParams()
+      .set("province", provincia)
+      .set("region", region)
+      .set("page", page.toString());
+    return this.http.get(this.urlApp + "/touristOffices/search", {params:params});
+  }
+
+  public searchPuntosInformacion(provincia, region, municipio, page) {
+    let params = new HttpParams()
+      .set("province", provincia)
+      .set("region", region)
+      .set("municipality", municipio)
+      .set("page", page.toString());
+    return this.http.get(this.urlApp + "/informationPoints/search", {params:params});
+  }
+
+  public searchGuias(idioma, page) {
+    let params = new HttpParams()
+      .set("idiom", idioma)
+      .set("page", page.toString());
+    return this.http.get(this.urlApp + "/guides/search", {params:params});
   }
 
 }

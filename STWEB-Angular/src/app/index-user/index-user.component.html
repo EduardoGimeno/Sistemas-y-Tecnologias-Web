@@ -91,15 +91,15 @@
 
     <div class="btn-group" style="width: 85%; margin-bottom: 4vh; padding-top: 3vh">
       <select (change)="selection($event)" class="custom-select">
-        <option value="1">Todos los alojamientos</option>
-        <option value="2"> - Turismo rural</option>
-        <option value="3"> - Apartamentos</option>
-        <option value="4"> - Campings</option>
-        <option value="5"> - Hoteles</option>
-        <option value="6"> - Refugios</option>
-        <option value="7">Restaurantes</option>
-        <option value="8">Oficinas de turismo</option>
-        <option value="9">Puntos de información</option>
+        <option value="1">Hoteles</option>
+        <option value="2">Turismo rural</option>
+        <option value="3">Apartamentos</option>
+        <option value="4">Campings</option>
+        <option value="5">Refugios</option>
+        <option value="6">Restaurantes</option>
+        <option value="7">Oficinas de turismo</option>
+        <option value="8">Puntos de información</option>
+        <option value="9">Guías</option>
       </select>
     </div>
 
@@ -124,6 +124,11 @@
                 <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
               </svg>
             </div>
+            <div *ngIf="entry.tipoEntry == 'Restaurante'">
+              <svg *ngFor="let star of numberReturn(entry.categoria)" class="bi bi-star-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+              </svg>
+            </div>
           </div>
         </div>
       </div>
@@ -145,6 +150,28 @@
             </button>
           </div>
         </div>
+      </div>
+
+    </div>
+
+    <div class="row" style="margin-top: 4%; width: 30%; text-align: center; display: inline-flex">
+
+      <div class="col-4">
+        <label *ngIf="page > 1" style="font-size: 15px; text-align: center" (click)="paginaAnterior()">
+          [{{ page - 1 }}]
+        </label>
+      </div>
+
+      <div class="col-4">
+        <label style="font-size: 20px; text-align: center">
+          [{{ page }}]
+        </label>
+      </div>
+
+      <div class="col-4">
+        <label *ngIf="page < numPages" style="font-size: 15px; text-align: center" (click)="paginaSiguiente()">
+          [{{ page + 1 }}]
+        </label>
       </div>
 
     </div>
@@ -198,7 +225,7 @@
         </select>
       </div>
 
-      <h6 class="textCustomColor">Estrellas / Espigas:</h6>
+      <h6 class="textCustomColor">{{ calidadString }}</h6>
       <div class="row">
         <div style="width: 50%">
           <h6 class="textCustomColor">Mínimo</h6>
