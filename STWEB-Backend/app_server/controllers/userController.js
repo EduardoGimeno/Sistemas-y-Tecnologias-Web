@@ -12,8 +12,14 @@ userController.getUserToken = async function(req,res) {
     try {
         //checkToken(req.headers.authentication);
         var token = req.param('token');
-        console.log(jwtinterface.decodetoken(token))
-        res.json("token");
+        var mail = jwtinterface.decodetoken(token).email;
+        var user = await User.find({email:mail},function(err) {
+            if (err) {
+                res.status(500);
+                res.json({error: err.message});
+            }
+        })
+        res.json(user);
     } catch(err) {
         res.status(500);
         res.json({error: err.message});

@@ -6,7 +6,6 @@ var keys = require('./app_server/config/keys')
 var User = require('./app_server/models/usuario');
 
 passport.serializeUser(function(user, done) {
-    console.log(user)
     done(null, user);
   });
   
