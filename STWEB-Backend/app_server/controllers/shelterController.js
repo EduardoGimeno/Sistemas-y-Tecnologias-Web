@@ -119,9 +119,9 @@ shelterController.searchShelters = async function(req, res) {
             municipality = "";
         }
 
-        const shelters = await Shelter.find({provincia: new RegExp(province,'i'), 
-                                            region: new RegExp(region, 'i'), 
-                                            municipio: new RegExp(municipality, 'i')},
+        const shelters = await Shelter.find({'comun.provincia': new RegExp(province,'i'), 
+                                            'comun.region': new RegExp(region, 'i'), 
+                                            'comun.municipio': new RegExp(municipality, 'i')},
                                             function(err) {
                                                 if (err) {
                                                     res.status(400);

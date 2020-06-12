@@ -22,22 +22,15 @@ export class ProfileComponent implements OnInit {
     this.getProvincias();
   }
 
-  update(pais: string, provincia: string, email: string) {
-    if (pais == "" || pais == null) {
-      pais = this.user.pais;
-    }
-    if (provincia == "" || provincia == null) {
-      provincia = this.user.provincia;
-    }
-    if (email == "" || email == null) {
-      email = this.user.email;
-    }
-    this.user = this.currentUser.updateUser(pais, provincia, email);
+  update() {
+    this.user.pais = <string>$("#pais").children("option:selected").text();
+    this.user.provincia = <string>$("#provincia").val();
+    this.currentUser.updateUser(this.user);
   }
 
   getProvincias(){
     this.provincias = [];
-    let paisN = csc.getCountryByCode(<string>$('#letras').val());
+    let paisN = csc.getCountryByCode(<string>$('#pais').val());
     let provinciasDevueltas = csc.getStatesOfCountry(paisN.id);
     for(let provincia of provinciasDevueltas){
      this.provincias.push(provincia.name);

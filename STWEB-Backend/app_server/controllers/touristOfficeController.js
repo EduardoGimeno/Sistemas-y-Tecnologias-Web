@@ -120,9 +120,9 @@ touristOfficeController.searchTouristOffices = async function(req, res) {
             municipality = "";
         }
 
-        const touristOffices = await TouristOffice.find({provincia: new RegExp(province,'i'), 
-                                                        comcarca: new RegExp(region, 'i'),
-                                                        municipio: new RegExp(municipality, 'i')},
+        const touristOffices = await TouristOffice.find({'comun.provincia': new RegExp(province,'i'), 
+                                                        'comun.comcarca': new RegExp(region, 'i'),
+                                                        'comun.municipio': new RegExp(municipality, 'i')},
                                                         function(err) {
                                                             if (err) {
                                                                 res.status(400);

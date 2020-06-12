@@ -6,11 +6,11 @@
 const mongoose = require( 'mongoose' );
 
 const puntoInformacionSchema = new mongoose.Schema({
-    signatura: {type: String, required: true},
-    nombre: {type: String, required: true},
-    direccion: {type: String, required: true},
-    provincia: {type: String, required: true},
-    municipio: {type: String, required: true}
+    signatura: {type: String},
+    nombre: {type: String},
+    direccion: {type: String},
+    provincia: {type: String},
+    municipio: {type: String}
 });
 
 module.exports = mongoose.model('PuntoInformacion', puntoInformacionSchema);

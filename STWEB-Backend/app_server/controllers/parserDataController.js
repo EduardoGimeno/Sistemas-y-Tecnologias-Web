@@ -278,7 +278,7 @@ parserDataController.hoteles = async function(req, res) {
                     var hotel = new Hotel ({
                         comun: {
                             signatura: item.SIGNATURA,
-                            nombre: item.NOMBRE_DE_LA_VIVIENDA,
+                            nombre: item.NOMBRE_ALOJAMIENTO,
                             direccion: item.DIRECCION_ESTABLECIMIENTO,
                             codigoPostal: item.CODIGO_POSTAL_ESTABLECIMIENTO,
                             provincia: provincia,
@@ -478,12 +478,12 @@ parserDataController.restaurantes = async function(req, res) {
                         telefono: item.TELEFONO_ESTABLECIMIENTO,
                         categoria: cat
                     };
-                    if (restaurante.provincia == "HU") {
-                        restaurante.provincia = "Huesca"
-                    } else if(restaurante.provincia == "TE") {
-                        restaurante.provincia = "Teruel"
+                    if (restaurant.provincia == "HU") {
+                        restaurant.provincia = "Huesca"
+                    } else if(restaurant.provincia == "TE") {
+                        restaurant.provincia = "Teruel"
                     } else { 
-                        restaurante.provincia = "Zaragoza"
+                        restaurant.provincia = "Zaragoza"
                     }
                     // Guardar nueva entrada
                     await new Restaurant(restaurant).save();
@@ -514,7 +514,11 @@ test = function(datos) {
     ejemplo.forEach(function(item, index) {
         let aux = {};
         claves.forEach(function(jsonitem, jsonindex) {
-            aux[jsonitem] = item[jsonindex];
+            if (item[jsonindex] == null) {
+                aux[jsonitem] = "";
+            } else {
+                aux[jsonitem] = item[jsonindex];
+            }
         });
         retVal.push(aux);
     });
