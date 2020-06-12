@@ -26,10 +26,9 @@ import {ChatService} from "../services/chat-service.service";
 })
 export class EntryComponent implements OnInit {
   //Variables para google maps y geocode
-  lat = 40.730610;
-  lng = -73.935242;
+
   //DIRECCION A BUSCAR
-  address = 'LARDIES CALLE UNICA SN';
+  address;
   location: Location;
   loading: boolean;
 
@@ -57,6 +56,8 @@ export class EntryComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    //Geocode stuff
+    //this.showLocation();
     this.user = this.currentUser.checkLog();
     this.activatedRoute.queryParams.subscribe(params => {
       let tipoEntry = params['tipo'];
@@ -64,43 +65,60 @@ export class EntryComponent implements OnInit {
       if (tipoEntry == 'hot') {
           this.entryService.getHotel(id).subscribe(hotel => {
             this.entry = new Hotel(hotel);
+            console.log(this.entry);
+            this.address = this.entry.comun.municipio + " " + this.entry.comun.direccion;
+            console.log(this.address);
+            this.showLocation();
           });
         } else if (tipoEntry == 'apa') {
           this.entryService.getApartamento(id).subscribe(apartamento => {
             this.entry = new Apartamento(apartamento);
+            this.address = this.entry.comun.municipio + " " + this.entry.comun.direccion;
+            console.log(this.address);
+            this.showLocation();
           });
         } else if (tipoEntry == 'tur') {
           this.entryService.getTurismoRural(id).subscribe(alojamientoTurismoRural => {
             this.entry = new AlojamientoTurismoRural(alojamientoTurismoRural);
+            this.address = this.entry.comun.municipio + " " + this.entry.comun.direccion;
+            this.showLocation();
           });
         } else if (tipoEntry == 'ref') {
           this.entryService.getRefugio(id).subscribe(refugio => {
             this.entry = new Refugio(refugio);
+            this.address = this.entry.comun.municipio + " " + this.entry.comun.direccion;
+            this.showLocation();
           });
         } else if (tipoEntry == 'cam') {
           this.entryService.getCamping(id).subscribe(camping => {
             this.entry = new Camping(camping);
+            this.address = this.entry.comun.municipio + " " + this.entry.comun.direccion;
+            this.showLocation();
           });
         } else if (tipoEntry == 'res') {
           this.entryService.getRestaurante(id).subscribe(restaurante => {
             this.entry = new Restaurante(restaurante);
+            this.address = this.entry.municipio + " " + this.entry.direccion;
+            this.showLocation();
           });
         } else if (tipoEntry == 'ofi') {
           this.entryService.getOficinaTurismo(id).subscribe(oficinaTurismo => {
             this.entry = new OficinaTurismo(oficinaTurismo);
+            this.address = this.entry.municipio + " " + this.entry.direccion;
+            this.showLocation();
           });
         } else if (tipoEntry == 'pun') {
           this.entryService.getPuntoInformacion(id).subscribe(puntoInformacion => {
             this.entry = new PuntoInformacion(puntoInformacion);
+            this.address = this.entry.municipio + " " + this.entry.direccion;
+            this.showLocation();
           });
         } else if (tipoEntry == 'gui') {
         this.entryService.getGuia(id).subscribe(guia => {
           this.entry = new Guia(guia);
+          this.address = this.entry.municipio + " " + this.entry.direccion;
+          this.showLocation();
         });
-      }
-      if (tipoEntry != 'gui') {
-        this.address = this.entry.municipio + " " + this.entry.direccion;
-        this.showLocation();
       }
     });
   }

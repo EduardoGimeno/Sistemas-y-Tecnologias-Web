@@ -43,6 +43,7 @@
     "google-geocoder": "^0.2.1",
     "heroku": "^7.42.1",
     "jquery": "^3.5.0",
+    "md5": "^2.2.1",
     "ngx-cookie-service": "^3.0.4",
     "path": "^0.12.7",
     "rxjs": "^6.5.5",
