@@ -111,9 +111,9 @@ hotelController.searchHotels = async function(req, res) {
         var minStars = queryData.minStars;
         var maxStars = queryData.maxStars;
 
-        const hotels = await Hotel.find({comun: {provincia: new RegExp(province,'i'), 
-                                        comarca: new RegExp(region, 'i'), 
-                                        municipio: new RegExp(municipality, 'i')},
+        const hotels = await Hotel.find({'comun.provincia': new RegExp(province,'i'),
+                                        'comun.comarca': new RegExp(region, 'i'),
+                                        'comun.municipio': new RegExp(municipality, 'i'),
                                         estrellas: {$gte: minStars, $lte: maxStars}},
                                         function(err) {
                                             if (err) {

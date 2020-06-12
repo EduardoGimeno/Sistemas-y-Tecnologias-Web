@@ -1,7 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="109a231d-e49a-49c0-9fbe-e835707bb50d" name="Default Changelist" comment="" />
+    <list default="true" id="109a231d-e49a-49c0-9fbe-e835707bb50d" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../STWEB-Angular/src/dist/turismoaragon/3rdpartylicenses.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../STWEB-Angular/src/dist/turismoaragon/favicon.ico" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../STWEB-Angular/src/dist/turismoaragon/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../STWEB-Angular/src/dist/turismoaragon/main-es2015.5aced0cbbaf9ba43aa95.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../STWEB-Angular/src/dist/turismoaragon/main-es5.5aced0cbbaf9ba43aa95.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../STWEB-Angular/src/dist/turismoaragon/polyfills-es2015.e4277e903aed07751db3.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../STWEB-Angular/src/dist/turismoaragon/polyfills-es5.84963675a8c97dd2bc1e.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../STWEB-Angular/src/dist/turismoaragon/runtime-es2015.1eba213af0b233498d9d.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../STWEB-Angular/src/dist/turismoaragon/runtime-es5.1eba213af0b233498d9d.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../STWEB-Angular/src/dist/turismoaragon/scripts.7700fe520a6a640f231b.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../STWEB-Angular/src/dist/turismoaragon/styles.561e375a7f8933d31680.css" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
