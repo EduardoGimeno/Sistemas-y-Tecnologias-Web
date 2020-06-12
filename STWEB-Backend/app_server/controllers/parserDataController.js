@@ -11,8 +11,8 @@ var url = require('url');
 var request = require('request');
 var Guide = require('../models/guia');
 var Apartment = require('../models/apartamento');
-var Puntoinformacion = require('../models/puntoInformacion');
-var Restaurante = require('../models/restaurante');
+var InformationPoint = require('../models/puntoInformacion');
+var Restaurant = require('../models/restaurante');
 var RuralHouse = require('../models/alojamientoTurismoRural');
 var parserDataController = {};
 
@@ -227,11 +227,28 @@ parserDataController.oficinaTurismo = async function(req, res) {
 parserDataController.puntoInformacion = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);
-        //puntoInformacion
+        //Se extraen todos los datos almacenados actualmente en la bd
+        const informationPoints = await InformationPoint.find({}, function(err) {
+            if (err) {
+                res.status(500);
+                res.json({error: err.message});
+            }
+        });
+        // Se borran todos los datos actuales
+        informationPoints.forEach(async function() {
+            await InformationPoint.deleteOne({}, function(err) {
+                if (err) {
+                    res.status(500);
+                    res.json({error: err.message});
+                }
+            })
+        })
+        //Descargamos los datos actualizados
         request('https://opendata.aragon.es/GA_OD_Core/download?' +
             'view_id=71&formato=json', function (error, response, body) {
             console.log("HA LLEGADO");
             if (!error && response.statusCode == 200) {
+                //Adecuamos los datos a nuestro modelo
                 test(JSON.parse(body)).forEach(async function(item) {
                     var puntoinformacion = {
                         signatura: item.CODIGO,
@@ -240,10 +257,11 @@ parserDataController.puntoInformacion = async function(req, res) {
                         provincia: item.NOMBRE_PROVINCIA,
                         municipio: item.LOCA_MUN
                     };
-                    await new Puntoinformacion(puntoinformacion).save();
+                    //Guardamos el nuevo dato
+                    await new InformationPoint(puntoinformacion).save();
                 })
                 res.status(200);
-                res.json("result");
+                res.json("Puntos de informacion guardados");
             }
         })
     } catch (err) {
@@ -274,12 +292,30 @@ parserDataController.refugio = async function(req, res) {
 parserDataController.restaurante = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);
-        //restaurante
+        //Se extraen todos los datos almacenados actualmente en la bd
+        const restaurants = await Restaurant.find({}, function(err) {
+            if (err) {
+                res.status(500);
+                res.json({error: err.message});
+            }
+        });
+        // Se borran todos los datos actuales
+        restaurants.forEach(async function() {
+            await Restaurant.deleteOne({}, function(err) {
+                if (err) {
+                    res.status(500);
+                    res.json({error: err.message});
+                }
+            })
+        })
+        //Descargamos los datos actualizados
         request('https://opendata.aragon.es/GA_OD_Core/download?' +
             'view_id=67&formato=json', function (error, response, body) {
             console.log("HA LLEGADO");
             if (!error && response.statusCode == 200) {
+                //Adecuamos los datos a nuestro modelo
                 test(JSON.parse(body)).forEach(async function(item) {
+                    var cat= item.CATEGORIA.split(" ")[0];
                     var restaurante = {
                         signatura: item.SIGNATURA,
                         nombre: item.NOMBRE_ESTABLECIMIENTO,
@@ -290,16 +326,17 @@ parserDataController.restaurante = async function(req, res) {
                         municipio: item.LOCALIDAD_ESTABLECIMIENTO,
                         capacidad: item.NUMERO_PLAZAS,
                         telefono: item.TELEFONO_ESTABLECIMIENTO,
-                        categoria: item.CATEGORIA
+                        categoria: cat
                     };
                     if(restaurante.provincia == "HU"){restaurante.provincia = "Huesca"}
                     else if(restaurante.provincia == "TE"){restaurante.provincia = "Teruel"}
                     else{restaurante.provincia = "Zaragoza"}
                     restaurante.categoria= restaurante.categoria.split(" ")[0];
-                    await new Restaurante(restaurante).save();
+                    //Guardamos el nuevo dato
+                    await new Restaurant(restaurante).save();
                 })
                 res.status(200);
-                res.json("result");
+                res.json("Restaurantes guardados");
             }
         })
 
