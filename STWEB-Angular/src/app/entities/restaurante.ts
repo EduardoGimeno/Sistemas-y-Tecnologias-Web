@@ -12,7 +12,7 @@ export class Restaurante {
   tipoEntry: string;
 
   constructor(r) {
-    this.id = r.id;
+    this.id = r._id;
     this.nombre = r.nombre;
     this.direccion = r.direccion;
     this.provincia = r.provincia;

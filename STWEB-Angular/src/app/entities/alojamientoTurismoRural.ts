@@ -8,7 +8,7 @@ export class AlojamientoTurismoRural {
   tipoEntry:string;
 
   constructor(a) {
-    this.id = a.id;
+    this.id = a._id;
     this.comun = a.comun;
     this.espigas = a.espigas;
     this.tipo = a.tipo;

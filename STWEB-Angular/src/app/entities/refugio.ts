@@ -6,7 +6,7 @@ export class Refugio {
   tipoEntry:string;
 
   constructor(r) {
-    this.id = r.id;
+    this.id = r._id;
     this.comun = r.comun;
     this.tipoEntry = "Refugio";
   }

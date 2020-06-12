@@ -8,7 +8,7 @@ export class Hotel{
   estrellas: number;
 
   constructor(h) {
-    this.id = h.id;
+    this.id = h._id;
     this.comun = h.comun;
     this.grupo = h.grupo;
     this.estrellas = h.estrellas;

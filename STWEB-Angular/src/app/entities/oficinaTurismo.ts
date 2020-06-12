@@ -8,7 +8,7 @@ export class OficinaTurismo {
   tipoEntry: string;
 
   constructor(o) {
-    this.id = o.id;
+    this.id = o._id;
     this.nombre = o.nombre;
     this.direccion = o.direccion;
     this.provincia = o.provincia;

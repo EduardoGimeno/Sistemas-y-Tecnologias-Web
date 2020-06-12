@@ -7,7 +7,7 @@ export class PuntoInformacion {
   tipoEntry: string;
 
   constructor(p) {
-    this.id = p.id;
+    this.id = p._id;
     this.nombre = p.nombre;
     this.direccion = p.direccion;
     this.provincia = p.provincia;
