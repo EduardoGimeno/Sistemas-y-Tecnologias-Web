@@ -29,6 +29,7 @@ parserDataController.alojamientoTurismoRural = async function(req, res) {
         res.json({error: err.message});
     }
 }
+
 parserDataController.apartamentos = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);
@@ -69,6 +70,7 @@ parserDataController.apartamentos = async function(req, res) {
         res.json({error: err.message});
     }
 }
+
 parserDataController.camping = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);
@@ -87,6 +89,7 @@ parserDataController.camping = async function(req, res) {
         res.json({error: err.message});
     }
 }
+
 parserDataController.guias = async function(req, res) {
     try {
     //checkToken(req.headers.authentication);
@@ -117,6 +120,7 @@ parserDataController.guias = async function(req, res) {
         res.json({error: err.message});
     }
 }
+
 parserDataController.hotel = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);
@@ -135,6 +139,7 @@ parserDataController.hotel = async function(req, res) {
         res.json({error: err.message});
     }
 }
+
 parserDataController.oficinaTurismo = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);
@@ -153,6 +158,7 @@ parserDataController.oficinaTurismo = async function(req, res) {
         res.json({error: err.message});
     }
 }
+
 parserDataController.puntoInformacion = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);
@@ -180,6 +186,7 @@ parserDataController.puntoInformacion = async function(req, res) {
         res.json({error: err.message});
     }
 }
+
 parserDataController.refugio = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);
@@ -198,6 +205,7 @@ parserDataController.refugio = async function(req, res) {
         res.json({error: err.message});
     }
 }
+
 parserDataController.restaurante = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);
