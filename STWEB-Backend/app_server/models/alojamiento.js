@@ -1,6 +1,7 @@
 const mongoose = require( 'mongoose' );
 
 const alojamientoSchema = new mongoose.Schema({
+    signatura: {type: String, required: true},
     nombre: {type: String, required: true},
     direccion: {type: String, required: true},
     codigoPostal: {type: Number, required: true, min: 1},
