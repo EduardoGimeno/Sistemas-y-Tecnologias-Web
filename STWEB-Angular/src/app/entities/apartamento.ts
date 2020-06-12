@@ -1,8 +1,13 @@
 import {Alojamiento} from "./alojamiento";
 
-export class Apartamento extends Alojamiento {
-  constructor(a: Apartamento) {
-    super(a);
-    this.tipoEntry = "Apartamento";
+export class Apartamento {
+  id: string;
+  comun: Alojamiento;
+  tipoEntry:string;
+
+    constructor(a) {
+      this.id = a.id;
+      this.comun = a.comun;
+      this.tipoEntry = "Apartamento";
   }
 }
