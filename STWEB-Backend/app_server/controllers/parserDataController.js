@@ -17,6 +17,7 @@ var RuralHouse = require('../models/alojamientoTurismoRural');
 var Camping = require('../models/camping');
 var Hotel = require('../models/hotel');
 var TouristOffice = require('../models/oficinaTurismo');
+var Shelter = require('../models/refugio');
 var parserDataController = {};
 
 checkToken = function(token) {
@@ -147,11 +148,11 @@ parserDataController.apartamentos = async function(req, res) {
                     // Guardar la nueva entrada
                     await new Apartment(apartamento).save();
 
-                })
+                });
                 res.status(200);
                 res.json("Apartamentos guardados");
             }
-        })
+        });
     } catch (err) {
         res.status(500);
         res.json({error: err.message});
@@ -212,12 +213,11 @@ parserDataController.campings = async function(req, res) {
                     });
                     // Guardar la nueva entrada
                     await new Camping(camping).save();
-
-                })
+                });
                 res.status(200);
                 res.json("Campings guardados");
             }
-        })
+        });
     } catch (err) {
         res.status(500);
         res.json({error: err.message});
@@ -268,11 +268,11 @@ parserDataController.guias = async function(req, res) {
                 }
                 // Guardar la nueva entrada
                 await new Guide(guia).save();
-            })
+            });
             res.status(200);
             res.json("Guias guardados");
         }
-    })
+    });
     } catch (err) {
         res.status(500);
         res.json({error: err.message});
@@ -306,37 +306,39 @@ parserDataController.hoteles = async function(req, res) {
         // Obtener el JSON mal estructurado de la fuente de datos abiertos
         request('https://opendata.aragon.es/GA_OD_Core/download?' +
             'view_id=65&formato=json', function (error, response, body) {
-            // Adecuar los datos al modelo utilizado
-            test(JSON.parse(body)).forEach(async function(item) {
-                var provincia = "Zaragoza";
-                if (item.ACTIVIDAD_PROVINCIA == "HU") {
-                    provincia = "Huesca";
-                } else if (item.ACTIVIDAD_PROVINCIA == "TE") {
-                    provincia = "Teruel";
-                }
-                var categoria = item.CATEGORIA_ALOJAMIENTO;
-                categoria = categoria.split("e")[0];
-                var hotel = new Hotel ({
-                    comun: {
-                        signatura: item.SIGNATURA,
-                        nombre: item.NOMBRE_DE_LA_VIVIENDA,
-                        direccion: item.DIRECCION_ESTABLECIMIENTO,
-                        codigoPostal: item.CODIGO_POSTAL_ESTABLECIMIENTO,
-                        provincia: provincia,
-                        comarca: item.NOMBRE_COMARCA,
-                        municipio: item.LOCALIDAD_ESTABLECIMIENTO,
-                        capacidad: item.NUMERO_TOTAL_PLAZAS,
-                        email: "entradaexample@gmail.com",
-                        telefono: item.TELEFONO_ESTABLECIMIENTO
-                    },
-                    grupo: item.NOMBRE_EMPRESA,
-                    estrellas: categoria,
+            if (!error && response.statusCode == 200) {
+                // Adecuar los datos al modelo utilizado
+                test(JSON.parse(body)).forEach(async function(item) {
+                    var provincia = "Zaragoza";
+                    if (item.ACTIVIDAD_PROVINCIA == "HU") {
+                        provincia = "Huesca";
+                    } else if (item.ACTIVIDAD_PROVINCIA == "TE") {
+                        provincia = "Teruel";
+                    }
+                    var categoria = item.CATEGORIA_ALOJAMIENTO;
+                    categoria = categoria.split("e")[0];
+                    var hotel = new Hotel ({
+                        comun: {
+                            signatura: item.SIGNATURA,
+                            nombre: item.NOMBRE_DE_LA_VIVIENDA,
+                            direccion: item.DIRECCION_ESTABLECIMIENTO,
+                            codigoPostal: item.CODIGO_POSTAL_ESTABLECIMIENTO,
+                            provincia: provincia,
+                            comarca: item.NOMBRE_COMARCA,
+                            municipio: item.LOCALIDAD_ESTABLECIMIENTO,
+                            capacidad: item.NUMERO_TOTAL_PLAZAS,
+                            email: "entradaexample@gmail.com",
+                            telefono: item.TELEFONO_ESTABLECIMIENTO
+                        },
+                        grupo: item.NOMBRE_EMPRESA,
+                        estrellas: categoria,
+                    });
+                    // Guardar la nueva entrada
+                    await new Hotel(hotel).save();
                 });
-                // Guardar la nueva entrada
-                await new Hotel(hotel).save();
-            });
-            res.status(200);
-            res.json("Alojamientos de turismo rural guardados");
+                res.status(200);
+                res.json("Alojamientos de turismo rural guardados");
+            }
         });
     } catch (err) {
         res.status(500);
@@ -373,22 +375,24 @@ parserDataController.oficinasTurismo = async function(req, res) {
         // Obtener el JSON mal estructurado de la fuente de datos abiertos
         request('https://opendata.aragon.es/GA_OD_Core/download?' +
             'view_id=70&formato=json', function (error, response, body) {
-            // Adecuar los datos al modelo utilizado
-            test(JSON.parse(body)).forEach(async function(item) {
-                var touristOffice = {
-                    signatura: item.CODIGO,
-                    nombre: item.NOMBRE,
-                    direccion: item.DIRECCION_ESTABLECIMIENTO,
-                    provincia: item.NOMBRE_PROVINCIA,
-                    municipio: item.LOCA_MUN,
-                    telefono: item.TELEFONO_ESTABLECIMIENTO,
-                    horario: item.OBS_HORARIO
-                };
-                // Guardar la nueva entrada
-                await new TouristOffice(touristOffice).save();
-            });
-            res.status(200);
-            res.json("Oficinas de turismo guardados");
+            if (!error && response.statusCode == 200) {
+                // Adecuar los datos al modelo utilizado
+                test(JSON.parse(body)).forEach(async function(item) {
+                    var touristOffice = {
+                        signatura: item.CODIGO,
+                        nombre: item.NOMBRE,
+                        direccion: item.DIRECCION_ESTABLECIMIENTO,
+                        provincia: item.NOMBRE_PROVINCIA,
+                        municipio: item.LOCA_MUN,
+                        telefono: item.TELEFONO_ESTABLECIMIENTO,
+                        horario: item.OBS_HORARIO
+                    };
+                    // Guardar la nueva entrada
+                    await new TouristOffice(touristOffice).save();
+                });
+                res.status(200);
+                res.json("Oficinas de turismo guardados");
+            }
         });
     } catch (err) {
         res.status(500);
@@ -425,7 +429,6 @@ parserDataController.puntosInformacion = async function(req, res) {
         // Obtener el JSON mal estructurado de la fuente de datos abiertos
         request('https://opendata.aragon.es/GA_OD_Core/download?' +
             'view_id=71&formato=json', function (error, response, body) {
-            console.log("HA LLEGADO");
             if (!error && response.statusCode == 200) {
                 // Adecuar los datos al modelo utilizado
                 test(JSON.parse(body)).forEach(async function(item) {
@@ -449,19 +452,63 @@ parserDataController.puntosInformacion = async function(req, res) {
     }
 }
 
+/*
+ * Elimina todos refugios de la base de datos, importa el json mal 
+ * estructurado de AragonOpenData, lo parsea a los modelos utilizados 
+ * y guarda el nuevo refugio en la base de datos
+ */
 parserDataController.refugios = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);
-        //refugio
+        // Extraer tdos
+        const shelters = await Shelter.find({}, function(err) {
+            if (err) {
+                res.status(500);
+                res.json({error: err.message});
+            }
+        });
+
+        // Borrar todos
+        shelters.forEach(async function() {
+            await Shelter.deleteOne({}, function(err) {
+                if (err) {
+                    res.status(500);
+                    res.json({error: err.message});
+                }
+            });
+        });
         request('https://opendata.aragon.es/GA_OD_Core/download?' +
             'view_id=64&formato=json', function (error, response, body) {
-            console.log("HA LLEGADO");
             if (!error && response.statusCode == 200) {
-                //importedJSON = body;
-                //console.log(body);
-                importedJSON = JSON.parse(body);
+                // Adecuar los datos al modelo utilizado
+                test(JSON.parse(body)).forEach(async function(item) {
+                    var provincia = "Zaragoza";
+                    if (item.ACTIVIDAD_PROVINCIA == "HU") {
+                        provincia = "Huesca";
+                    } else if (item.ACTIVIDAD_PROVINCIA == "TE") {
+                        provincia = "Teruel";
+                    }
+                    var shelter = new Shelter ({
+                        comun: {
+                            signatura: item.SIGNATURA,
+                            nombre: item.NOMBRE_ESTABLECIMIENTO,
+                            direccion: item.DIRECCION_ESTABLECIMIENTO,
+                            codigoPostal: item.CODIGO_POSTAL_ESTABLECIMIENTO,
+                            provincia: provincia,
+                            comarca: item.NOMBRE_COMARCA,
+                            municipio: item.LOCALIDAD_ESTABLECIMIENTO,
+                            capacidad: item.NUMERO_PLAZAS,
+                            email: "entradaexample@gmail.com",
+                            telefono: item.TELEFONO_ESTABLECIMIENTO
+                        }
+                    });
+                    // Guardar la nueva entrada
+                    await new Shelter(shelter).save();
+                });
+                res.status(200);
+                res.json("Refugios guardados");
             }
-        })
+        });
     } catch (err) {
         res.status(500);
         res.json({error: err.message});
@@ -497,7 +544,6 @@ parserDataController.restaurantes = async function(req, res) {
         // Obtener el JSON mal estructurado de la fuente de datos abiertos
         request('https://opendata.aragon.es/GA_OD_Core/download?' +
             'view_id=67&formato=json', function (error, response, body) {
-            console.log("HA LLEGADO");
             if (!error && response.statusCode == 200) {
                 // Adecuar los datos al modelo utilizado
                 test(JSON.parse(body)).forEach(async function(item) {
