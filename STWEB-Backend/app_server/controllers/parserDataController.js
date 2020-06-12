@@ -77,8 +77,10 @@ parserDataController.alojamientosTurismoRural = async function(req, res) {
                     });
                     // Guardar la nueva entrada
                     await new RuralHouse(ruralHouse).save(function (err) {
-                        res.status(500);
-                        res.json({error: err.message});
+                        if (err) {
+                            res.status(500);
+                            res.json({error: err.message});
+                        }
                     });
                 });
                 res.status(200);
