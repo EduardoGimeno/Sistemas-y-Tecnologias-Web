@@ -26,7 +26,7 @@ checkToken = function(token) {
  * a los modelos utilizados y guarda el nuevo alojamiento en la base
  * de datos
  */
-parserDataController.alojamientoTurismoRural = async function(req, res) {
+parserDataController.alojamientosTurismoRural = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);
         // Extraer todos
