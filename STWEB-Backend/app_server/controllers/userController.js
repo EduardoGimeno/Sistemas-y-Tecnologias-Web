@@ -11,7 +11,7 @@ checkToken = function(token) {
 userController.getUserToken = async function(req,res) {
     try {
         //checkToken(req.headers.authentication);
-        var perPage = req.param('token');
+        var token = req.param('token');
         console.log(jwtinterface.decodetoken(token))
         res.json("token");
     } catch(err) {
