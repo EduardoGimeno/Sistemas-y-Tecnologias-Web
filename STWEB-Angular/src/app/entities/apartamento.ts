@@ -6,7 +6,7 @@ export class Apartamento {
   tipoEntry:string;
 
     constructor(a) {
-      this.id = a.id;
+      this.id = a._id;
       this.comun = a.comun;
       this.tipoEntry = "Apartamento";
   }
