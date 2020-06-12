@@ -123,9 +123,9 @@ ruralHouseController.searchRuralHouses = async function(req, res) {
             municipality = "";
         }
 
-        const ruralHouses = await RuralHouse.find({provincia: new RegExp(province,'i'), 
-                                                  comcarca: new RegExp(region, 'i'), 
-                                                  municipio: new RegExp(municipality, 'i'),
+        const ruralHouses = await RuralHouse.find({'comun.provincia': new RegExp(province,'i'), 
+                                                  'comun.comcarca': new RegExp(region, 'i'), 
+                                                  'comun.municipio': new RegExp(municipality, 'i'),
                                                   espigas: {$gte: minSpikes, $lte: maxSpikes}},
                                                   function(err) {
                                                         if (err) {

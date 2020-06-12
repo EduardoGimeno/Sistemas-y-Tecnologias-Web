@@ -120,9 +120,9 @@ informationPointController.searchInformationPoints = async function(req, res) {
             municipality = "";
         }
 
-        const informationPoints = await InformationPoint.find({provincia: new RegExp(province,'i'), 
-                                        comcarca: new RegExp(region, 'i'), 
-                                        municipio: new RegExp(municipality, 'i')},
+        const informationPoints = await InformationPoint.find({'comun.provincia': new RegExp(province,'i'), 
+                                                              'comun.comcarca': new RegExp(region, 'i'), 
+                                                              'comun.municipio': new RegExp(municipality, 'i')},
                                         function(err) {
                                             if (err) {
                                                 res.status(400);
