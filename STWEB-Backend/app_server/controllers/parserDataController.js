@@ -278,7 +278,7 @@ parserDataController.hoteles = async function(req, res) {
                     var hotel = new Hotel ({
                         comun: {
                             signatura: item.SIGNATURA,
-                            nombre: item.NOMBRE_DE_LA_VIVIENDA,
+                            nombre: item.NOMBRE_ALOJAMIENTO,
                             direccion: item.DIRECCION_ESTABLECIMIENTO,
                             codigoPostal: item.CODIGO_POSTAL_ESTABLECIMIENTO,
                             provincia: provincia,
