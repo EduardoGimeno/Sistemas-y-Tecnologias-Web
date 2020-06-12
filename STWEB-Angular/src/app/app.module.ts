@@ -26,6 +26,10 @@ import { GeocodeService } from './entry/geocode.service';
 import { Location } from './entry/location';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { RegistryGoogleComponent } from './registry-google/registry-google.component';
+import { AccionUsuarioComponent } from './accion-usuario/accion-usuario.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import {MAT_DIALOG_DEFAULT_OPTIONS} from '@angular/material/dialog';
 
 let config = new AuthServiceConfig([
   {
@@ -52,13 +56,16 @@ export function provideConfig() {
     ChangePasswordComponent,
     StatsUserComponent,
     StatsAdminComponent,
-    RegistryGoogleComponent
+    RegistryGoogleComponent,
+    AccionUsuarioComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
+    NoopAnimationsModule,
     HttpClientModule,
+    MatDialogModule,
     SocialLoginModule,
     AgmCoreModule.forRoot({
           apiKey: ''
@@ -67,6 +74,7 @@ export function provideConfig() {
   ],
   providers: [
     CurrentUserService, UserService, GeocodeService,
+    {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}},
     { provide: AuthServiceConfig,
       useFactory: provideConfig
     }
