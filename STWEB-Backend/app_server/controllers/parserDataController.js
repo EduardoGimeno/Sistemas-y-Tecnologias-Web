@@ -151,7 +151,7 @@ parserDataController.campings = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);
         // Extraer todos
-        const campings = await Camping.find({});
+        const campings = await Camping.find();
 
         //Borrar todos
         campings.forEach(async function() {
