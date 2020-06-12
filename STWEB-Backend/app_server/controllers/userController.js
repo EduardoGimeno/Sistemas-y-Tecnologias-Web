@@ -219,4 +219,30 @@ userController.sendMail = async function(req, res) {
     }
 }
 
+/*
+ * Añadir un nuevo administrador.
+ */
+userController.addAdmin = async function(req, res) {
+    try {
+        //checkToken(req.headers.authentication);
+        var user = new User(req.body);
+        user.baneado = false;
+        user.activo = true;
+        user.admin = true;
+        await user.save(function (err, newUser) {
+            if (err) {
+                res.status(500);
+                res.json({error: err.message});
+            } else {
+                res.status(200);
+                res.json(newUser);
+            }
+        });
+    }
+    catch(err) {
+        res.status(500);
+        res.json({error: err.message});
+    }
+}
+
 module.exports = userController;

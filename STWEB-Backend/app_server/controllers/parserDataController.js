@@ -162,7 +162,6 @@ parserDataController.campings = async function(req, res) {
         // Obtener el JSON mal estructurado de la fuente de datos abiertos
         request('https://opendata.aragon.es/GA_OD_Core/download?' +
             'view_id=68&formato=json', function (error, response, body) {
-            console.log("HA LLEGADO");
             if (!error && response.statusCode == 200) {
                 // Adecuar los datos al modelo utilizado
                 test(JSON.parse(body)).forEach(async function(item) {
@@ -296,7 +295,7 @@ parserDataController.hoteles = async function(req, res) {
                     await new Hotel(hotel).save();
                 });
                 res.status(200);
-                res.json("Alojamientos de turismo rural guardados");
+                res.json("Hoteles guardados");
             }
         });
     } catch (err) {
