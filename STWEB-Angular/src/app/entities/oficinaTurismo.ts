@@ -7,13 +7,13 @@ export class OficinaTurismo {
   horario: string;
   tipoEntry: string;
 
-  constructor(id:string, nombre: string, direccion: string, provincia: string, telefono: string, horario: string) {
-    this.id = id;
-    this.nombre = nombre;
-    this.direccion = direccion;
-    this.provincia = provincia;
-    this.telefono = telefono;
-    this.horario = horario;
+  constructor(o) {
+    this.id = o.id;
+    this.nombre = o.nombre;
+    this.direccion = o.direccion;
+    this.provincia = o.provincia;
+    this.telefono = o.telefono;
+    this.horario = o.horario;
     this.tipoEntry = "Oficina de turismo";
   }
 }

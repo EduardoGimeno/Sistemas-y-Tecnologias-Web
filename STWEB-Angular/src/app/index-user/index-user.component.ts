@@ -125,7 +125,6 @@ export class IndexUserComponent implements OnInit {
   }
 
   navigateToEntry(entry) {
-    console.log("FUNCIONAAAA");
     this.route.navigateByUrl('/entry?tipo=' + entry.tipoEntry.toLowerCase().substr(0,3) +
       '&id=' + entry.id);
   }

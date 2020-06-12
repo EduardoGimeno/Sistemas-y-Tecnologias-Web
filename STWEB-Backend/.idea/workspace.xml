@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="109a231d-e49a-49c0-9fbe-e835707bb50d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../STWEB-Angular/src/app/entities/hotel.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../STWEB-Angular/src/app/entities/hotel.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app_server/controllers/parserDataController.js" beforeDir="false" afterPath="$PROJECT_DIR$/app_server/controllers/parserDataController.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
