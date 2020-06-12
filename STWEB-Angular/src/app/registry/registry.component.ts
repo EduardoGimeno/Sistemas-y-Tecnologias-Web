@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { UserApp } from "../entities/usuario";
 import { UserService } from "../services/user-service.service";
+//Libreria para sacar paises y sus estados/provincias
+import csc from 'country-state-city'
+import { ICountry, IState, ICity } from 'country-state-city'
 
 @Component({
   selector: 'app-registry',
@@ -9,28 +12,22 @@ import { UserService } from "../services/user-service.service";
 })
 export class RegistryComponent implements OnInit {
   private newUser: UserApp = null;
-
+  provincias = [];
   constructor(public userService: UserService) { }
 
   ngOnInit(): void {
+    this.getProvincias();
   }
 
-  registerUser(name: string, apellidos: string, nacimiento: Date, telefono: string, pais: string,
-    provincia: string, email: string, password1: string, password2: string) {
-    this.newUser = {
-          id: 'id',
-          activo: false,
-          baneado: false,
-          fechaNacimiento: nacimiento,
-          pais: pais,
-          email: email,
-          contrasena: password1,
-          provincia: provincia,
-          apellidos: apellidos,
-          telefono: telefono,
-          nombre: name
-        };
-        this.userService.register(this.newUser);
-  }
+  getProvincias(){
+      this.provincias = [];
+      let paisN = csc.getCountryByCode(<string>$('#letras').val());
+      let provinciasDevueltas = csc.getStatesOfCountry(paisN.id);
+      for(let provincia of provinciasDevueltas){
+       this.provincias.push(provincia.name);
+      }
+    }
+
+
 
 }
