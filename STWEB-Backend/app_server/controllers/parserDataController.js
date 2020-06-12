@@ -31,7 +31,7 @@ parserDataController.alojamientosTurismoRural = async function(req, res) {
         //checkToken(req.headers.authentication);
         // Extraer todos
         const ruralHouses = await RuralHouse.find({}, function(err) {
-            if (error) {
+            if (err) {
                 res.status(500);
                 res.json({error: err.message});
             }
@@ -57,6 +57,8 @@ parserDataController.alojamientosTurismoRural = async function(req, res) {
                     } else if (item.ACTIVIDAD_PROVINCIA == "TE") {
                         provincia = "Teruel";
                     }
+                    var categoria = item.CATEGORIA_VIVIENDA;
+                    categoria = categoria.split(" ")[0];
                     var ruralHouse = new RuralHouse ({
                         comun: {
                             signatura: item.SIGNATURA,
@@ -70,12 +72,11 @@ parserDataController.alojamientosTurismoRural = async function(req, res) {
                             email: "entradaexample@gmail.com",
                             telefono: item.TELEFONO_ESTABLECIMIENTO
                         },
-                        espigas: item.CATEGORIA_VIVIENDA,
+                        espigas: categoria,
                         tipo: item.TIPO_VIVIENDA
                     });
-                    ruralHouse.espigas = ruralHouse.espigas.split(" ")[0];
                     // Guardar la nueva entrada
-                    await new Apartment(apartamento).save(function (err) {
+                    await new RuralHouse(ruralHouse).save(function (err) {
                         res.status(500);
                         res.json({error: err.message});
                     });
