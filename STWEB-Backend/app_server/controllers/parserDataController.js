@@ -34,21 +34,11 @@ parserDataController.alojamientosTurismoRural = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);
         // Extraer todos
-        const ruralHouses = await RuralHouse.find({}, function(err) {
-            if (err) {
-                res.status(500);
-                res.json({error: err.message});
-            }
-        });
+        const ruralHouses = await RuralHouse.find({});
 
         // Borrar todos
         ruralHouses.forEach(async function() {
-            await RuralHouse.deleteOne({}, function(err) {
-                if (err) {
-                    res.status(500);
-                    res.json({error: err.message});
-                }
-            });
+            await RuralHouse.deleteOne({});
         });
 
         // Obtener el JSON de la fuente de datos abierta
@@ -104,19 +94,11 @@ parserDataController.apartamentos = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);
         // Extraer todos
-        const apartments = await Apartment.find({},function(err) {
-            if (err) {
-                res.status(500);
-                res.json({error: err.message});
-            }
-        });
+        const apartments = await Apartment.find({});
 
         //Borrar todos
         apartments.forEach(async function() {
-            await Apartment.deleteOne({}, function(err) {
-                res.status(500);
-                res.json({error: err.message});
-            });
+            await Apartment.deleteOne({});
         });
 
         // Obtener el JSON de la fuente de datos abierta
@@ -169,19 +151,11 @@ parserDataController.campings = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);
         // Extraer todos
-        const campings = await Camping.find({}, function(err) {
-            if (err) {
-                res.status(500);
-                res.json({error: err.message});
-            }
-        });
+        const campings = await Camping.find({});
 
         //Borrar todos
         campings.forEach(async function() {
-            await Camping.deleteOne({}, function(err) {
-                res.status(500);
-                res.json({error: err.message});
-            });
+            await Camping.deleteOne({});
         });
 
         // Obtener el JSON mal estructurado de la fuente de datos abiertos
@@ -233,19 +207,11 @@ parserDataController.guias = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);
         // Extraer todos
-        const guides = await Guide.find({}, function(err) {
-            if (err) {
-                res.status(500);
-                res.json({error: err.message});
-            }
-        });
+        const guides = await Guide.find({});
 
         // Borrar todos
         guides.forEach(async function() {
-            await Guide.deleteOne({}, function(err) {
-                res.status(500);
-                res.json({error: err.message});
-            });
+            await Guide.deleteOne({});
         });
 
         // Obtener el JSON mal estructurado de la fuente de datos abiertos
@@ -288,19 +254,11 @@ parserDataController.hoteles = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);
         // Extraer todos
-        const hotels = await Hotel.find({}, function(err) {
-            if (err) {
-                res.status(500);
-                res.json({error: err.message});
-            }
-        });
+        const hotels = await Hotel.find({});
 
         // Borrar todos
         hotels.forEach(async function() {
-            await Hotel.deleteOne({}, function(err) {
-                res.status(500);
-                res.json({error: err.message});
-            });
+            await Hotel.deleteOne({});
         });
 
         // Obtener el JSON mal estructurado de la fuente de datos abiertos
@@ -355,21 +313,11 @@ parserDataController.oficinasTurismo = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);
         // Extraer todos
-        const touristsOffice = await TouristOffice.find({}, function(err) {
-            if (err) {
-                res.status(500);
-                res.json({error: err.message});
-            }
-        });
+        const touristsOffice = await TouristOffice.find({});
 
         // Borrar todos
         touristsOffice.forEach(async function() {
-            await TouristOffice.deleteOne({}, function(err) {
-                if (err) {
-                    res.status(500);
-                    res.json({error: err.message});
-                }
-            });
+            await TouristOffice.deleteOne({});
         });
 
         // Obtener el JSON mal estructurado de la fuente de datos abiertos
@@ -409,21 +357,11 @@ parserDataController.puntosInformacion = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);
         // Extraer tdos
-        const informationPoints = await InformationPoint.find({}, function(err) {
-            if (err) {
-                res.status(500);
-                res.json({error: err.message});
-            }
-        });
+        const informationPoints = await InformationPoint.find({});
 
         // Borrar todos
         informationPoints.forEach(async function() {
-            await InformationPoint.deleteOne({}, function(err) {
-                if (err) {
-                    res.status(500);
-                    res.json({error: err.message});
-                }
-            });
+            await InformationPoint.deleteOne({});
         });
 
         // Obtener el JSON mal estructurado de la fuente de datos abiertos
@@ -461,21 +399,11 @@ parserDataController.refugios = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);
         // Extraer tdos
-        const shelters = await Shelter.find({}, function(err) {
-            if (err) {
-                res.status(500);
-                res.json({error: err.message});
-            }
-        });
+        const shelters = await Shelter.find({});
 
         // Borrar todos
         shelters.forEach(async function() {
-            await Shelter.deleteOne({}, function(err) {
-                if (err) {
-                    res.status(500);
-                    res.json({error: err.message});
-                }
-            });
+            await Shelter.deleteOne({});
         });
         request('https://opendata.aragon.es/GA_OD_Core/download?' +
             'view_id=64&formato=json', function (error, response, body) {
@@ -524,21 +452,11 @@ parserDataController.restaurantes = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);
         // Extraer todos
-        const restaurants = await Restaurant.find({}, function(err) {
-            if (err) {
-                res.status(500);
-                res.json({error: err.message});
-            }
-        });
+        const restaurants = await Restaurant.find({});
 
         // Borrar todos
         restaurants.forEach(async function() {
-            await Restaurant.deleteOne({}, function(err) {
-                if (err) {
-                    res.status(500);
-                    res.json({error: err.message});
-                }
-            });
+            await Restaurant.deleteOne({});
         });
 
         // Obtener el JSON mal estructurado de la fuente de datos abiertos
