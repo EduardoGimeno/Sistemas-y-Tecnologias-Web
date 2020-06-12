@@ -2,15 +2,15 @@ var express = require('express');
 var parserDataController = require('../controllers/parserDataController');
 var router = express.Router();
 
-router.get('/guide', parserDataController.guias);
-router.get('/apartments', parserDataController.apartamentos);
-router.get('/informationPoints', parserDataController.puntosInformacion);
-router.get('/restaurant', parserDataController.restaurantes);
-router.get('/ruralHouses', parserDataController.alojamientosTurismoRural);
-router.get('/touristOffice',  parserDataController.oficinasTurismo);
-router.get('/hotels', parserDataController.hoteles);
-router.get('/campings', parserDataController.campings);
-router.get('/shelters', parserDataController.refugios);
+router.post('/guide', parserDataController.guias);
+router.post('/apartments', parserDataController.apartamentos);
+router.post('/informationPoints', parserDataController.puntosInformacion);
+router.post('/restaurant', parserDataController.restaurantes);
+router.post('/ruralHouses', parserDataController.alojamientosTurismoRural);
+router.post('/touristOffice',  parserDataController.oficinasTurismo);
+router.post('/hotels', parserDataController.hoteles);
+router.post('/campings', parserDataController.campings);
+router.post('/shelters', parserDataController.refugios);
 
 
 module.exports = router;

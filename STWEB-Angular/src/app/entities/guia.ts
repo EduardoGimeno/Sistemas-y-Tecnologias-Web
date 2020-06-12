@@ -8,7 +8,7 @@ export class Guia {
   frances: boolean;
   aleman: boolean;
   italiano: boolean;
-  otros: string;
+  otros: boolean;
   tipoEntry: string;
 
 
