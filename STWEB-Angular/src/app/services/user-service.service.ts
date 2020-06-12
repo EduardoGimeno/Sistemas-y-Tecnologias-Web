@@ -61,4 +61,12 @@ export class UserService {
          );
     }
 
+
+  recoverUser(token) {
+    let params = new HttpParams()
+      .set("token", token);
+    return this.http.get(this.urlApp + '/getUser', {params:params});
+  }
+
+
 }

@@ -10,6 +10,7 @@ router.get('/ruralHouses', parserDataController.alojamientosTurismoRural);
 router.get('/touristOffice',  parserDataController.oficinasTurismo);
 router.get('/hotels', parserDataController.hoteles);
 router.get('/campings', parserDataController.campings);
+router.get('/shelters', parserDataController.refugios);
 
 
 module.exports = router;
