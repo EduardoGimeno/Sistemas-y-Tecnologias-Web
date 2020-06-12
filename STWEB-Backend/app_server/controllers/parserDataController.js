@@ -32,12 +32,13 @@ parserDataController.alojamientoTurismoRural = async function(req, res) {
 parserDataController.apartamentos = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);
+        const apartments = await Apartment.find();
+        apartments.forEach(async function() {
+            await Apartment.deleteOne({});
+        });
         request('https://opendata.aragon.es/GA_OD_Core/download?' +
             'view_id=66&formato=json', function (error, response, body) {
             if (!error && response.statusCode == 200) {
-                var borrados = async function (){
-                    await Apartment.deleteMany({})
-                };
                 test(JSON.parse(body)).forEach(async function(item) {
                     var provincia = "Zaragoza";
                     if (item.ACTIVIDAD_PROVINCIA == "HU") {
@@ -93,8 +94,8 @@ parserDataController.guias = async function(req, res) {
     try {
     //checkToken(req.headers.authentication);
         const guides = await Guide.find();
-        guides.forEach(async function(guide) {
-            await Guide.deleteOne({signatura: guide.signatura});
+        guides.forEach(async function() {
+            await Guide.deleteOne({});
         });
     request('https://opendata.aragon.es/GA_OD_Core/download?' +
         'view_id=69&formato=json', function (error, response, body) {
