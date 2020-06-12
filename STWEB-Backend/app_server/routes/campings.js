@@ -1,3 +1,8 @@
+/*
+ * campings.js
+ * Rutas para las operaciones del tipo de entrada camping.
+ */
+
 var express = require('express');
 var campingController = require('../controllers/campingController');
 var router = express.Router();

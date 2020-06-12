@@ -1,3 +1,8 @@
+/*
+ * hotel.js
+ * Modelo de datos para las entradas de tipo hotel.
+ */
+
 const mongoose = require( 'mongoose' );
 var alojamiento = require('./alojamiento');
 

@@ -1,3 +1,8 @@
+/*
+ * chatController.js
+ * Controlador de las operaciones de los chat.
+ */
+
 var express = require('express');
 var url = require('url');
 var Chat = require('../models/chat');
@@ -8,6 +13,9 @@ checkToken = function(token) {
     jwtinterface.verifytoken(token);
 }
 
+/*
+ * Crear un nuevo chat.
+ */
 chatController.addChat = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);
@@ -45,6 +53,9 @@ chatController.addChat = async function(req, res) {
     }
 }
 
+/*
+ * Actualizar un chat por parte del usuario.
+ */
 chatController.updateChatEntry = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);
@@ -82,6 +93,9 @@ chatController.updateChatEntry = async function(req, res) {
     }
 }
 
+/*
+ * Actualizar un chat por parte de una entrada externa.
+ */
 chatController.updateChatUser = async function(req, res) {
     var chat = new Chat(req.body);
     await Chat.findOneAndUpdate(chat.id, chat, function(err) {
@@ -110,6 +124,9 @@ chatController.updateChatUser = async function(req, res) {
     });
 }
 
+/*
+ * Obtener los chat de un usuario.
+ */
 chatController.getChatsUser = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);
@@ -128,6 +145,9 @@ chatController.getChatsUser = async function(req, res) {
     }
 }
 
+/*
+ * Obtener un chat por su id.
+ */
 chatController.getChat = async function(req, res) {
     var id = req.param('id');
     const chat = await Chat.findById(id, function(err) {

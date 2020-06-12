@@ -1,3 +1,8 @@
+/*
+ * refugio.js
+ * Modelo de datos para las entradas de tipo refugio.
+ */
+
 const mongoose = require( 'mongoose' );
 var alojamiento = require('./alojamiento');
 

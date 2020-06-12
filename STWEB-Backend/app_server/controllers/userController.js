@@ -1,3 +1,8 @@
+/*
+ * userController.js
+ * Controlador de las operaciones de los usuarios.
+ */
+
 var express = require('express');
 var url = require('url');
 var User = require('../models/usuario');
@@ -8,6 +13,9 @@ checkToken = function(token) {
     jwtinterface.verifytoken(token);
 }
 
+/*
+ * Obtener un usuario a partir del token de sesión.
+ */
 userController.getUserToken = async function(req,res) {
     try {
         //checkToken(req.headers.authentication);
@@ -26,6 +34,10 @@ userController.getUserToken = async function(req,res) {
     }
 }
 
+/*
+ * Obtener un listado de 20 usuarios, indicando
+ * que 20 de ellos se quieren del listado total.
+ */
 userController.getUsers = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);
@@ -44,6 +56,9 @@ userController.getUsers = async function(req, res) {
     }
 }
 
+/*
+ * Contar el número total de usuarios.
+ */
 userController.countUsers = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);
@@ -62,6 +77,9 @@ userController.countUsers = async function(req, res) {
     }
 }
 
+/*
+ * Añadir un nuevo usuario.
+ */
 userController.addUser = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);
@@ -85,6 +103,9 @@ userController.addUser = async function(req, res) {
     }
 }
 
+/*
+ * Obtener un usuario por su id.
+ */
 userController.getUser = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);
@@ -103,6 +124,9 @@ userController.getUser = async function(req, res) {
     }
 }
 
+/*
+ * Actualizar un usuario por su id.
+ */
 userController.updateUser = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);
@@ -122,6 +146,10 @@ userController.updateUser = async function(req, res) {
     }
 }
 
+/*
+ * Obtener un listado de usuarios por nombre, apellidos e email,
+ * indicando los 20 que se quieren del listado total que se obtiene.
+ */
 userController.searchUsers = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);
@@ -161,6 +189,9 @@ userController.searchUsers = async function(req, res) {
     }
 }
 
+/*
+ * Enviar un email a un usuario.
+ */
 userController.sendMail = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);

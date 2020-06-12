@@ -1,3 +1,8 @@
+/*
+ * usuario.js
+ * Modelo de datos para los usuarios.
+ */
+
 const mongoose = require( 'mongoose' );
 
 const usuarioSchema = new mongoose.Schema({

@@ -1,3 +1,8 @@
+/*
+ * users.js
+ * Rutas para las operaciones de los usuarios.
+ */
+
 var express = require('express');
 var userController = require('../controllers/userController');
 var passport = require('passport');

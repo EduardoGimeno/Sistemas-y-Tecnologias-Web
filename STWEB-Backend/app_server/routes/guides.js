@@ -1,3 +1,8 @@
+/*
+ * guides.js
+ * Rutas para las operaciones del tipo de entrada guía.
+ */
+
 var express = require('express');
 var guideController = require('../controllers/guideController');
 var router = express.Router();
