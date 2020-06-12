@@ -34,6 +34,9 @@ parserDataController.apartamentos = async function(req, res) {
         request('https://opendata.aragon.es/GA_OD_Core/download?' +
             'view_id=66&formato=json', function (error, response, body) {
             if (!error && response.statusCode == 200) {
+                var borrados = async function (){
+                    await Apartment.deleteMany({})
+                };
                 test(JSON.parse(body)).forEach(async function(item) {
                     var provincia = "Zaragoza";
                     if (item.ACTIVIDAD_PROVINCIA == "HU") {
@@ -55,8 +58,7 @@ parserDataController.apartamentos = async function(req, res) {
                             telefono: item.TELEFONO_ESTABLECIMIENTO
                         }
                     });
-                    var filter = {comun:{signatura: item.SIGNATURA}};
-                    await Apartment.findOneAndUpdate(filter, apartamento, {new: true, upsert: true});
+                    await new Apartment(apartamento).save();
 
                 })
                 res.status(200);
@@ -89,6 +91,10 @@ parserDataController.camping = async function(req, res) {
 parserDataController.guias = async function(req, res) {
     try {
     //checkToken(req.headers.authentication);
+        const guides = await Guide.find();
+        guides.forEach(async function(guide) {
+            await Guide.deleteOne({signatura: guide.signatura});
+        });
     request('https://opendata.aragon.es/GA_OD_Core/download?' +
         'view_id=69&formato=json', function (error, response, body) {
         if (!error && response.statusCode == 200) {
@@ -105,6 +111,7 @@ parserDataController.guias = async function(req, res) {
                     italiano: item.ITALIANO==null ? 0:1,
                     otros: item.OTROS_IDIOMAS==null ? 0:1
                 }
+                Guide.delete
                 await new Guide(guia).save();
             })
             res.status(200);
