@@ -1,3 +1,9 @@
+/*
+ * guideController.js
+ * Controlador de las operaciones de las entradas de tipo
+ * guía.
+ */
+
 var express = require('express');
 var url = require('url');
 var Guide = require('../models/guia');
@@ -7,6 +13,10 @@ checkToken = function(token) {
     jwtinterface.verifytoken(token);
 }
 
+/*
+ * Obtener un listado de 20 guías, indicando
+ * que 20 de ellos se quieren del listado total.
+ */
 guideController.getGuides = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);
@@ -26,6 +36,9 @@ guideController.getGuides = async function(req, res) {
     }
 }
 
+/*
+ * Contar el número total de guías.
+ */
 guideController.countGuides = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);
@@ -44,6 +57,9 @@ guideController.countGuides = async function(req, res) {
     }
 }
 
+/*
+ * Añadir un nuevo guía.
+ */
 guideController.addGuide = async function(req, res) {
     var guide = new Guide(req.body);
     await guide.save(function (err, newGuide) {
@@ -57,6 +73,9 @@ guideController.addGuide = async function(req, res) {
     });
 }
 
+/*
+ * Obtener un guía por su id.
+ */
 guideController.getGuide = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);
@@ -75,6 +94,10 @@ guideController.getGuide = async function(req, res) {
     }
 }
 
+/*
+ * Obtener un listado de guías por idioma, indicando los 
+ * 20 que se quieren del listado total que se obtiene.
+ */
 guideController.searchGuides = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);

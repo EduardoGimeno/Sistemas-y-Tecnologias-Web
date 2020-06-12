@@ -1,3 +1,9 @@
+/*
+ * ruralHouseController.js
+ * Controlador de las operaciones de las entradas de tipo
+ * alojamiento de turismo rural.
+ */
+
 var express = require('express');
 var url = require('url');
 var RuralHouse = require('../models/alojamientoTurismoRural');
@@ -7,6 +13,10 @@ checkToken = function(token) {
     jwtinterface.verifytoken(token);
 }
 
+/*
+ * Obtener un listado de 20 alojamientos de turismo rural, indicando
+ * que 20 de ellos se quieren del listado total.
+ */
 ruralHouseController.getRuralHouses = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);
@@ -26,6 +36,9 @@ ruralHouseController.getRuralHouses = async function(req, res) {
     }
 }
 
+/*
+ * Contar el número total de alojamientos de turismo rural.
+ */
 ruralHouseController.countRuralHouses = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);
@@ -44,6 +57,9 @@ ruralHouseController.countRuralHouses = async function(req, res) {
     }
 }
 
+/*
+ * Añadir un nuevo alojamiento de turismo rural.
+ */
 ruralHouseController.addRuralHouse = async function(req, res) {
     var ruralHouse = new RuralHouse(req.body);
     await ruralHouse.save(function (err, newRuralHouse) {
@@ -57,6 +73,9 @@ ruralHouseController.addRuralHouse = async function(req, res) {
     });
 }
 
+/*
+ * Obtener un alojamiento de turismo rural por su id.
+ */
 ruralHouseController.getRuralHouse = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);
@@ -75,6 +94,11 @@ ruralHouseController.getRuralHouse = async function(req, res) {
     }
 }
 
+/*
+ * Obtener un listado de alojamientos de turismo rural por provincia, 
+ * comarca, municipio y rango de categoría, indicando los 20 que se 
+ * quieren del listado total que se obtiene.
+ */
 ruralHouseController.searchRuralHouses = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);

@@ -1,3 +1,8 @@
+/*
+ * guia.js
+ * Modelo de datos para las entradas de tipo guía.
+ */
+
 const mongoose = require( 'mongoose' );
 
 const guiaSchema = new mongoose.Schema({

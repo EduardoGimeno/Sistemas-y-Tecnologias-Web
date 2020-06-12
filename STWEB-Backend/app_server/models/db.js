@@ -1,16 +1,18 @@
+/*
+ * db.js
+ * Configuración de la conexión a la base de datos.
+ */
+
 const mongoose = require('mongoose');
  
- // Defined a database connection string
+// Defined a database connection string
 
- //const dbURI = process.env.DB_URI;
+//const dbURI = process.env.DB_URI;
 const dbURI = "mongodb://heroku_5299hwsl:bfhfe1bp4mq61l37uh8mi34knq@ds121299.mlab.com:21299/heroku_5299hwsl";
 // Opened a Mongoose connection at application startup
-
- mongoose.connect(dbURI, {useNewUrlParser: true, useUnifiedTopology: true});
-
+mongoose.connect(dbURI, {useNewUrlParser: true, useUnifiedTopology: true});
 
 // Monitored the Mongoose connection events
-
  mongoose.connection.on('connected', () => {
    console.log(`Mongoose connected to ${dbURI}`);
  });
@@ -22,8 +24,6 @@ const dbURI = "mongodb://heroku_5299hwsl:bfhfe1bp4mq61l37uh8mi34knq@ds121299.mla
  });
 
 // Monitored some Node process events so that we can close the Mongoose connection when the application ends
-
-
  const gracefulShutdown = (msg, callback) => {
    mongoose.connection.close( () => {
      console.log(`Mongoose disconnected through ${msg}`);

@@ -1,3 +1,8 @@
+/*
+ * chats.js
+ * Rutas para las operaciones del tipo de entrada apartamento.
+ */
+
 var express = require('express');
 var chatController = require('../controllers/chatController');
 var router = express.Router();

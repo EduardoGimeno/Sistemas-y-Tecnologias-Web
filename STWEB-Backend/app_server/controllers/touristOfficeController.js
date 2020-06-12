@@ -1,3 +1,9 @@
+/*
+ * touristOfficeController.js
+ * Controlador de las operaciones de las entradas de tipo
+ * oficina de turismo.
+ */
+
 var express = require('express');
 var url = require('url');
 var TouristOffice = require('../models/oficinaTurismo');
@@ -7,6 +13,10 @@ checkToken = function(token) {
     jwtinterface.verifytoken(token);
 }
 
+/*
+ * Obtener un listado de 20 oficinas de turismo, indicando
+ * que 20 de ellos se quieren del listado total.
+ */
 touristOfficeController.getTouristOffices = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);
@@ -26,6 +36,9 @@ touristOfficeController.getTouristOffices = async function(req, res) {
     }
 }
 
+/*
+ * Contar el número total de oficinas de turismo.
+ */
 touristOfficeController.countTouristOffices = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);
@@ -44,6 +57,9 @@ touristOfficeController.countTouristOffices = async function(req, res) {
     }
 }
 
+/*
+ * Añadir una nueva oficina de turismo.
+ */
 touristOfficeController.addTouristOffice = async function(req, res) {
     var touristOffice = new TouristOffice(req.body);
     await touristOffice.save(function (err, newTouristOffice) {
@@ -57,6 +73,9 @@ touristOfficeController.addTouristOffice = async function(req, res) {
     });
 }
 
+/*
+ * Obtener una oficina de turismo por su id.
+ */
 touristOfficeController.getTouristOffice = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);
@@ -75,6 +94,10 @@ touristOfficeController.getTouristOffice = async function(req, res) {
     }
 }
 
+/*
+ * Obtener un listado de oficinas de turismo por provincia, comarca y municipio,
+ * indicando los 20 que se quieren del listado total que se obtiene.
+ */
 touristOfficeController.searchTouristOffices = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);
@@ -83,6 +106,7 @@ touristOfficeController.searchTouristOffices = async function(req, res) {
         var queryData = url.parse(req.url, true).query;
         var province = queryData.province;
         var region = queryData.region;
+        var municipality = queryData.municipality;
 
         if (province == "null") {
             province = "";
@@ -92,8 +116,13 @@ touristOfficeController.searchTouristOffices = async function(req, res) {
             region = "";
         }
 
+        if (municipality == "null") {
+            municipality = "";
+        }
+
         const touristOffices = await TouristOffice.find({provincia: new RegExp(province,'i'), 
-                                                        comcarca: new RegExp(region, 'i')},
+                                                        comcarca: new RegExp(region, 'i'),
+                                                        municipio: new RegExp(municipality, 'i')},
                                                         function(err) {
                                                             if (err) {
                                                                 res.status(400);

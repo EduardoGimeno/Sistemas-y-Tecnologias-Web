@@ -1,3 +1,8 @@
+/*
+ * auth.js
+ * Rutas para los métodos de autenticación.
+ */
+
 var express = require('express');
 var passport = require('passport');
 var jwtinterface = require('../jsonwebtoken')

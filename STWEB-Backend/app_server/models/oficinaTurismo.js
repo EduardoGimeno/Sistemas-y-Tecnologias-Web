@@ -1,3 +1,8 @@
+/*
+ * oficinaTurismo.js
+ * Modelo de datos para las entradas de tipo oficina de turismo.
+ */
+
 const mongoose = require( 'mongoose' );
 
 const oficinaTurismoSchema = new mongoose.Schema({

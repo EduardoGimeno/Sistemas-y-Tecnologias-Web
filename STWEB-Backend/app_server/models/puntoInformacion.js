@@ -1,3 +1,8 @@
+/*
+ * puntoInformacion.js
+ * Modelo de datos para las entradas de tipo punto de información.
+ */
+
 const mongoose = require( 'mongoose' );
 
 const puntoInformacionSchema = new mongoose.Schema({

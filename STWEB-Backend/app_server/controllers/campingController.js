@@ -1,3 +1,9 @@
+/*
+ * campingController.js
+ * Controlador de las operaciones de las entradas de tipo
+ * camping.
+ */
+
 var express = require('express');
 var url = require('url');
 var Camping = require('../models/camping');
@@ -7,6 +13,10 @@ checkToken = function(token) {
     jwtinterface.verifytoken(token);
 }
 
+/*
+ * Obtener un listado de 20 campings, indicando
+ * que 20 de ellos se quieren del listado total.
+ */
 campingController.getCampings = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);
@@ -26,6 +36,9 @@ campingController.getCampings = async function(req, res) {
     }
 }
 
+/*
+ * Contar el número total de campings.
+ */
 campingController.countCampings = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);
@@ -44,6 +57,9 @@ campingController.countCampings = async function(req, res) {
     }
 }
 
+/*
+ * Añadir un nuevo camping.
+ */
 campingController.addCamping = async function(req, res) {
     var camping = new Camping(req.body);
     await camping.save(function (err, newHotel) {
@@ -57,6 +73,9 @@ campingController.addCamping = async function(req, res) {
     });
 }
 
+/*
+ * Obtener un camping por su id.
+ */
 campingController.getCamping = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);
@@ -75,6 +94,10 @@ campingController.getCamping = async function(req, res) {
     }
 }
 
+/*
+ * Obtener un listado de campings por provincia, comarca y municipio,
+ * indicando los 20 que se quieren del listado total que se obtiene.
+ */
 campingController.searchCampings = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);

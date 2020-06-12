@@ -1,3 +1,8 @@
+/*
+ * informationPoints.js
+ * Rutas para las operaciones del tipo de entrada punto de información.
+ */
+
 var express = require('express');
 var informationPointController = require('../controllers/informationPointController');
 var router = express.Router();

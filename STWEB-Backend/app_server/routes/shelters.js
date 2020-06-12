@@ -1,3 +1,8 @@
+/*
+ * shelters.js
+ * Rutas para las operaciones del tipo de entrada refugio.
+ */
+
 var express = require('express');
 var shelterController = require('../controllers/shelterController');
 var router = express.Router();

@@ -1,3 +1,8 @@
+/*
+ * chat.js
+ * Modelo de datos para los chat.
+ */
+
 const mongoose = require( 'mongoose' );
 var mensaje = require('./mensaje');
 

@@ -1,3 +1,9 @@
+/*
+ * hotelController.js
+ * Controlador de las operaciones de las entradas de tipo
+ * hotel.
+ */
+
 var express = require('express');
 var url = require('url');
 var Hotel = require('../models/hotel');
@@ -7,6 +13,10 @@ checkToken = function(token) {
     jwtinterface.verifytoken(token);
 }
 
+/*
+ * Obtener un listado de 20 hoteles, indicando
+ * que 20 de ellos se quieren del listado total.
+ */
 hotelController.getHotels = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);
@@ -26,6 +36,9 @@ hotelController.getHotels = async function(req, res) {
     }
 }
 
+/*
+ * Contar el número total de hoteles.
+ */
 hotelController.countHotels = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);
@@ -44,6 +57,9 @@ hotelController.countHotels = async function(req, res) {
     }
 }
 
+/*
+ * Añadir un nuevo hotel.
+ */
 hotelController.addHotel = async function(req, res) {
     var hotel = new Hotel(req.body);
     await hotel.save(function (err, newHotel) {
@@ -57,6 +73,9 @@ hotelController.addHotel = async function(req, res) {
     });
 }
 
+/*
+ * Obtener un hotel por su id.
+ */
 hotelController.getHotel = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);
@@ -75,6 +94,11 @@ hotelController.getHotel = async function(req, res) {
     }
 }
 
+/*
+ * Obtener un listado de hoteles por provincia, comarca, municipio,
+ * y rango de estrellas, indicando los 20 que se quieren del listado 
+ * total que se obtiene.
+ */
 hotelController.searchHotels = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);

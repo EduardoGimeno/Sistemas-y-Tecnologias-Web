@@ -520,4 +520,5 @@ test = function(datos) {
     });
     return retVal;
 }
+
 module.exports = parserDataController;

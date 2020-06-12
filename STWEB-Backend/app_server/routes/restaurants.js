@@ -1,3 +1,8 @@
+/*
+ * resturants.js
+ * Rutas para las operaciones del tipo de entrada restuarante.
+ */
+
 var express = require('express');
 var restaurantController = require('../controllers/restaurantController');
 var router = express.Router();
