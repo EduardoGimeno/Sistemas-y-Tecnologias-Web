@@ -4,6 +4,14 @@ import { CurrentUserService } from "../current-user.service";
 import { EntryService } from "../services/entry-service.service";
 import { Router } from "@angular/router";
 import {Apartamento} from "../entities/apartamento";
+import {Hotel} from "../entities/hotel";
+import {AlojamientoTurismoRural} from "../entities/alojamientoTurismoRural";
+import {Camping} from "../entities/camping";
+import {Refugio} from "../entities/refugio";
+import {Restaurante} from "../entities/restaurante";
+import {OficinaTurismo} from "../entities/oficinaTurismo";
+import {PuntoInformacion} from "../entities/puntoInformacion";
+import {Guia} from "../entities/guia";
 
 @Component({
   selector: 'app-index-user',
@@ -50,7 +58,9 @@ export class IndexUserComponent implements OnInit {
         this.numTotal = <number>num;
       });
       this.entryService.getHoteles(this.page - 1).subscribe(data => {
-        this.showEntries = <[]>data;
+        for (let h of <[]>data) {
+          this.showEntries.push(new Hotel(h));
+        }
       });
       this.calidadString = "Estrellas";
     } else if (index == 1) {
@@ -58,7 +68,9 @@ export class IndexUserComponent implements OnInit {
         this.numTotal = <number>num;
       });
       this.entryService.getTurismosRurales(this.page - 1).subscribe(data => {
-        this.showEntries = <[]>data;
+        for (let a of <[]>data) {
+          this.showEntries.push(new AlojamientoTurismoRural(a));
+        }
       });
       this.calidadString = "Espigas";
     } else if (index == 2) {
@@ -70,30 +82,33 @@ export class IndexUserComponent implements OnInit {
         for (let a of <[]>data) {
           this.showEntries.push(new Apartamento(a));
         }
-        //this.showEntries = <Apartamento[]>data;
-        console.log(data);
-        console.log(this.showEntries);
       });
     } else if (index == 3) {
       this.entryService.getCount("campings").subscribe(num => {
         this.numTotal = <number>num;
       });
       this.entryService.getCampings(this.page - 1).subscribe(data => {
-        this.showEntries = <[]>data;
+        for (let c of <[]>data) {
+          this.showEntries.push(new Camping(c));
+        };
       });
     } else if (index == 4) {
       this.entryService.getCount("shelters").subscribe(num => {
         this.numTotal = <number>num;
       });
       this.entryService.getRefugios(this.page - 1).subscribe(data => {
-        this.showEntries = <[]>data;
+        for (let r of <[]>data) {
+          this.showEntries.push(new Refugio(r));
+        };
       });
     } else if (index == 5) {
       this.entryService.getCount("restaurants").subscribe(num => {
         this.numTotal = <number>num;
       });
       this.entryService.getRestaurantes(this.page - 1).subscribe(data => {
-        this.showEntries = <[]>data;
+        for (let r of <[]>data) {
+          this.showEntries.push(new Restaurante(r));
+        };
       });
       this.calidadString = "Tenedores/Tazas";
     } else if (index == 6) {
@@ -101,21 +116,27 @@ export class IndexUserComponent implements OnInit {
         this.numTotal = <number>num;
       });
       this.entryService.getOficinasTurismo(this.page - 1).subscribe(data => {
-        this.showEntries = <[]>data;
+        for (let o of <[]>data) {
+          this.showEntries.push(new OficinaTurismo(o));
+        };
       });
     } else if (index == 7) {
       this.entryService.getCount("informationPoints").subscribe(num => {
         this.numTotal = <number>num;
       });
       this.entryService.getPuntosInformacion(this.page - 1).subscribe(data => {
-        this.showEntries = <[]>data;
+        for (let p of <[]>data) {
+          this.showEntries.push(new PuntoInformacion(p));
+        };
       });
     } else if (index == 8) {
       this.entryService.getCount("guides").subscribe(num => {
         this.numTotal = <number>num;
       });
       this.entryService.getGuias(this.page - 1).subscribe(data => {
-        this.showEntries = <[]>data;
+        for (let g of <[]>data) {
+          this.showEntries.push(new Guia(g));
+        };
       });
     } else {
       this.filter(0);

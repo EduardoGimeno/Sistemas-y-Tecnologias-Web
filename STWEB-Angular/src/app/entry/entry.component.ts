@@ -7,6 +7,15 @@ import { EntryService } from "../services/entry-service.service";
 
 import { GeocodeService } from './geocode.service';
 import { Location } from './location';
+import {Hotel} from "../entities/hotel";
+import {Apartamento} from "../entities/apartamento";
+import {AlojamientoTurismoRural} from "../entities/alojamientoTurismoRural";
+import {Refugio} from "../entities/refugio";
+import {Camping} from "../entities/camping";
+import {Restaurante} from "../entities/restaurante";
+import {OficinaTurismo} from "../entities/oficinaTurismo";
+import {PuntoInformacion} from "../entities/puntoInformacion";
+import {Guia} from "../entities/guia";
 
 @Component({
   selector: 'app-entry',
@@ -51,23 +60,41 @@ export class EntryComponent implements OnInit {
       let tipoEntry = params['tipo'];
       let id = params['id'];
       if (tipoEntry == 'hot') {
-          this.entry = this.entryService.getHotel(id);
+          this.entryService.getHotel(id).subscribe(hotel => {
+            this.entry = new Hotel(hotel);
+          });
         } else if (tipoEntry == 'apa') {
-          this.entry = this.entryService.getApartamento(id);
+          this.entryService.getApartamento(id).subscribe(apartamento => {
+            this.entry = new Apartamento(apartamento);
+          });
         } else if (tipoEntry == 'tur') {
-          this.entry = this.entryService.getTurismoRural(id);
+          this.entryService.getTurismoRural(id).subscribe(alojamientoTurismoRural => {
+            this.entry = new AlojamientoTurismoRural(alojamientoTurismoRural);
+          });
         } else if (tipoEntry == 'ref') {
-          this.entry = this.entryService.getRefugio(id);
+          this.entryService.getRefugio(id).subscribe(refugio => {
+            this.entry = new Refugio(refugio);
+          });
         } else if (tipoEntry == 'cam') {
-          this.entry = this.entryService.getCamping(id);
+          this.entryService.getCamping(id).subscribe(camping => {
+            this.entry = new Camping(camping);
+          });
         } else if (tipoEntry == 'res') {
-          this.entry = this.entryService.getRestaurante(id);
+          this.entryService.getRestaurante(id).subscribe(restaurante => {
+            this.entry = new Restaurante(restaurante);
+          });
         } else if (tipoEntry == 'ofi') {
-          this.entry = this.entryService.getOficinaTurismo(id);
+          this.entryService.getOficinaTurismo(id).subscribe(oficinaTurismo => {
+            this.entry = new OficinaTurismo(oficinaTurismo);
+          });
         } else if (tipoEntry == 'pun') {
-          this.entry = this.entryService.getPuntoInformacion(id);
+          this.entryService.getPuntoInformacion(id).subscribe(puntoInformacion => {
+            this.entry = new PuntoInformacion(puntoInformacion);
+          });
         } else if (tipoEntry == 'guia') {
-        this.entry = this.entryService.getGuia(id);
+        this.entryService.getGuia(id).subscribe(guia => {
+          this.entry = new Guia(guia);
+        });
       }
     });
     this.address = this.entry.municipio + " " + this.entry.direccion;
