@@ -3,6 +3,7 @@ import { UserApp } from '../entities/usuario';
 import { CurrentUserService } from "../current-user.service";
 import { EntryService } from "../services/entry-service.service";
 import { Router } from "@angular/router";
+import {Apartamento} from "../entities/apartamento";
 
 @Component({
   selector: 'app-index-user',
@@ -63,9 +64,15 @@ export class IndexUserComponent implements OnInit {
     } else if (index == 2) {
       this.entryService.getCount("apartments").subscribe(num => {
         this.numTotal = <number>num;
+        console.log("TOTAL: " + num);
       });
       this.entryService.getApartamentos(this.page - 1).subscribe(data => {
-        this.showEntries = <[]>data;
+        for (let a of <[]>data) {
+          this.showEntries.push(new Apartamento(a));
+        }
+        //this.showEntries = <Apartamento[]>data;
+        console.log(data);
+        console.log(this.showEntries);
       });
     } else if (index == 3) {
       this.entryService.getCount("campings").subscribe(num => {
@@ -118,6 +125,7 @@ export class IndexUserComponent implements OnInit {
   }
 
   navigateToEntry(entry) {
+    console.log("FUNCIONAAAA");
     this.route.navigateByUrl('/entry?tipo=' + entry.tipoEntry.toLowerCase().substr(0,3) +
       '&id=' + entry.id);
   }

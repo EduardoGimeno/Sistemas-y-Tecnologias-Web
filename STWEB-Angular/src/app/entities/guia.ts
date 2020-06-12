@@ -1,4 +1,5 @@
 export class Guia {
+  id: string;
   nombre: string;
   apellidos: string;
   telefono: string;
@@ -11,16 +12,17 @@ export class Guia {
   tipoEntry: string;
 
 
-  constructor(nombre: string, apellidos: string, telefono: string, espanol: boolean, ingles: boolean, frances: boolean, aleman: boolean, italiano: boolean, otros: string) {
-    this.nombre = nombre;
-    this.apellidos = apellidos;
-    this.telefono = telefono;
-    this.espanol = espanol;
-    this.ingles = ingles;
-    this.frances = frances;
-    this.aleman = aleman;
-    this.italiano = italiano;
-    this.otros = otros;
+  constructor(g) {
+    this.id = g.id;
+    this.nombre = g.nombre;
+    this.apellidos = g.apellidos;
+    this.telefono = g.telefono;
+    this.espanol = g.espanol;
+    this.ingles = g.ingles;
+    this.frances = g.frances;
+    this.aleman = g.aleman;
+    this.italiano = g.italiano;
+    this.otros = g.otros;
     this.tipoEntry = "Guia";
   }
 }

@@ -155,13 +155,13 @@ parserDataController.camping = async function(req, res) {
 
 parserDataController.guias = async function(req, res) {
     try {
-    //checkToken(req.headers.authentication);
+        //checkToken(req.headers.authentication);
         const guides = await Guide.find();
         guides.forEach(async function() {
             await Guide.deleteOne({});
         });
         request('https://opendata.aragon.es/GA_OD_Core/download?' +
-            'view_id=69&formato=json', function (error, response, body) {
+        'view_id=69&formato=json', function (error, response, body) {
         if (!error && response.statusCode == 200) {
             test(JSON.parse(body)).forEach(async function(item) {
                 var guia = {
