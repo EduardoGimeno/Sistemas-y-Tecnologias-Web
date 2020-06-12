@@ -13,7 +13,7 @@ export class Guia {
 
 
   constructor(g) {
-    this.id = g.id;
+    this.id = g._id;
     this.nombre = g.nombre;
     this.apellidos = g.apellidos;
     this.telefono = g.telefono;

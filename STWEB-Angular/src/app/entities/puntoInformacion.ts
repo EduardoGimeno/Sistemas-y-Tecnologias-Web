@@ -6,12 +6,12 @@ export class PuntoInformacion {
   municipio: string;
   tipoEntry: string;
 
-  constructor(id:string, nombre: string, direccion: string, provincia: string, municipio: string) {
-    this.id = id;
-    this.nombre = nombre;
-    this.direccion = direccion;
-    this.provincia = provincia;
-    this.municipio = municipio;
+  constructor(p) {
+    this.id = p._id;
+    this.nombre = p.nombre;
+    this.direccion = p.direccion;
+    this.provincia = p.provincia;
+    this.municipio = p.municipio;
     this.tipoEntry = "Punto de informacion";
   }
 }
