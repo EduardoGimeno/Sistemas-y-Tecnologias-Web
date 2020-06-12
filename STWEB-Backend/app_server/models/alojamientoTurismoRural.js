@@ -8,8 +8,8 @@ var alojamiento = require('./alojamiento');
 
 const alojamientoTurismoRuralSchema = new mongoose.Schema({
     comun: alojamiento.alojamientoSchema,
-    espigas: {type: Number, required: true, min: 1, max: 5},
-    tipo: {type: String, required: true}
+    espigas: {type: Number},
+    tipo: {type: String}
 });
 
 module.exports = mongoose.model('AlojamientoTurismoRural', alojamientoTurismoRuralSchema);
