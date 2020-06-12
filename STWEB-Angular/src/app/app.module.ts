@@ -25,6 +25,7 @@ import { AgmCoreModule } from '@agm/core';
 import { GeocodeService } from './entry/geocode.service';
 import { Location } from './entry/location';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { RegistryGoogleComponent } from './registry-google/registry-google.component';
 
 let config = new AuthServiceConfig([
   {
@@ -50,7 +51,8 @@ export function provideConfig() {
     ProfileComponent,
     ChangePasswordComponent,
     StatsUserComponent,
-    StatsAdminComponent
+    StatsAdminComponent,
+    RegistryGoogleComponent
   ],
   imports: [
     BrowserModule,
