@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { AccionUsuarioComponent } from '../accion-usuario/accion-usuario.component';
 
 @Component({
   selector: 'app-index-admin',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class IndexAdminComponent implements OnInit {
 
-  constructor() { }
+  constructor(public matDialog: MatDialog) { }
 
   ngOnInit(): void {
+  }
+
+  accionSobreUsuario() {
+    this.matDialog.open(AccionUsuarioComponent, {
+     width: '400px',
+     height: '400px'
+    });
   }
 
 }
