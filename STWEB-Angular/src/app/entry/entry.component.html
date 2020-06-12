@@ -85,8 +85,11 @@
           <div *ngIf="entry.comun" style="width: 50%; text-align: center">
             <h5 class="card-title">{{ entry.comun.nombre }}</h5>
           </div>
-          <div *ngIf="!entry.comun" style="width: 50%; text-align: center">
+          <div *ngIf="!entry.comun && entry.tipoEntry != 'Guia'" style="width: 50%; text-align: center">
             <h5 class="card-title">{{ entry.nombre }}</h5>
+          </div>
+          <div *ngIf="entry.tipoEntry == 'Guia'" style="width: 80%; text-align: center">
+            <h5 class="card-title">{{ entry.nombre }}, {{entry.apellidos}}</h5>
           </div>
           <div style="width: 30%; text-align: center;">
             <div *ngIf="entry.tipoEntry == 'Hotel'">
@@ -110,23 +113,66 @@
 
       <div class="card-body">
         <div class="row">
-          <div *ngIf="entry.comun" style="width: 60%; text-align: center">
-            <h6>{{ entry.comun.direccion }}</h6>
+          <div *ngIf="entry.tipoEntry != 'Guia'">
+            <div *ngIf="entry.comun" style="width: 60%; text-align: center">
+              <h6>{{ entry.comun.direccion }}</h6>
+            </div>
+            <div *ngIf="!entry.comun" style="width: 60%; text-align: center">
+              <h6>{{ entry.direccion }}</h6>
+            </div>
+            <div *ngIf="entry.comun" style="width: 20%; text-align: center">
+              <h6>{{ entry.comun.municipio }}</h6>
+            </div>
+            <div *ngIf="!entry.comun" style="width: 20%; text-align: center">
+              <h6>{{ entry.municipio }}</h6>
+            </div>
+            <div *ngIf="entry.comun" style="width: 20%; text-align: center">
+              <h6>{{ entry.comun.provincia }}</h6>
+            </div>
+            <div *ngIf="!entry.comun" style="width: 20%; text-align: center">
+              <h6>{{ entry.provincia }}</h6>
+            </div>
           </div>
-          <div *ngIf="!entry.comun" style="width: 60%; text-align: center">
-            <h6>{{ entry.direccion }}</h6>
-          </div>
-          <div *ngIf="entry.comun" style="width: 20%; text-align: center">
-            <h6>{{ entry.comun.municipio }}</h6>
-          </div>
-          <div *ngIf="!entry.comun" style="width: 20%; text-align: center">
-            <h6>{{ entry.municipio }}</h6>
-          </div>
-          <div *ngIf="entry.comun" style="width: 20%; text-align: center">
-            <h6>{{ entry.comun.provincia }}</h6>
-          </div>
-          <div *ngIf="!entry.comun" style="width: 20%; text-align: center">
-            <h6>{{ entry.provincia }}</h6>
+          <div *ngIf="entry.tipoEntry == 'Guia'" style="text-align: center">
+            <h4>Idiomas</h4>
+            <table>
+              <tr>
+                <td>
+                  Español
+                </td>
+                <td>
+                  Ingles
+                </td>
+                <td>
+                  Frances
+                </td>
+                <td>
+                  Alemán
+                </td>
+                <td>
+                  Italiano
+                </td>
+                <td>
+                  Otros
+                </td>
+              </tr>
+
+              <tr>
+                <td *ngIf="entry.tipoEntry.espanol">Si</td>
+                <td *ngIf="!entry.tipoEntry.espanol">No</td>
+                <td *ngIf="entry.tipoEntry.ingles">Si</td>
+                <td *ngIf="!entry.tipoEntry.ingles">No</td>
+                <td *ngIf="entry.tipoEntry.frances">Si</td>
+                <td *ngIf="!entry.tipoEntry.frances">No</td>
+                <td *ngIf="entry.tipoEntry.aleman">Si</td>
+                <td *ngIf="!entry.tipoEntry.aleman">No</td>
+                <td *ngIf="entry.tipoEntry.italiano">Si</td>
+                <td *ngIf="!entry.tipoEntry.italiano">No</td>
+                <td *ngIf="entry.tipoEntry.otros">Si</td>
+                <td *ngIf="!entry.tipoEntry.otros">No</td>
+              </tr>
+
+            </table>
           </div>
         </div>
       </div>
