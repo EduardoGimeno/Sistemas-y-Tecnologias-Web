@@ -76,10 +76,7 @@ parserDataController.alojamientosTurismoRural = async function(req, res) {
                         tipo: item.TIPO_VIVIENDA
                     });
                     // Guardar la nueva entrada
-                    await new RuralHouse(ruralHouse).save(function (err) {
-                        res.status(500);
-                        res.json({error: err.message});
-                    });
+                    await new RuralHouse(ruralHouse).save();
                 });
                 res.status(200);
                 res.json("Alojamientos de turismo rural guardados");
