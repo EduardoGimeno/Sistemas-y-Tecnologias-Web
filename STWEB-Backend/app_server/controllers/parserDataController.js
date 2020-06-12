@@ -1,3 +1,11 @@
+/*
+ * parserDataController.js
+ * Las operaciones de este módulo se encargan de la gestión de los
+ * datos de la aplicación, actualizándolos y guardándolos.
+ * Hay una operación para cada tipo de entidad que se extrae de la
+ * fuente de datos abiertos.
+ */
+
 var express = require('express');
 var url = require('url');
 var request = require('request');
@@ -5,30 +13,83 @@ var Guide = require('../models/guia');
 var Apartment = require('../models/apartamento');
 var Puntoinformacion = require('../models/puntoInformacion');
 var Restaurante = require('../models/restaurante');
+var RuralHouse = require('../models/alojamientoTurismoRural');
 var parserDataController = {};
 
 checkToken = function(token) {
     jwtinterface.verifytoken(token);
 }
 
+/*
+ * Elimina todas alojamientos de turismo rural de la base de datos,
+ * importa el json mal estructurado de AragonOpenData, lo parsea
+ * a los modelos utilizados y guarda el nuevo alojamiento en la base
+ * de datos
+ */
 parserDataController.alojamientoTurismoRural = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);
-        //alojamientoTurismoRural
+        // Extraer todos
+        const ruralHouses = await RuralHouse.find({}, function(err) {
+            if (error) {
+                res.status(500);
+                res.json({error: err.message});
+            }
+        });
+        // Borrar todos
+        ruralHouses.forEach(async function() {
+            await RuralHouse.deleteOne({}, function(err) {
+                if (err) {
+                    res.status(500);
+                    res.json({error: err.message});
+                }
+            })
+        })
+        // Obtener el JSON de la fuente de datos abierta
         request('https://opendata.aragon.es/GA_OD_Core/download?' +
             'view_id=73&formato=json', function (error, response, body) {
-            console.log("HA LLEGADO");
             if (!error && response.statusCode == 200) {
-                //importedJSON = body;
-                //console.log(body);
-                importedJSON = JSON.parse(body);
+                // Adecuar los datos al modelo utilizado
+                test(JSON.parse(body)).forEach(async function(item) {
+                    var provincia = "Zaragoza";
+                    if (item.ACTIVIDAD_PROVINCIA == "HU") {
+                        provincia = "Huesca";
+                    } else if (item.ACTIVIDAD_PROVINCIA == "TE") {
+                        provincia = "Teruel";
+                    }
+                    var ruralHouse = new RuralHouse ({
+                        comun: {
+                            signatura: item.SIGNATURA,
+                            nombre: item.NOMBRE_DE_LA_VIVIENDA,
+                            direccion: item.DIRECCION_ESTABLECIMIENTO,
+                            codigoPostal: item.CODIGO_POSTAL_ESTABLECIMIENTO,
+                            provincia: provincia,
+                            comarca: item.NOMBRE_COMARCA,
+                            municipio: item.LOCALIDAD_ESTABLECIMIENTO,
+                            capacidad: item.NUMERO_TOTAL_PLAZAS,
+                            email: "entradaexample@gmail.com",
+                            telefono: item.TELEFONO_ESTABLECIMIENTO
+                        },
+                        espigas: item.CATEGORIA_VIVIENDA,
+                        tipo: item.TIPO_VIVIENDA
+                    });
+                    ruralHouse.espigas = ruralHouse.espigas.split(" ")[0];
+                    // Guardar la nueva entrada
+                    await new Apartment(apartamento).save(function (err) {
+                        res.status(500);
+                        res.json({error: err.message});
+                    });
+                });
+                res.status(200);
+                res.json("Alojamientos de turismo rural guardados");
             }
-        })
+        });
     } catch (err) {
         res.status(500);
         res.json({error: err.message});
     }
 }
+
 parserDataController.apartamentos = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);
@@ -72,6 +133,7 @@ parserDataController.apartamentos = async function(req, res) {
         res.json({error: err.message});
     }
 }
+
 parserDataController.camping = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);
@@ -90,6 +152,7 @@ parserDataController.camping = async function(req, res) {
         res.json({error: err.message});
     }
 }
+
 parserDataController.guias = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);
@@ -124,6 +187,7 @@ parserDataController.guias = async function(req, res) {
         res.json({error: err.message});
     }
 }
+
 parserDataController.hotel = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);
@@ -142,6 +206,7 @@ parserDataController.hotel = async function(req, res) {
         res.json({error: err.message});
     }
 }
+
 parserDataController.oficinaTurismo = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);
@@ -160,6 +225,7 @@ parserDataController.oficinaTurismo = async function(req, res) {
         res.json({error: err.message});
     }
 }
+
 parserDataController.puntoInformacion = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);
@@ -187,6 +253,7 @@ parserDataController.puntoInformacion = async function(req, res) {
         res.json({error: err.message});
     }
 }
+
 parserDataController.refugio = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);
@@ -205,6 +272,7 @@ parserDataController.refugio = async function(req, res) {
         res.json({error: err.message});
     }
 }
+
 parserDataController.restaurante = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);
