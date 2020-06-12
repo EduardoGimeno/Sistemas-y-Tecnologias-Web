@@ -4,6 +4,7 @@ var request = require('request');
 var Guide = require('../models/guia');
 var Apartment = require('../models/apartamento');
 var Puntoinformacion = require('../models/puntoInformacion');
+var Restaurante = require('../models/restaurante');
 var parserDataController = {};
 
 checkToken = function(token) {
@@ -212,9 +213,27 @@ parserDataController.restaurante = async function(req, res) {
             'view_id=67&formato=json', function (error, response, body) {
             console.log("HA LLEGADO");
             if (!error && response.statusCode == 200) {
-                //importedJSON = body;
-                //console.log(body);
-                importedJSON = JSON.parse(body);
+                test(JSON.parse(body)).forEach(async function(item) {
+                    var restaurante = {
+                        signatura: item.SIGNATURA,
+                        nombre: item.NOMBRE_ESTABLECIMIENTO,
+                        direccion: item.DIRECCION_ESTABLECIMIENTO,
+                        codigoPostal: item.CODIGO_POSTAL_ESTABLECIMIENTO,
+                        provincia: item.ACTIVIDAD_PROVINCIA,
+                        comarca: item.NOMBRE_COMARCA,
+                        municipio: item.LOCALIDAD_ESTABLECIMIENTO,
+                        capacidad: item.NUMERO_PLAZAS,
+                        telefono: item.TELEFONO_ESTABLECIMIENTO,
+                        categoria: item.CATEGORIA
+                    };
+                    if(restaurante.provincia == "HU"){restaurante.provincia = "Huesca"}
+                    else if(restaurante.provincia == "TE"){restaurante.provincia = "Teruel"}
+                    else{restaurante.provincia = "Zaragoza"}
+                    restaurante.categoria= restaurante.categoria.split(" ")[0];
+                    await new Restaurante(restaurante).save();
+                })
+                res.status(200);
+                res.json("result");
             }
         })
 
