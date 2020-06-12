@@ -27,7 +27,7 @@ export class UserService {
   }
 
   public register(user: UserApp) {
-    return this.http.post( 'localhost:3000/register', user);
+    return this.http.post( this.urlApp + '/add/', user);
   }
 
   public getUsers(){
@@ -35,10 +35,10 @@ export class UserService {
   }
 
   public updateUser(user: UserApp) {
-      this.http.post( 'localhost:3000/updateUser/' + user.id, user).subscribe( data => {
-
-      });
-      return user;
+    console.log(user);
+      delete user["_id"];
+      console.log(user);
+      return this.http.put( this.urlApp + '/update/', user);
   }
 
   public deleteUser(id: number) {

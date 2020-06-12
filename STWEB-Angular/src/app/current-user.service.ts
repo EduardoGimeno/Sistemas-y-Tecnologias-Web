@@ -62,27 +62,23 @@ export class CurrentUserService {
     return this.user;
   }
 
-  public updateUser(pais: string, provincia: string, email: string) {
-    if (this.user != null) {
-      this.user.pais = pais;
-      this.user.provincia = provincia;
-      this.user.email = email;
-      this.user = this.userService.updateUser(this.user);
-    }
-    return this.user;
-  }
-
-  public modifyPassword(password: string) {
-    if (this.user != null) {
-      this.user.contrasena = password;
-      this.user = this.userService.updateUser(this.user);
-    }
-    return this.user;
+  public updateUser(user) {
+    this.userService.updateUser(user).subscribe( user => {
+      this.user = <UserApp>user;
+    });
   }
 
   recoverUser() {
     this.userService.recoverUser(this.cookieService.get("token")).subscribe(data => {
       this.user = <UserApp>data;
+    })
+  }
+
+  setUserByToken(token) {
+    this.userService.recoverUser(token).subscribe(data => {
+      this.user = <UserApp>data;
+      this.cookieService.set("session", "open");
+      this.cookieService.set("token", token);
     })
   }
 
