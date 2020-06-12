@@ -16,6 +16,8 @@ import {Restaurante} from "../entities/restaurante";
 import {OficinaTurismo} from "../entities/oficinaTurismo";
 import {PuntoInformacion} from "../entities/puntoInformacion";
 import {Guia} from "../entities/guia";
+import {Conversacion} from "../entities/conversacion";
+import {ChatService} from "../services/chat-service.service";
 
 @Component({
   selector: 'app-entry',
@@ -38,7 +40,7 @@ export class EntryComponent implements OnInit {
 
   constructor(public currentUser: CurrentUserService, private activatedRoute: ActivatedRoute,
               public entryService: EntryService,  private geocodeService: GeocodeService,
-              private ref: ChangeDetectorRef) {
+              private ref: ChangeDetectorRef, public chatService: ChatService) {
 
 
   }
@@ -103,6 +105,13 @@ export class EntryComponent implements OnInit {
 
   numberReturn(length){
     return new Array(length);
+  }
+
+  crearChat() {
+    this.chatService.addChat(this.entry.comun.nombre, this.user.nombre,this.entry.comun.email,
+      this.user.email).subscribe(data => {
+      console.log(data);
+    });
   }
 
 }
