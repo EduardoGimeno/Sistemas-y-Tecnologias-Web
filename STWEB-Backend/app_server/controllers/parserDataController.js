@@ -14,7 +14,9 @@ var Apartment = require('../models/apartamento');
 var InformationPoint = require('../models/puntoInformacion');
 var Restaurant = require('../models/restaurante');
 var RuralHouse = require('../models/alojamientoTurismoRural');
-var Camping = require('../models/camping')
+var Camping = require('../models/camping');
+var Hotel = require('../models/hotel');
+var TouristOffice = require('../models/oficinaTurismo');
 var parserDataController = {};
 
 checkToken = function(token) {
@@ -120,6 +122,7 @@ parserDataController.apartamentos = async function(req, res) {
         request('https://opendata.aragon.es/GA_OD_Core/download?' +
             'view_id=66&formato=json', function (error, response, body) {
             if (!error && response.statusCode == 200) {
+                // Adecuar los datos al modelo utilizado
                 test(JSON.parse(body)).forEach(async function(item) {
                     var provincia = "Zaragoza";
                     if (item.ACTIVIDAD_PROVINCIA == "HU") {
@@ -185,6 +188,7 @@ parserDataController.camping = async function(req, res) {
             'view_id=68&formato=json', function (error, response, body) {
             console.log("HA LLEGADO");
             if (!error && response.statusCode == 200) {
+                // Adecuar los datos al modelo utilizado
                 test(JSON.parse(body)).forEach(async function(item) {
                     var provincia = "Zaragoza";
                     if (item.ACTIVIDAD_PROVINCIA == "HU") {
@@ -248,6 +252,7 @@ parserDataController.guias = async function(req, res) {
         request('https://opendata.aragon.es/GA_OD_Core/download?' +
         'view_id=69&formato=json', function (error, response, body) {
         if (!error && response.statusCode == 200) {
+            // Adecuar los datos al modelo utilizado
             test(JSON.parse(body)).forEach(async function(item) {
                 var guia = {
                     signatura: item.SIGNATURA,
@@ -274,84 +279,170 @@ parserDataController.guias = async function(req, res) {
     }
 }
 
+/*
+ * Elimina todos hoteles de la base de datos, importa el json mal 
+ * estructurado de AragonOpenData, lo parsea a los modelos utilizados 
+ * y guarda el nuevo hotel en la base de datos
+ */
 parserDataController.hotel = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);
-        //hotel
+        // Extraer todos
+        const hotels = await Hotel.find({}, function(err) {
+            if (err) {
+                res.status(500);
+                res.json({error: err.message});
+            }
+        });
+
+        // Borrar todos
+        hotels.forEach(async function() {
+            await Hotel.deleteOne({}, function(err) {
+                res.status(500);
+                res.json({error: err.message});
+            });
+        });
+
+        // Obtener el JSON mal estructurado de la fuente de datos abiertos
         request('https://opendata.aragon.es/GA_OD_Core/download?' +
             'view_id=65&formato=json', function (error, response, body) {
-            console.log("HA LLEGADO");
-            if (!error && response.statusCode == 200) {
-                //importedJSON = body;
-                //console.log(body);
-                importedJSON = JSON.parse(body);
-            }
-        })
+            // Adecuar los datos al modelo utilizado
+            test(JSON.parse(body)).forEach(async function(item) {
+                var provincia = "Zaragoza";
+                if (item.ACTIVIDAD_PROVINCIA == "HU") {
+                    provincia = "Huesca";
+                } else if (item.ACTIVIDAD_PROVINCIA == "TE") {
+                    provincia = "Teruel";
+                }
+                var categoria = item.CATEGORIA_ALOJAMIENTO;
+                categoria = categoria.split("e")[0];
+                var hotel = new Hotel ({
+                    comun: {
+                        signatura: item.SIGNATURA,
+                        nombre: item.NOMBRE_DE_LA_VIVIENDA,
+                        direccion: item.DIRECCION_ESTABLECIMIENTO,
+                        codigoPostal: item.CODIGO_POSTAL_ESTABLECIMIENTO,
+                        provincia: provincia,
+                        comarca: item.NOMBRE_COMARCA,
+                        municipio: item.LOCALIDAD_ESTABLECIMIENTO,
+                        capacidad: item.NUMERO_TOTAL_PLAZAS,
+                        email: "entradaexample@gmail.com",
+                        telefono: item.TELEFONO_ESTABLECIMIENTO
+                    },
+                    grupo: item.NOMBRE_EMPRESA,
+                    estrellas: categoria,
+                });
+                // Guardar la nueva entrada
+                await new Hotel(hotel).save();
+            });
+            res.status(200);
+            res.json("Alojamientos de turismo rural guardados");
+        });
     } catch (err) {
         res.status(500);
         res.json({error: err.message});
     }
 }
 
+/*
+ * Elimina todos oficinas turismo de la base de datos, importa el json mal 
+ * estructurado de AragonOpenData, lo parsea a los modelos utilizados 
+ * y guarda la nueva oficina de turismo en la base de datos
+ */
 parserDataController.oficinaTurismo = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);
-        //oficinaTurismo
+        // Extraer todos
+        const touristsOffice = await TouristOffice.find({}, function(err) {
+            if (err) {
+                res.status(500);
+                res.json({error: err.message});
+            }
+        });
+
+        // Borrar todos
+        touristsOffice.forEach(async function() {
+            await TouristOffice.deleteOne({}, function(err) {
+                if (err) {
+                    res.status(500);
+                    res.json({error: err.message});
+                }
+            });
+        });
+
+        // Obtener el JSON mal estructurado de la fuente de datos abiertos
         request('https://opendata.aragon.es/GA_OD_Core/download?' +
             'view_id=70&formato=json', function (error, response, body) {
-            console.log("HA LLEGADO");
-            if (!error && response.statusCode == 200) {
-                //importedJSON = body;
-                //console.log(body);
-                importedJSON = JSON.parse(body);
-            }
-        })
+            // Adecuar los datos al modelo utilizado
+            test(JSON.parse(body)).forEach(async function(item) {
+                var touristOffice = {
+                    signatura: item.CODIGO,
+                    nombre: item.NOMBRE,
+                    direccion: item.DIRECCION_ESTABLECIMIENTO,
+                    provincia: item.NOMBRE_PROVINCIA,
+                    municipio: item.LOCA_MUN,
+                    telefono: item.TELEFONO_ESTABLECIMIENTO,
+                    horario: item.OBS_HORARIO
+                };
+                // Guardar la nueva entrada
+                await new TouristOffice(touristOffice).save();
+            });
+            res.status(200);
+            res.json("Oficinas de turismo guardados");
+        });
     } catch (err) {
         res.status(500);
         res.json({error: err.message});
     }
 }
 
+/*
+ * Elimina todos puntos de información de la base de datos, importa el json mal 
+ * estructurado de AragonOpenData, lo parsea a los modelos utilizados 
+ * y guarda el nuevo punto de información en la base de datos
+ */
 parserDataController.puntoInformacion = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);
-        //Se extraen todos los datos almacenados actualmente en la bd
+        // Extraer tdos
         const informationPoints = await InformationPoint.find({}, function(err) {
             if (err) {
                 res.status(500);
                 res.json({error: err.message});
             }
         });
-        // Se borran todos los datos actuales
+
+        // Borrar todos
         informationPoints.forEach(async function() {
             await InformationPoint.deleteOne({}, function(err) {
                 if (err) {
                     res.status(500);
                     res.json({error: err.message});
                 }
-            })
-        })
-        //Descargamos los datos actualizados
+            });
+        });
+
+        // Obtener el JSON mal estructurado de la fuente de datos abiertos
         request('https://opendata.aragon.es/GA_OD_Core/download?' +
             'view_id=71&formato=json', function (error, response, body) {
             console.log("HA LLEGADO");
             if (!error && response.statusCode == 200) {
-                //Adecuamos los datos a nuestro modelo
+                // Adecuar los datos al modelo utilizado
                 test(JSON.parse(body)).forEach(async function(item) {
-                    var puntoinformacion = {
+                    var informationPoint = {
                         signatura: item.CODIGO,
                         nombre: item.NOMBRE,
                         direccion: item.DIRECCION_ESTABLECIMIENTO,
                         provincia: item.NOMBRE_PROVINCIA,
                         municipio: item.LOCA_MUN
                     };
-                    //Guardamos el nuevo dato
-                    await new InformationPoint(puntoinformacion).save();
-                })
+                    // Guardar la nueva entrada
+                    await new InformationPoint(informationPoint).save();
+                });
                 res.status(200);
                 res.json("Puntos de informacion guardados");
             }
-        })
+        });
     } catch (err) {
         res.status(500);
         res.json({error: err.message});
@@ -377,34 +468,41 @@ parserDataController.refugio = async function(req, res) {
     }
 }
 
+/*
+ * Elimina todos restuarantes de la base de datos, importa el json mal 
+ * estructurado de AragonOpenData, lo parsea a los modelos utilizados 
+ * y guarda el nuevo restuarante en la base de datos
+ */
 parserDataController.restaurante = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);
-        //Se extraen todos los datos almacenados actualmente en la bd
+        // Extraer todos
         const restaurants = await Restaurant.find({}, function(err) {
             if (err) {
                 res.status(500);
                 res.json({error: err.message});
             }
         });
-        // Se borran todos los datos actuales
+
+        // Borrar todos
         restaurants.forEach(async function() {
             await Restaurant.deleteOne({}, function(err) {
                 if (err) {
                     res.status(500);
                     res.json({error: err.message});
                 }
-            })
-        })
-        //Descargamos los datos actualizados
+            });
+        });
+
+        // Obtener el JSON mal estructurado de la fuente de datos abiertos
         request('https://opendata.aragon.es/GA_OD_Core/download?' +
             'view_id=67&formato=json', function (error, response, body) {
             console.log("HA LLEGADO");
             if (!error && response.statusCode == 200) {
-                //Adecuamos los datos a nuestro modelo
+                // Adecuar los datos al modelo utilizado
                 test(JSON.parse(body)).forEach(async function(item) {
-                    var cat= item.CATEGORIA.split(" ")[0];
-                    var restaurante = {
+                    var cat = item.CATEGORIA.split(" ")[0];
+                    var restaurant = {
                         signatura: item.SIGNATURA,
                         nombre: item.NOMBRE_ESTABLECIMIENTO,
                         direccion: item.DIRECCION_ESTABLECIMIENTO,
@@ -416,12 +514,15 @@ parserDataController.restaurante = async function(req, res) {
                         telefono: item.TELEFONO_ESTABLECIMIENTO,
                         categoria: cat
                     };
-                    if(restaurante.provincia == "HU"){restaurante.provincia = "Huesca"}
-                    else if(restaurante.provincia == "TE"){restaurante.provincia = "Teruel"}
-                    else{restaurante.provincia = "Zaragoza"}
-                    restaurante.categoria= restaurante.categoria.split(" ")[0];
-                    //Guardamos el nuevo dato
-                    await new Restaurant(restaurante).save();
+                    if (restaurante.provincia == "HU") {
+                        restaurante.provincia = "Huesca"
+                    } else if(restaurante.provincia == "TE") {
+                        restaurante.provincia = "Teruel"
+                    } else { 
+                        restaurante.provincia = "Zaragoza"
+                    }
+                    // Guardar nueva entrada
+                    await new Restaurant(restaurant).save();
                 })
                 res.status(200);
                 res.json("Restaurantes guardados");
@@ -434,6 +535,10 @@ parserDataController.restaurante = async function(req, res) {
     }
 }
 
+/*
+ * Función utilizada para obtener un JSON bien estructurado
+ * con el que poder extraer los datos más fácilmente
+ */
 test = function(datos) {
     let ejemplo = datos;
     let claves = ejemplo[0];
