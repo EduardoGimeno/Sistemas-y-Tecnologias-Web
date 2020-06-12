@@ -68,7 +68,7 @@ export function provideConfig() {
     MatDialogModule,
     SocialLoginModule,
     AgmCoreModule.forRoot({
-          apiKey: ''
+          apiKey: 'AIzaSyCBqxbKfjVQAqz6VAgAj8bHGGYW-XOar-E'
         }),
     FontAwesomeModule
   ],

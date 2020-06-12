@@ -18,6 +18,7 @@ import {PuntoInformacion} from "../entities/puntoInformacion";
 import {Guia} from "../entities/guia";
 import {Conversacion} from "../entities/conversacion";
 import {ChatService} from "../services/chat-service.service";
+import { AgmCoreModule } from '@agm/core';
 
 @Component({
   selector: 'app-entry',
