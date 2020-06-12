@@ -12,6 +12,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { RegistryComponent } from './registry/registry.component';
 import { StatsAdminComponent } from './stats-admin/stats-admin.component';
 import { StatsUserComponent } from './stats-user/stats-user.component';
+import { RegistryGoogleComponent } from './registry-google/registry-google.component';
 
 const routes: Routes = [
   { path: 'change-password', component: ChangePasswordComponent },
@@ -23,6 +24,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'profile', component: ProfileComponent},
   { path: 'registry', component: RegistryComponent },
+  { path: 'registry-google', component: RegistryGoogleComponent },
   { path: 'stats-admin', component: StatsAdminComponent },
   { path: 'stats-user', component: StatsUserComponent },
   { path: '**', component: LoginComponent },

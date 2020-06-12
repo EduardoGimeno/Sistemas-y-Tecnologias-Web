@@ -11,13 +11,13 @@ export class CurrentUserService {
 
   private user: UserApp = null;
 
-  private token: String;
+  private token: string;
 
   constructor(public router: Router, private cookieService: CookieService,
               public userService: UserService) {
     if (cookieService.check("session")) {
       if (cookieService.get("session") == "open") {
-        this.logIn();
+        this.recoverUser();
       } else {
         cookieService.set("session", "close");
       }
@@ -26,22 +26,15 @@ export class CurrentUserService {
     }
   }
 
-  public logIn() {
-    this.user = {
-      id: 'id',
-      activo: false,
-      baneado: false,
-      fechaNacimiento: undefined,
-      pais: 'España',
-      email: 'nombre@apellidos.com',
-      contrasena: '??',
-      provincia: 'Zaragoza',
-      apellidos: 'Apellidos',
-      telefono: '000 00 00 00',
-      nombre: 'Nombre'
-    };
-    this.cookieService.set("session", "open");
-    //this.userService.logIn(email, password);
+  public logIn(email, password) {
+    this.userService.logIn(email, password).subscribe(user => {
+      let tokenString = <string>user[0].token;
+      this.token = tokenString.split(" ")[1];
+      this.user = <UserApp>user[1];
+      this.cookieService.set("session", "open");
+      this.cookieService.set("token", this.token);
+      this.router.navigateByUrl('/index-user');
+    });
   }
 
   public logOut() {
@@ -50,6 +43,19 @@ export class CurrentUserService {
   }
 
   public checkLog() {
+    /*if (this.user.nombre == "") {
+      return new Promise(resolve => {
+        this.userService.recoverUser(this.cookieService.get("token")).subscribe(data => {
+          resolve(<UserApp>data);
+        }, error => {
+          this.router.navigateByUrl('/login');
+        });
+      });
+    } else {
+      return new Promise(resolve => {
+        resolve(this.user);
+      });
+    }*/
     if (this.user == null) {
       this.router.navigateByUrl('/login');
     }
@@ -72,6 +78,12 @@ export class CurrentUserService {
       this.user = this.userService.updateUser(this.user);
     }
     return this.user;
+  }
+
+  recoverUser() {
+    this.userService.recoverUser(this.cookieService.get("token")).subscribe(data => {
+      this.user = <UserApp>data;
+    })
   }
 
 

@@ -28,6 +28,7 @@ var guidesRouter = require('./app_server/routes/guides');
 var authRouter = require('./app_server/routes/auth');
 var parserDataRouter = require('./app_server/routes/parserData');
 var chatsRouter = require('./app_server/routes/chats');
+var mediaRouter = require('./app_server/routes/media');
 
 var app = express();
 app.use(passport.initialize());
@@ -59,6 +60,7 @@ app.use('/informationPoints', informationPointsRouter);
 app.use('/guides', guidesRouter);
 app.use('/parserdata', parserDataRouter);
 app.use('/chats', chatsRouter);
+app.use('/media', mediaRouter);
 
 // Catch 404 and forward to error handler
 app.use(function(req, res, next) {
