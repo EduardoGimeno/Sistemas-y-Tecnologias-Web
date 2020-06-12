@@ -164,7 +164,7 @@ parserDataController.apartamentos = async function(req, res) {
  * a los modelos utilizados y guarda el nuevo camping en la base
  * de datos
  */
-parserDataController.camping = async function(req, res) {
+parserDataController.campings = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);
         // Extraer todos
@@ -284,7 +284,7 @@ parserDataController.guias = async function(req, res) {
  * estructurado de AragonOpenData, lo parsea a los modelos utilizados 
  * y guarda el nuevo hotel en la base de datos
  */
-parserDataController.hotel = async function(req, res) {
+parserDataController.hoteles = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);
         // Extraer todos
@@ -349,7 +349,7 @@ parserDataController.hotel = async function(req, res) {
  * estructurado de AragonOpenData, lo parsea a los modelos utilizados 
  * y guarda la nueva oficina de turismo en la base de datos
  */
-parserDataController.oficinaTurismo = async function(req, res) {
+parserDataController.oficinasTurismo = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);
         // Extraer todos
@@ -401,7 +401,7 @@ parserDataController.oficinaTurismo = async function(req, res) {
  * estructurado de AragonOpenData, lo parsea a los modelos utilizados 
  * y guarda el nuevo punto de información en la base de datos
  */
-parserDataController.puntoInformacion = async function(req, res) {
+parserDataController.puntosInformacion = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);
         // Extraer tdos
@@ -449,7 +449,7 @@ parserDataController.puntoInformacion = async function(req, res) {
     }
 }
 
-parserDataController.refugio = async function(req, res) {
+parserDataController.refugios = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);
         //refugio
@@ -473,7 +473,7 @@ parserDataController.refugio = async function(req, res) {
  * estructurado de AragonOpenData, lo parsea a los modelos utilizados 
  * y guarda el nuevo restuarante en la base de datos
  */
-parserDataController.restaurante = async function(req, res) {
+parserDataController.restaurantes = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);
         // Extraer todos
