@@ -12,6 +12,7 @@ router.get('/getUser', userController.getUserToken)
 router.post('/login', passport.authenticate('json'), (req,res) =>{
     var token = jwtinterface.signtoken(req.user);
     var responss = "Bearer " + token;
+    if(req.user.activo == false || req.user.baneado == true){res.json({"error": "User not allow"})}
     res.json([{"token": responss},req.user]);
 });
 router.post('/add', userController.addUser);
