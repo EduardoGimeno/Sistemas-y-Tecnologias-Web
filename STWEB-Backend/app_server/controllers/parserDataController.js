@@ -155,7 +155,10 @@ parserDataController.campings = async function(req, res) {
 
         //Borrar todos
         campings.forEach(async function() {
+            try{
             await Camping.deleteOne({});
+            }catch (err){res.status(500);
+                res.json({error: err.message});}
         });
 
         // Obtener el JSON mal estructurado de la fuente de datos abiertos
