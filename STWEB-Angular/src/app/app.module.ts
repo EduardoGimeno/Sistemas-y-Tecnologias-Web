@@ -28,6 +28,13 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { RegistryGoogleComponent } from './registry-google/registry-google.component';
 import { AccionUsuarioComponent } from './accion-usuario/accion-usuario.component';
 import { MatDialogModule } from '@angular/material/dialog';
+
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatButtonModule} from '@angular/material/button';
+import { MatInputModule} from '@angular/material/input';
+import { FormsModule } from '@angular/forms';
+
+
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import {MAT_DIALOG_DEFAULT_OPTIONS} from '@angular/material/dialog';
 
@@ -59,6 +66,7 @@ export function provideConfig() {
     RegistryGoogleComponent,
     AccionUsuarioComponent
   ],
+  entryComponents: [AccionUsuarioComponent, IndexAdminComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

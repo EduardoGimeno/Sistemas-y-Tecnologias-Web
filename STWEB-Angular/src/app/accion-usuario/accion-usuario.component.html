@@ -1,23 +1,78 @@
-<h1 mat-dialog-title>Login</h1>
-<div mat-dialog-content>
-  <div class="row" style="height: 40%">
-    <div class="col" style="text-align: left; margin-top: auto;">
-      <label class="control-label" >Nombre de Usuario</label>
+<h1 style="text-align: center;"> Realizar cambios en el usuario</h1>
+<br>
+<br>
+  <div class="row" style="margin-left: 10%">
+    <div class="col-sm-6"style="text-align: center;">
+      <div class="row">
+        <div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
+          <div class="card-body">
+            <p class="card-text">Nombre:</p>
+            <p class="card-text">Apellidos:</p>
+            <p class="card-text">E-mail:</p>
+            <p class="card-text">Fecha de nacimiento:</p>
+            <p class="card-text">Provincia:</p>
+            <p class="card-text">País:</p>
+          </div>
+        </div>
+      </div>
+      <div class="row" style="text-align: left;">
+        <fieldset class="form-group">
+          <div class="form-check">
+            <label class="form-check-label">
+              <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios1" value="option1" checked="">
+              Inhabilitar cuenta (Una semana)
+            </label>
+          </div>
+          <div class="form-check">
+            <label class="form-check-label">
+              <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios2" value="option2">
+              Inhabilitar cuenta (Un mes)
+            </label>
+          </div>
+          <div class="form-check">
+            <label class="form-check-label">
+              <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios3" value="option3">
+              Inhabilitar cuenta (Un año)
+            </label>
+          </div>
+          <div class="form-check">
+            <label class="form-check-label">
+              <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios4" value="option4">
+              Eliminar cuenta
+            </label>
+          </div>
+          <div class="form-check">
+            <label class="form-check-label">
+              <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios5" value="option5">
+              Enviar email
+            </label>
+          </div>
+        </fieldset>
+      </div>
+
+      <br>
 
     </div>
-  </div>
-  <br>
-  <div class="row" style="height: 40%">
-    <div class="col" style="text-align: left; margin-top: auto;">
-      <label class="control-label" >Password</label>
+
+    <div class="col-sm-6">
+      <div class="row" style="text-align: left;">
+        <div class="form-group">
+          <label for="exampleTextarea">Cuerpo mensaje</label>
+          <textarea class="form-control" id="exampleTextarea" cols="40" rows="7"></textarea>
+        </div>
+      </div>
     </div>
   </div>
-  <br>
-</div>
 
-<div mat-dialog-actions>
-  <div class="col" style="text-align: center; margin-top: auto;">
-    <button mat-button (click)="onCancelClick()">Cancel</button>
-    <button mat-button>Acceder</button>
+<br>
+
+<div class="row" style="text-align: center;">
+  <div class="col" >
+    <button class="btn btn-primary btn-lg" routerLink="/index-admin">Volver</button>
+  </div>
+  <div class="col" style="text-align: left;">
+    <button type="button" class="btn btn-primary btn-lg">Aceptar</button>
   </div>
 </div>
+
+
