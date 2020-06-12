@@ -1,3 +1,8 @@
+/*
+ * ruralHouses.js
+ * Rutas para las operaciones del tipo de entrada alojamiento de turismo rural.
+ */
+
 var express = require('express');
 var ruralHouseController = require('../controllers/ruralHouseController');
 var router = express.Router();

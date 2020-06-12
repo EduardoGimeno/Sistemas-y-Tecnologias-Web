@@ -1,9 +1,7 @@
 /*
  * parserDataController.js
- * Las operaciones de este módulo se encargan de la gestión de los
- * datos de la aplicación, actualizándolos y guardándolos.
- * Hay una operación para cada tipo de entidad que se extrae de la
- * fuente de datos abiertos.
+ * Controlador para los operaciones de filtrado y
+ * guardado de datos.
  */
 
 var express = require('express');
@@ -27,7 +25,7 @@ checkToken = function(token) {
 /*
  * Elimina todos alojamientos de turismo rural de la base de datos,
  * importa el json mal estructurado de AragonOpenData, lo parsea
- * a los modelos utilizados y guarda el nuevo alojamiento en la base
+ * al modelo utilizado y guarda los nuevos alojamientos en la base
  * de datos
  */
 parserDataController.alojamientosTurismoRural = async function(req, res) {
@@ -87,7 +85,7 @@ parserDataController.alojamientosTurismoRural = async function(req, res) {
 /*
  * Elimina todos apartamentos de la base de datos,
  * importa el json mal estructurado de AragonOpenData, lo parsea
- * a los modelos utilizados y guarda el nuevo apartamento en la base
+ * al modelo utilizado y guarda los nuevos apartamentos en la base
  * de datos
  */
 parserDataController.apartamentos = async function(req, res) {
@@ -144,7 +142,7 @@ parserDataController.apartamentos = async function(req, res) {
 /*
  * Elimina todos campings de la base de datos,
  * importa el json mal estructurado de AragonOpenData, lo parsea
- * a los modelos utilizados y guarda el nuevo camping en la base
+ * al modelo utilizado y guarda los nuevos campings en la base
  * de datos
  */
 parserDataController.campings = async function(req, res) {
@@ -164,7 +162,6 @@ parserDataController.campings = async function(req, res) {
         // Obtener el JSON mal estructurado de la fuente de datos abiertos
         request('https://opendata.aragon.es/GA_OD_Core/download?' +
             'view_id=68&formato=json', function (error, response, body) {
-            console.log("HA LLEGADO");
             if (!error && response.statusCode == 200) {
                 // Adecuar los datos al modelo utilizado
                 test(JSON.parse(body)).forEach(async function(item) {
@@ -203,8 +200,8 @@ parserDataController.campings = async function(req, res) {
 
 /*
  * Elimina todos guías de la base de datos, importa el json mal 
- * estructurado de AragonOpenData, lo parsea a los modelos utilizados 
- * y guarda el nuevo guía en la base de datos
+ * estructurado de AragonOpenData, lo parsea al modelo utilizado 
+ * y guarda los nuevos guías en la base de datos
  */
 parserDataController.guias = async function(req, res) {
     try {
@@ -250,8 +247,8 @@ parserDataController.guias = async function(req, res) {
 
 /*
  * Elimina todos hoteles de la base de datos, importa el json mal 
- * estructurado de AragonOpenData, lo parsea a los modelos utilizados 
- * y guarda el nuevo hotel en la base de datos
+ * estructurado de AragonOpenData, lo parsea al modelo utilizado 
+ * y guarda los nuevos hoteles en la base de datos
  */
 parserDataController.hoteles = async function(req, res) {
     try {
@@ -298,7 +295,7 @@ parserDataController.hoteles = async function(req, res) {
                     await new Hotel(hotel).save();
                 });
                 res.status(200);
-                res.json("Alojamientos de turismo rural guardados");
+                res.json("Hoteles guardados");
             }
         });
     } catch (err) {
@@ -308,9 +305,9 @@ parserDataController.hoteles = async function(req, res) {
 }
 
 /*
- * Elimina todos oficinas turismo de la base de datos, importa el json mal 
- * estructurado de AragonOpenData, lo parsea a los modelos utilizados 
- * y guarda la nueva oficina de turismo en la base de datos
+ * Elimina todas oficinas turismo de la base de datos, importa el json mal 
+ * estructurado de AragonOpenData, lo parsea al modelo utilizado 
+ * y guarda las nuevas oficinas de turismo en la base de datos
  */
 parserDataController.oficinasTurismo = async function(req, res) {
     try {
@@ -353,8 +350,8 @@ parserDataController.oficinasTurismo = async function(req, res) {
 
 /*
  * Elimina todos puntos de información de la base de datos, importa el json mal 
- * estructurado de AragonOpenData, lo parsea a los modelos utilizados 
- * y guarda el nuevo punto de información en la base de datos
+ * estructurado de AragonOpenData, lo parsea al modelo utilizado 
+ * y guarda los nuevos puntos de información en la base de datos
  */
 parserDataController.puntosInformacion = async function(req, res) {
     try {
@@ -395,8 +392,8 @@ parserDataController.puntosInformacion = async function(req, res) {
 
 /*
  * Elimina todos refugios de la base de datos, importa el json mal 
- * estructurado de AragonOpenData, lo parsea a los modelos utilizados 
- * y guarda el nuevo refugio en la base de datos
+ * estructurado de AragonOpenData, lo parsea al modelo utilizado 
+ * y guarda los nuevos refugios en la base de datos
  */
 parserDataController.refugios = async function(req, res) {
     try {
@@ -448,8 +445,8 @@ parserDataController.refugios = async function(req, res) {
 
 /*
  * Elimina todos restuarantes de la base de datos, importa el json mal 
- * estructurado de AragonOpenData, lo parsea a los modelos utilizados 
- * y guarda el nuevo restuarante en la base de datos
+ * estructurado de AragonOpenData, lo parsea al modelo utilizado 
+ * y guarda los nuevos restuarantes en la base de datos
  */
 parserDataController.restaurantes = async function(req, res) {
     try {
@@ -523,4 +520,5 @@ test = function(datos) {
     });
     return retVal;
 }
+
 module.exports = parserDataController;

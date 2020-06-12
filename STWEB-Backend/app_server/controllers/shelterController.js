@@ -1,3 +1,9 @@
+/*
+ * shelterController.js
+ * Controlador de las operaciones de las entradas de tipo
+ * refugio.
+ */
+
 var express = require('express');
 var url = require('url');
 var Shelter = require('../models/refugio');
@@ -7,6 +13,10 @@ checkToken = function(token) {
     jwtinterface.verifytoken(token);
 }
 
+/*
+ * Obtener un listado de 20 refugios, indicando
+ * que 20 de ellos se quieren del listado total.
+ */
 shelterController.getShelters = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);
@@ -25,6 +35,9 @@ shelterController.getShelters = async function(req, res) {
     }
 }
 
+/*
+ * Contar el número total de refugios.
+ */
 shelterController.countShelters = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);
@@ -43,6 +56,9 @@ shelterController.countShelters = async function(req, res) {
     }
 }
 
+/*
+ * Añadir un nuevo refugio.
+ */
 shelterController.addShelter = async function(req, res) {
     var shelter = new Shelter(req.body);
     await shelter.save(function (err, newShelter) {
@@ -56,6 +72,9 @@ shelterController.addShelter = async function(req, res) {
     });
 }
 
+/*
+ * Obtener un refugio por su id.
+ */
 shelterController.getShelter = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);
@@ -74,6 +93,10 @@ shelterController.getShelter = async function(req, res) {
     }
 }
 
+/*
+ * Obtener un listado de refugios por provincia, comarca y municipio,
+ * indicando los 20 que se quieren del listado total que se obtiene.
+ */
 shelterController.searchShelters = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);

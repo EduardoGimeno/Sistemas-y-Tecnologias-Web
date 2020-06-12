@@ -1,3 +1,9 @@
+/*
+ * apartmentController.js
+ * Controlador de las operaciones de las entradas de tipo
+ * apartamento.
+ */
+
 var express = require('express');
 var url = require('url');
 var Apartment = require('../models/apartamento');
@@ -7,6 +13,10 @@ checkToken = function(token) {
     jwtinterface.verifytoken(token);
 }
 
+/*
+ * Obtener un listado de 20 apartamentos, indicando
+ * que 20 de ellos se quieren del listado total.
+ */
 apartmentController.getApartments = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);
@@ -26,6 +36,9 @@ apartmentController.getApartments = async function(req, res) {
     }
 }
 
+/*
+ * Contar el número total de apartamentos.
+ */
 apartmentController.countApartments = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);
@@ -44,6 +57,9 @@ apartmentController.countApartments = async function(req, res) {
     }
 }
 
+/*
+ * Añadir un nuevo apartamento.
+ */
 apartmentController.addApartment = async function(req, res) {
     var apartment = new (req.body);
     await apartment.save(function (err, newApartment) {
@@ -57,6 +73,9 @@ apartmentController.addApartment = async function(req, res) {
     });
 }
 
+/*
+ * Obtener un apartamento por su id.
+ */
 apartmentController.getApartment = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);
@@ -75,6 +94,10 @@ apartmentController.getApartment = async function(req, res) {
     }
 }
 
+/*
+ * Obtener un listado de apartamentos por provincia, comarca y municipio,
+ * indicando los 20 que se quieren del listado total que se obtiene.
+ */
 apartmentController.searchApartment = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);

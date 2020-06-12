@@ -93,14 +93,16 @@ export class EntryComponent implements OnInit {
           this.entryService.getPuntoInformacion(id).subscribe(puntoInformacion => {
             this.entry = new PuntoInformacion(puntoInformacion);
           });
-        } else if (tipoEntry == 'guia') {
+        } else if (tipoEntry == 'gui') {
         this.entryService.getGuia(id).subscribe(guia => {
           this.entry = new Guia(guia);
         });
       }
+      if (tipoEntry != 'gui') {
+        this.address = this.entry.municipio + " " + this.entry.direccion;
+        this.showLocation();
+      }
     });
-    this.address = this.entry.municipio + " " + this.entry.direccion;
-    this.showLocation();
   }
 
   numberReturn(length){

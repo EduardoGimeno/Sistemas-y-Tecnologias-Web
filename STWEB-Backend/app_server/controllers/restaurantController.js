@@ -1,3 +1,9 @@
+/*
+ * restaurantController.js
+ * Controlador de las operaciones de las entradas de tipo
+ * restaurante.
+ */
+
 var express = require('express');
 var url = require('url');
 var Restaurant = require('../models/restaurante');
@@ -7,6 +13,10 @@ checkToken = function(token) {
     jwtinterface.verifytoken(token);
 }
 
+/*
+ * Obtener un listado de 20 restaurantes, indicando
+ * que 20 de ellos se quieren del listado total.
+ */
 restaurantController.getRestaurants = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);
@@ -26,6 +36,9 @@ restaurantController.getRestaurants = async function(req, res) {
     }
 }
 
+/*
+ * Contar el número total de restaurantes.
+ */
 restaurantController.countRestaurants = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);
@@ -44,6 +57,9 @@ restaurantController.countRestaurants = async function(req, res) {
     }
 }
 
+/*
+ * Añadir un nuevo restuarante.
+ */
 restaurantController.addRestaurant = async function(req, res) {
     var restaurant = new Restaurant(req.body);
     await restaurant.save(function (err, newRestaurant) {
@@ -57,6 +73,9 @@ restaurantController.addRestaurant = async function(req, res) {
     });
 }
 
+/*
+ * Obtener un restuarante por su id.
+ */
 restaurantController.getRestaurant = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);
@@ -75,6 +94,11 @@ restaurantController.getRestaurant = async function(req, res) {
     }
 }
 
+/*
+ * Obtener un listado de restuarantes por provincia, comarca, municipio y
+ * rango de categoría, indicando los 20 que se quieren del listado total 
+ * que se obtiene.
+ */
 restaurantController.searchRestaurants = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);

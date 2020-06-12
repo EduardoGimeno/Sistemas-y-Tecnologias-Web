@@ -1,3 +1,9 @@
+/*
+ * informationPointController.js
+ * Controlador de las operaciones de las entradas de tipo
+ * punto de información.
+ */
+
 var express = require('express');
 var url = require('url');
 var InformationPoint = require('../models/puntoInformacion');
@@ -7,6 +13,10 @@ checkToken = function(token) {
     jwtinterface.verifytoken(token);
 }
 
+/*
+ * Obtener un listado de 20 puntos de información, indicando
+ * que 20 de ellos se quieren del listado total.
+ */
 informationPointController.getInformationPoints = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);
@@ -26,6 +36,9 @@ informationPointController.getInformationPoints = async function(req, res) {
     }
 }
 
+/*
+ * Contar el número total de puntos de infromación.
+ */
 informationPointController.countInformationPoints = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);
@@ -44,6 +57,9 @@ informationPointController.countInformationPoints = async function(req, res) {
     }
 }
 
+/*
+ * Añadir un nuevo punto de información.
+ */
 informationPointController.addInformationPoint = async function(req, res) {
     var informationPoint = new InformationPoint(req.body);
     await informationPoint.save(function (err, newInformationPoint) {
@@ -57,6 +73,9 @@ informationPointController.addInformationPoint = async function(req, res) {
     });
 }
 
+/*
+ * Obtener un punto de información por su id.
+ */
 informationPointController.getInformationPoint = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);
@@ -75,6 +94,10 @@ informationPointController.getInformationPoint = async function(req, res) {
     }
 }
 
+/*
+ * Obtener un listado de puntos de información por provincia, comarca y municipio,
+ * indicando los 20 que se quieren del listado total que se obtiene.
+ */
 informationPointController.searchInformationPoints = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);

@@ -1,3 +1,8 @@
+/*
+ * touristOffices.js
+ * Rutas para las operaciones del tipo de entrada oficina de turismo.
+ */
+
 var express = require('express');
 var touristOfficeController = require('../controllers/touristOfficeController');
 var router = express.Router();

@@ -1,3 +1,8 @@
+/*
+ * resturante.js
+ * Modelo de datos para las entradas de tipo resturante.
+ */
+
 const mongoose = require( 'mongoose' );
 
 const restuaranteSchema = new mongoose.Schema({

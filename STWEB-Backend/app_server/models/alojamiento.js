@@ -1,3 +1,8 @@
+/*
+ * alojamiento.js
+ * Modelo de datos común para las entradas de tipo alojamiento.
+ */
+
 const mongoose = require( 'mongoose' );
 
 const alojamientoSchema = new mongoose.Schema({
