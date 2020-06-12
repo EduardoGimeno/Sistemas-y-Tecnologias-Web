@@ -16,4 +16,8 @@ jwtinterface.verifytoken = function(token){
     }
 }
 
+jwtinterface.decodetoken = function(token){
+    return jwt.decode(token);
+}
+
 module.exports = jwtinterface

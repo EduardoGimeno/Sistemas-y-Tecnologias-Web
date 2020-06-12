@@ -8,6 +8,18 @@ checkToken = function(token) {
     jwtinterface.verifytoken(token);
 }
 
+userController.getUserToken = async function(req,res) {
+    try {
+        //checkToken(req.headers.authentication);
+        var perPage = req.param('token');
+        console.log(jwtinterface.decodetoken(token))
+        res.json("token");
+    } catch(err) {
+        res.status(500);
+        res.json({error: err.message});
+    }
+}
+
 userController.getUsers = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);
