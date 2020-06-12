@@ -3,6 +3,7 @@ var url = require('url');
 var request = require('request');
 var Guide = require('../models/guia');
 var Apartment = require('../models/apartamento');
+var Puntoinformacion = require('../models/puntoInformacion');
 var parserDataController = {};
 
 checkToken = function(token) {
@@ -159,9 +160,18 @@ parserDataController.puntoInformacion = async function(req, res) {
             'view_id=71&formato=json', function (error, response, body) {
             console.log("HA LLEGADO");
             if (!error && response.statusCode == 200) {
-                //importedJSON = body;
-                //console.log(body);
-                importedJSON = JSON.parse(body);
+                test(JSON.parse(body)).forEach(async function(item) {
+                    var puntoinformacion = {
+                        signatura: item.CODIGO,
+                        nombre: item.NOMBRE,
+                        direccion: item.DIRECCION_ESTABLECIMIENTO,
+                        provincia: item.NOMBRE_PROVINCIA,
+                        municipio: item.LOCA_MUN
+                    };
+                    await new Puntoinformacion(puntoinformacion).save();
+                })
+                res.status(200);
+                res.json("result");
             }
         })
     } catch (err) {
