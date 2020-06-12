@@ -28,12 +28,6 @@ export class ChatUserComponent implements OnInit {
     this.changeConversacion(0);
   }
 
-  createChat() {
-    this.chatService.addChat("Entrada", "Usuario","entradaexample@gmail.com",
-        "715891@unizar.es").subscribe(data => {
-      this.conversaciones.push(<Conversacion>data);
-    })
-  }
 
   public changeConversacion(i: number) {
     for (let conversacion of this.conversaciones) {
