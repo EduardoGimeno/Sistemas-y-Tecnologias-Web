@@ -129,7 +129,7 @@ userController.getUser = async function(req, res) {
  */
 userController.updateUser = async function(req, res) {
     try {
-        //checkToken(req.headers.authentication);
+        checkToken(req.headers.authentication);
         var user = new User(req.body);
         const filter = { email: user.email };
         await User.findOneAndUpdate(filter, req.body, function(err) {

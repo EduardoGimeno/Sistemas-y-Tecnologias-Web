@@ -2,8 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="109a231d-e49a-49c0-9fbe-e835707bb50d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../STWEB-Angular/src/app/chat-user/chat-user.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../STWEB-Angular/src/app/chat-user/chat-user.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app_server/controllers/chatController.js" beforeDir="false" afterPath="$PROJECT_DIR$/app_server/controllers/chatController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../STWEB-Angular/src/app/current-user.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../STWEB-Angular/src/app/current-user.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../STWEB-Angular/src/app/entities/usuario.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../STWEB-Angular/src/app/entities/usuario.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../STWEB-Angular/src/app/services/entry-service.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../STWEB-Angular/src/app/services/entry-service.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../STWEB-Angular/src/app/services/user-service.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../STWEB-Angular/src/app/services/user-service.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

@@ -11,7 +11,7 @@ export class CurrentUserService {
 
   private user: UserApp = null;
 
-  private token: string;
+  token: string;
 
   constructor(public router: Router, private cookieService: CookieService,
               public userService: UserService) {
@@ -33,7 +33,11 @@ export class CurrentUserService {
       this.user = <UserApp>user[1];
       this.cookieService.set("session", "open");
       this.cookieService.set("token", this.token);
-      this.router.navigateByUrl('/index-user');
+      if (this.user.admin) {
+        this.router.navigateByUrl('/index-admin');
+      } else {
+        this.router.navigateByUrl('/index-user');
+      }
     });
   }
 
