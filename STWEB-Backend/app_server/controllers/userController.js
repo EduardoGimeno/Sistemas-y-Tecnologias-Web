@@ -132,7 +132,7 @@ userController.updateUser = async function(req, res) {
         //checkToken(req.headers.authentication);
         var user = new User(req.body);
         const filter = { email: user.email };
-        await User.findOneAndUpdate(filter, user, function(err) {
+        await User.findOneAndUpdate(filter, req.body, function(err) {
             if (err) {
                 res.status(500);
                 res.json({error: err.message});

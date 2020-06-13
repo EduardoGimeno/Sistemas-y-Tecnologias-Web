@@ -27,7 +27,7 @@ export class IndexUserComponent implements OnInit {
   calidadString: string = "Estrellas";
 
   page = 1;
-  numPages = 10;
+  numPages = 1;
   numTotal = 0;
 
   busquedaConFiltros: boolean = false;
@@ -56,6 +56,7 @@ export class IndexUserComponent implements OnInit {
     if (index == 0) {
       this.entryService.getCount("hotels").subscribe(num => {
         this.numTotal = <number>num;
+        this.numPages = (this.numTotal / 20);
       });
       this.entryService.getHoteles(this.page - 1).subscribe(data => {
         for (let h of <[]>data) {
@@ -66,6 +67,7 @@ export class IndexUserComponent implements OnInit {
     } else if (index == 1) {
       this.entryService.getCount("ruralHouses").subscribe(num => {
         this.numTotal = <number>num;
+        this.numPages = (this.numTotal / 20);
       });
       this.entryService.getTurismosRurales(this.page - 1).subscribe(data => {
         for (let a of <[]>data) {
@@ -76,6 +78,7 @@ export class IndexUserComponent implements OnInit {
     } else if (index == 2) {
       this.entryService.getCount("apartments").subscribe(num => {
         this.numTotal = <number>num;
+        this.numPages = (this.numTotal / 20);
         console.log("TOTAL: " + num);
       });
       this.entryService.getApartamentos(this.page - 1).subscribe(data => {
@@ -86,6 +89,7 @@ export class IndexUserComponent implements OnInit {
     } else if (index == 3) {
       this.entryService.getCount("campings").subscribe(num => {
         this.numTotal = <number>num;
+        this.numPages = (this.numTotal / 20);
       });
       this.entryService.getCampings(this.page - 1).subscribe(data => {
         for (let c of <[]>data) {
@@ -95,6 +99,7 @@ export class IndexUserComponent implements OnInit {
     } else if (index == 4) {
       this.entryService.getCount("shelters").subscribe(num => {
         this.numTotal = <number>num;
+        this.numPages = (this.numTotal / 20);
       });
       this.entryService.getRefugios(this.page - 1).subscribe(data => {
         for (let r of <[]>data) {
@@ -104,6 +109,7 @@ export class IndexUserComponent implements OnInit {
     } else if (index == 5) {
       this.entryService.getCount("restaurants").subscribe(num => {
         this.numTotal = <number>num;
+        this.numPages = (this.numTotal / 20);
       });
       this.entryService.getRestaurantes(this.page - 1).subscribe(data => {
         for (let r of <[]>data) {
@@ -114,6 +120,7 @@ export class IndexUserComponent implements OnInit {
     } else if (index == 6) {
       this.entryService.getCount("touristOffices").subscribe(num => {
         this.numTotal = <number>num;
+        this.numPages = (this.numTotal / 20);
       });
       this.entryService.getOficinasTurismo(this.page - 1).subscribe(data => {
         for (let o of <[]>data) {
@@ -123,6 +130,7 @@ export class IndexUserComponent implements OnInit {
     } else if (index == 7) {
       this.entryService.getCount("informationPoints").subscribe(num => {
         this.numTotal = <number>num;
+        this.numPages = (this.numTotal / 20);
       });
       this.entryService.getPuntosInformacion(this.page - 1).subscribe(data => {
         for (let p of <[]>data) {
@@ -132,6 +140,7 @@ export class IndexUserComponent implements OnInit {
     } else if (index == 8) {
       this.entryService.getCount("guides").subscribe(num => {
         this.numTotal = <number>num;
+        this.numPages = (this.numTotal / 20);
       });
       this.entryService.getGuias(this.page - 1).subscribe(data => {
         for (let g of <[]>data) {
@@ -142,7 +151,6 @@ export class IndexUserComponent implements OnInit {
       this.filter(0);
     }
     this.disableSelections(index);
-    this.numPages = (this.numTotal / 20);
   }
 
   navigateToEntry(entry) {
@@ -186,7 +194,7 @@ export class IndexUserComponent implements OnInit {
 
   search() {
     this.busquedaConFiltros = true;
-
+    this.showEntries = [];
     let provincia = <string>$('#selectionProvincia').val();
     let municipio = <string>$('#selectionMunicipio').val();
     let comarca = <string>$('#selectionComarca').val();

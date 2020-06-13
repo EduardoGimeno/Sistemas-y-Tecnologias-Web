@@ -48,13 +48,13 @@ export class EntryComponent implements OnInit {
 
   showLocation() {
       this.loading = true;
-      this.geocodeService.geocodeAddress(this.address)
+      /*this.geocodeService.geocodeAddress(this.address)
       .subscribe((location: Location) => {
           this.location = location;
           this.loading = false;
           this.ref.detectChanges();
         }
-      );
+      );*/
   }
 
   ngOnInit(): void {

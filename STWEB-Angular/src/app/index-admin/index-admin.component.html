@@ -71,25 +71,25 @@
       </div>
     </div>
 
-    <div class="card bg-light mb-3" style="width: 90%; display: inline-flex; margin-top: 4vh">
+    <div *ngFor="let usuario of usuarios" class="card bg-light mb-3" style="width: 90%; display: inline-flex; margin-top: 4vh">
 
       <div class="card-header" style="border-bottom: 1vh solid #559ffa; text-align: left">
-        <h5 class="card-title">Nombre Apellidos</h5>
+        <h5 class="card-title">{{usuario.nombre}} {{usuario.apellidos}}</h5>
       </div>
 
       <div class="card-body">
         <div class="row">
           <div style="width: 30%; text-align: center; margin: auto">
-            <h6>E-mail</h6>
+            <h6>{{usuario.email}}</h6>
           </div>
           <div style="width: 20%; text-align: center; margin: auto">
-            <h6>Provincia</h6>
+            <h6>{{usuario.provincia}}</h6>
           </div>
           <div style="width: 20%; text-align: center; margin: auto">
-            <h6>País</h6>
+            <h6>{{usuario.pais}}</h6>
           </div>
           <div style="width: 30%; text-align: center">
-            <button type="button" routerLink="/accion-usuario" class="btn btn-primary" style="width: 90%">
+            <button type="button" (click)="accionUsuario()" class="btn btn-primary" style="width: 90%">
               <svg class="bi bi-arrow-right" width="3em" height="3em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" d="M10.146 4.646a.5.5 0 01.708 0l3 3a.5.5 0 010 .708l-3 3a.5.5 0 01-.708-.708L12.793 8l-2.647-2.646a.5.5 0 010-.708z" clip-rule="evenodd"/>
                 <path fill-rule="evenodd" d="M2 8a.5.5 0 01.5-.5H13a.5.5 0 010 1H2.5A.5.5 0 012 8z" clip-rule="evenodd"/>
@@ -101,92 +101,24 @@
 
     </div>
 
-    <div class="card bg-light mb-3" style="width: 90%; display: inline-flex">
+    <div class="row" style="margin-top: 4%; width: 30%; text-align: center; display: inline-flex">
 
-      <div class="card-header" style="border-bottom: 1vh solid #559ffa; text-align: left">
-        <h5 class="card-title">Nombre Apellidos</h5>
+      <div class="col-4">
+        <label *ngIf="page > 1" style="font-size: 15px; text-align: center" (click)="paginaAnterior()">
+          [{{ page - 1 }}]
+        </label>
       </div>
 
-      <div class="card-body">
-        <div class="row">
-          <div style="width: 30%; text-align: center; margin: auto">
-            <h6>E-mail</h6>
-          </div>
-          <div style="width: 20%; text-align: center; margin: auto">
-            <h6>Provincia</h6>
-          </div>
-          <div style="width: 20%; text-align: center; margin: auto">
-            <h6>País</h6>
-          </div>
-          <div style="width: 30%; text-align: center">
-            <button type="button" routerLink="/accion-usuario" class="btn btn-primary" style="width: 90%">
-              <svg class="bi bi-arrow-right" width="3em" height="3em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" d="M10.146 4.646a.5.5 0 01.708 0l3 3a.5.5 0 010 .708l-3 3a.5.5 0 01-.708-.708L12.793 8l-2.647-2.646a.5.5 0 010-.708z" clip-rule="evenodd"/>
-                <path fill-rule="evenodd" d="M2 8a.5.5 0 01.5-.5H13a.5.5 0 010 1H2.5A.5.5 0 012 8z" clip-rule="evenodd"/>
-              </svg>
-            </button>
-          </div>
-        </div>
+      <div class="col-4">
+        <label style="font-size: 20px; text-align: center">
+          [{{ page }}]
+        </label>
       </div>
 
-    </div>
-
-    <div class="card bg-light mb-3" style="width: 90%; display: inline-flex">
-
-      <div class="card-header" style="border-bottom: 1vh solid #559ffa; text-align: left">
-        <h5 class="card-title">Nombre Apellidos</h5>
-      </div>
-
-      <div class="card-body">
-        <div class="row">
-          <div style="width: 30%; text-align: center; margin: auto">
-            <h6>E-mail</h6>
-          </div>
-          <div style="width: 20%; text-align: center; margin: auto">
-            <h6>Provincia</h6>
-          </div>
-          <div style="width: 20%; text-align: center; margin: auto">
-            <h6>País</h6>
-          </div>
-          <div style="width: 30%; text-align: center">
-            <button type="button" routerLink="/accion-usuario" class="btn btn-primary" style="width: 90%">
-              <svg class="bi bi-arrow-right" width="3em" height="3em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" d="M10.146 4.646a.5.5 0 01.708 0l3 3a.5.5 0 010 .708l-3 3a.5.5 0 01-.708-.708L12.793 8l-2.647-2.646a.5.5 0 010-.708z" clip-rule="evenodd"/>
-                <path fill-rule="evenodd" d="M2 8a.5.5 0 01.5-.5H13a.5.5 0 010 1H2.5A.5.5 0 012 8z" clip-rule="evenodd"/>
-              </svg>
-            </button>
-          </div>
-        </div>
-      </div>
-
-    </div>
-
-    <div class="card bg-light mb-3" style="width: 90%; display: inline-flex">
-
-      <div class="card-header" style="border-bottom: 1vh solid #559ffa; text-align: left">
-        <h5 class="card-title">Nombre Apellidos</h5>
-      </div>
-
-      <div class="card-body">
-        <div class="row">
-          <div style="width: 30%; text-align: center; margin: auto">
-            <h6>E-mail</h6>
-          </div>
-          <div style="width: 20%; text-align: center; margin: auto">
-            <h6>Provincia</h6>
-          </div>
-          <div style="width: 20%; text-align: center; margin: auto">
-            <h6>País</h6>
-          </div>
-          <div style="width: 30%; text-align: center">
-            <button type="button" routerLink="/accion-usuario" class="btn btn-primary" style="width: 90%">
-              <svg class="bi bi-arrow-right" width="3em" height="3em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" d="M10.146 4.646a.5.5 0 01.708 0l3 3a.5.5 0 010 .708l-3 3a.5.5 0 01-.708-.708L12.793 8l-2.647-2.646a.5.5 0 010-.708z" clip-rule="evenodd"/>
-                <path fill-rule="evenodd" d="M2 8a.5.5 0 01.5-.5H13a.5.5 0 010 1H2.5A.5.5 0 012 8z" clip-rule="evenodd"/>
-              </svg>
-            </button>
-          </div>
-        </div>
+      <div class="col-4">
+        <label *ngIf="page < numPages" style="font-size: 15px; text-align: center" (click)="paginaSiguiente()">
+          [{{ page + 1 }}]
+        </label>
       </div>
 
     </div>
@@ -218,24 +150,24 @@
       <div class="input-group-prepend">
         <span class="input-group-text" id="basic-addon1">Nombre</span>
       </div>
-      <input type="text" class="form-control" aria-label="Name" aria-describedby="basic-addon1">
+      <input type="text" id="nombreInput" class="form-control" aria-label="Name" aria-describedby="basic-addon1">
     </div>
 
     <div class="input-group mb-3">
       <div class="input-group-prepend">
         <span class="input-group-text" id="basic-addon2">Apellidos</span>
       </div>
-      <input type="text" class="form-control" aria-label="Surname" aria-describedby="basic-addon2">
+      <input type="text" id="apellidoInput" class="form-control" aria-label="Surname" aria-describedby="basic-addon2">
     </div>
 
     <div class="input-group mb-3">
       <div class="input-group-prepend">
         <span class="input-group-text" id="basic-addon3">E-mail</span>
       </div>
-      <input type="text" class="form-control" aria-label="email" aria-describedby="basic-addon3">
+      <input type="text" id="emailInput" class="form-control" aria-label="email" aria-describedby="basic-addon3">
     </div>
 
-    <button type="button" class="btn btn-primary" style="width: 60%; margin: auto">
+    <button type="button" (click)="filter()" class="btn btn-primary" style="width: 60%; margin: auto">
       <h2>Buscar</h2>
     </button>
 

@@ -36,7 +36,8 @@ export class RegistryGoogleComponent implements OnInit {
     }
   }
 
-  registroGoogle(nacimiento: Date, telefono: string, pais: string, provincia: string) {
+
+  registroGoogle() {
     //Completar confirmación de registroGoogle
     this.user = this.currentUser.checkLog();
     let fecha: Date = new Date();
@@ -48,7 +49,7 @@ export class RegistryGoogleComponent implements OnInit {
     this.user.pais = <string>$("#pais").children("option:selected").text();
     this.user.provincia = <string>$("#provincia").val();
     this.currentUser.updateUser(this.user);
-    this.router.navigate(["/index-user"]);
+    this.currentUser.logIn(this.user.email, this.user.contrasena);
   }
 
 }

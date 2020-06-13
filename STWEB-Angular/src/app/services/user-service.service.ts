@@ -22,6 +22,10 @@ export class UserService {
     return this.http.post( this.urlApp + '/login', JSON.stringify(json), options);
   }
 
+  getCount() {
+    return this.http.get(this.urlApp + "/count");
+  }
+
   public loginGoogle() {
     return this.http.get( this.urlAppGoogle );
   }
@@ -30,7 +34,9 @@ export class UserService {
     return this.http.post( this.urlApp + '/add/', user);
   }
 
-  public getUsers(){
+  public getUsers(page){
+    let params = new HttpParams()
+      .set("page", page.toString());
     return this.http.get(this.urlApp + '/');
   }
 
