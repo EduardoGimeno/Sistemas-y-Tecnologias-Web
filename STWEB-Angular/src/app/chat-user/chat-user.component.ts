@@ -13,19 +13,20 @@ import * as $ from 'jquery';
 export class ChatUserComponent implements OnInit {
 
   user: UserApp;
-  conversaciones: Conversacion[];
-  conversacionActive: Conversacion;
+  conversaciones: Conversacion[] = [];
+  conversacionActive: Conversacion = new Conversacion();
   conversacionActiveID: number;
 
   constructor(public currentUser: CurrentUserService, public chatService: ChatService) { }
 
   ngOnInit(): void {
     this.user = this.currentUser.checkLog();
-    this.chatService.getChat("715891@unizar.es").subscribe(data => {
+    this.chatService.getChat(this.user.email).subscribe(data => {
       this.conversaciones = <Conversacion[]>data;
+      this.conversaciones[0].active = 'active';
+      this.changeConversacion(0);
+      //this.conversaciones[0].mensajes.length
     });
-    this.conversaciones[0].active = 'active';
-    this.changeConversacion(0);
   }
 
 
@@ -36,13 +37,14 @@ export class ChatUserComponent implements OnInit {
     this.conversaciones[i].active = 'active';
     this.conversacionActive = this.conversaciones[i];
     this.conversacionActiveID = i;
+    console.log(this.conversacionActive);
   }
 
   public addMessage() {
     let newMessage = {
       texto: $('#text').text(),
-      emisor: 'user',
-      hora: new Date(Date.now())
+      emisor: this.user.nombre,
+      hora: new Date(Date.now()).toString()
     }
     this.conversaciones[this.conversacionActiveID].mensajes.push(newMessage);
     this.chatService.updateChatEntry(this.conversaciones[this.conversacionActiveID]).subscribe(data => {

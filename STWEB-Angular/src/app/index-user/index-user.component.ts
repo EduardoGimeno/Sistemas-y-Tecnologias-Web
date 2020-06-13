@@ -38,7 +38,7 @@ export class IndexUserComponent implements OnInit {
   ngOnInit(): void {
     this.user = this.currentUser.checkLog();
     this.disableSelections(0);
-    this.filter(0);
+    this.filter(0, false);
   }
 
   numberReturn(length){
@@ -47,10 +47,13 @@ export class IndexUserComponent implements OnInit {
 
   selection(event) {
     this.selectedIndex = event.target.selectedIndex;
-    this.filter(this.selectedIndex);
+    this.filter(this.selectedIndex, true);
   }
 
-  filter(index) {
+  filter(index, click:boolean) {
+    if (click) {
+    this.page = 1;
+    }
     this.busquedaConFiltros = false;
     this.showEntries = [];
     if (index == 0) {
@@ -148,7 +151,7 @@ export class IndexUserComponent implements OnInit {
         }
       });
     } else {
-      this.filter(0);
+      this.filter(0, true);
     }
     this.disableSelections(index);
   }
@@ -192,7 +195,10 @@ export class IndexUserComponent implements OnInit {
 
   }
 
-  search() {
+  search(click:boolean) {
+    if (click) {
+      this.page = 1;
+    }
     this.busquedaConFiltros = true;
     this.showEntries = [];
     let provincia = <string>$('#selectionProvincia').val();
@@ -264,7 +270,7 @@ export class IndexUserComponent implements OnInit {
       });
     } else {
       this.selectedIndex = 0;
-      this.search();
+      this.search(true);
     }
 
   }
@@ -273,18 +279,18 @@ export class IndexUserComponent implements OnInit {
   paginaSiguiente() {
     this.page = this.page + 1;
     if (!this.busquedaConFiltros) {
-      this.filter(this.selectedIndex);
+      this.filter(this.selectedIndex, false);
     } else {
-      this.search();
+      this.search(false);
     }
   }
 
   paginaAnterior() {
     this.page = this.page - 1;
     if (!this.busquedaConFiltros) {
-      this.filter(this.selectedIndex);
+      this.filter(this.selectedIndex, false);
     } else {
-      this.search();
+      this.search(false);
     }
   }
 

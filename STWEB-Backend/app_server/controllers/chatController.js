@@ -59,8 +59,11 @@ chatController.addChat = async function(req, res) {
 chatController.updateChatEntry = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);
-        var chat = new Chat(req.body);
-        await Chat.findOneAndUpdate(chat.id, chat, function(err) {
+        var chat = req.body;
+        var id = req.body._id;
+        delete req.body._id;
+        console.log(req.body);
+        await Chat.findOneAndUpdate(id, req.body, function(err) {
             if (err) {
                 res.status(500);
                 res.json({error: err.message});
@@ -68,7 +71,7 @@ chatController.updateChatEntry = async function(req, res) {
                 var text = "Tiene un nuevo mensaje en la aplicacion, " +
                 "puede verlo a traves del siguiente enlace: " +
                 "https://turismoaragon.herokuapp.com/chat-entry?id=" +
-                chat.id;
+                id;
                 const send = require('gmail-send')({
                     user: 'descubrearagonSTW@gmail.com',
                     pass: 'STW-1920',
@@ -97,8 +100,13 @@ chatController.updateChatEntry = async function(req, res) {
  * Actualizar un chat por parte de una entrada externa.
  */
 chatController.updateChatUser = async function(req, res) {
-    var chat = new Chat(req.body);
-    await Chat.findOneAndUpdate(chat.id, chat, function(err) {
+    //var chat = new Chat(req.body);
+
+    var chat = req.body;
+    var id = req.body._id;
+    delete req.body._id;
+    console.log(req.body);
+    await Chat.findOneAndUpdate(id, req.body, function(err) {
         if (err) {
             res.status(500);
             res.json({error: err.message});

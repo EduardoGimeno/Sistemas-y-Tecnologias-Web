@@ -17,6 +17,8 @@ export class IndexAdminComponent implements OnInit {
 
   usuarios: UserApp[] = [];
 
+  busquedaConFiltros: boolean = false;
+
   constructor(public userService: UserService) { }
 
   ngOnInit(): void {
@@ -28,21 +30,32 @@ export class IndexAdminComponent implements OnInit {
   }
 
   search() {
+    this.usuarios = [];
     this.userService.getUsers(this.page - 1).subscribe(usuarios => {
       this.usuarios = <UserApp[]>usuarios;
-      console.log(usuarios);
-      console.log(this.usuarios);
     });
   }
 
-  filter() {
-
+  filter(click: boolean) {
+    if (click) {
+      this.page = 0;
+    }
+    this.usuarios = [];
+    let nombre = <string>$('#nombreInput').val();
+    let apellidos = <string>$('#apellidoInput').val();
+    let email = <string>$('#emailInput').val();
+    this.userService.searchUsers(nombre, apellidos, email, this.page).subscribe(usuarios => {
+      this.usuarios = <UserApp[]>usuarios;
+      if (this.usuarios.length == 20) {
+        this.numPages = this.page + 1;
+      }
+    })
   }
 
   paginaSiguiente() {
     this.page = this.page + 1;
     if (!this.busquedaConFiltros) {
-      this.filter(this.selectedIndex);
+      this.filter(false);
     } else {
       this.search();
     }
@@ -51,13 +64,17 @@ export class IndexAdminComponent implements OnInit {
   paginaAnterior() {
     this.page = this.page - 1;
     if (!this.busquedaConFiltros) {
-      this.filter(this.selectedIndex);
+      this.filter(false);
     } else {
       this.search();
     }
   }
 
   accionUsuario() {
+
+  }
+
+  logOut() {
 
   }
 

@@ -51,6 +51,15 @@ export class UserService {
     return this.http.delete('localhost:3000/delete/' + id);
   }
 
+  searchUsers(nombre, apellidos, email, page) {
+    let params = new HttpParams()
+      .set("nombre", nombre)
+      .set("surname", apellidos)
+      .set("email", email)
+      .set("page", page);
+    return this.http.get(this.urlApp + '/search', {params:params});
+  }
+
   public sendTokenToBackEnd(token: string){
       this.http.post('localhost:3000/google',
             {

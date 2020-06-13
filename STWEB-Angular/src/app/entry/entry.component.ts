@@ -1,7 +1,7 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { UserApp } from '../entities/usuario';
 import { CurrentUserService } from "../current-user.service";
-import { ActivatedRoute } from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import { EntryService } from "../services/entry-service.service";
 
 
@@ -40,20 +40,21 @@ export class EntryComponent implements OnInit {
 
   constructor(public currentUser: CurrentUserService, private activatedRoute: ActivatedRoute,
               public entryService: EntryService,  private geocodeService: GeocodeService,
-              private ref: ChangeDetectorRef, public chatService: ChatService) {
+              private ref: ChangeDetectorRef, public chatService: ChatService,
+              public route: Router) {
 
 
   }
 
   showLocation() {
       this.loading = true;
-      /*this.geocodeService.geocodeAddress(this.address)
+      this.geocodeService.geocodeAddress(this.address)
       .subscribe((location: Location) => {
           this.location = location;
           this.loading = false;
           this.ref.detectChanges();
         }
-      );*/
+      );
   }
 
   ngOnInit(): void {
@@ -117,8 +118,7 @@ export class EntryComponent implements OnInit {
         } else if (tipoEntry == 'gui') {
         this.entryService.getGuia(id).subscribe(guia => {
           this.entry = new Guia(guia);
-          this.address = this.entry.municipio + " " + this.entry.direccion;
-          this.showLocation();
+          console.log(this.entry);
         });
       }
     });
@@ -133,6 +133,7 @@ export class EntryComponent implements OnInit {
       this.user.email).subscribe(data => {
       console.log(data);
     });
+    this.route.navigate(["/chat-user"]);
   }
 
 }

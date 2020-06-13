@@ -24,6 +24,7 @@ export class ChatEntryComponent implements OnInit {
     if (this.id != null) {
       this.chatService.getChatById(this.id).subscribe(data => {
         this.conversacion = <Conversacion>data;
+        console.log(this.conversacion);
       });
     }
   }
@@ -31,10 +32,11 @@ export class ChatEntryComponent implements OnInit {
   public addMessage() {
     let newMessage = {
       texto: $('#text').text(),
-      emisor: 'entry',
-      hora: new Date(Date.now())
+      emisor: this.conversacion.nomEntrada,
+      hora: new Date(Date.now()).toString()
     }
     this.conversacion.mensajes.push(newMessage);
+    console.log(this.conversacion);
     this.chatService.updateChatUser(this.conversacion).subscribe(data => {
       console.log(data);
     });

@@ -6,7 +6,7 @@ export class Conversacion {
   mensajes: {
     texto:string,
     emisor:string,
-    hora:Date
+    hora:string
   }[];
   active: string;
 }
