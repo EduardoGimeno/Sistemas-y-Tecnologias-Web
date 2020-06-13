@@ -103,7 +103,7 @@
             <div class="col" style="text-align: left; margin-top: auto; margin-left: 25%">
               <div class="form-group">
                 <label class="control-label">País</label>
-                <select #letras id="letras" class="custom-select" (change)="getProvincias()">
+                <select #letras id="pais" class="custom-select" (change)="getProvincias()">
                   <option value="ES">España</option>
                   <option value="IT">Italia</option>
                   <option value="FR">Francia</option>
@@ -132,32 +132,28 @@
                   <option value="SE">Suecia</option>
                   <option value="GB">Reino Unido</option>
                 </select>
+                <small>Tuyo: {{user.pais}}</small>
               </div>
             </div>
             <div class="col" style="text-align: left; margin-top: auto; margin-right: 25%">
               <div class="form-group">
                 <label class="control-label">Provincia</label>
-                <select  class="custom-select" (change)="getProvincias()">
+                <select id="provincia" class="custom-select" (change)="getProvincias()">
                   <option  *ngFor="let provincia of provincias">{{ provincia }}</option>
                 </select>
+                <small>Tuyo: {{user.provincia}}</small>
               </div>
             </div>
           </div>
           <br>
           <br>
-          <div class="row" style="height: 40%">
-            <div class="col" style="text-align: left; margin-top: auto; margin-left: 25%">
-              <label class="control-label">Email</label>
-              <br>
-              <input #email type="email" class="form-control" aria-describedby="emailHelp" placeholder="{{ user.email }}">
-            </div>
-          </div>
+          <br>
           <br>
           <br>
           <br>
           <div class="row" style="height: 40%">
             <div class="col" style="text-align: center; margin-top: auto; margin-left: 25%">
-              <button type="button"
+              <button type="button" (click)="update()"
                       class="btn btn-primary">Guardar cambios</button>
             </div>
             <div class="col" style="text-align: center; margin-top: auto; margin-right: 25%">

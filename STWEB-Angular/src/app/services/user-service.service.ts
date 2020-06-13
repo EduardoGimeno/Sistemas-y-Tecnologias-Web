@@ -22,23 +22,29 @@ export class UserService {
     return this.http.post( this.urlApp + '/login', JSON.stringify(json), options);
   }
 
+  getCount() {
+    return this.http.get(this.urlApp + "/count");
+  }
+
   public loginGoogle() {
     return this.http.get( this.urlAppGoogle );
   }
 
   public register(user: UserApp) {
-    return this.http.post( 'localhost:3000/register', user);
+    return this.http.post( this.urlApp + '/add/', user);
   }
 
-  public getUsers(){
+  public getUsers(page){
+    let params = new HttpParams()
+      .set("page", page.toString());
     return this.http.get(this.urlApp + '/');
   }
 
   public updateUser(user: UserApp) {
-      this.http.post( 'localhost:3000/updateUser/' + user.id, user).subscribe( data => {
-
-      });
-      return user;
+    console.log(user);
+      delete user["_id"];
+      console.log(user);
+      return this.http.put( this.urlApp + '/update/', user);
   }
 
   public deleteUser(id: number) {
