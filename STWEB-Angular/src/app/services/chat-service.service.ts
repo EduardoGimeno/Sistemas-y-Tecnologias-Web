@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 import {Conversacion} from "../entities/conversacion";
+import {CookieService} from "ngx-cookie-service";
 
 
 @Injectable({
@@ -10,9 +11,11 @@ export class ChatService {
 
   private urlApp: string = "https://back-turismoaragon.herokuapp.com/chats";
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private cookieService: CookieService) { }
 
   addChat(nomEntrada, nomUsuario, emailEntrada, emailUsuario) {
+    let headers = new HttpHeaders({
+      'authentication': this.cookieService.get("token")});
     let conver: Conversacion = {
       nomEntrada: nomEntrada,
       nomUsuario: nomUsuario,
@@ -21,11 +24,13 @@ export class ChatService {
       mensajes: [],
       active: ''
     }
-    return this.http.post( this.urlApp + '/add', conver);
+    return this.http.post( this.urlApp + '/add', conver, {headers:headers});
   }
 
   updateChatEntry(chat: Conversacion) {
-    return this.http.put( this.urlApp + '/updateEntry', chat);
+    let headers = new HttpHeaders({
+      'authentication': this.cookieService.get("token")});
+    return this.http.put( this.urlApp + '/updateEntry', chat, {headers:headers});
   }
 
   updateChatUser(chat: Conversacion) {
@@ -33,9 +38,11 @@ export class ChatService {
   }
 
   getChat(email) {
+    let headers = new HttpHeaders({
+      'authentication': this.cookieService.get("token")});
     let params = new HttpParams()
       .set("user", email);
-    return this.http.get( this.urlApp + '/getChats', {params:params});
+    return this.http.get( this.urlApp + '/getChats', {params:params, headers:headers});
   }
 
   getChatById(id: string) {
