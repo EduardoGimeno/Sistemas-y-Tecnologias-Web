@@ -30,7 +30,7 @@ checkToken = function(token) {
  */
 parserDataController.alojamientosTurismoRural = async function(req, res) {
     try {
-        //checkToken(req.headers.authentication);
+        checkToken(req.headers.authentication);
         // Extraer todos
         const ruralHouses = await RuralHouse.find({});
 
@@ -90,7 +90,7 @@ parserDataController.alojamientosTurismoRural = async function(req, res) {
  */
 parserDataController.apartamentos = async function(req, res) {
     try {
-        //checkToken(req.headers.authentication);
+        checkToken(req.headers.authentication);
         // Extraer todos
         const apartments = await Apartment.find({});
 
@@ -147,7 +147,7 @@ parserDataController.apartamentos = async function(req, res) {
  */
 parserDataController.campings = async function(req, res) {
     try {
-        //checkToken(req.headers.authentication);
+        checkToken(req.headers.authentication);
         // Extraer todos
         const campings = await Camping.find();
 
@@ -205,7 +205,7 @@ parserDataController.campings = async function(req, res) {
  */
 parserDataController.guias = async function(req, res) {
     try {
-        //checkToken(req.headers.authentication);
+        checkToken(req.headers.authentication);
         // Extraer todos
         const guides = await Guide.find({});
 
@@ -252,7 +252,7 @@ parserDataController.guias = async function(req, res) {
  */
 parserDataController.hoteles = async function(req, res) {
     try {
-        //checkToken(req.headers.authentication);
+        checkToken(req.headers.authentication);
         // Extraer todos
         const hotels = await Hotel.find({});
 
@@ -311,7 +311,7 @@ parserDataController.hoteles = async function(req, res) {
  */
 parserDataController.oficinasTurismo = async function(req, res) {
     try {
-        //checkToken(req.headers.authentication);
+        checkToken(req.headers.authentication);
         // Extraer todos
         const touristsOffice = await TouristOffice.find({});
 
@@ -355,7 +355,7 @@ parserDataController.oficinasTurismo = async function(req, res) {
  */
 parserDataController.puntosInformacion = async function(req, res) {
     try {
-        //checkToken(req.headers.authentication);
+        checkToken(req.headers.authentication);
         // Extraer tdos
         const informationPoints = await InformationPoint.find({});
 
@@ -397,7 +397,7 @@ parserDataController.puntosInformacion = async function(req, res) {
  */
 parserDataController.refugios = async function(req, res) {
     try {
-        //checkToken(req.headers.authentication);
+        checkToken(req.headers.authentication);
         // Extraer tdos
         const shelters = await Shelter.find({});
 
@@ -450,7 +450,7 @@ parserDataController.refugios = async function(req, res) {
  */
 parserDataController.restaurantes = async function(req, res) {
     try {
-        //checkToken(req.headers.authentication);
+        checkToken(req.headers.authentication);
         // Extraer todos
         const restaurants = await Restaurant.find({});
 

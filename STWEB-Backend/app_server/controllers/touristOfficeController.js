@@ -19,7 +19,7 @@ checkToken = function(token) {
  */
 touristOfficeController.getTouristOffices = async function(req, res) {
     try {
-        //checkToken(req.headers.authentication);
+        checkToken(req.headers.authentication);
         var perPage = 20;
         var page = Math.max(0, req.param('page'));
         const touristOffices = await TouristOffice.find(function(err) {
@@ -41,7 +41,7 @@ touristOfficeController.getTouristOffices = async function(req, res) {
  */
 touristOfficeController.countTouristOffices = async function(req, res) {
     try {
-        //checkToken(req.headers.authentication);
+        checkToken(req.headers.authentication);
         await TouristOffice.count({}, function(err, result) {
             if (err) {
                 res.status(500);
@@ -78,7 +78,7 @@ touristOfficeController.addTouristOffice = async function(req, res) {
  */
 touristOfficeController.getTouristOffice = async function(req, res) {
     try {
-        //checkToken(req.headers.authentication);
+        checkToken(req.headers.authentication);
         var id = req.param('id');
         const touristOffice = await TouristOffice.findById(id, function(err) {
             if (err) {
@@ -100,7 +100,7 @@ touristOfficeController.getTouristOffice = async function(req, res) {
  */
 touristOfficeController.searchTouristOffices = async function(req, res) {
     try {
-        //checkToken(req.headers.authentication);
+        checkToken(req.headers.authentication);
         var perPage = 20;
         var page = Math.max(0, req.param('page'));
         var queryData = url.parse(req.url, true).query;

@@ -11,7 +11,9 @@ export class CurrentUserService {
 
   private user: UserApp = null;
 
-  token: string;
+  userAdmin: UserApp;
+
+  private token: string;
 
   constructor(public router: Router, private cookieService: CookieService,
               public userService: UserService) {
@@ -24,6 +26,14 @@ export class CurrentUserService {
     } else {
       cookieService.set("session", "close");
     }
+  }
+
+  public setUserAdmin(user: UserApp){
+    this.userAdmin = user;
+  }
+
+  public getUserAdmin(){
+    return this.userAdmin;
   }
 
   public logIn(email, password) {

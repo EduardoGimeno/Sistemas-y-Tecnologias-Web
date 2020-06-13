@@ -19,7 +19,7 @@ checkToken = function(token) {
  */
 campingController.getCampings = async function(req, res) {
     try {
-        //checkToken(req.headers.authentication);
+        checkToken(req.headers.authentication);
         var perPage = 20;
         var page = Math.max(0, req.param('page'));
         const campings = await Camping.find(function(err) {
@@ -41,7 +41,7 @@ campingController.getCampings = async function(req, res) {
  */
 campingController.countCampings = async function(req, res) {
     try {
-        //checkToken(req.headers.authentication);
+        checkToken(req.headers.authentication);
         await Camping.count({}, function(err, result) {
             if (err) {
                 res.status(500);
@@ -78,7 +78,7 @@ campingController.addCamping = async function(req, res) {
  */
 campingController.getCamping = async function(req, res) {
     try {
-        //checkToken(req.headers.authentication);
+        checkToken(req.headers.authentication);
         var id = req.param('id');
         const camping = await Camping.findById(id, function(err) {
             if (err) {
@@ -100,7 +100,7 @@ campingController.getCamping = async function(req, res) {
  */
 campingController.searchCampings = async function(req, res) {
     try {
-        //checkToken(req.headers.authentication);
+        checkToken(req.headers.authentication);
         var perPage = 20;
         var page = Math.max(0, req.param('page'));
         var queryData = url.parse(req.url, true).query;

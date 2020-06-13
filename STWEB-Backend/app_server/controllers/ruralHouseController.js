@@ -19,7 +19,7 @@ checkToken = function(token) {
  */
 ruralHouseController.getRuralHouses = async function(req, res) {
     try {
-        //checkToken(req.headers.authentication);
+        checkToken(req.headers.authentication);
         var perPage = 20;
         var page = Math.max(0, req.param('page'));
         const ruralHouses = await RuralHouse.find(function(err) {
@@ -41,7 +41,7 @@ ruralHouseController.getRuralHouses = async function(req, res) {
  */
 ruralHouseController.countRuralHouses = async function(req, res) {
     try {
-        //checkToken(req.headers.authentication);
+        checkToken(req.headers.authentication);
         await RuralHouse.count({}, function(err, result) {
             if (err) {
                 res.status(500);
@@ -78,7 +78,7 @@ ruralHouseController.addRuralHouse = async function(req, res) {
  */
 ruralHouseController.getRuralHouse = async function(req, res) {
     try {
-        //checkToken(req.headers.authentication);
+        checkToken(req.headers.authentication);
         var id = req.param('id');
         const ruralHouse = await RuralHouse.findById(id, function(err) {
             if (err) {
@@ -101,7 +101,7 @@ ruralHouseController.getRuralHouse = async function(req, res) {
  */
 ruralHouseController.searchRuralHouses = async function(req, res) {
     try {
-        //checkToken(req.headers.authentication);
+        checkToken(req.headers.authentication);
         var perPage = 20;
         var page = Math.max(0, req.param('page'));
         var queryData = url.parse(req.url, true).query;

@@ -3,6 +3,7 @@ import { AccionUsuarioComponent } from '../accion-usuario/accion-usuario.compone
 import { Router } from "@angular/router";
 import {UserApp} from "../entities/usuario";
 import {UserService} from "../services/user-service.service";
+import { CurrentUserService } from "../current-user.service";
 
 @Component({
   selector: 'app-index-admin',
@@ -19,7 +20,7 @@ export class IndexAdminComponent implements OnInit {
 
   busquedaConFiltros: boolean = false;
 
-  constructor(public userService: UserService) { }
+  constructor(public userService: UserService, public router: Router, public currentService: CurrentUserService) { }
 
   ngOnInit(): void {
     this.search();
@@ -70,8 +71,9 @@ export class IndexAdminComponent implements OnInit {
     }
   }
 
-  accionUsuario() {
-
+  accionUsuario(i) {
+    this.currentService.setUserAdmin(this.usuarios[i]);
+    this.router.navigate(['/accion-usuario']);
   }
 
   logOut() {

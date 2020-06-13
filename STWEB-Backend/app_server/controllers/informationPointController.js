@@ -19,7 +19,7 @@ checkToken = function(token) {
  */
 informationPointController.getInformationPoints = async function(req, res) {
     try {
-        //checkToken(req.headers.authentication);
+        checkToken(req.headers.authentication);
         var perPage = 20;
         var page = Math.max(0, req.param('page'));
         const informationPoints = await InformationPoint.find(function(err) {
@@ -41,7 +41,7 @@ informationPointController.getInformationPoints = async function(req, res) {
  */
 informationPointController.countInformationPoints = async function(req, res) {
     try {
-        //checkToken(req.headers.authentication);
+        checkToken(req.headers.authentication);
         await InformationPoint.count({}, function(err, result) {
             if (err) {
                 res.status(500);
@@ -78,7 +78,7 @@ informationPointController.addInformationPoint = async function(req, res) {
  */
 informationPointController.getInformationPoint = async function(req, res) {
     try {
-        //checkToken(req.headers.authentication);
+        checkToken(req.headers.authentication);
         var id = req.param('id');
         const informationPoint = await InformationPoint.findById(id, function(err) {
             if (err) {
@@ -100,7 +100,7 @@ informationPointController.getInformationPoint = async function(req, res) {
  */
 informationPointController.searchInformationPoints = async function(req, res) {
     try {
-        //checkToken(req.headers.authentication);
+        checkToken(req.headers.authentication);
         var perPage = 20;
         var page = Math.max(0, req.param('page'));
         var queryData = url.parse(req.url, true).query;

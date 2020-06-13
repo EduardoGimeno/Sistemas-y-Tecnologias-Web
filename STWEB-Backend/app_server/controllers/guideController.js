@@ -19,7 +19,7 @@ checkToken = function(token) {
  */
 guideController.getGuides = async function(req, res) {
     try {
-        //checkToken(req.headers.authentication);
+        checkToken(req.headers.authentication);
         var perPage = 20;
         var page = Math.max(0, req.param('page'));
         const guides = await Guide.find(function(err) {
@@ -41,7 +41,7 @@ guideController.getGuides = async function(req, res) {
  */
 guideController.countGuides = async function(req, res) {
     try {
-        //checkToken(req.headers.authentication);
+        checkToken(req.headers.authentication);
         await Guide.count({}, function(err, result) {
             if (err) {
                 res.status(500);
@@ -78,7 +78,7 @@ guideController.addGuide = async function(req, res) {
  */
 guideController.getGuide = async function(req, res) {
     try {
-        //checkToken(req.headers.authentication);
+        checkToken(req.headers.authentication);
         var id = req.param('id');
         const guide = await Guide.findById(id, function(err) {
             if (err) {
@@ -100,7 +100,7 @@ guideController.getGuide = async function(req, res) {
  */
 guideController.searchGuides = async function(req, res) {
     try {
-        //checkToken(req.headers.authentication);
+        checkToken(req.headers.authentication);
         var perPage = 20;
         var page = Math.max(0, req.param('page'));
         var queryData = url.parse(req.url, true).query;
