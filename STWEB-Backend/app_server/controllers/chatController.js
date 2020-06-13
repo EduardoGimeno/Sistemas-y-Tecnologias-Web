@@ -60,7 +60,9 @@ chatController.updateChatEntry = async function(req, res) {
     try {
         //checkToken(req.headers.authentication);
         var chat = new Chat(req.body);
-        await Chat.findOneAndUpdate(chat.id, chat, function(err) {
+        var filter = { nomEntrada: chat.nomEntrada,
+                       nomUsuario: chat.nomUsuario };
+        await Chat.findOneAndUpdate(filter, req.body, function(err) {
             if (err) {
                 res.status(500);
                 res.json({error: err.message});
