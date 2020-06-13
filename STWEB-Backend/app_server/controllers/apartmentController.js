@@ -19,7 +19,7 @@ checkToken = function(token) {
  */
 apartmentController.getApartments = async function(req, res) {
     try {
-        //checkToken(req.headers.authentication);
+        checkToken(req.headers.authentication);
         var perPage = 20;
         var page = Math.max(0, req.param('page'));
         const apartments = await Apartment.find(function(err) {
@@ -41,7 +41,7 @@ apartmentController.getApartments = async function(req, res) {
  */
 apartmentController.countApartments = async function(req, res) {
     try {
-        //checkToken(req.headers.authentication);
+        checkToken(req.headers.authentication);
         await Apartment.count({}, function(err, result) {
             if (err) {
                 res.status(500);
@@ -78,7 +78,7 @@ apartmentController.addApartment = async function(req, res) {
  */
 apartmentController.getApartment = async function(req, res) {
     try {
-        //checkToken(req.headers.authentication);
+        checkToken(req.headers.authentication);
         var id = req.param('id');
         const apartment = await Apartment.findById(id, function(err) {
             if (err) {
@@ -100,7 +100,7 @@ apartmentController.getApartment = async function(req, res) {
  */
 apartmentController.searchApartment = async function(req, res) {
     try {
-        //checkToken(req.headers.authentication);
+        checkToken(req.headers.authentication);
         var perPage = 20;
         var page = Math.max(0, req.param('page'));
         var queryData = url.parse(req.url, true).query;

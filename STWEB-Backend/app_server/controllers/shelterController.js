@@ -19,7 +19,7 @@ checkToken = function(token) {
  */
 shelterController.getShelters = async function(req, res) {
     try {
-        //checkToken(req.headers.authentication);
+        checkToken(req.headers.authentication);
         var perPage = 20;
         var page = Math.max(0, req.param('page'));
         const shelter = await Shelter.find(function(err) {
@@ -40,7 +40,7 @@ shelterController.getShelters = async function(req, res) {
  */
 shelterController.countShelters = async function(req, res) {
     try {
-        //checkToken(req.headers.authentication);
+        checkToken(req.headers.authentication);
         await Shelter.count({}, function(err, result) {
             if (err) {
                 res.status(500);
@@ -77,7 +77,7 @@ shelterController.addShelter = async function(req, res) {
  */
 shelterController.getShelter = async function(req, res) {
     try {
-        //checkToken(req.headers.authentication);
+        checkToken(req.headers.authentication);
         var id = req.param('id');
         const shelter = await Shelter.findById(id, function(err) {
             if (err) {
@@ -99,7 +99,7 @@ shelterController.getShelter = async function(req, res) {
  */
 shelterController.searchShelters = async function(req, res) {
     try {
-        //checkToken(req.headers.authentication);
+        checkToken(req.headers.authentication);
         var perPage = 20;
         var page = Math.max(0, req.param('page'));
         var queryData = url.parse(req.url, true).query;

@@ -19,7 +19,7 @@ checkToken = function(token) {
  */
 hotelController.getHotels = async function(req, res) {
     try {
-        //checkToken(req.headers.authentication);
+        checkToken(req.headers.authentication);
         var perPage = 20;
         var page = Math.max(0, req.param('page'));
         const hotels = await Hotel.find(function(err) {
@@ -41,7 +41,7 @@ hotelController.getHotels = async function(req, res) {
  */
 hotelController.countHotels = async function(req, res) {
     try {
-        //checkToken(req.headers.authentication);
+        checkToken(req.headers.authentication);
         await Hotel.count({}, function(err, result) {
             if (err) {
                 res.status(500);
@@ -78,7 +78,7 @@ hotelController.addHotel = async function(req, res) {
  */
 hotelController.getHotel = async function(req, res) {
     try {
-        //checkToken(req.headers.authentication);
+        checkToken(req.headers.authentication);
         var id = req.param('id');
         const hotel = await Hotel.findById(id, function(err) {
             if (err) {
@@ -101,7 +101,7 @@ hotelController.getHotel = async function(req, res) {
  */
 hotelController.searchHotels = async function(req, res) {
     try {
-        //checkToken(req.headers.authentication);
+        checkToken(req.headers.authentication);
         var perPage = 20;
         var page = Math.max(0, req.param('page'));
         var queryData = url.parse(req.url, true).query;

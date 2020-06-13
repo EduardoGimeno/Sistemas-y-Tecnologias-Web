@@ -18,7 +18,7 @@ checkToken = function(token) {
  */
 userController.getUserToken = async function(req,res) {
     try {
-        //checkToken(req.headers.authentication);
+        checkToken(req.headers.authentication);
         var token = req.param('token');
         var mail = jwtinterface.decodetoken(token).email;
         var user = await User.find({email:mail},function(err) {
@@ -40,7 +40,7 @@ userController.getUserToken = async function(req,res) {
  */
 userController.getUsers = async function(req, res) {
     try {
-        //checkToken(req.headers.authentication);
+        checkToken(req.headers.authentication);
         var perPage = 20;
         var page = Math.max(0, req.param('page'));
         const users = await User.find(function(err) {
@@ -61,7 +61,7 @@ userController.getUsers = async function(req, res) {
  */
 userController.countUsers = async function(req, res) {
     try {
-        //checkToken(req.headers.authentication);
+        checkToken(req.headers.authentication);
         await User.count({}, function(err, result) {
             if (err) {
                 res.status(500);
@@ -82,7 +82,7 @@ userController.countUsers = async function(req, res) {
  */
 userController.addUser = async function(req, res) {
     try {
-        //checkToken(req.headers.authentication);
+        checkToken(req.headers.authentication);
         var user = new User(req.body);
         user.baneado = false;
         user.activo = true;
@@ -108,7 +108,7 @@ userController.addUser = async function(req, res) {
  */
 userController.getUser = async function(req, res) {
     try {
-        //checkToken(req.headers.authentication);
+        checkToken(req.headers.authentication);
         var id = req.param('id');
         const user = await User.findById(id, function(err) {
             if (err) {
@@ -129,7 +129,7 @@ userController.getUser = async function(req, res) {
  */
 userController.updateUser = async function(req, res) {
     try {
-        //checkToken(req.headers.authentication);
+        checkToken(req.headers.authentication);
         var user = new User(req.body);
         const filter = { email: user.email };
         await User.findOneAndUpdate(filter, req.body, function(err) {
@@ -153,7 +153,7 @@ userController.updateUser = async function(req, res) {
  */
 userController.searchUsers = async function(req, res) {
     try {
-        //checkToken(req.headers.authentication);
+        checkToken(req.headers.authentication);
         var perPage = 20;
         var page = Math.max(0, req.param('page'));
         var queryData = url.parse(req.url, true).query;
@@ -183,7 +183,7 @@ userController.searchUsers = async function(req, res) {
  */
 userController.sendMail = async function(req, res) {
     try {
-        //checkToken(req.headers.authentication);
+        checkToken(req.headers.authentication);
         var userMail = req.body.email;
         var text = req.body.text;
         const send = require('gmail-send')({
@@ -213,7 +213,7 @@ userController.sendMail = async function(req, res) {
  */
 userController.addAdmin = async function(req, res) {
     try {
-        //checkToken(req.headers.authentication);
+        checkToken(req.headers.authentication);
         var user = new User(req.body);
         user.baneado = false;
         user.activo = true;

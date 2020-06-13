@@ -18,7 +18,7 @@ checkToken = function(token) {
  */
 chatController.addChat = async function(req, res) {
     try {
-        //checkToken(req.headers.authentication);
+        checkToken(req.headers.authentication);
         var chat = new Chat(req.body);
         await chat.save(function(err, newChat) {
             if (err) {
@@ -58,7 +58,7 @@ chatController.addChat = async function(req, res) {
  */
 chatController.updateChatEntry = async function(req, res) {
     try {
-        //checkToken(req.headers.authentication);
+        checkToken(req.headers.authentication);
         var chat = req.body;
         var id = req.body._id;
         delete req.body._id;
@@ -137,7 +137,7 @@ chatController.updateChatUser = async function(req, res) {
  */
 chatController.getChatsUser = async function(req, res) {
     try {
-        //checkToken(req.headers.authentication);
+        checkToken(req.headers.authentication);
         var user = req.param('user');
         const chats = await Chat.find({emailUsuario: user}, function(err) {
             if (err) {
