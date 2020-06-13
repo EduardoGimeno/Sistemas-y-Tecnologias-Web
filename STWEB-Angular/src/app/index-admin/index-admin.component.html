@@ -38,7 +38,7 @@
         Estadísticas
       </button>
       <br>
-      <button type="button" class="buttonCustom btn btn-danger"
+      <button type="button" (click)="currentService.logOut()" routerLink="/login" class="buttonCustom btn btn-danger"
               style="margin-top: 10vh; margin-bottom: 10vh">
         <svg class="bi bi-box-arrow-left" width="1.2em" height="1.2em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
           <path fill-rule="evenodd" d="M4.354 11.354a.5.5 0 000-.708L1.707 8l2.647-2.646a.5.5 0 10-.708-.708l-3 3a.5.5 0 000 .708l3 3a.5.5 0 00.708 0z" clip-rule="evenodd"/>
@@ -71,7 +71,7 @@
       </div>
     </div>
 
-    <div *ngFor="let usuario of usuarios" class="card bg-light mb-3" style="width: 90%; display: inline-flex; margin-top: 4vh">
+    <div *ngFor="let usuario of usuarios; index as i" class="card bg-light mb-3" style="width: 90%; display: inline-flex; margin-top: 4vh">
 
       <div class="card-header" style="border-bottom: 1vh solid #559ffa; text-align: left">
         <h5 class="card-title">{{usuario.nombre}} {{usuario.apellidos}}</h5>
@@ -89,7 +89,7 @@
             <h6>{{usuario.pais}}</h6>
           </div>
           <div style="width: 30%; text-align: center">
-            <button type="button" (click)="accionUsuario()" class="btn btn-primary" style="width: 90%">
+            <button type="button" (click)="accionUsuario(i)" class="btn btn-primary" style="width: 90%">
               <svg class="bi bi-arrow-right" width="3em" height="3em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" d="M10.146 4.646a.5.5 0 01.708 0l3 3a.5.5 0 010 .708l-3 3a.5.5 0 01-.708-.708L12.793 8l-2.647-2.646a.5.5 0 010-.708z" clip-rule="evenodd"/>
                 <path fill-rule="evenodd" d="M2 8a.5.5 0 01.5-.5H13a.5.5 0 010 1H2.5A.5.5 0 012 8z" clip-rule="evenodd"/>
