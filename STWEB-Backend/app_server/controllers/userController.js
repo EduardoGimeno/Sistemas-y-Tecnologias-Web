@@ -161,18 +161,6 @@ userController.searchUsers = async function(req, res) {
         var surname = queryData.surname;
         var email = queryData.email;
 
-        if (name == "null") {
-            name = "";
-        }
-        
-        if (surname == "null") {
-            surname = "";
-        }
-        
-        if (email == "null") {
-            email = "";
-        }
-
         const users = await User.find({nombre: new RegExp(name, 'i'), 
                                        apellidos: new RegExp(surname, 'i'), 
                                        email: new RegExp(email, 'i')},

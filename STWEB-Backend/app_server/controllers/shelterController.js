@@ -107,18 +107,6 @@ shelterController.searchShelters = async function(req, res) {
         var region = queryData.region;
         var municipality = queryData.municipality;
 
-        if (province == "null") {
-            province = "";
-        } 
-        
-        if (region == "null") {
-            region = "";
-        } 
-        
-        if (municipality == "null") {
-            municipality = "";
-        }
-
         const shelters = await Shelter.find({'comun.provincia': new RegExp(province,'i'), 
                                             'comun.region': new RegExp(region, 'i'), 
                                             'comun.municipio': new RegExp(municipality, 'i')},

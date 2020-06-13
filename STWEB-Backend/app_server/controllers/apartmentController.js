@@ -108,18 +108,6 @@ apartmentController.searchApartment = async function(req, res) {
         var region = queryData.region;
         var municipality = queryData.municipality;
 
-        if (province == "null") {
-            province = "";
-        }
-        
-        if (region == "null") {
-            region = "";
-        }
-        
-        if (municipality == "null") {
-            municipality = "";
-        }
-
         const apartments = await Apartment.find({'comun.provincia': new RegExp(province,'i'), 
                                                 'comun.comcarca': new RegExp(region, 'i'), 
                                                 'comun.municipio': new RegExp(municipality, 'i')},
