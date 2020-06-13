@@ -108,18 +108,6 @@ touristOfficeController.searchTouristOffices = async function(req, res) {
         var region = queryData.region;
         var municipality = queryData.municipality;
 
-        if (province == "null") {
-            province = "";
-        }
-        
-        if (region == "null") {
-            region = "";
-        }
-
-        if (municipality == "null") {
-            municipality = "";
-        }
-
         const touristOffices = await TouristOffice.find({'comun.provincia': new RegExp(province,'i'), 
                                                         'comun.comcarca': new RegExp(region, 'i'),
                                                         'comun.municipio': new RegExp(municipality, 'i')},

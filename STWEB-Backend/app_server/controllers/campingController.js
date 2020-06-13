@@ -108,18 +108,6 @@ campingController.searchCampings = async function(req, res) {
         var region = queryData.region;
         var municipality = queryData.municipality;
 
-        if (province == "null") {
-            province = "";
-        }
-        
-        if (region == "null") {
-            region = "";
-        }
-        
-        if (municipality == "null") {
-            municipality = "";
-        }
-
         const campings = await Camping.find({'comun.provincia': new RegExp(province,'i'), 
                                             'comun.comcarca': new RegExp(region, 'i'), 
                                             'comun.municipio': new RegExp(municipality, 'i')},

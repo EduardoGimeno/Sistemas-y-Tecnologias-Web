@@ -111,18 +111,6 @@ ruralHouseController.searchRuralHouses = async function(req, res) {
         var minSpikes = queryData.minSpikes;
         var maxSpikes = queryData.maxSpikes;
 
-        if (province == "null") {
-            province = "";
-        }
-        
-        if (region == "null") {
-            region = "";
-        }
-        
-        if (municipality == "null") {
-            municipality = "";
-        }
-
         const ruralHouses = await RuralHouse.find({'comun.provincia': new RegExp(province,'i'), 
                                                   'comun.comcarca': new RegExp(region, 'i'), 
                                                   'comun.municipio': new RegExp(municipality, 'i'),

@@ -111,18 +111,6 @@ restaurantController.searchRestaurants = async function(req, res) {
         var minCategory = queryData.minCategory;
         var maxCategory = queryData.maxCategory;
 
-        if (province == "null") {
-            province = "";
-        }
-        
-        if (region == "null") {
-            region = "";
-        }
-        
-        if (municipality == "null") {
-            municipality = "";
-        }
-
         const restaurants = await Restaurant.find({provincia: new RegExp(province,'i'), 
                                                    comcarca: new RegExp(region, 'i'), 
                                                    municipio: new RegExp(municipality, 'i'),
