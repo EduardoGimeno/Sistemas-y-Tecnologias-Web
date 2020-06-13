@@ -63,7 +63,7 @@ chatController.updateChatEntry = async function(req, res) {
         var id = req.body._id;
         delete req.body._id;
         console.log(req.body);
-        await Chat.findOneAndUpdate(id, req.body, function(err) {
+        await Chat.findOneAndUpdate(id, {mensajes: req.body.mensajes}, function(err) {
             if (err) {
                 res.status(500);
                 res.json({error: err.message});
@@ -106,7 +106,7 @@ chatController.updateChatUser = async function(req, res) {
     var id = req.body._id;
     delete req.body._id;
     console.log(req.body);
-    await Chat.findOneAndUpdate(id, req.body, function(err) {
+    await Chat.findOneAndUpdate(id, {mensajes: req.body.mensajes}, function(err) {
         if (err) {
             res.status(500);
             res.json({error: err.message});
