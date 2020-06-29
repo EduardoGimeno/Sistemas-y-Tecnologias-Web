@@ -9,11 +9,12 @@ var passport = require('passport');
 var jwtinterface = require('../jsonwebtoken')
 var router = express.Router();
 
-router.get('/', userController.getUsers);
+router.get('/getAll', userController.getUsers);
 router.get('/count', userController.countUsers);
+router.get('/countByEmail', userController.countByEmail);
 router.get('/get', userController.getUser);
 router.get('/search', userController.searchUsers);
-router.get('/getUser', userController.getUserToken)
+router.get('/getUser', userController.getUserToken);
 router.post('/login', passport.authenticate('json'), (req,res) =>{
     var token = jwtinterface.signtoken(req.user);
     var responss = "Bearer " + token;
@@ -22,6 +23,7 @@ router.post('/login', passport.authenticate('json'), (req,res) =>{
 });
 router.post('/add', userController.addUser);
 router.post('/send', userController.sendMail);
+router.post('/admin', userController.addAdmin);
 router.put('/update', userController.updateUser);
 
 module.exports = router;

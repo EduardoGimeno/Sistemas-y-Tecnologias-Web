@@ -19,9 +19,10 @@ checkToken = function(token) {
 userController.getUserToken = async function(req,res) {
     try {
         checkToken(req.headers.authentication);
-        var token = req.param('token');
-        var mail = jwtinterface.decodetoken(token).email;
-        var user = await User.find({email:mail},function(err) {
+        var queryData = url.parse(req.url, true).query;
+        var token = queryData.token;
+        var email = jwtinterface.decodetoken(token).email;
+        var user = await User.find({ email: email }, function(err) {
             if (err) {
                 res.status(500);
                 res.json({error: err.message});
@@ -42,7 +43,8 @@ userController.getUsers = async function(req, res) {
     try {
         checkToken(req.headers.authentication);
         var perPage = 20;
-        var page = Math.max(0, req.param('page'));
+        var queryData = url.parse(req.url, true).query;
+        var page = Math.max(0, queryData.page);
         const users = await User.find(function(err) {
             if (err) {
                 res.status(500);
@@ -78,11 +80,32 @@ userController.countUsers = async function(req, res) {
 }
 
 /*
+ * Contar el número de usuarios con un determinado email.
+ */
+userController.countByEmail = async function(req, res) {
+    try {
+        var queryData = url.parse(req.url, true).query;
+        var email = queryData.email;
+        await User.count({ email: email }, function(err, result) {
+            if (err) {
+                res.status(500);
+                res.json({error: err.message});
+            } else {
+                res.status(200);
+                res.json(result);
+            }
+        });
+    } catch(err) {
+        res.status(500);
+        res.json({error: err.message});
+    }
+}
+
+/*
  * Añadir un nuevo usuario.
  */
 userController.addUser = async function(req, res) {
     try {
-        checkToken(req.headers.authentication);
         var user = new User(req.body);
         user.baneado = false;
         user.activo = true;
@@ -109,7 +132,8 @@ userController.addUser = async function(req, res) {
 userController.getUser = async function(req, res) {
     try {
         checkToken(req.headers.authentication);
-        var id = req.param('id');
+        var queryData = url.parse(req.url, true).query;
+        var id = queryData.id;
         const user = await User.findById(id, function(err) {
             if (err) {
                 res.status(500);
@@ -155,8 +179,8 @@ userController.searchUsers = async function(req, res) {
     try {
         checkToken(req.headers.authentication);
         var perPage = 20;
-        var page = Math.max(0, req.param('page'));
         var queryData = url.parse(req.url, true).query;
+        var page = Math.max(0, queryData.page);
         var name = queryData.name;
         var surname = queryData.surname;
         var email = queryData.email;
@@ -210,10 +234,10 @@ userController.sendMail = async function(req, res) {
 
 /*
  * Añadir un nuevo administrador.
+ * Operación para desarrollo, en producción no debe estar.
  */
 userController.addAdmin = async function(req, res) {
     try {
-        checkToken(req.headers.authentication);
         var user = new User(req.body);
         user.baneado = false;
         user.activo = true;
