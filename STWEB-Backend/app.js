@@ -11,6 +11,8 @@ var passport = require('passport');
 var cors = require('cors');
 var request = require('request');
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+var swaggerUi = require('swagger-ui-express');
+var swaggerDocument = require('./swagger.json');
 
 require('./app_server/models/db');
 var keys = require('./app_server/config/keys')
@@ -61,6 +63,7 @@ app.use('/guides', guidesRouter);
 app.use('/parserdata', parserDataRouter);
 app.use('/chats', chatsRouter);
 app.use('/media', mediaRouter);
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // Catch 404 and forward to error handler
 app.use(function(req, res, next) {
