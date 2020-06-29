@@ -12,6 +12,7 @@
       <label for="email">Email address</label>
       <input #email type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
       <small id="emailHelp" class="form-text text-muted">Tu información será privada y no se compartirá en ningún caso.</small>
+      <h6 class="text-danger">{{this.aviso2}}</h6>
     </div>
     <div class="col-sm-4">
     </div>
@@ -25,11 +26,12 @@
     <div class="col-sm-4">
       <label for="password">Password</label>
       <input #password type="password" class="form-control" id="password" placeholder="Password">
+      <h6 class="text-danger">{{this.aviso}}</h6>
     </div>
     <div class="col-sm-4">
     </div>
   </div>
-  
+
   <br>
   <div class="row justify-content-center">
     <button type="button" class="btn btn-primary btn-lg" (click)="logIn()">Acceder</button>

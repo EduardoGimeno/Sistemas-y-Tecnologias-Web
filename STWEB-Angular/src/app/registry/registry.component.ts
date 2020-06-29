@@ -14,6 +14,11 @@ import {CurrentUserService} from "../current-user.service";
 })
 export class RegistryComponent implements OnInit {
   aviso: string;
+  aviso2: string;
+  aviso3: string;
+  aviso4: string;
+  aviso5: string;
+  aviso6: string;
   private newUser: UserApp = null;
   provincias = [];
   constructor(public userService: UserService, public currentUser: CurrentUserService) { }
@@ -46,17 +51,33 @@ export class RegistryComponent implements OnInit {
     user.provincia = <string>$("#provincia").val();
     let pass1 = <string>$("#password1").val();
     let pass2 = <string>$("#password2").val();
-    if (pass1 == pass2 && pass1.length >= 8) {
+    if (pass1 == pass2 && pass1.length >= 8 && user.telefono.length != 0 &&
+     user.email.length != 0 && user.nombre.length != 0 && user.apellidos.length != 0) {
       const md5 = new Md5();
       user.contrasena = <string>md5.appendStr(pass1).end();
       this.userService.register(user).subscribe(data => {
         user = <UserApp>data;
         this.currentUser.logIn(user.email, user.contrasena);
       })
-    } else if(pass1 != pass2) {
-      this.aviso = "Las contraseñas no coinciden";
     } else {
-      this.aviso = "La contraseña tiene que ser minimo de 8 caracteres";
+      if (pass1 != pass2) {
+        this.aviso = "Las contraseñas no coinciden";
+      }
+      if (user.nombre.length == 0) {
+        this.aviso2 = "El campo: Nombre no puede estar vacío.";
+      }
+      if (user.apellidos.length == 0){
+          this.aviso3 = "El campo: Apellidos no puede estar vacío.";
+      }
+      if (user.telefono.length == 0) {
+          this.aviso4 = "Introduzca un número de teléfono válido.";
+      }
+      if (user.email.length == 0) {
+          this.aviso5 = "Introduzca un email válido.";
+      }
+      if(pass1.length < 8 &&  pass1 == pass2){
+        this.aviso6 = "La contraseña tiene que ser minimo de 8 caracteres.";
+      }
     }
   }
 

@@ -13,6 +13,8 @@ import { SocialUser } from "angularx-social-login";
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  aviso: string;
+  aviso2: string;
 
   constructor(public router: Router, public currentUser: CurrentUserService) { }
 
@@ -20,10 +22,22 @@ export class LoginComponent implements OnInit {
 
 
   logIn() {
-    const md5 = new Md5();
+
     let email = <string>$('#email').val();
-    let password = <string>md5.appendStr(<string>$('#password').val()).end();
-    this.currentUser.logIn(email, password);
+    let password1 = <string>$("#password").val();
+    if (password1.length >= 8 && email.length > 0){
+      const md5 = new Md5();
+      let password1 = <string>md5.appendStr(password1).end();
+      this.currentUser.logIn(email, password1);
+    }
+    else {
+       if (password1.length < 8) {
+         this.aviso = "La contraseña tiene que ser minimo de 8 caracteres.";
+       }
+       if (email.length == 0) {
+         this.aviso2 = "El campo: Email no puede estar vacío.";
+       }
+    }
   }
 
 
