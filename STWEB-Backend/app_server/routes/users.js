@@ -12,9 +12,9 @@ var router = express.Router();
 router.get('/getAll', userController.getUsers);
 router.get('/count', userController.countUsers);
 router.get('/countByEmail', userController.countByEmail);
-router.get('/get', userController.getUser);
+router.get('/getUser', userController.getUser);
 router.get('/search', userController.searchUsers);
-router.get('/getUser', userController.getUserToken);
+router.get('/getUserByToken', userController.getUserToken);
 router.post('/login', passport.authenticate('json'), (req,res) =>{
     var token = jwtinterface.signtoken(req.user);
     var responss = "Bearer " + token;
