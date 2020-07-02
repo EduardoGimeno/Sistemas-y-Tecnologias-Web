@@ -37,6 +37,7 @@ export class RegistryComponent implements OnInit {
   }
 
   registro() {
+    this.limpiarAvisos();
     let user = new UserApp();
     let fecha: Date = new Date();
     let fechaFinString: string = <string>$("#fecha").val();
@@ -79,6 +80,15 @@ export class RegistryComponent implements OnInit {
         this.aviso6 = "La contraseña tiene que ser minimo de 8 caracteres.";
       }
     }
+  }
+
+  limpiarAvisos() {
+    this.aviso = "";
+    this.aviso2 = "";
+    this.aviso3 = "";
+    this.aviso4 = "";
+    this.aviso5 = "";
+    this.aviso6 = "";
   }
 
 

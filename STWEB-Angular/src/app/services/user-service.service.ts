@@ -44,7 +44,7 @@ export class UserService {
       'authentication': this.cookieService.get("token")});
     let params = new HttpParams()
       .set("page", page.toString());
-    return this.http.get(this.urlApp + '/', {params:params, headers:headers});
+    return this.http.get(this.urlApp + '/getAll', {params:params, headers:headers});
   }
 
   public updateUser(user: UserApp) {
@@ -58,7 +58,7 @@ export class UserService {
     let headers = new HttpHeaders({
       'authentication': this.cookieService.get("token")});
     let params = new HttpParams()
-      .set("nombre", nombre)
+      .set("name", nombre)
       .set("surname", apellidos)
       .set("email", email)
       .set("page", page);
@@ -68,7 +68,7 @@ export class UserService {
   recoverUser(token) {
     let params = new HttpParams()
       .set("token", token);
-    return this.http.get(this.urlApp + '/getUser', {params:params});
+    return this.http.get(this.urlApp + '/getUserByToken', {params:params});
   }
 
 

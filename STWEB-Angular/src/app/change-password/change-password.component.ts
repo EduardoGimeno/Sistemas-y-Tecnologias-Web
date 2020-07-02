@@ -22,10 +22,6 @@ export class ChangePasswordComponent implements OnInit {
 
   modifyPass(OldPassword: string, NewPassword: string, NewPassword2: string) {
     const md5 = new Md5();
-    console.log(this.user.contrasena);
-    console.log(<string>md5.appendStr(OldPassword).end());
-    console.log(NewPassword);
-    console.log(NewPassword2);
     if ((this.user.contrasena == <string>md5.appendStr(OldPassword).end()) && (NewPassword.length >= 8) &&
       (NewPassword == NewPassword2)) {
       console.log("SI")

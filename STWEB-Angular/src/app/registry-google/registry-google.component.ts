@@ -40,6 +40,7 @@ export class RegistryGoogleComponent implements OnInit {
   registroGoogle() {
     //Completar confirmación de registroGoogle
     this.user = this.currentUser.checkLog();
+    console.log(this.user);
     let fecha: Date = new Date();
     let fechaFinString: string = <string>$("#fecha").val();
     let fechaFinArray = fechaFinString.split("-");
@@ -48,8 +49,12 @@ export class RegistryGoogleComponent implements OnInit {
     this.user.telefono = <string>$("#telefono").val();
     this.user.pais = <string>$("#pais").children("option:selected").text();
     this.user.provincia = <string>$("#provincia").val();
-    this.currentUser.updateUser(this.user);
-    this.currentUser.logIn(this.user.email, this.user.contrasena);
+    this.user.baneado = false;
+    this.user.activo = true;
+    this.user.admin = false;
+    this.currentUser.loginGoogle(this.user);
+    //this.currentUser.updateUser(this.user);
+    //this.currentUser.logIn(this.user.email, this.user.contrasena);
   }
 
 }

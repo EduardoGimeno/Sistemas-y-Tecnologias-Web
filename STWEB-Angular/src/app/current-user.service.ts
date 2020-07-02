@@ -90,10 +90,20 @@ export class CurrentUserService {
 
   setUserByToken(token) {
     this.userService.recoverUser(token).subscribe(data => {
-      this.user = <UserApp>data;
+      this.user = <UserApp>data[0];
       this.cookieService.set("session", "open");
       this.cookieService.set("token", token);
+      if (this.user.pais != null) {
+        this.router.navigateByUrl('/index-user');
+      }
     })
+  }
+
+  loginGoogle(user) {
+    this.userService.updateUser(user).subscribe( user => {
+      this.user = <UserApp>user;
+      this.router.navigateByUrl('/index-user');
+    });
   }
 
 

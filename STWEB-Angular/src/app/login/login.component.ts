@@ -22,13 +22,13 @@ export class LoginComponent implements OnInit {
 
 
   logIn() {
+    this.limpiarAvisos();
 
     let email = <string>$('#email').val();
     let password1 = <string>$("#password").val();
     if (password1.length >= 8 && email.length > 0){
       const md5 = new Md5();
-      let password1 = <string>md5.appendStr(password1).end();
-      this.currentUser.logIn(email, password1);
+      this.currentUser.logIn(email, <string>md5.appendStr(password1).end());
     }
     else {
        if (password1.length < 8) {
@@ -38,6 +38,11 @@ export class LoginComponent implements OnInit {
          this.aviso2 = "El campo: Email no puede estar vacío.";
        }
     }
+  }
+
+  limpiarAvisos() {
+    this.aviso = "";
+    this.aviso2 = "";
   }
 
 

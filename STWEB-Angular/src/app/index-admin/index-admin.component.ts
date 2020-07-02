@@ -39,16 +39,24 @@ export class IndexAdminComponent implements OnInit {
 
   filter(click: boolean) {
     if (click) {
-      this.page = 0;
+      this.page = 1;
     }
     this.usuarios = [];
     let nombre = <string>$('#nombreInput').val();
     let apellidos = <string>$('#apellidoInput').val();
     let email = <string>$('#emailInput').val();
-    this.userService.searchUsers(nombre, apellidos, email, this.page).subscribe(usuarios => {
+    this.userService.searchUsers(nombre, apellidos, email, this.page - 1).subscribe(usuarios => {
       this.usuarios = <UserApp[]>usuarios;
       if (this.usuarios.length == 20) {
-        this.numPages = this.page + 1;
+        this.userService.searchUsers(nombre, apellidos, email, this.page - 1).subscribe(usuarios => {
+          if (usuarios != []) {
+            this.numPages = this.page + 1;
+          } else {
+            this.numPages = this.page;
+          }
+        });
+      } else {
+        this.numPages = this.page;
       }
     })
   }
