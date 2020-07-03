@@ -52,6 +52,9 @@
               "schema": {
                 "$ref": "#/definitions/User"
               }
+            },
+            "500": {
+              "description": "New user could not be created"
             }
           }
         }
@@ -71,6 +74,9 @@
               "schema": {
                 "$ref": "#/definitions/Users"
               }
+            },
+            "500": {
+              "description": "List of all users could not be retreived"
             }
           }
         }
@@ -90,6 +96,9 @@
               "schema": {
                 "$ref": "#/definitions/Number"
               }
+            },
+            "500": {
+              "description": "Number of users could not be retreived"
             }
           }
         }
@@ -118,6 +127,85 @@
               "schema": {
                 "$ref": "#/definitions/Number"
               }
+            },
+            "500": {
+              "description": "Number of users could not be retreived"
+            }
+          }
+        }
+      },
+      "/users/getUser": {
+        "get": {
+          "tags": [
+            "Users"
+          ],
+          "description": "Get a user by his id",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "description": "Id of the user we want to retreive",
+              "type": "string"
+            }
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "User with the given id",
+              "schema": {
+                "$ref": "#/definitions/User"
+              }
+            },
+            "500": {
+              "description": "User could not be retreived"
+            }
+          }
+        }
+      },
+      "/users/search": {
+        "get": {
+          "tags": [
+            "Users"
+          ],
+          "description": "Search users by name, surname and email",
+          "parameters": [
+            {
+              "name": "email",
+              "in": "path",
+              "required": true,
+              "description": "Email we want to use for the search",
+              "type": "string"
+            },
+            {
+              "name": "name",
+              "in": "path",
+              "required": true,
+              "description": "Name we want to use for the search",
+              "type": "string"
+            },
+            {
+              "name": "surname",
+              "in": "path",
+              "required": true,
+              "description": "Surname we want to use for the search",
+              "type": "string"
+            }
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "List of users that match the search",
+              "schema": {
+                "$ref": "#/definitions/Users"
+              }
+            },
+            "500": {
+              "description": "List of users could not be retreived"
             }
           }
         }
