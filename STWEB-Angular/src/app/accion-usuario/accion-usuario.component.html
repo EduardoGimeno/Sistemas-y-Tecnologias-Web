@@ -19,31 +19,31 @@
         <fieldset class="form-group">
           <div class="form-check">
             <label class="form-check-label">
-              <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios1" value="option1" checked="">
+              <input type="radio" class="form-check-input" name="optionsRadios" id="inhabilitar7" value="option1" checked="">
               Inhabilitar cuenta (Una semana)
             </label>
           </div>
           <div class="form-check">
             <label class="form-check-label">
-              <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios2" value="option2">
+              <input type="radio" class="form-check-input" name="optionsRadios" id="inhabilitar30" value="option2">
               Inhabilitar cuenta (Un mes)
             </label>
           </div>
           <div class="form-check">
             <label class="form-check-label">
-              <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios3" value="option3">
+              <input type="radio" class="form-check-input" name="optionsRadios" id="inhabilitar365" value="option3">
               Inhabilitar cuenta (Un año)
             </label>
           </div>
           <div class="form-check">
             <label class="form-check-label">
-              <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios4" value="option4">
+              <input type="radio" class="form-check-input" name="optionsRadios" id="eliminar" value="option4">
               Eliminar cuenta
             </label>
           </div>
           <div class="form-check">
             <label class="form-check-label">
-              <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios5" value="option5">
+              <input type="radio" class="form-check-input" name="optionsRadios" id="enviar" value="option5">
               Enviar email
             </label>
           </div>
@@ -58,7 +58,7 @@
       <div class="row" style="text-align: left;">
         <div class="form-group">
           <label for="exampleTextarea">Cuerpo mensaje</label>
-          <textarea class="form-control" id="exampleTextarea" cols="40" rows="7"></textarea>
+          <textarea class="form-control" id="textEmail" cols="40" rows="7"></textarea>
         </div>
       </div>
     </div>
@@ -71,7 +71,7 @@
     <button class="btn btn-primary btn-lg" routerLink="/index-admin">Volver</button>
   </div>
   <div class="col" style="text-align: left;">
-    <button type="button" class="btn btn-primary btn-lg">Aceptar</button>
+    <button type="button" (click)="accept()" class="btn btn-primary btn-lg">Aceptar</button>
   </div>
 </div>
 

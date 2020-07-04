@@ -10,5 +10,6 @@ export class UserApp {
   provincia: string;
   activo: boolean;
   baneado: boolean;
+  finBan: Date;
   admin: boolean;
 }

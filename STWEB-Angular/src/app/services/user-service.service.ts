@@ -71,5 +71,12 @@ export class UserService {
     return this.http.get(this.urlApp + '/getUserByToken', {params:params});
   }
 
+  public sendEmail(email: string, text: string) {
+    let headers = new HttpHeaders({
+      'authentication': this.cookieService.get("token")});
+    let options = { headers: headers };
+    let json = {'email': email, 'text': text};
+    return this.http.post(this.urlApp + '/send', JSON.stringify(json), options);
+  }
 
 }
