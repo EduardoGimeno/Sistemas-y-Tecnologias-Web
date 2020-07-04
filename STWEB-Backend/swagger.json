@@ -13,8 +13,8 @@
     "basePath": "/api-docs",
     "tags": [
       {
-        "name": "DescubreAragon API",
-        "description": "System's API"
+        "name": "Users",
+        "description": "User interaction API"
       }
     ],
     "schemes": [
@@ -125,7 +125,7 @@
             "200": {
               "description": "Number of users in the system with the given email",
               "schema": {
-                "$ref": "#/definitions/Number"
+                "type": "integer"
               }
             },
             "500": {
@@ -299,10 +299,9 @@
       },
       "Users": {
         "type": "array",
-        "$ref": "#/definitions/User"
-      },
-      "Number": {
-        "type": "integer"
+        "items": {
+          "$ref": "#/definitions/User"
+        }
       }
     }
   }
