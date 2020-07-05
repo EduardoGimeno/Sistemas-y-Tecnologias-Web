@@ -10,7 +10,7 @@
       }
     },
     "host": "localhost:3000",
-    "basePath": "/api-docs",
+    "basePath": "/",
     "tags": [
       {
         "name": "Users",
@@ -210,65 +210,101 @@
           }
         }
       },
-      "/users/{userId}": {
+      "/users/getUserByToken": {
         "parameters": [
           {
-            "name": "userId",
-            "in": "path",
+            "name": "token",
             "required": true,
-            "description": "ID of user that we want to find",
+            "in": "path",
+            "description": "Token from where the User will be retrieved",
             "type": "string"
           }
         ],
-        "get": {
-          "tags": [
-            "Users"
-          ],
-          "summary": "Get user with given ID",
-          "responses": {
-            "200": {
-              "description": "User is found",
-              "schema": {
-                "$ref": "#/definitions/User"
-              }
-            }
-          }
-        },
-        "delete": {
-          "summary": "Delete user with given ID",
+        "produces": [
+          "application/json"
+        ], 
+        "post": {
+          "summary": "Retrieve the User assigned to the token",
           "tags": [
             "Users"
           ],
           "responses": {
             "200": {
-              "description": "User is deleted",
+              "description":"User retrieved",
               "schema": {
                 "$ref": "#/definitions/User"
               }
+            },
+            "500" : {
+              "description": "Could not retrieve the user"
             }
           }
-        },
+        }
+      },
+      "/users/send": {
+        "parameters": [
+          {
+            "name": "email",
+            "required": true,
+            "in": "body",
+            "description": "Email who will receive the email",
+            "type": "string"
+          },
+          {
+            "name": "text",
+            "required": true,
+            "in": "body",
+            "description": "Body of the email",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ], 
+        "post": {
+          "summary": "Send an email to a User",
+          "tags": [
+            "Users"
+          ],
+          "responses": {
+            "200": {
+              "description":"Email sended correctly"
+            },
+            "500" : {
+              "description": "Email could not be sended"
+            }
+          }
+        }
+      },
+      "/users/update": {
+        "parameters":[
+          {
+            "name": "user",
+            "in": "body",
+            "required":true,
+            "description": "User with new values of properties",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ], 
         "put": {
-          "summary": "Update user with give ID",
+          "summary": "Update the information of a User",
           "tags": [
             "Users"
           ],
-          "parameters": [
-            {
-              "name": "user",
-              "in": "body",
-              "description": "User with new values of properties",
-              "schema": {
-                "$ref": "#/definitions/User"
-              }
-            }
-          ],
           "responses": {
             "200": {
-              "description": "User is updated",
+              "description":"User is updated",
               "schema": {
                 "$ref": "#/definitions/User"
               }
+            },
+            "500" : {
+              "description": "User could not be updated"
             }
           }
         }
@@ -277,23 +313,52 @@
     "definitions": {
       "User": {
         "required": [
-          "email",
-          "_id"
+          "_id",
+          "nombre",
+          "apellidos",
+          "email"
         ],
         "properties": {
           "_id": {
             "type": "string",
             "uniqueItems": true
           },
+          "nombre": {
+            "type": "string"
+          },
+          "apellidos": {
+            "type": "string"
+          },
+          "fechaNacimiento": {
+            "type": "Date"
+          },
           "email": {
             "type": "string",
             "uniqueItems": true
           },
-          "lastName": {
+          "contrasena": {
             "type": "string"
           },
-          "firstName": {
+          "telefono": {
+            "type": "integer"
+          },
+          "pais": {
             "type": "string"
+          },
+          "provincia": {
+            "type": "string"
+          },
+          "baneado": {
+            "type": "boolean"
+          },
+          "activo": {
+            "type": "boolean"
+          },
+          "admin": {
+            "type": "boolean"
+          },
+          "__v": {
+            "type": "integer"
           }
         }
       },
