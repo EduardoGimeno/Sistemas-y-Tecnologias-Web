@@ -12,6 +12,8 @@ export class ChangePasswordComponent implements OnInit {
 
 
   aviso: string;
+  aviso2: string;
+  aviso3: string;
   user: UserApp;
 
   constructor(public currentUser: CurrentUserService) { }
@@ -21,15 +23,30 @@ export class ChangePasswordComponent implements OnInit {
   }
 
   modifyPass(OldPassword: string, NewPassword: string, NewPassword2: string) {
+    this.limpiarAvisos();
     const md5 = new Md5();
     if ((this.user.contrasena == <string>md5.appendStr(OldPassword).end()) && (NewPassword.length >= 8) &&
       (NewPassword == NewPassword2)) {
-      console.log("SI")
       this.user.contrasena = <string>md5.appendStr(NewPassword).end();
       this.currentUser.updateUser(this.user);
-    } else {
-      console.log("NO")
     }
+    else {
+     if(NewPassword != NewPassword2){
+       this.aviso2 = "Confirme correctamente la nueva contraseña. (Las contraseñas introducidas son distintas)";
+     }
+     if(NewPassword.length < 8) {
+       this.aviso = "La contraseña debe tener al menos 8 caracteres.";
+     }
+     if(this.user.contrasena != <string>md5.appendStr(OldPassword).end()) {
+       this.aviso3 = "La contraseña actual es incorrecta.";
+     }
+    }
+  }
+
+  limpiarAvisos() {
+      this.aviso = "";
+      this.aviso2 = "";
+      this.aviso3 = "";
   }
 
 }
