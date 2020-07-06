@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserApp } from '../entities/usuario';
 import { CurrentUserService } from "../current-user.service";
 import {UserService} from "../services/user-service.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-accion-usuario',
@@ -11,7 +12,8 @@ import {UserService} from "../services/user-service.service";
 export class AccionUsuarioComponent implements OnInit {
   user: UserApp;
 
-  constructor(public currentUser: CurrentUserService, public userService: UserService) { }
+  constructor(public currentUser: CurrentUserService, public userService: UserService,
+              public currentService: CurrentUserService) { }
 
   ngOnInit(): void {
     this.user = this.currentUser.getUserAdmin();
@@ -35,7 +37,9 @@ export class AccionUsuarioComponent implements OnInit {
 
   enviarEmail() {
     console.log(<string>$('#textEmail').val());
-    //this.userService.sendEmail(this.user.email, <string>$('#textEmail$').val());
+    this.userService.sendEmail(this.user.email, <string>$('#textEmail').val()).subscribe(data => {
+      console.log(data);
+    });
   }
 
   accept() {
