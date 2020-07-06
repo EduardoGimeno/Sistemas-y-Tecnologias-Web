@@ -29,10 +29,10 @@
     "paths": {
       "/users/add": {
         "post": {
+          "summary": "Create new user in system",
           "tags": [
             "Users"
           ],
-          "description": "Create new user in system",
           "parameters": [
             {
               "name": "user",
@@ -61,10 +61,10 @@
       },
       "/users/getAll": {
         "get": {
+          "summary": "Get all users in system",
           "tags": [
             "Users"
           ],
-          "description": "Get all users in system",
           "produces": [
             "application/json"
           ],
@@ -83,10 +83,10 @@
       },
       "/users/count": {
         "get": {
+          "summary": "Count the number of users in the system",
           "tags": [
             "Users"
           ],
-          "description": "Count the number of users in the system",
           "produces": [
             "application/json"
           ],
@@ -105,10 +105,10 @@
       },
       "/users/countByEmail": {
         "get": {
+          "summary": "Count the number of users in the system by a given email",
           "tags": [
             "Users"
           ],
-          "description": "Count the number of users in the system by a given email",
           "parameters": [
             {
               "name": "email",
@@ -136,10 +136,10 @@
       },
       "/users/getUser": {
         "get": {
+          "summary": "Get a user by his id",
           "tags": [
             "Users"
           ],
-          "description": "Get a user by his id",
           "parameters": [
             {
               "name": "id",
@@ -167,10 +167,10 @@
       },
       "/users/search": {
         "get": {
+          "summary": "Search users by name, surname and email",
           "tags": [
             "Users"
           ],
-          "description": "Search users by name, surname and email",
           "parameters": [
             {
               "name": "email",
@@ -367,6 +367,9 @@
         "items": {
           "$ref": "#/definitions/User"
         }
+      },
+      "Number": {
+        "type": "integer"
       }
     }
   }
