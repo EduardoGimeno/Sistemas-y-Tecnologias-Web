@@ -2,11 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="109a231d-e49a-49c0-9fbe-e835707bb50d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../STWEB-Angular/src/app/accion-usuario/accion-usuario.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../STWEB-Angular/src/app/accion-usuario/accion-usuario.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../STWEB-Angular/src/app/accion-usuario/accion-usuario.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../STWEB-Angular/src/app/accion-usuario/accion-usuario.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../STWEB-Angular/src/app/entities/usuario.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../STWEB-Angular/src/app/entities/usuario.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../STWEB-Angular/src/app/services/user-service.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../STWEB-Angular/src/app/services/user-service.service.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app_server/config/keys.js" beforeDir="false" afterPath="$PROJECT_DIR$/app_server/config/keys.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/swagger.json" beforeDir="false" afterPath="$PROJECT_DIR$/swagger.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,7 +61,7 @@
       <workItem from="1591951401131" duration="3326000" />
       <workItem from="1593677669002" duration="5937000" />
       <workItem from="1593792627509" duration="1144000" />
-      <workItem from="1593879869430" duration="997000" />
+      <workItem from="1593879869430" duration="1388000" />
     </task>
     <servers />
   </component>
