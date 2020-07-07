@@ -13,6 +13,8 @@ import {UserApp} from "../entities/usuario";
 })
 export class RegistryGoogleComponent implements OnInit {
 
+  aviso: string;
+  aviso2: string;
   user: UserApp;
   provincias = [];
 
@@ -39,22 +41,38 @@ export class RegistryGoogleComponent implements OnInit {
 
   registroGoogle() {
     //Completar confirmación de registroGoogle
+    this.limpiarAviso();
     this.user = this.currentUser.checkLog();
     console.log(this.user);
     let fecha: Date = new Date();
     let fechaFinString: string = <string>$("#fecha").val();
-    let fechaFinArray = fechaFinString.split("-");
-    fecha.setFullYear(+fechaFinArray[0], +fechaFinArray[1] - 1, +fechaFinArray[2]);
-    this.user.fechaNacimiento = fecha;
-    this.user.telefono = <string>$("#telefono").val();
-    this.user.pais = <string>$("#pais").children("option:selected").text();
-    this.user.provincia = <string>$("#provincia").val();
-    this.user.baneado = false;
-    this.user.activo = true;
-    this.user.admin = false;
-    this.currentUser.loginGoogle(this.user);
-    //this.currentUser.updateUser(this.user);
-    //this.currentUser.logIn(this.user.email, this.user.contrasena);
+    if((<string>$("#telefono").val() != "") && (fechaFinString != "")){
+      let fechaFinArray = fechaFinString.split("-");
+      fecha.setFullYear(+fechaFinArray[0], +fechaFinArray[1] - 1, +fechaFinArray[2]);
+      this.user.fechaNacimiento = fecha;
+      this.user.telefono = <string>$("#telefono").val();
+      this.user.pais = <string>$("#pais").children("option:selected").text();
+      this.user.provincia = <string>$("#provincia").val();
+      this.user.baneado = false;
+      this.user.activo = true;
+      this.user.admin = false;
+      this.currentUser.loginGoogle(this.user);
+      //this.currentUser.updateUser(this.user);
+      //this.currentUser.logIn(this.user.email, this.user.contrasena);
+    }
+    else{
+      if(<string>$("#telefono").val() == ""){
+        this.aviso = "El campo teléfono no puede estar vacío."
+      }
+      if(fechaFinString == ""){
+        this.aviso2 = "Elija una fecha en el calendario."
+      }
+    }
+  }
+
+  limpiarAviso(){
+    this.aviso = "";
+    this.aviso2 = "";
   }
 
 }
