@@ -76,7 +76,7 @@ export class UserService {
       'authentication': this.cookieService.get("token")});
     let options = { headers: headers };
     let json = {'email': email, 'text': text};
-    return this.http.post(this.urlApp + '/send', JSON.stringify(json), options);
+    return this.http.post(this.urlApp + '/send', json, options);
   }
 
 }

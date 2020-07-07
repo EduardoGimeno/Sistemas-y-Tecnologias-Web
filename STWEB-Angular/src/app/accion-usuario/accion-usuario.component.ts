@@ -23,16 +23,18 @@ export class AccionUsuarioComponent implements OnInit {
     let todayDate = new Date();
     let date = new Date(new Date().setDate(todayDate.getDate() + days));
     this.user.baneado = true;
-    this.user.activo = false;
     this.user.finBan = date;
     this.userService.updateUser(this.user).subscribe(data => {
       console.log(data);
     });
-    console.log(this.user);
   }
 
   eliminar() {
-
+    this.user.activo = false;
+    this.userService.updateUser(this.user).subscribe(data => {
+      console.log(data);
+    });
+    console.log(this.user);
   }
 
   enviarEmail() {
