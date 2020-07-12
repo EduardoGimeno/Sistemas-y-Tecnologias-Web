@@ -86,10 +86,13 @@
             <div class="col" style="text-align: left; margin-top: auto; margin-left: 2vh">
               <div style="display: block;">
                 <canvas baseChart
-                        chartType="radar"
-                        [datasets]="chartData"
+                        chartType="pie"
+                        [data]="chartData"
+                        [colors]="chartColors"
+                        [labels]="chartLabels"
                         [options]="chartOptions"
-                        [labels]="chartLabels">
+                        [plugins]="chartPlugins"
+                        [legend]="chartLegend">
                 </canvas>
               </div>
             </div>

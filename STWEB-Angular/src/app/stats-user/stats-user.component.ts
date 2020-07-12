@@ -13,12 +13,14 @@ export class StatsUserComponent implements OnInit {
   chartOptions = {
       responsive: true,
     };
-    chartLabels = ['Eating', 'Drinking', 'Sleeping', 'Designing', 'Coding', 'Cycling', 'Running'];
-
-    chartData = [
-      { data: [65, 59, 90, 81, 56, 55, 40], label: 'Series A' },
-      { data: [28, 48, 40, 19, 96, 27, 100], label: 'Series B' }
-    ];
+    chartLabels = ['Hoteles', 'Turismo rural', 'Apartamentos'];
+    chartData = [300, 500, 100];
+    chartColors = [{
+      backgroundColor: ['red', '#0F0', 'rgba(41, 182, 246,0.75)'],
+      borderColor: ['rgb(250,120,100)', 'green', '#0086c3']
+    }];
+    chartLegend = true;
+    chartPlugins = [];
 
   user: UserApp;
 
