@@ -84,7 +84,14 @@
         <div class="col" style="height: 15vh; width: 100%">
           <div class="row" style="height: 40%">
             <div class="col" style="text-align: left; margin-top: auto; margin-left: 2vh">
-              <h4>Poner estadisticas aqui</h4>
+              <div style="display: block;">
+                <canvas baseChart
+                        chartType="radar"
+                        [datasets]="chartData"
+                        [options]="chartOptions"
+                        [labels]="chartLabels">
+                </canvas>
+              </div>
             </div>
           </div>
         </div>

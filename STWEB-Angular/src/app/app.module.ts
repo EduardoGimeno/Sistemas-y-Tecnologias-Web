@@ -33,10 +33,11 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule} from '@angular/material/button';
 import { MatInputModule} from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
-
-
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import {MAT_DIALOG_DEFAULT_OPTIONS} from '@angular/material/dialog';
+
+//Para usar diagramas
+import { ChartsModule } from '@rinminase/ng-charts';
 
 let config = new AuthServiceConfig([
   {
@@ -70,6 +71,7 @@ export function provideConfig() {
   imports: [
     BrowserModule,
     AppRoutingModule,
+    ChartsModule,
     NgbModule,
     NoopAnimationsModule,
     HttpClientModule,
