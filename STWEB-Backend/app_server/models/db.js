@@ -11,9 +11,7 @@ const mongoose = require('mongoose');
 const dbURI = process.env.DB_URI;
 
 // Desarrollo
-// const dbURI = "mongodb://heroku_nlz612k6:4esr5nd00lhq9oahddep17pj1b@ds161520.mlab.com:61520/heroku_nlz612k6";
-
-//const dbURI = "mongodb://heroku_5299hwsl:bfhfe1bp4mq61l37uh8mi34knq@ds121299.mlab.com:21299/heroku_5299hwsl";
+//const dbURI = "mongodb://heroku_nlz612k6:4esr5nd00lhq9oahddep17pj1b@ds161520.mlab.com:61520/heroku_nlz612k6";
 
 // Opened a Mongoose connection at application startup
 mongoose.connect(dbURI, {useNewUrlParser: true, useUnifiedTopology: true});

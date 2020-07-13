@@ -16,7 +16,6 @@ const usuarioSchema = new mongoose.Schema({
     provincia: String,
     activo: Boolean,
     baneado: Boolean,
-    inicioBan: Date,
     finBan: Date,
     admin: Boolean
 });
