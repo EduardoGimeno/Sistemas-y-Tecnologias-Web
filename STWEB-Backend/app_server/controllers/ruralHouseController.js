@@ -21,7 +21,8 @@ ruralHouseController.getRuralHouses = async function(req, res) {
     try {
         checkToken(req.headers.authentication);
         var perPage = 20;
-        var page = Math.max(0, req.param('page'));
+        var queryData = url.parse(req.url, true).query;
+        var page = Math.max(0, queryData.page);
         const ruralHouses = await RuralHouse.find(function(err) {
             if (err) {
                 res.status(500);
@@ -58,28 +59,13 @@ ruralHouseController.countRuralHouses = async function(req, res) {
 }
 
 /*
- * Añadir un nuevo alojamiento de turismo rural.
- */
-ruralHouseController.addRuralHouse = async function(req, res) {
-    var ruralHouse = new RuralHouse(req.body);
-    await ruralHouse.save(function (err, newRuralHouse) {
-        if (err) {
-            res.status(500);
-            res.json({error: err.message});
-        } else {
-            res.status(200);
-            res.json(newRuralHouse);
-        }
-    });
-}
-
-/*
  * Obtener un alojamiento de turismo rural por su id.
  */
 ruralHouseController.getRuralHouse = async function(req, res) {
     try {
         checkToken(req.headers.authentication);
-        var id = req.param('id');
+        var queryData = url.parse(req.url, true).query;
+        var id = queryData.id;
         const ruralHouse = await RuralHouse.findById(id, function(err) {
             if (err) {
                 res.status(500);
@@ -103,8 +89,8 @@ ruralHouseController.searchRuralHouses = async function(req, res) {
     try {
         checkToken(req.headers.authentication);
         var perPage = 20;
-        var page = Math.max(0, req.param('page'));
         var queryData = url.parse(req.url, true).query;
+        var page = Math.max(0, queryData.page);
         var province = queryData.province;
         var region = queryData.region;
         var municipality = queryData.municipality;
@@ -112,7 +98,7 @@ ruralHouseController.searchRuralHouses = async function(req, res) {
         var maxSpikes = queryData.maxSpikes;
 
         const ruralHouses = await RuralHouse.find({'comun.provincia': new RegExp(province,'i'), 
-                                                  'comun.comcarca': new RegExp(region, 'i'), 
+                                                  'comun.comarca': new RegExp(region, 'i'), 
                                                   'comun.municipio': new RegExp(municipality, 'i'),
                                                   espigas: {$gte: minSpikes, $lte: maxSpikes}},
                                                   function(err) {
