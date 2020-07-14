@@ -18,7 +18,7 @@ checkToken = function(token) {
  */
 userController.getUserToken = async function(req,res) {
     try {
-        //checkToken(req.headers.authentication);
+        checkToken(req.headers.authentication);
         var queryData = url.parse(req.url, true).query;
         var token = queryData.token;
         var email = jwtinterface.decodetoken(token).email;
@@ -41,16 +41,16 @@ userController.getUserToken = async function(req,res) {
  */
 userController.getUsers = async function(req, res) {
     try {
-        //checkToken(req.headers.authentication);
+        checkToken(req.headers.authentication);
         var perPage = 20;
         var queryData = url.parse(req.url, true).query;
         var page = Math.max(0, queryData.page);
-        const users = await User.find(function(err) {
+        const users = await User.find({ admin: false }, function(err) {
             if (err) {
                 res.status(500);
                 res.json({error: err.message});
             }
-        }).skip(perPage*page).limit(perPage);;
+        }).skip(perPage*page).limit(perPage);
         res.json(users);
     } catch(err) {
         res.status(500);
@@ -64,7 +64,7 @@ userController.getUsers = async function(req, res) {
 userController.countUsers = async function(req, res) {
     try {
         checkToken(req.headers.authentication);
-        await User.count({}, function(err, result) {
+        await User.count({ admin: false }, function(err, result) {
             if (err) {
                 res.status(500);
                 res.json({error: err.message});
@@ -187,7 +187,8 @@ userController.searchUsers = async function(req, res) {
 
         const users = await User.find({nombre: new RegExp(name, 'i'), 
                                        apellidos: new RegExp(surname, 'i'), 
-                                       email: new RegExp(email, 'i')},
+                                       email: new RegExp(email, 'i'),
+                                       admin: false},
                                        function(err) {
                                             if (err) {
                                                 res.status(400);
