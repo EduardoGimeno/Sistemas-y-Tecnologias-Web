@@ -33,31 +33,31 @@ export class StatsUserComponent implements OnInit {
 
   getNumbersOfData() {
     this.entryService.getCount("hotels").subscribe(num => {
-            this.chartData.push(<number>num);
+            this.chartData.splice(0, 0, <number>num);
           });
     this.entryService.getCount("ruralHouses").subscribe(num => {
-            this.chartData.push(<number>num);
+            this.chartData.splice(1, 0, <number>num);
           });
     this.entryService.getCount("apartments").subscribe(num => {
-            this.chartData.push(<number>num);
+            this.chartData.splice(2, 0, <number>num);
           });
     this.entryService.getCount("campings").subscribe(num => {
-            this.chartData.push(<number>num);
+            this.chartData.splice(3, 0, <number>num);
           });
     this.entryService.getCount("shelters").subscribe(num => {
-            this.chartData.push(<number>num);
+            this.chartData.splice(4, 0, <number>num);
           });
     this.entryService.getCount("restaurants").subscribe(num => {
-            this.chartData.push(<number>num);
+            this.chartData.splice(5, 0, <number>num);
           });
     this.entryService.getCount("touristOffices").subscribe(num => {
-            this.chartData.push(<number>num);
+            this.chartData.splice(6, 0, <number>num);
           });
     this.entryService.getCount("informationPoints").subscribe(num => {
-            this.chartData.push(<number>num);
+            this.chartData.splice(7, 0, <number>num);
           });
     this.entryService.getCount("guides").subscribe(num => {
-            this.chartData.push(<number>num);
+            this.chartData.splice(8, 0, <number>num);
           });
   }
 
