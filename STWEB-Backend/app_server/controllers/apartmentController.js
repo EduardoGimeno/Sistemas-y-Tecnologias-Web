@@ -21,7 +21,8 @@ apartmentController.getApartments = async function(req, res) {
     try {
         checkToken(req.headers.authentication);
         var perPage = 20;
-        var page = Math.max(0, req.param('page'));
+        var queryData = url.parse(req.url, true).query;
+        var page = Math.max(0, queryData.page);
         const apartments = await Apartment.find(function(err) {
             if (err) {
                 res.status(500);
@@ -58,28 +59,13 @@ apartmentController.countApartments = async function(req, res) {
 }
 
 /*
- * Añadir un nuevo apartamento.
- */
-apartmentController.addApartment = async function(req, res) {
-    var apartment = new (req.body);
-    await apartment.save(function (err, newApartment) {
-        if (err) {
-            res.status(500);
-            res.json({error: err.message});
-        } else {
-            res.status(200);
-            res.json(newApartment);
-        }
-    });
-}
-
-/*
  * Obtener un apartamento por su id.
  */
 apartmentController.getApartment = async function(req, res) {
     try {
         checkToken(req.headers.authentication);
-        var id = req.param('id');
+        var queryData = url.parse(req.url, true).query;
+        var id = queryData.id;
         const apartment = await Apartment.findById(id, function(err) {
             if (err) {
                 res.status(500);
@@ -102,14 +88,14 @@ apartmentController.searchApartment = async function(req, res) {
     try {
         checkToken(req.headers.authentication);
         var perPage = 20;
-        var page = Math.max(0, req.param('page'));
         var queryData = url.parse(req.url, true).query;
+        var page = Math.max(0, queryData.page);
         var province = queryData.province;
         var region = queryData.region;
         var municipality = queryData.municipality;
 
         const apartments = await Apartment.find({'comun.provincia': new RegExp(province,'i'), 
-                                                'comun.comcarca': new RegExp(region, 'i'), 
+                                                'comun.comarca': new RegExp(region, 'i'), 
                                                 'comun.municipio': new RegExp(municipality, 'i')},
                                                 function(err) {
                                                     if (err) {
