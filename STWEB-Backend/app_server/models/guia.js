@@ -6,16 +6,16 @@
 const mongoose = require( 'mongoose' );
 
 const guiaSchema = new mongoose.Schema({
-    signatura: {type: String},
-    nombre: {type: String},
-    apellidos: {type: String},
-    telefono: {type: String},
-    espanol: {type: Boolean},
-    ingles: {type: Boolean},
-    frances: {type: Boolean},
-    aleman: {type: Boolean},
-    italiano: {type: Boolean},
-    otros: {type: Boolean}
+    signatura: String,
+    nombre: String,
+    apellidos: String,
+    telefono: String,
+    espanol: String,
+    ingles: String,
+    frances: String,
+    aleman: String,
+    italiano: String,
+    otros: String
 });
 
 module.exports = mongoose.model('Guia', guiaSchema);

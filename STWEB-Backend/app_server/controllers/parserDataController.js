@@ -225,12 +225,12 @@ parserDataController.guias = async function(req, res) {
                     nombre: item.NOMBRE_GUIA,
                     apellidos: item.APELLIDO_GUIA,
                     telefono: item.TELEFONO_TITULAR,
-                    espanol: item.ESPANOL==null ? 0:1,
-                    ingles: item.INGLES==null ? 0:1,
-                    frances: item.FRANCES==null ? 0:1,
-                    aleman: item.ALEMAN==null ? 0:1,
-                    italiano: item.ITALIANO==null ? 0:1,
-                    otros: item.OTROS_IDIOMAS==null ? 0:1
+                    espanol: 'true',
+                    ingles: (item.INGLES != 1) ? 'false':'true',
+                    frances: (item.FRANCES != 1) ? 'false':'true',
+                    aleman: (item.ALEMAN != 1) ? 'false':'true',
+                    italiano: (item.ITALIANO != 1) ? 'false':'true',
+                    otros: (item.OTROS_IDIOMAS != 1) ? 'false':'true'
                 }
                 // Guardar la nueva entrada
                 await new Guide(guia).save();

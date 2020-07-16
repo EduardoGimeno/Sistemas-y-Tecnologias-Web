@@ -21,7 +21,8 @@ guideController.getGuides = async function(req, res) {
     try {
         checkToken(req.headers.authentication);
         var perPage = 20;
-        var page = Math.max(0, req.param('page'));
+        var queryData = url.parse(req.url, true).query;
+        var page = Math.max(0, queryData.page);
         const guides = await Guide.find(function(err) {
             if (err) {
                 res.status(500);
@@ -58,28 +59,13 @@ guideController.countGuides = async function(req, res) {
 }
 
 /*
- * Añadir un nuevo guía.
- */
-guideController.addGuide = async function(req, res) {
-    var guide = new Guide(req.body);
-    await guide.save(function (err, newGuide) {
-        if (err) {
-            res.status(500);
-            res.json({error: err.message});
-        } else {
-            res.status(200);
-            res.json(newGuide);
-        }
-    });
-}
-
-/*
  * Obtener un guía por su id.
  */
 guideController.getGuide = async function(req, res) {
     try {
         checkToken(req.headers.authentication);
-        var id = req.param('id');
+        var queryData = url.parse(req.url, true).query;
+        var id = queryData.id;
         const guide = await Guide.findById(id, function(err) {
             if (err) {
                 res.status(500);
@@ -102,11 +88,21 @@ guideController.searchGuides = async function(req, res) {
     try {
         checkToken(req.headers.authentication);
         var perPage = 20;
-        var page = Math.max(0, req.param('page'));
         var queryData = url.parse(req.url, true).query;
-        var idiom = queryData.idiom;
+        var page = Math.max(0, queryData.page);
+        var spanish = queryData.spanish;
+        var english = queryData.english;
+        var french = queryData.french;
+        var italian = queryData.italian;
+        var german = queryData.german;
+        var other = queryData.other;
 
-        const guides = await Guide.find({idiom: new RegExp(idiom,'i')},
+        const guides = await Guide.find({espanol: new RegExp(spanish,'i'),
+                                        ingles: new RegExp(english,'i'),
+                                        frances: new RegExp(french,'i'),
+                                        aleman: new RegExp(german,'i'),
+                                        italiano: new RegExp(italian,'i'),
+                                        otros: new RegExp(other,'i')},
                                         function(err) {
                                             if (err) {
                                                 res.status(400);
