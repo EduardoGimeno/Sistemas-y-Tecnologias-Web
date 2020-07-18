@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserApp } from '../entities/usuario';
 import { CurrentUserService } from "../current-user.service";
 import { EntryService } from "../services/entry-service.service";
-import { Router } from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {Apartamento} from "../entities/apartamento";
 import {Hotel} from "../entities/hotel";
 import {AlojamientoTurismoRural} from "../entities/alojamientoTurismoRural";
@@ -33,9 +33,13 @@ export class IndexUserComponent implements OnInit {
   busquedaConFiltros: boolean = false;
 
   constructor(public currentUser: CurrentUserService, public entryService: EntryService,
-              public route: Router) { }
+              public route: Router, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.activatedRoute.queryParams.subscribe(params => {
+      let token = params['token'];
+      this.currentUser.setUserByToken(token);
+    });
     this.user = this.currentUser.checkLog();
     this.disableSelections(0);
     this.filter(0, false);
