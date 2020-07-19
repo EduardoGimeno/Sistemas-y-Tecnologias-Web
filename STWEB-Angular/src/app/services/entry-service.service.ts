@@ -30,7 +30,7 @@ export class EntryService {
       'authentication': this.cookieService.get("token")});
     let params = new HttpParams()
       .set("page", page.toString());
-    return this.http.get(this.urlApp + "/ruralHouses", {params:params, headers:headers});
+    return this.http.get(this.urlApp + "/ruralHouses/getAll", {params:params, headers:headers});
   }
 
   public getApartamentos(page: number) {
@@ -38,7 +38,7 @@ export class EntryService {
       'authentication': this.cookieService.get("token")});
     let params = new HttpParams()
       .set("page", page.toString());
-    return this.http.get(this.urlApp + "/apartments", {params:params, headers:headers});
+    return this.http.get(this.urlApp + "/apartments/getAll", {params:params, headers:headers});
   }
 
   public getCampings(page: number) {
@@ -46,7 +46,7 @@ export class EntryService {
       'authentication': this.cookieService.get("token")});
     let params = new HttpParams()
       .set("page", page.toString());
-    return this.http.get(this.urlApp + "/campings", {params:params, headers:headers});
+    return this.http.get(this.urlApp + "/campings/getAll", {params:params, headers:headers});
   }
 
   public getRefugios(page: number) {
@@ -86,7 +86,7 @@ export class EntryService {
       'authentication': this.cookieService.get("token")});
     let params = new HttpParams()
       .set("page", page.toString());
-    return this.http.get(this.urlApp + "/guides", {params:params, headers:headers});
+    return this.http.get(this.urlApp + "/guides/getAll", {params:params, headers:headers});
   }
 
   public getHotel(id) {

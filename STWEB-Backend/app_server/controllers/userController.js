@@ -18,7 +18,7 @@ checkToken = function(token) {
  */
 userController.getUserToken = async function(req,res) {
     try {
-        checkToken(req.headers.authentication);
+        //checkToken(req.headers.authentication);
         var queryData = url.parse(req.url, true).query;
         var token = queryData.token;
         var email = jwtinterface.decodetoken(token).email;
