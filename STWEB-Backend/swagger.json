@@ -563,6 +563,52 @@
             "$ref":"#/definitions/Number"
           }
         }
+      },
+      "Mensaje":{
+        "properties":{
+          "emisor":{
+            "type":"string"
+          },
+          "texto":{
+            "type":"string"
+          },
+          "hora":{
+            "type":"string"
+          }
+        },
+        "required":[
+          "emisor",
+          "texto",
+          "hora"
+        ]
+      },
+      "Chat": {
+        "properties":{
+          "nomEntrada":{
+            "type":"string"
+          },
+          "nomUsuario":{
+            "type":"string"
+          },
+          "emailEntrada":{
+            "type":"string"
+          },
+          "emailUsuario":{
+            "type":"string"
+          },
+          "mensajes":{
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/Mensaje"
+        }
+          }
+        },
+        "required":[
+          "nomEntrada",
+          "nomUsuario",
+          "emailEntrada",
+          "emailUsuario"
+        ]
       }
     }
   }
