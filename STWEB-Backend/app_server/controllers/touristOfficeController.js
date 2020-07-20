@@ -21,7 +21,8 @@ touristOfficeController.getTouristOffices = async function(req, res) {
     try {
         checkToken(req.headers.authentication);
         var perPage = 20;
-        var page = Math.max(0, req.param('page'));
+        var queryData = url.parse(req.url, true).query;
+        var page = Math.max(0, queryData.page);
         const touristOffices = await TouristOffice.find(function(err) {
             if (err) {
                 res.status(500);
@@ -58,28 +59,13 @@ touristOfficeController.countTouristOffices = async function(req, res) {
 }
 
 /*
- * Añadir una nueva oficina de turismo.
- */
-touristOfficeController.addTouristOffice = async function(req, res) {
-    var touristOffice = new TouristOffice(req.body);
-    await touristOffice.save(function (err, newTouristOffice) {
-        if (err) {
-            res.status(500);
-            res.json({error: err.message});
-        } else {
-            res.status(200);
-            res.json(newTouristOffice);
-        }
-    });
-}
-
-/*
  * Obtener una oficina de turismo por su id.
  */
 touristOfficeController.getTouristOffice = async function(req, res) {
     try {
         checkToken(req.headers.authentication);
-        var id = req.param('id');
+        var queryData = url.parse(req.url, true).query;
+        var id = queryData.id;
         const touristOffice = await TouristOffice.findById(id, function(err) {
             if (err) {
                 res.status(500);
@@ -102,15 +88,13 @@ touristOfficeController.searchTouristOffices = async function(req, res) {
     try {
         checkToken(req.headers.authentication);
         var perPage = 20;
-        var page = Math.max(0, req.param('page'));
         var queryData = url.parse(req.url, true).query;
+        var page = Math.max(0, queryData.page);
         var province = queryData.province;
-        var region = queryData.region;
         var municipality = queryData.municipality;
 
-        const touristOffices = await TouristOffice.find({'comun.provincia': new RegExp(province,'i'), 
-                                                        'comun.comcarca': new RegExp(region, 'i'),
-                                                        'comun.municipio': new RegExp(municipality, 'i')},
+        const touristOffices = await TouristOffice.find({provincia: new RegExp(province,'i'), 
+                                                        municipio: new RegExp(municipality, 'i')},
                                                         function(err) {
                                                             if (err) {
                                                                 res.status(400);

@@ -6,13 +6,13 @@
 const mongoose = require( 'mongoose' );
 
 const oficinaTurismoSchema = new mongoose.Schema({
-    signatura: {type: String},
-    nombre: {type: String},
-    direccion: {type: String},
-    provincia: {type: String},
-    municipio: {type: String},
-    telefono: {type: String},
-    horario: {type: String}
+    signatura: String,
+    nombre: String,
+    direccion: String,
+    provincia: String,
+    municipio: String,
+    telefono: String,
+    horario: String
 });
 
 module.exports = mongoose.model('OficinaTurismo', oficinaTurismoSchema);

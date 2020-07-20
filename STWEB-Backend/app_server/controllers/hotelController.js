@@ -21,7 +21,8 @@ hotelController.getHotels = async function(req, res) {
     try {
         checkToken(req.headers.authentication);
         var perPage = 20;
-        var page = Math.max(0, req.param('page'));
+        var queryData = url.parse(req.url, true).query;
+        var page = Math.max(0, queryData.page);
         const hotels = await Hotel.find(function(err) {
             if (err) {
                 res.status(500);
@@ -58,28 +59,13 @@ hotelController.countHotels = async function(req, res) {
 }
 
 /*
- * Añadir un nuevo hotel.
- */
-hotelController.addHotel = async function(req, res) {
-    var hotel = new Hotel(req.body);
-    await hotel.save(function (err, newHotel) {
-        if (err) {
-            res.status(500);
-            res.json({error: err.message});
-        } else {
-            res.status(200);
-            res.json(newHotel);
-        }
-    });
-}
-
-/*
  * Obtener un hotel por su id.
  */
 hotelController.getHotel = async function(req, res) {
     try {
         checkToken(req.headers.authentication);
-        var id = req.param('id');
+        var queryData = url.parse(req.url, true).query;
+        var id = queryData.id;
         const hotel = await Hotel.findById(id, function(err) {
             if (err) {
                 res.status(500);
@@ -103,8 +89,8 @@ hotelController.searchHotels = async function(req, res) {
     try {
         checkToken(req.headers.authentication);
         var perPage = 20;
-        var page = Math.max(0, req.param('page'));
         var queryData = url.parse(req.url, true).query;
+        var page = Math.max(0, queryData.page);
         var province = queryData.province;
         var region = queryData.region;
         var municipality = queryData.municipality;
@@ -128,7 +114,5 @@ hotelController.searchHotels = async function(req, res) {
         res.json({error: err.message});
     }
 }
-
-
 
 module.exports = hotelController;

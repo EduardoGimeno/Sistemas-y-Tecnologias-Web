@@ -9,7 +9,7 @@ var alojamiento = require('./alojamiento');
 const hotelSchema = new mongoose.Schema({
     comun: alojamiento.alojamientoSchema,
     grupo: String,
-    estrellas: {type: Number}
+    estrellas: Number
 });
 
 module.exports = mongoose.model('Hotel', hotelSchema);

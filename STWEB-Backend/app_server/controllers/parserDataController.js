@@ -331,7 +331,7 @@ parserDataController.oficinasTurismo = async function(req, res) {
                         nombre: item.NOMBRE,
                         direccion: item.DIRECCION_ESTABLECIMIENTO,
                         provincia: item.NOMBRE_PROVINCIA,
-                        municipio: item.LOCA_MUN,
+                        municipio: item.LOCA_MUN.substring(0, item.LOCA_MUN.length-3),
                         telefono: item.TELEFONO_ESTABLECIMIENTO,
                         horario: item.OBS_HORARIO
                     };
