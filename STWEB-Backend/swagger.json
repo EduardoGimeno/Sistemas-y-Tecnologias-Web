@@ -15,6 +15,10 @@
       {
         "name": "Users",
         "description": "User interaction API"
+      },
+      {
+        "name": "Apartments",
+        "description": "Apartments interaction API"
       }
     ],
     "schemes": [
@@ -72,7 +76,10 @@
             "200": {
               "description": "List of all users",
               "schema": {
-                "$ref": "#/definitions/Users"
+                "type":"array",
+                "items":{
+                  "$ref": "#/definitions/User"
+                }
               }
             },
             "500": {
@@ -201,7 +208,10 @@
             "200": {
               "description": "List of users that match the search",
               "schema": {
-                "$ref": "#/definitions/Users"
+                "type":"array",
+                "items":{
+                  "$ref": "#/definitions/User"
+                } 
               }
             },
             "500": {
@@ -308,9 +318,165 @@
             }
           }
         }
+      },
+      "/apartments/get":{
+        "parameters":[
+          {
+            "name":"_id",
+            "in":"path",
+            "required":true,
+            "description":"Id of the apartment we want the info",
+            "schema":{
+              "type":"string"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "get":{
+          "summary": "Get the info of an Apartment",
+          "tags":[
+            "Apartments"
+          ],
+          "responses":{
+            "200":{
+              "description":"Apartment found",
+              "schema":{
+                "$ref":"#/definitions/Apartamento"
+              }
+            },
+            "500":{
+              "description":"Info could not be retrieved",
+              "schema":{
+                "$ref":"#/definitions/Error"
+              }
+            }
+          }
+        } 
+      },
+      "/apartments/count":{
+        "produces": [
+          "application/json"
+        ],
+        "get":{
+          "summary": "Get the number of Apartments saved",
+          "tags":[
+            "Apartments"
+          ],
+          "responses":{
+            "200":{
+              "description":"Number of apartments saved",
+              "schema":{
+                "$ref":"#/definitions/Number"
+              }
+            },
+            "500":{
+              "description":"Info could not be retrieved",
+              "schema":{
+                "$ref":"#/definitions/Error"
+              }
+            }
+          }
+        } 
+      },
+      "/apartments/getAll":{
+        "produces": [
+          "application/json"
+        ],
+        "get":{
+          "summary": "Get the info of all the Apartments",
+          "tags":[
+            "Apartments"
+          ],
+          "responses":{
+            "200":{
+              "description":"Apartments found",
+              "schema":{
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/Apartamento"
+                }
+              }
+            },
+            "500":{
+              "description":"Info could not be retrieved",
+              "schema":{
+                "$ref":"#/definitions/Error"
+              }
+            }
+          }
+        } 
+      },
+      "/apartments/search":{
+        "parameters":[
+          {
+            "name":"province",
+            "in":"path",
+            "required":true,
+            "description":"Name of the province we want info about",
+            "schema":{
+              "type":"string"
+            }
+          },
+          {
+            "name":"region",
+            "in":"path",
+            "required":true,
+            "description":"Name of the region we want info about",
+            "schema":{
+              "type":"string"
+            }
+          },
+          {
+            "name":"municipality",
+            "in":"path",
+            "required":true,
+            "description":"Name of the municipality we want info about",
+            "schema":{
+              "type":"string"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "get":{
+          "summary": "Get the info of all the Apartments that match the query search",
+          "tags":[
+            "Apartments"
+          ],
+          "responses":{
+            "200":{
+              "description":"Apartments found",
+              "schema":{
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/Apartamento"
+                }
+              }
+            },
+            "500":{
+              "description":"Info could not be retrieved",
+              "schema":{
+                "$ref":"#/definitions/Error"
+              }
+            }
+          }
+        } 
       }
     },
     "definitions": {
+      "Number": {
+        "type": "integer"
+      },
+      "Error":{
+        "properties":{
+          "error":{
+            "type":"string"
+          }
+        }
+      },
       "User": {
         "required": [
           "_id",
@@ -361,15 +527,6 @@
             "type": "integer"
           }
         }
-      },
-      "Users": {
-        "type": "array",
-        "items": {
-          "$ref": "#/definitions/User"
-        }
-      },
-      "Number": {
-        "type": "integer"
       },
       "Alojamiento":{
         "properties": {
@@ -600,7 +757,7 @@
             "type": "array",
             "items": {
               "$ref": "#/definitions/Mensaje"
-        }
+            }
           }
         },
         "required":[
