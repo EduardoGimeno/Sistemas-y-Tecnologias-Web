@@ -6,16 +6,16 @@
 const mongoose = require( 'mongoose' );
 
 const restuaranteSchema = new mongoose.Schema({
-    signatura: {type: String},
-    nombre: {type: String},
-    direccion: {type: String},
-    codigoPostal: {type: Number},
-    provincia: {type: String},
-    comarca: {type: String},
-    municipio: {type: String},
-    capacidad: {type: Number},
-    telefono: {type: String},
-    categoria: {type: Number}
+    signatura: String,
+    nombre: String,
+    direccion: String,
+    codigoPostal: Number,
+    provincia: String,
+    comarca: String,
+    municipio: String,
+    capacidad: Number,
+    telefono: String,
+    categoria: Number
 });
 
 module.exports = mongoose.model('Restaurante', restuaranteSchema);

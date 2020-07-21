@@ -21,7 +21,8 @@ informationPointController.getInformationPoints = async function(req, res) {
     try {
         checkToken(req.headers.authentication);
         var perPage = 20;
-        var page = Math.max(0, req.param('page'));
+        var queryData = url.parse(req.url, true).query;
+        var page = Math.max(0, queryData.page);
         const informationPoints = await InformationPoint.find(function(err) {
             if (err) {
                 res.status(500);
@@ -58,28 +59,13 @@ informationPointController.countInformationPoints = async function(req, res) {
 }
 
 /*
- * Añadir un nuevo punto de información.
- */
-informationPointController.addInformationPoint = async function(req, res) {
-    var informationPoint = new InformationPoint(req.body);
-    await informationPoint.save(function (err, newInformationPoint) {
-        if (err) {
-            res.status(500);
-            res.json({error: err.message});
-        } else {
-            res.status(200);
-            res.json(newInformationPoint);
-        }
-    });
-}
-
-/*
  * Obtener un punto de información por su id.
  */
 informationPointController.getInformationPoint = async function(req, res) {
     try {
         checkToken(req.headers.authentication);
-        var id = req.param('id');
+        var queryData = url.parse(req.url, true).query;
+        var id = queryData.id;
         const informationPoint = await InformationPoint.findById(id, function(err) {
             if (err) {
                 res.status(500);
@@ -102,15 +88,13 @@ informationPointController.searchInformationPoints = async function(req, res) {
     try {
         checkToken(req.headers.authentication);
         var perPage = 20;
-        var page = Math.max(0, req.param('page'));
         var queryData = url.parse(req.url, true).query;
+        var page = Math.max(0, queryData.page);
         var province = queryData.province;
-        var region = queryData.region;
         var municipality = queryData.municipality;
 
-        const informationPoints = await InformationPoint.find({'comun.provincia': new RegExp(province,'i'), 
-                                                              'comun.comcarca': new RegExp(region, 'i'), 
-                                                              'comun.municipio': new RegExp(municipality, 'i')},
+        const informationPoints = await InformationPoint.find({provincia: new RegExp(province,'i'), 
+                                                              municipio: new RegExp(municipality, 'i')},
                                         function(err) {
                                             if (err) {
                                                 res.status(400);

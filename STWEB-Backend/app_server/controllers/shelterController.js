@@ -21,7 +21,8 @@ shelterController.getShelters = async function(req, res) {
     try {
         checkToken(req.headers.authentication);
         var perPage = 20;
-        var page = Math.max(0, req.param('page'));
+        var queryData = url.parse(req.url, true).query;
+        var page = Math.max(0, queryData.page);
         const shelter = await Shelter.find(function(err) {
             if (err) {
                 res.status(500);
@@ -57,28 +58,13 @@ shelterController.countShelters = async function(req, res) {
 }
 
 /*
- * Añadir un nuevo refugio.
- */
-shelterController.addShelter = async function(req, res) {
-    var shelter = new Shelter(req.body);
-    await shelter.save(function (err, newShelter) {
-        if (err) {
-            res.status(500);
-            res.json({error: err.message});
-        } else {
-            res.status(200);
-            res.json(newShelter);
-        }
-    });
-}
-
-/*
  * Obtener un refugio por su id.
  */
 shelterController.getShelter = async function(req, res) {
     try {
         checkToken(req.headers.authentication);
-        var id = req.param('id');
+        var queryData = url.parse(req.url, true).query;
+        var id = queryData.id;
         const shelter = await Shelter.findById(id, function(err) {
             if (err) {
                 res.status(500);
@@ -101,14 +87,14 @@ shelterController.searchShelters = async function(req, res) {
     try {
         checkToken(req.headers.authentication);
         var perPage = 20;
-        var page = Math.max(0, req.param('page'));
         var queryData = url.parse(req.url, true).query;
+        var page = Math.max(0, queryData.page);
         var province = queryData.province;
         var region = queryData.region;
         var municipality = queryData.municipality;
 
         const shelters = await Shelter.find({'comun.provincia': new RegExp(province,'i'), 
-                                            'comun.region': new RegExp(region, 'i'), 
+                                            'comun.comarca': new RegExp(region, 'i'), 
                                             'comun.municipio': new RegExp(municipality, 'i')},
                                             function(err) {
                                                 if (err) {

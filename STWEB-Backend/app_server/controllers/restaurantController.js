@@ -21,7 +21,8 @@ restaurantController.getRestaurants = async function(req, res) {
     try {
         checkToken(req.headers.authentication);
         var perPage = 20;
-        var page = Math.max(0, req.param('page'));
+        var queryData = url.parse(req.url, true).query;
+        var page = Math.max(0, queryData.page);
         const restaurants = await Restaurant.find(function(err) {
             if (err) {
                 res.status(500);
@@ -58,28 +59,13 @@ restaurantController.countRestaurants = async function(req, res) {
 }
 
 /*
- * Añadir un nuevo restuarante.
- */
-restaurantController.addRestaurant = async function(req, res) {
-    var restaurant = new Restaurant(req.body);
-    await restaurant.save(function (err, newRestaurant) {
-        if (err) {
-            res.status(500);
-            res.json({error: err.message});
-        } else {
-            res.status(200);
-            res.json(newRestaurant);
-        }
-    });
-}
-
-/*
  * Obtener un restuarante por su id.
  */
 restaurantController.getRestaurant = async function(req, res) {
     try {
         checkToken(req.headers.authentication);
-        var id = req.param('id');
+        var queryData = url.parse(req.url, true).query;
+        var id = queryData.id;
         const restaurant = await Restaurant.findById(id, function(err) {
             if (err) {
                 res.status(500);
@@ -103,8 +89,8 @@ restaurantController.searchRestaurants = async function(req, res) {
     try {
         checkToken(req.headers.authentication);
         var perPage = 20;
-        var page = Math.max(0, req.param('page'));
         var queryData = url.parse(req.url, true).query;
+        var page = Math.max(0, queryData.page);
         var province = queryData.province;
         var region = queryData.region;
         var municipality = queryData.municipality;
@@ -112,7 +98,7 @@ restaurantController.searchRestaurants = async function(req, res) {
         var maxCategory = queryData.maxCategory;
 
         const restaurants = await Restaurant.find({provincia: new RegExp(province,'i'), 
-                                                   comcarca: new RegExp(region, 'i'), 
+                                                   comarca: new RegExp(region, 'i'), 
                                                    municipio: new RegExp(municipality, 'i'),
                                                    categoria: {$gte: minCategory, $lte: maxCategory}},
                                                    function(err) {
