@@ -31,6 +31,26 @@
       {
         "name":"Hotels",
         "description": "Hotels interaction API"
+      },
+      {
+        "name":"Information Points",
+        "description": "Information Points interaction API"
+      },
+      {
+        "name":"Restaurants",
+        "description": "Restaurants interaction API"
+      },
+      {
+        "name":"Rural Houses",
+        "description": "Rural Houses interaction API"
+      },
+      {
+        "name":"Shelters",
+        "description": "Shelters interaction API"
+      },
+      {
+        "name":"Tourist Offices",
+        "description": "Tourist Offices interaction API"
       }
     ],
     "schemes": [
@@ -930,6 +950,736 @@
                 "type": "array",
                 "items": {
                   "$ref": "#/definitions/Hotel"
+                }
+              }
+            },
+            "500":{
+              "description":"Info could not be retrieved",
+              "schema":{
+                "$ref":"#/definitions/Error"
+              }
+            }
+          }
+        } 
+      },
+      "/informationPoints/get":{
+        "parameters":[
+          {
+            "name":"_id",
+            "in":"path",
+            "required":true,
+            "description":"Id of the Information Point we want info about",
+            "schema":{
+              "type":"string"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "get":{
+          "summary": "Get the info of a Information Point that matches the id",
+          "tags":[
+            "Information Points"
+          ],
+          "responses":{
+            "200":{
+              "description":"Information Point found",
+              "schema":{
+                "$ref": "#/definitions/InformationPoint"
+              }
+            },
+            "500":{
+              "description":"Info could not be retrieved",
+              "schema":{
+                "$ref":"#/definitions/Error"
+              }
+            }
+          }
+        }
+      },
+      "/informationPoints/count":{
+        "produces": [
+          "application/json"
+        ],
+        "get":{
+          "summary": "Get the number of Information Points saved",
+          "tags":[
+            "Information Points"
+          ],
+          "responses":{
+            "200":{
+              "description":"Number of information points saved",
+              "schema":{
+                "$ref":"#/definitions/Number"
+              }
+            },
+            "500":{
+              "description":"Info could not be retrieved",
+              "schema":{
+                "$ref":"#/definitions/Error"
+              }
+            }
+          }
+        } 
+      },
+      "/informationPoints/getAll":{
+        "produces": [
+          "application/json"
+        ],
+        "get":{
+          "summary": "Get the info of all the Information Points",
+          "tags":[
+            "Information Points"
+          ],
+          "responses":{
+            "200":{
+              "description":"Information Points found",
+              "schema":{
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/InformationPoint"
+                }
+              }
+            },
+            "500":{
+              "description":"Info could not be retrieved",
+              "schema":{
+                "$ref":"#/definitions/Error"
+              }
+            }
+          }
+        } 
+      },
+      "/informationPoints/search":{
+        "parameters":[
+          {
+            "name":"province",
+            "in":"path",
+            "required":true,
+            "description":"Name of the province we want info about",
+            "schema":{
+              "type":"string"
+            }
+          },
+          {
+            "name":"region",
+            "in":"path",
+            "required":true,
+            "description":"Name of the region we want info about",
+            "schema":{
+              "type":"string"
+            }
+          },
+          {
+            "name":"municipality",
+            "in":"path",
+            "required":true,
+            "description":"Name of the municipality we want info about",
+            "schema":{
+              "type":"string"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "get":{
+          "summary": "Get the info of all the Information Points that match the query search",
+          "tags":[
+            "Information Points"
+          ],
+          "responses":{
+            "200":{
+              "description":"Information Points found",
+              "schema":{
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/InformationPoint"
+                }
+              }
+            },
+            "500":{
+              "description":"Info could not be retrieved",
+              "schema":{
+                "$ref":"#/definitions/Error"
+              }
+            }
+          }
+        } 
+      },
+      "/restaurants/get":{
+        "parameters":[
+          {
+            "name":"_id",
+            "in":"path",
+            "required":true,
+            "description":"Id of the Restaurant we want info about",
+            "schema":{
+              "type":"string"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "get":{
+          "summary": "Get the info of a Restaurant that matches the id",
+          "tags":[
+            "Restaurants"
+          ],
+          "responses":{
+            "200":{
+              "description":"Restaurant found",
+              "schema":{
+                "$ref": "#/definitions/Restaurant"
+              }
+            },
+            "500":{
+              "description":"Info could not be retrieved",
+              "schema":{
+                "$ref":"#/definitions/Error"
+              }
+            }
+          }
+        }
+      },
+      "/restaurants/count":{
+        "produces": [
+          "application/json"
+        ],
+        "get":{
+          "summary": "Get the number of Restaurants saved",
+          "tags":[
+            "Restaurants"
+          ],
+          "responses":{
+            "200":{
+              "description":"Number of Restaurants saved",
+              "schema":{
+                "$ref":"#/definitions/Number"
+              }
+            },
+            "500":{
+              "description":"Info could not be retrieved",
+              "schema":{
+                "$ref":"#/definitions/Error"
+              }
+            }
+          }
+        } 
+      },
+      "/restaurants/getAll":{
+        "produces": [
+          "application/json"
+        ],
+        "get":{
+          "summary": "Get the info of all the Restaurants",
+          "tags":[
+            "Restaurants"
+          ],
+          "responses":{
+            "200":{
+              "description":"Restaurants found",
+              "schema":{
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/Restaurant"
+                }
+              }
+            },
+            "500":{
+              "description":"Info could not be retrieved",
+              "schema":{
+                "$ref":"#/definitions/Error"
+              }
+            }
+          }
+        } 
+      },
+      "/restaurants/search":{
+        "parameters":[
+          {
+            "name":"province",
+            "in":"path",
+            "required":true,
+            "description":"Name of the province we want info about",
+            "schema":{
+              "type":"string"
+            }
+          },
+          {
+            "name":"region",
+            "in":"path",
+            "required":true,
+            "description":"Name of the region we want info about",
+            "schema":{
+              "type":"string"
+            }
+          },
+          {
+            "name":"municipality",
+            "in":"path",
+            "required":true,
+            "description":"Name of the municipality we want info about",
+            "schema":{
+              "type":"string"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "get":{
+          "summary": "Get the info of all the Restaurants that match the query search",
+          "tags":[
+            "Restaurants"
+          ],
+          "responses":{
+            "200":{
+              "description":"Restaurants found",
+              "schema":{
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/Restaurant"
+                }
+              }
+            },
+            "500":{
+              "description":"Info could not be retrieved",
+              "schema":{
+                "$ref":"#/definitions/Error"
+              }
+            }
+          }
+        } 
+      },
+      "/ruralHouses/get":{
+        "parameters":[
+          {
+            "name":"_id",
+            "in":"path",
+            "required":true,
+            "description":"Id of the Rural House we want info about",
+            "schema":{
+              "type":"string"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "get":{
+          "summary": "Get the info of a Rural House that matches the id",
+          "tags":[
+            "Rural Houses"
+          ],
+          "responses":{
+            "200":{
+              "description":"Rural House found",
+              "schema":{
+                "$ref": "#/definitions/RuralHouse"
+              }
+            },
+            "500":{
+              "description":"Info could not be retrieved",
+              "schema":{
+                "$ref":"#/definitions/Error"
+              }
+            }
+          }
+        }
+      },
+      "/ruralHouses/count":{
+        "produces": [
+          "application/json"
+        ],
+        "get":{
+          "summary": "Get the number of Rural Houses saved",
+          "tags":[
+            "Rural Houses"
+          ],
+          "responses":{
+            "200":{
+              "description":"Number of Rural Houses saved",
+              "schema":{
+                "$ref":"#/definitions/Number"
+              }
+            },
+            "500":{
+              "description":"Info could not be retrieved",
+              "schema":{
+                "$ref":"#/definitions/Error"
+              }
+            }
+          }
+        } 
+      },
+      "/ruralHouses/getAll":{
+        "produces": [
+          "application/json"
+        ],
+        "get":{
+          "summary": "Get the info of all the Rural Houses",
+          "tags":[
+            "Rural Houses"
+          ],
+          "responses":{
+            "200":{
+              "description":"Rural Houses found",
+              "schema":{
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/RuralHouse"
+                }
+              }
+            },
+            "500":{
+              "description":"Info could not be retrieved",
+              "schema":{
+                "$ref":"#/definitions/Error"
+              }
+            }
+          }
+        } 
+      },
+      "/ruralHouses/search":{
+        "parameters":[
+          {
+            "name":"province",
+            "in":"path",
+            "required":true,
+            "description":"Name of the province we want info about",
+            "schema":{
+              "type":"string"
+            }
+          },
+          {
+            "name":"region",
+            "in":"path",
+            "required":true,
+            "description":"Name of the region we want info about",
+            "schema":{
+              "type":"string"
+            }
+          },
+          {
+            "name":"municipality",
+            "in":"path",
+            "required":true,
+            "description":"Name of the municipality we want info about",
+            "schema":{
+              "type":"string"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "get":{
+          "summary": "Get the info of all the Rural Houses that match the query search",
+          "tags":[
+            "Rural Houses"
+          ],
+          "responses":{
+            "200":{
+              "description":"Rural Houses found",
+              "schema":{
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/RuralHouse"
+                }
+              }
+            },
+            "500":{
+              "description":"Info could not be retrieved",
+              "schema":{
+                "$ref":"#/definitions/Error"
+              }
+            }
+          }
+        } 
+      },
+      "/shelters/get":{
+        "parameters":[
+          {
+            "name":"_id",
+            "in":"path",
+            "required":true,
+            "description":"Id of the Shelter we want info about",
+            "schema":{
+              "type":"string"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "get":{
+          "summary": "Get the info of a Shelter that matches the id",
+          "tags":[
+            "Shelters"
+          ],
+          "responses":{
+            "200":{
+              "description":"Shelter found",
+              "schema":{
+                "$ref": "#/definitions/Shelter"
+              }
+            },
+            "500":{
+              "description":"Info could not be retrieved",
+              "schema":{
+                "$ref":"#/definitions/Error"
+              }
+            }
+          }
+        }
+      },
+      "/shelters/count":{
+        "produces": [
+          "application/json"
+        ],
+        "get":{
+          "summary": "Get the number of Shelters saved",
+          "tags":[
+            "Shelters"
+          ],
+          "responses":{
+            "200":{
+              "description":"Number of Shelters saved",
+              "schema":{
+                "$ref":"#/definitions/Number"
+              }
+            },
+            "500":{
+              "description":"Info could not be retrieved",
+              "schema":{
+                "$ref":"#/definitions/Error"
+              }
+            }
+          }
+        } 
+      },
+      "/shelters/getAll":{
+        "produces": [
+          "application/json"
+        ],
+        "get":{
+          "summary": "Get the info of all the Shelters",
+          "tags":[
+            "Shelters"
+          ],
+          "responses":{
+            "200":{
+              "description":"Shelters found",
+              "schema":{
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/Shelter"
+                }
+              }
+            },
+            "500":{
+              "description":"Info could not be retrieved",
+              "schema":{
+                "$ref":"#/definitions/Error"
+              }
+            }
+          }
+        } 
+      },
+      "/shelters/search":{
+        "parameters":[
+          {
+            "name":"province",
+            "in":"path",
+            "required":true,
+            "description":"Name of the province we want info about",
+            "schema":{
+              "type":"string"
+            }
+          },
+          {
+            "name":"region",
+            "in":"path",
+            "required":true,
+            "description":"Name of the region we want info about",
+            "schema":{
+              "type":"string"
+            }
+          },
+          {
+            "name":"municipality",
+            "in":"path",
+            "required":true,
+            "description":"Name of the municipality we want info about",
+            "schema":{
+              "type":"string"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "get":{
+          "summary": "Get the info of all the Shelters that match the query search",
+          "tags":[
+            "Shelters"
+          ],
+          "responses":{
+            "200":{
+              "description":"Shelters found",
+              "schema":{
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/Shelter"
+                }
+              }
+            },
+            "500":{
+              "description":"Info could not be retrieved",
+              "schema":{
+                "$ref":"#/definitions/Error"
+              }
+            }
+          }
+        } 
+      },
+      "/touristOffices/get":{
+        "parameters":[
+          {
+            "name":"_id",
+            "in":"path",
+            "required":true,
+            "description":"Id of the Tourist Office we want info about",
+            "schema":{
+              "type":"string"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "get":{
+          "summary": "Get the info of a Tourist Office that matches the id",
+          "tags":[
+            "Tourist Offices"
+          ],
+          "responses":{
+            "200":{
+              "description":"Tourist Office found",
+              "schema":{
+                "$ref": "#/definitions/TouristOffice"
+              }
+            },
+            "500":{
+              "description":"Info could not be retrieved",
+              "schema":{
+                "$ref":"#/definitions/Error"
+              }
+            }
+          }
+        }
+      },
+      "/touristOffices/count":{
+        "produces": [
+          "application/json"
+        ],
+        "get":{
+          "summary": "Get the number of Tourist Offices saved",
+          "tags":[
+            "Tourist Offices"
+          ],
+          "responses":{
+            "200":{
+              "description":"Number of Tourist Offices saved",
+              "schema":{
+                "$ref":"#/definitions/Number"
+              }
+            },
+            "500":{
+              "description":"Info could not be retrieved",
+              "schema":{
+                "$ref":"#/definitions/Error"
+              }
+            }
+          }
+        } 
+      },
+      "/touristOffices/getAll":{
+        "produces": [
+          "application/json"
+        ],
+        "get":{
+          "summary": "Get the info of all the Tourist Offices",
+          "tags":[
+            "Tourist Offices"
+          ],
+          "responses":{
+            "200":{
+              "description":"Tourist Officers found",
+              "schema":{
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/TouristOffice"
+                }
+              }
+            },
+            "500":{
+              "description":"Info could not be retrieved",
+              "schema":{
+                "$ref":"#/definitions/Error"
+              }
+            }
+          }
+        } 
+      },
+      "/touristOffices/search":{
+        "parameters":[
+          {
+            "name":"province",
+            "in":"path",
+            "required":true,
+            "description":"Name of the province we want info about",
+            "schema":{
+              "type":"string"
+            }
+          },
+          {
+            "name":"region",
+            "in":"path",
+            "required":true,
+            "description":"Name of the region we want info about",
+            "schema":{
+              "type":"string"
+            }
+          },
+          {
+            "name":"municipality",
+            "in":"path",
+            "required":true,
+            "description":"Name of the municipality we want info about",
+            "schema":{
+              "type":"string"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "get":{
+          "summary": "Get the info of all the Tourist Offices that match the query search",
+          "tags":[
+            "Tourist Offices"
+          ],
+          "responses":{
+            "200":{
+              "description":"Tourist Offices found",
+              "schema":{
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/TouristOffice"
                 }
               }
             },
