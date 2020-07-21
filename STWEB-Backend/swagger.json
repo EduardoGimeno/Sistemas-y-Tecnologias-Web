@@ -19,6 +19,18 @@
       {
         "name": "Apartments",
         "description": "Apartments interaction API"
+      },
+      {
+        "name":"Campings",
+        "description": "Campings interaction API"
+      },
+      {
+        "name":"Guides",
+        "description": "Guides interaction API"
+      },
+      {
+        "name":"Hotels",
+        "description": "Hotels interaction API"
       }
     ],
     "schemes": [
@@ -57,8 +69,11 @@
                 "$ref": "#/definitions/User"
               }
             },
-            "500": {
-              "description": "New user could not be created"
+            "500":{
+              "description":"Info could not be retrieved",
+              "schema":{
+                "$ref":"#/definitions/Error"
+              }
             }
           }
         }
@@ -82,8 +97,11 @@
                 }
               }
             },
-            "500": {
-              "description": "List of all users could not be retreived"
+            "500":{
+              "description":"Info could not be retrieved",
+              "schema":{
+                "$ref":"#/definitions/Error"
+              }
             }
           }
         }
@@ -104,8 +122,11 @@
                 "$ref": "#/definitions/Number"
               }
             },
-            "500": {
-              "description": "Number of users could not be retreived"
+            "500":{
+              "description":"Info could not be retrieved",
+              "schema":{
+                "$ref":"#/definitions/Error"
+              }
             }
           }
         }
@@ -135,8 +156,11 @@
                 "type": "integer"
               }
             },
-            "500": {
-              "description": "Number of users could not be retreived"
+            "500":{
+              "description":"Info could not be retrieved",
+              "schema":{
+                "$ref":"#/definitions/Error"
+              }
             }
           }
         }
@@ -166,8 +190,11 @@
                 "$ref": "#/definitions/User"
               }
             },
-            "500": {
-              "description": "User could not be retreived"
+            "500":{
+              "description":"Info could not be retrieved",
+              "schema":{
+                "$ref":"#/definitions/Error"
+              }
             }
           }
         }
@@ -214,8 +241,11 @@
                 } 
               }
             },
-            "500": {
-              "description": "List of users could not be retreived"
+            "500":{
+              "description":"Info could not be retrieved",
+              "schema":{
+                "$ref":"#/definitions/Error"
+              }
             }
           }
         }
@@ -245,8 +275,11 @@
                 "$ref": "#/definitions/User"
               }
             },
-            "500" : {
-              "description": "Could not retrieve the user"
+            "500":{
+              "description":"Info could not be retrieved",
+              "schema":{
+                "$ref":"#/definitions/Error"
+              }
             }
           }
         }
@@ -280,8 +313,11 @@
             "200": {
               "description":"Email sended correctly"
             },
-            "500" : {
-              "description": "Email could not be sended"
+            "500":{
+              "description":"Info could not be retrieved",
+              "schema":{
+                "$ref":"#/definitions/Error"
+              }
             }
           }
         }
@@ -313,8 +349,11 @@
                 "$ref": "#/definitions/User"
               }
             },
-            "500" : {
-              "description": "User could not be updated"
+            "500":{
+              "description":"Info could not be retrieved",
+              "schema":{
+                "$ref":"#/definitions/Error"
+              }
             }
           }
         }
@@ -343,7 +382,7 @@
             "200":{
               "description":"Apartment found",
               "schema":{
-                "$ref":"#/definitions/Apartamento"
+                "$ref":"#/definitions/Apartment"
               }
             },
             "500":{
@@ -395,7 +434,7 @@
               "schema":{
                 "type": "array",
                 "items": {
-                  "$ref": "#/definitions/Apartamento"
+                  "$ref": "#/definitions/Apartment"
                 }
               }
             },
@@ -452,7 +491,445 @@
               "schema":{
                 "type": "array",
                 "items": {
-                  "$ref": "#/definitions/Apartamento"
+                  "$ref": "#/definitions/Apartment"
+                }
+              }
+            },
+            "500":{
+              "description":"Info could not be retrieved",
+              "schema":{
+                "$ref":"#/definitions/Error"
+              }
+            }
+          }
+        } 
+      },
+      "/campings/get":{
+        "parameters":[
+          {
+            "name":"_id",
+            "in":"path",
+            "required":true,
+            "description":"Id of the camping we want info about",
+            "schema":{
+              "type":"string"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "get":{
+          "summary": "Get the info of a Camping that matches the id",
+          "tags":[
+            "Campings"
+          ],
+          "responses":{
+            "200":{
+              "description":"Camping found",
+              "schema":{
+                "$ref": "#/definitions/Camping"
+              }
+            },
+            "500":{
+              "description":"Info could not be retrieved",
+              "schema":{
+                "$ref":"#/definitions/Error"
+              }
+            }
+          }
+        }
+      },
+      "/campings/count":{
+        "produces": [
+          "application/json"
+        ],
+        "get":{
+          "summary": "Get the number of Campings saved",
+          "tags":[
+            "Campings"
+          ],
+          "responses":{
+            "200":{
+              "description":"Number of campings saved",
+              "schema":{
+                "$ref":"#/definitions/Number"
+              }
+            },
+            "500":{
+              "description":"Info could not be retrieved",
+              "schema":{
+                "$ref":"#/definitions/Error"
+              }
+            }
+          }
+        } 
+      },
+      "/campings/getAll":{
+        "produces": [
+          "application/json"
+        ],
+        "get":{
+          "summary": "Get the info of all the Campings",
+          "tags":[
+            "Campings"
+          ],
+          "responses":{
+            "200":{
+              "description":"Campings found",
+              "schema":{
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/Camping"
+                }
+              }
+            },
+            "500":{
+              "description":"Info could not be retrieved",
+              "schema":{
+                "$ref":"#/definitions/Error"
+              }
+            }
+          }
+        } 
+      },
+      "/campings/search":{
+        "parameters":[
+          {
+            "name":"province",
+            "in":"path",
+            "required":true,
+            "description":"Name of the province we want info about",
+            "schema":{
+              "type":"string"
+            }
+          },
+          {
+            "name":"region",
+            "in":"path",
+            "required":true,
+            "description":"Name of the region we want info about",
+            "schema":{
+              "type":"string"
+            }
+          },
+          {
+            "name":"municipality",
+            "in":"path",
+            "required":true,
+            "description":"Name of the municipality we want info about",
+            "schema":{
+              "type":"string"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "get":{
+          "summary": "Get the info of all the Campings that match the query search",
+          "tags":[
+            "Campings"
+          ],
+          "responses":{
+            "200":{
+              "description":"Campings found",
+              "schema":{
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/Camping"
+                }
+              }
+            },
+            "500":{
+              "description":"Info could not be retrieved",
+              "schema":{
+                "$ref":"#/definitions/Error"
+              }
+            }
+          }
+        } 
+      },
+      "/guides/get":{
+        "parameters":[
+          {
+            "name":"_id",
+            "in":"path",
+            "required":true,
+            "description":"Id of the guide we want info about",
+            "schema":{
+              "type":"string"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "get":{
+          "summary": "Get the info of a Guide that matches the id",
+          "tags":[
+            "Guides"
+          ],
+          "responses":{
+            "200":{
+              "description":"Guide found",
+              "schema":{
+                "$ref": "#/definitions/Guide"
+              }
+            },
+            "500":{
+              "description":"Info could not be retrieved",
+              "schema":{
+                "$ref":"#/definitions/Error"
+              }
+            }
+          }
+        }
+      },
+      "/guides/count":{
+        "produces": [
+          "application/json"
+        ],
+        "get":{
+          "summary": "Get the number of Guides saved",
+          "tags":[
+            "Guides"
+          ],
+          "responses":{
+            "200":{
+              "description":"Number of guides saved",
+              "schema":{
+                "$ref":"#/definitions/Number"
+              }
+            },
+            "500":{
+              "description":"Info could not be retrieved",
+              "schema":{
+                "$ref":"#/definitions/Error"
+              }
+            }
+          }
+        } 
+      },
+      "/guides/getAll":{
+        "produces": [
+          "application/json"
+        ],
+        "get":{
+          "summary": "Get the info of all the Guides",
+          "tags":[
+            "Guides"
+          ],
+          "responses":{
+            "200":{
+              "description":"Guides found",
+              "schema":{
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/Guide"
+                }
+              }
+            },
+            "500":{
+              "description":"Info could not be retrieved",
+              "schema":{
+                "$ref":"#/definitions/Error"
+              }
+            }
+          }
+        } 
+      },
+      "/guides/search":{
+        "parameters":[
+          {
+            "name":"province",
+            "in":"path",
+            "required":true,
+            "description":"Name of the province we want info about",
+            "schema":{
+              "type":"string"
+            }
+          },
+          {
+            "name":"region",
+            "in":"path",
+            "required":true,
+            "description":"Name of the region we want info about",
+            "schema":{
+              "type":"string"
+            }
+          },
+          {
+            "name":"municipality",
+            "in":"path",
+            "required":true,
+            "description":"Name of the municipality we want info about",
+            "schema":{
+              "type":"string"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "get":{
+          "summary": "Get the info of all the Guides that match the query search",
+          "tags":[
+            "Guides"
+          ],
+          "responses":{
+            "200":{
+              "description":"Guides found",
+              "schema":{
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/Guide"
+                }
+              }
+            },
+            "500":{
+              "description":"Info could not be retrieved",
+              "schema":{
+                "$ref":"#/definitions/Error"
+              }
+            }
+          }
+        } 
+      },
+      "/hotels/get":{
+        "parameters":[
+          {
+            "name":"_id",
+            "in":"path",
+            "required":true,
+            "description":"Id of the guide we want info about",
+            "schema":{
+              "type":"string"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "get":{
+          "summary": "Get the info of a Hotel that matches the id",
+          "tags":[
+            "Hotels"
+          ],
+          "responses":{
+            "200":{
+              "description":"Hotel found",
+              "schema":{
+                "$ref": "#/definitions/Hotel"
+              }
+            },
+            "500":{
+              "description":"Info could not be retrieved",
+              "schema":{
+                "$ref":"#/definitions/Error"
+              }
+            }
+          }
+        }
+      },
+      "/hotels/count":{
+        "produces": [
+          "application/json"
+        ],
+        "get":{
+          "summary": "Get the number of Hotels saved",
+          "tags":[
+            "Hotels"
+          ],
+          "responses":{
+            "200":{
+              "description":"Number of hotels saved",
+              "schema":{
+                "$ref":"#/definitions/Number"
+              }
+            },
+            "500":{
+              "description":"Info could not be retrieved",
+              "schema":{
+                "$ref":"#/definitions/Error"
+              }
+            }
+          }
+        } 
+      },
+      "/hotels/getAll":{
+        "produces": [
+          "application/json"
+        ],
+        "get":{
+          "summary": "Get the info of all the Hotels",
+          "tags":[
+            "Hotels"
+          ],
+          "responses":{
+            "200":{
+              "description":"Hotels found",
+              "schema":{
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/Hotel"
+                }
+              }
+            },
+            "500":{
+              "description":"Info could not be retrieved",
+              "schema":{
+                "$ref":"#/definitions/Error"
+              }
+            }
+          }
+        } 
+      },
+      "/hotels/search":{
+        "parameters":[
+          {
+            "name":"province",
+            "in":"path",
+            "required":true,
+            "description":"Name of the province we want info about",
+            "schema":{
+              "type":"string"
+            }
+          },
+          {
+            "name":"region",
+            "in":"path",
+            "required":true,
+            "description":"Name of the region we want info about",
+            "schema":{
+              "type":"string"
+            }
+          },
+          {
+            "name":"municipality",
+            "in":"path",
+            "required":true,
+            "description":"Name of the municipality we want info about",
+            "schema":{
+              "type":"string"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "get":{
+          "summary": "Get the info of all the Hotels that match the query search",
+          "tags":[
+            "Hotels"
+          ],
+          "responses":{
+            "200":{
+              "description":"Hotels found",
+              "schema":{
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/Hotel"
                 }
               }
             },
@@ -562,7 +1039,7 @@
           }
         }
       },
-      "AlojamientosTurismoRural":{
+      "RuralHouse":{
         "properties":{
           "comun":{
             "$ref":"#/definitions/Alojamiento"
@@ -575,7 +1052,7 @@
           }
         }
       },
-      "Apartamento":{
+      "Apartment":{
         "properties":{
           "comun":{
             "$ref":"#/definitions/Alojamiento"
@@ -602,14 +1079,14 @@
           }
         }
       },
-      "Refugio":{
+      "Shelter":{
         "properties":{
           "comun":{
             "$ref":"#/definitions/Alojamiento"
           }
         }
       },
-      "Guia":{
+      "Guide":{
         "properties":{
           "signatura":{
             "type":"string"
@@ -643,7 +1120,7 @@
           }
         }
       },
-      "OficinaTurismo":{
+      "TouristOffice":{
         "properties":{
           "signatura":{
             "type":"string"
@@ -668,7 +1145,7 @@
           }
         }
       },
-      "PuntoInformacion":{
+      "InformationPoint":{
         "properties":{
           "signatura":{
             "type":"string"
@@ -687,7 +1164,7 @@
           }
         }
       },
-      "Restaurante":{
+      "Restaurant":{
         "properties":{
           "signatura":{
             "type":"string"
@@ -721,7 +1198,7 @@
           }
         }
       },
-      "Mensaje":{
+      "Message":{
         "properties":{
           "emisor":{
             "type":"string"
