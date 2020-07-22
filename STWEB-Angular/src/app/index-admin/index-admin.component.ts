@@ -48,6 +48,8 @@ export class IndexAdminComponent implements OnInit {
     this.userService.searchUsers(nombre, apellidos, email, this.page - 1).subscribe(usuarios => {
       this.usuarios = <UserApp[]>usuarios;
       if (this.usuarios.length == 20) {
+        console.log(this.usuarios.length)
+        console.log(this.usuarios)
         this.userService.searchUsers(nombre, apellidos, email, this.page - 1).subscribe(usuarios => {
           if (usuarios != []) {
             this.numPages = this.page + 1;
@@ -56,6 +58,8 @@ export class IndexAdminComponent implements OnInit {
           }
         });
       } else {
+        console.log(this.usuarios.length)
+        console.log(this.usuarios)
         this.numPages = this.page;
       }
     })

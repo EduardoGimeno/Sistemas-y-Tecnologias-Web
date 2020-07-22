@@ -2,15 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="109a231d-e49a-49c0-9fbe-e835707bb50d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../STWEB-Angular/src/dist/turismoaragon/main-es2015.08fafd1ef1ccceceea5c.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../STWEB-Angular/src/dist/turismoaragon/main-es5.08fafd1ef1ccceceea5c.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../STWEB-Angular/src/app/index-admin/index-admin.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../STWEB-Angular/src/app/index-admin/index-admin.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../STWEB-Angular/src/app/index-user/index-user.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../STWEB-Angular/src/app/index-user/index-user.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../STWEB-Angular/src/app/services/entry-service.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../STWEB-Angular/src/app/services/entry-service.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../STWEB-Angular/src/dist/turismoaragon/3rdpartylicenses.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../STWEB-Angular/src/dist/turismoaragon/3rdpartylicenses.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../STWEB-Angular/src/dist/turismoaragon/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../STWEB-Angular/src/dist/turismoaragon/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../STWEB-Angular/src/dist/turismoaragon/main-es2015.5aced0cbbaf9ba43aa95.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../STWEB-Angular/src/dist/turismoaragon/main-es5.5aced0cbbaf9ba43aa95.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app_server/controllers/userController.js" beforeDir="false" afterPath="$PROJECT_DIR$/app_server/controllers/userController.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,7 +64,8 @@
       <workItem from="1593792627509" duration="1144000" />
       <workItem from="1593879869430" duration="1388000" />
       <workItem from="1594111866327" duration="2553000" />
-      <workItem from="1595113138201" duration="2369000" />
+      <workItem from="1595113138201" duration="2801000" />
+      <workItem from="1595437653181" duration="632000" />
     </task>
     <servers />
   </component>

@@ -22,7 +22,7 @@ export class EntryService {
       'authentication': this.cookieService.get("token")});
     let params = new HttpParams()
       .set("page", page.toString());
-    return this.http.get(this.urlApp + "/hotels", {params:params, headers:headers});
+    return this.http.get(this.urlApp + "/hotels/getAll", {params:params, headers:headers});
   }
 
   public getTurismosRurales(page: number) {
@@ -54,7 +54,7 @@ export class EntryService {
       'authentication': this.cookieService.get("token")});
     let params = new HttpParams()
       .set("page", page.toString());
-    return this.http.get(this.urlApp + "/shelters", {params:params, headers:headers});
+    return this.http.get(this.urlApp + "/shelters/getAll", {params:params, headers:headers});
   }
 
   public getRestaurantes(page: number) {
@@ -62,7 +62,7 @@ export class EntryService {
       'authentication': this.cookieService.get("token")});
     let params = new HttpParams()
       .set("page", page.toString());
-    return this.http.get(this.urlApp + "/restaurants", {params:params, headers:headers});
+    return this.http.get(this.urlApp + "/restaurants/getAll", {params:params, headers:headers});
   }
 
   public getOficinasTurismo(page: number) {
@@ -70,7 +70,7 @@ export class EntryService {
       'authentication': this.cookieService.get("token")});
     let params = new HttpParams()
       .set("page", page.toString());
-    return this.http.get(this.urlApp + "/touristOffices", {params:params, headers:headers});
+    return this.http.get(this.urlApp + "/touristOffices/getAll", {params:params, headers:headers});
   }
 
   public getPuntosInformacion(page: number) {
@@ -78,7 +78,7 @@ export class EntryService {
       'authentication': this.cookieService.get("token")});
     let params = new HttpParams()
       .set("page", page.toString());
-    return this.http.get(this.urlApp + "/informationPoints", {params:params, headers:headers});
+    return this.http.get(this.urlApp + "/informationPoints/getAll", {params:params, headers:headers});
   }
 
   public getGuias(page: number) {
