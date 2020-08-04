@@ -6,9 +6,9 @@
 const mongoose = require( 'mongoose' );
 
 const mensajeSchema = new mongoose.Schema({
-    emisor: {type: String, required: true},
-    texto: {type: String, required: true},
-    hora: {type: Date, required: true}
+    emisor: String,
+    texto: String,
+    hora: Date
 });
 
 const mensajeModel = mongoose.model('Mensaje', mensajeSchema);

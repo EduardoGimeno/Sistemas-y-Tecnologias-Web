@@ -41,7 +41,7 @@ userController.getUserToken = async function(req,res) {
  */
 userController.getUsers = async function(req, res) {
     try {
-        checkToken(req.headers.authentication);
+        //checkToken(req.headers.authentication);
         var perPage = 20;
         var queryData = url.parse(req.url, true).query;
         var page = Math.max(0, queryData.page);

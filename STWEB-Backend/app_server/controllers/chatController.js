@@ -36,10 +36,10 @@ chatController.addChat = async function(req, res) {
                     subject: 'Descubre Aragon',
                     text: text
                 });
-                send({}, function (err) {
-                    if (err) {
+                send({}, function (errSend) {
+                    if (errSend) {
                         res.status(500);
-                        res.json(err.message);
+                        res.json(errSend.message);
                     } else {
                         res.status(200);
                         res.json(newChat);
@@ -61,9 +61,9 @@ chatController.updateChatEntry = async function(req, res) {
         checkToken(req.headers.authentication);
         var chat = req.body;
         var id = req.body._id;
-        delete req.body._id;
+        const filter = { _id: id };
         console.log(req.body);
-        await Chat.findOneAndUpdate(id, {mensajes: req.body.mensajes}, function(err) {
+        await Chat.findOneAndUpdate(filter, { mensajes: req.body.mensajes }, function(err) {
             if (err) {
                 res.status(500);
                 res.json({error: err.message});
@@ -79,10 +79,10 @@ chatController.updateChatEntry = async function(req, res) {
                     subject: 'Descubre Aragon',
                     text: text
                 });
-                send({}, function (err) {
-                    if (err) {
+                send({}, function (errSend) {
+                    if (errSend) {
                         res.status(500);
-                        res.json(err.message);
+                        res.json(errSend.message);
                     } else {
                         res.status(200);
                         res.json(chat);
@@ -100,13 +100,10 @@ chatController.updateChatEntry = async function(req, res) {
  * Actualizar un chat por parte de una entrada externa.
  */
 chatController.updateChatUser = async function(req, res) {
-    //var chat = new Chat(req.body);
-
     var chat = req.body;
     var id = req.body._id;
-    delete req.body._id;
-    console.log(req.body);
-    await Chat.findOneAndUpdate(id, {mensajes: req.body.mensajes}, function(err) {
+    const filter = { _id: id };
+    await Chat.findOneAndUpdate(filter, {mensajes: req.body.mensajes}, function(err) {
         if (err) {
             res.status(500);
             res.json({error: err.message});
@@ -119,10 +116,10 @@ chatController.updateChatUser = async function(req, res) {
                 subject: 'Descubre Aragon',
                 text: text
             });
-            send({}, function (err) {
-                if (err) {
+            send({}, function (errSend) {
+                if (errSend) {
                     res.status(500);
-                    res.json(err.message);
+                    res.json(errSend.message);
                 } else {
                     res.status(200);
                     res.json(chat);
@@ -138,7 +135,8 @@ chatController.updateChatUser = async function(req, res) {
 chatController.getChatsUser = async function(req, res) {
     try {
         checkToken(req.headers.authentication);
-        var user = req.param('user');
+        var queryData = url.parse(req.url, true).query;
+        var user = queryData.user;
         const chats = await Chat.find({emailUsuario: user}, function(err) {
             if (err) {
                 res.status(500);
@@ -157,7 +155,8 @@ chatController.getChatsUser = async function(req, res) {
  * Obtener un chat por su id.
  */
 chatController.getChat = async function(req, res) {
-    var id = req.param('id');
+    var queryData = url.parse(req.url, true).query;
+    var id = queryData.id;
     const chat = await Chat.findById(id, function(err) {
         if (err) {
             res.status(500);
