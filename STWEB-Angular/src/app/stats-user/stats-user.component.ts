@@ -33,31 +33,40 @@ export class StatsUserComponent implements OnInit {
 
   getNumbersOfData() {
     this.entryService.getCount("hotels").subscribe(num => {
-            this.chartData.splice(0, 0, <number>num);
+            console.log("hotels: "+<number>num);
+            this.chartData[0] = <number>num;
           });
     this.entryService.getCount("ruralHouses").subscribe(num => {
-            this.chartData.splice(1, 0, <number>num);
+            console.log("ruralHouses: "+<number>num);
+            this.chartData[1] = <number>num;
           });
     this.entryService.getCount("apartments").subscribe(num => {
-            this.chartData.splice(2, 0, <number>num);
+            console.log("apartments: "+<number>num);
+            this.chartData[2] = <number>num;
           });
     this.entryService.getCount("campings").subscribe(num => {
-            this.chartData.splice(3, 0, <number>num);
+            console.log("campings: "+<number>num);
+            this.chartData[3] = <number>num;
           });
     this.entryService.getCount("shelters").subscribe(num => {
-            this.chartData.splice(4, 0, <number>num);
+            console.log("shelters: "+<number>num);
+            this.chartData[4] = <number>num;
           });
     this.entryService.getCount("restaurants").subscribe(num => {
-            this.chartData.splice(5, 0, <number>num);
+            console.log("restaurants: "+<number>num);
+            this.chartData[5] = <number>num;
           });
     this.entryService.getCount("touristOffices").subscribe(num => {
-            this.chartData.splice(6, 0, <number>num);
+            console.log("touristOffices: "+<number>num);
+            this.chartData[6] = <number>num;
           });
     this.entryService.getCount("informationPoints").subscribe(num => {
-            this.chartData.splice(7, 0, <number>num);
+            console.log("informationPoints"+<number>num);
+            this.chartData[7] = <number>num;
           });
     this.entryService.getCount("guides").subscribe(num => {
-            this.chartData.splice(8, 0, <number>num);
+            console.log("guides"+<number>num);
+            this.chartData[8] = <number>num;
           });
   }
 
