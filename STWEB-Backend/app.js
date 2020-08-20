@@ -47,7 +47,10 @@ app.all('/*', function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   next();
 });
-app.on('listening', userScheduled.bannedUsers);
+
+app.listen(function () {
+  userScheduled.bannedUsers();
+});
 
 // Middleware
 app.use('/auth', authRouter);

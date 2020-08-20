@@ -21,6 +21,7 @@ export class AccionUsuarioComponent implements OnInit {
 
   ban(days: number) {
     let todayDate = new Date();
+    todayDate.setHours(2,0,0,0);
     let date = new Date(new Date().setDate(todayDate.getDate() + days));
     this.user.baneado = true;
     this.user.finBan = date;

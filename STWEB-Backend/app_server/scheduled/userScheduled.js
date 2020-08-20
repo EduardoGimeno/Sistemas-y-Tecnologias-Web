@@ -12,19 +12,19 @@ var userScheduled = {};
  * Actualizar los usuarios baneados.
  */
 function bannedUsers() {
-    console.log("XXXX");
-    schedule.scheduleJob('0 54 12 * * *', async function() {
+    schedule.scheduleJob('00 00 22 * * *', async function() {
         const users = await User.find({baneado: true});
         var today = new Date();
+        today.setHours(2,0,0,0);
         var i;
-        console.log("XXXX");
         for (i = 0; i < users.length; i++) {
-            if (users[i].finBan == today) {
+            if (users[i].finBan <= today) {
                 const filter = { email: users[i].email };
                 await User.findOneAndUpdate(filter, { baneado: false });
             }
         }
     });
+
 }
 
 module.exports = {
