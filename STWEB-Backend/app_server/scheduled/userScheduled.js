@@ -6,12 +6,14 @@
 var express = require('express');
 var schedule = require('node-schedule');
 var User = require('../models/usuario');
+var userScheduled = {};
 
 /*
  * Actualizar los usuarios baneados.
  */
 function bannedUsers() {
-    schedule.scheduleJob('0 10 13 * * *', async function() {
+    console.log("XXXX");
+    schedule.scheduleJob('0 54 12 * * *', async function() {
         const users = await User.find({baneado: true});
         var today = new Date();
         var i;

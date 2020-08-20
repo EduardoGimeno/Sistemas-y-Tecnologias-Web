@@ -31,12 +31,12 @@ var authRouter = require('./app_server/routes/auth');
 var parserDataRouter = require('./app_server/routes/parserData');
 var chatsRouter = require('./app_server/routes/chats');
 var mediaRouter = require('./app_server/routes/media');
+var userScheduled = require('./app_server/scheduled/userScheduled');
 
 var app = express();
 app.use(passport.initialize());
 app.use(passport.session());
 require('./passport')
-
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -47,6 +47,7 @@ app.all('/*', function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   next();
 });
+app.on('listening', userScheduled.bannedUsers);
 
 // Middleware
 app.use('/auth', authRouter);
