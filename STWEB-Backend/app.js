@@ -31,6 +31,7 @@ var authRouter = require('./app_server/routes/auth');
 var parserDataRouter = require('./app_server/routes/parserData');
 var chatsRouter = require('./app_server/routes/chats');
 var mediaRouter = require('./app_server/routes/media');
+var statisticsRouter = require('./app_server/routes/statistics');
 var userScheduled = require('./app_server/scheduled/userScheduled');
 
 var app = express();
@@ -67,6 +68,7 @@ app.use('/guides', guidesRouter);
 app.use('/parserdata', parserDataRouter);
 app.use('/chats', chatsRouter);
 app.use('/media', mediaRouter);
+app.use('/statistics', statisticsRouter);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // Catch 404 and forward to error handler
