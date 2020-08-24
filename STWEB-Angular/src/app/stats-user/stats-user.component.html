@@ -94,14 +94,25 @@
           <div class="row" style="height: 40%">
             <div class="col" style="text-align: left; margin-top: auto; margin-left: 2vh">
               <div style="display: block;">
+                <br>
                 <canvas baseChart
                         chartType="pie"
                         [data]="chartData"
                         [colors]="chartColors"
                         [labels]="chartLabels"
                         [options]="chartOptions"
-                        [plugins]="chartPlugins"
                         [legend]="chartLegend">
+                </canvas>
+                <br>
+                <br>
+                <canvas baseChart
+                        chartType="bar"
+                        [datasets]="chartData2"
+                        [colors]="chartColors2"
+                        [labels]="chartLabels2"
+                        [options]="chartOptions2"
+                        [plugins]="chartPlugins"
+                        [legend]="chartLegend2">
                 </canvas>
               </div>
             </div>

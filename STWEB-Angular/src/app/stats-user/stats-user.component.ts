@@ -10,7 +10,7 @@ import { EntryService } from "../services/entry-service.service";
   styleUrls: ['./stats-user.component.css']
 })
 export class StatsUserComponent implements OnInit {
-  //Diagrama
+  //Diagrama de tarta
   chartOptions = {
       responsive: true,
     };
@@ -20,7 +20,18 @@ export class StatsUserComponent implements OnInit {
       backgroundColor: ['red', '#0F0', 'rgba(41, 182, 246,0.75)', 'black', 'brown', 'blue', 'pink', 'yellow', 'orange'],
     }];
     chartLegend = true;
-    chartPlugins = [];
+
+    //Diagrama2
+      chartOptions2 = {
+          responsive: true,
+        };
+        chartLabels2 = ['Huesca', 'Zaragoza', 'Teruel'];
+        chartData2 = [{ data: [65, 59, 80], label: 'Series A' }];
+         chartColors2 = [{
+              backgroundColor: ['red', 'black', 'blue'],
+            }];
+        chartPlugins = [];
+        chartLegend2 = true;
 
   user: UserApp;
 
@@ -28,10 +39,14 @@ export class StatsUserComponent implements OnInit {
 
   ngOnInit(): void {
     this.user = this.currentUser.checkLog();
-    this.getNumbersOfData();
+    this.getNumbersOfEachData();
   }
 
-  getNumbersOfData() {
+  getHotelesPorMunicipio(){
+
+  }
+
+  getNumbersOfEachData() {
     this.entryService.getCount("hotels").subscribe(num => {
             console.log("hotels: "+<number>num);
             this.chartData[0] = <number>num;

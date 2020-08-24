@@ -25,6 +25,14 @@ export class EntryService {
     return this.http.get(this.urlApp + "/hotels/getAll", {params:params, headers:headers});
   }
 
+  public getHotelesMunicipio(page: number) {
+      let headers = new HttpHeaders({
+        'authentication': this.cookieService.get("token")});
+      let params = new HttpParams()
+        .set("page", page.toString());
+      return this.http.get(this.urlApp + "/hotelsPerMunicipality", {params:params, headers:headers});
+    }
+
   public getTurismosRurales(page: number) {
     let headers = new HttpHeaders({
       'authentication': this.cookieService.get("token")});
