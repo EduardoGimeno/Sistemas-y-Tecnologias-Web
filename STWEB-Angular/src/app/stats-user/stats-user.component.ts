@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserApp } from '../entities/usuario';
+import {Dato} from "../entities/dato";
 import { CurrentUserService } from "../current-user.service";
 import { EntryService } from "../services/entry-service.service";
 //import { ChartsModule } from '@rinminase/ng-charts';
@@ -22,11 +23,12 @@ export class StatsUserComponent implements OnInit {
     chartLegend = true;
 
     //Diagrama2
+      datosHoteles = [];
       chartOptions2 = {
           responsive: true,
         };
-        chartLabels2 = ['Huesca', 'Zaragoza', 'Teruel'];
-        chartData2 = [{ data: [65, 59, 80], label: 'Series A' }];
+        chartLabels2 = [];
+        chartData2 = [];
          chartColors2 = [{
               backgroundColor: ['red', 'black', 'blue'],
             }];
@@ -40,10 +42,15 @@ export class StatsUserComponent implements OnInit {
   ngOnInit(): void {
     this.user = this.currentUser.checkLog();
     this.getNumbersOfEachData();
+    this.getHotelesPorMunicipio();
   }
 
   getHotelesPorMunicipio(){
-
+    this.entryService.getHotelesMunicipio().subscribe(dataArr => {
+        for (let d of <[]>dataArr) {
+           this.datosHoteles.push(new Dato(d));
+        }
+    });
   }
 
   getNumbersOfEachData() {
