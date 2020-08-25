@@ -8,5 +8,6 @@ var statisticsController = require('../controllers/statisticsController');
 var router = express.Router();
 
 router.get('/hotelsPerMunicipality', statisticsController.hotelsPerMunicipality);
+router.get('/guidesIdiomPercentage', statisticsController.guidesIdiomPercentage);
 
 module.exports = router;
