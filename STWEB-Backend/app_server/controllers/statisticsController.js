@@ -4,12 +4,12 @@
  */
 
 var express = require('express');
-var url = require('url');
 var jwtinterface = require('../jsonwebtoken');
 var Statistic = require('../models/estadistica');
 var Data = require('../models/dato');
 var Hotel = require('../models/hotel');
 var Guide = require('../models/guia');
+var Restaurant = require('../models/restaurante');
 var statisticsController = {};
 
 checkToken = function(token) {
@@ -122,6 +122,58 @@ statisticsController.guidesIdiomPercentage = async function(req, res) {
         dataArray.push(entry);
 
         var statistic = new Statistic({ nombre: 'Porcentaje idiomas guias', datos: dataArray});
+        await statistic.save(function(err, newStatistic) {
+            if (err) {
+                res.status(500);
+                res.json({error: err.message});
+            } else {
+                res.status(200);
+                res.json(newStatistic);
+            }
+        });
+    } catch(err) {
+        res.status(500);
+        res.json({error: err.message});
+    }
+}
+
+/*
+ * Obtener la cantidad de restuarantes de 3 tenedores/tazas por
+ * comarca.
+ */
+statisticsController.restaurantsCategoryPerRegion = async function(req, res) {
+    try {
+        checkToken(req.headers.authentication);
+        const restuarants = await Restaurant.find(function(err) {
+            if (err) {
+                res.status(500);
+                res.json({error: err.message});
+            }
+        });
+
+        var i;
+        var regArray = [];
+        var countArray = [];
+        for (i = 0; i < restuarants.length; i++) {
+            var index = regArray.indexOf(restuarants[i].comarca);
+            if (restuarants[i].categoria == 3) {
+                if (index == -1) {
+                    regArray.push(restuarants[i].comarca);
+                    countArray.push(1);
+                } else {
+                    countArray[index] += 1;
+                }
+            }
+        }
+
+        var j;
+        var dataArray = [];
+        for (j = 0; j < regArray.length; j++) {
+            var entry = new Data.datoModel({ nombre: regArray[j], valor: countArray[j]});
+            dataArray.push(entry);
+        }
+
+        var statistic = new Statistic({ nombre: 'Numero de restuarantes de categoria 3 por comarca', datos: dataArray});
         await statistic.save(function(err, newStatistic) {
             if (err) {
                 res.status(500);

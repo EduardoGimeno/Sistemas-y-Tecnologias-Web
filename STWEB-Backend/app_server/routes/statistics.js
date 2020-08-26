@@ -9,5 +9,6 @@ var router = express.Router();
 
 router.get('/hotelsPerMunicipality', statisticsController.hotelsPerMunicipality);
 router.get('/guidesIdiomPercentage', statisticsController.guidesIdiomPercentage);
+router.get('/restaurantsCategoryPerRegion', statisticsController.restaurantsCategoryPerRegion);
 
 module.exports = router;
