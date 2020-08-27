@@ -10,6 +10,7 @@ var Data = require('../models/dato');
 var Hotel = require('../models/hotel');
 var Guide = require('../models/guia');
 var Restaurant = require('../models/restaurante');
+var User = require('../models/usuario');
 var statisticsController = {};
 
 checkToken = function(token) {
@@ -174,6 +175,55 @@ statisticsController.restaurantsCategoryPerRegion = async function(req, res) {
         }
 
         var statistic = new Statistic({ nombre: 'Numero de restuarantes de categoria 3 por comarca', datos: dataArray});
+        await statistic.save(function(err, newStatistic) {
+            if (err) {
+                res.status(500);
+                res.json({error: err.message});
+            } else {
+                res.status(200);
+                res.json(newStatistic);
+            }
+        });
+    } catch(err) {
+        res.status(500);
+        res.json({error: err.message});
+    }
+}
+
+/*
+ * Obtener las provincias de procedencia de los usuarios.
+ */
+statisticsController.usersPerProvince = async function(req, res) {
+    try {
+        checkToken(req.headers.authentication);
+        const users = await User.find({ admin: false }, function(err) {
+            if (err) {
+                res.status(500);
+                res.json({error: err.message});
+            }
+        });
+
+        var i;
+        var provArray = [];
+        var countArray = [];
+        for (i = 0; i < users.length; i++) {
+            var index = provArray.indexOf(users[i].provincia);
+            if (index == -1) {
+                provArray.push(users[i].provincia);
+                countArray.push(1);
+            } else {
+                countArray[index] += 1;
+            }
+        }
+
+        var j;
+        var dataArray = [];
+        for (j = 0; j < provArray.length; j++) {
+            var entry = new Data.datoModel({ nombre: provArray[j], valor: countArray[j]});
+            dataArray.push(entry);
+        }
+
+        var statistic = new Statistic({ nombre: 'Distribucion de los usuarios por provincias', datos: dataArray});
         await statistic.save(function(err, newStatistic) {
             if (err) {
                 res.status(500);
