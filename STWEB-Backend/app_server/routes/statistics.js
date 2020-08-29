@@ -11,5 +11,6 @@ router.get('/hotelsPerMunicipality', statisticsController.hotelsPerMunicipality)
 router.get('/guidesIdiomPercentage', statisticsController.guidesIdiomPercentage);
 router.get('/restaurantsCategoryPerRegion', statisticsController.restaurantsCategoryPerRegion);
 router.get('/usersPerProvince', statisticsController.usersPerProvince);
+router.get('/entriesPercentage', statisticsController.entriesPercentage);
 
 module.exports = router;

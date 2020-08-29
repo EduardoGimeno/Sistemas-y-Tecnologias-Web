@@ -8,6 +8,12 @@ var jwtinterface = require('../jsonwebtoken');
 var Statistic = require('../models/estadistica');
 var Data = require('../models/dato');
 var Hotel = require('../models/hotel');
+var RuralHouse = require('../models/alojamientoTurismoRural');
+var Apartment = require('../models/apartamento');
+var Camping = require('../models/camping');
+var TouristOffice = require('../models/oficinaTurismo');
+var InformationPoint = require('../models/puntoInformacion');
+var Shelter = require('../models/refugio');
 var Guide = require('../models/guia');
 var Restaurant = require('../models/restaurante');
 var User = require('../models/usuario');
@@ -224,6 +230,133 @@ statisticsController.usersPerProvince = async function(req, res) {
         }
 
         var statistic = new Statistic({ nombre: 'Distribucion de los usuarios por provincias', datos: dataArray});
+        await statistic.save(function(err, newStatistic) {
+            if (err) {
+                res.status(500);
+                res.json({error: err.message});
+            } else {
+                res.status(200);
+                res.json(newStatistic);
+            }
+        });
+    } catch(err) {
+        res.status(500);
+        res.json({error: err.message});
+    }
+}
+
+/*
+ * Obtener la distribución, en porcenatajes, de las entradas
+ * guardadas en la aplicación.
+ */
+statisticsController.entriesPercentage = async function(req, res) {
+    try {
+        checkToken(req.headers.authentication);
+        const hotels = await Hotel.count(function(err) {
+            if (err) {
+                res.status(500);
+                res.json({error: err.message});
+            }
+        });
+
+        const ruralHouses = await RuralHouse.count(function(err) {
+            if (err) {
+                res.status(500);
+                res.json({error: err.message});
+            }
+        });
+
+        const apartments = await Apartment.count(function(err) {
+            if (err) {
+                res.status(500);
+                res.json({error: err.message});
+            }
+        });
+
+        const campings = await Camping.count(function(err) {
+            if (err) {
+                res.status(500);
+                res.json({error: err.message});
+            }
+        });
+
+        const touristOffices = await TouristOffice.count(function(err) {
+            if (err) {
+                res.status(500);
+                res.json({error: err.message});
+            }
+        });
+
+        const informationPoints = await InformationPoint.count(function(err) {
+            if (err) {
+                res.status(500);
+                res.json({error: err.message});
+            }
+        });
+
+        const shelters = await Shelter.count(function(err) {
+            if (err) {
+                res.status(500);
+                res.json({error: err.message});
+            }
+        });
+
+        const restaurants = await Restaurant.count(function(err) {
+            if (err) {
+                res.status(500);
+                res.json({error: err.message});
+            }
+        });
+
+        const guides = await Guide.count(function(err) {
+            if (err) {
+                res.status(500);
+                res.json({error: err.message});
+            }
+        });
+
+        var total = hotels + ruralHouses + apartments + campings + touristOffices + informationPoints
+            + shelters + restaurants + guides;
+
+        var dataArray = [];
+        var hotelsPer = (hotels / total) * 100;
+        hotelsPer = hotelsPer.toFixed(2);
+        var entry = new Data.datoModel({ nombre: 'hoteles', valor: hotelsPer});
+        dataArray.push(entry);
+        var ruralHousesPer = (ruralHouses / total) * 100;
+        ruralHousesPer = ruralHousesPer.toFixed(2);
+        entry = new Data.datoModel({ nombre: 'casas rurales', valor: ruralHousesPer});
+        dataArray.push(entry);
+        var apartmentsPer = (apartments / total) * 100;
+        apartmentsPer = apartmentsPer.toFixed(2);
+        entry = new Data.datoModel({ nombre: 'apartamentos', valor: apartmentsPer});
+        dataArray.push(entry);
+        var campingsPer = (campings / total) * 100;
+        campingsPer = campingsPer.toFixed(2);
+        entry = new Data.datoModel({ nombre: 'campings', valor: campingsPer});
+        dataArray.push(entry);
+        var touristOfficesPer = (touristOffices / total) * 100;
+        touristOfficesPer = touristOfficesPer.toFixed(2);
+        entry = new Data.datoModel({ nombre: 'oficinas turismo', valor: touristOfficesPer});
+        dataArray.push(entry);
+        var informationPointsPer = (informationPoints / total) * 100;
+        informationPointsPer = informationPointsPer.toFixed(2);
+        entry = new Data.datoModel({ nombre: 'puntos informacion', valor: informationPointsPer});
+        dataArray.push(entry);
+        var sheltersPer = (shelters / total) * 100;
+        sheltersPer = sheltersPer.toFixed(2);
+        entry = new Data.datoModel({ nombre: 'refugios', valor: sheltersPer});
+        dataArray.push(entry);
+        var restaurantsPer = (restaurants / total) * 100;
+        restaurantsPer = restaurantsPer.toFixed(2);
+        entry = new Data.datoModel({ nombre: 'restaurantes', valor: restaurantsPer});
+        dataArray.push(entry);
+        var guidesPer = (guides / total) * 100;
+        guidesPer = guidesPer.toFixed(2);
+        entry = new Data.datoModel({ nombre: 'guias', valor: guidesPer});
+        dataArray.push(entry);
+
+        var statistic = new Statistic({ nombre: 'Porcentaje entradas', datos: dataArray});
         await statistic.save(function(err, newStatistic) {
             if (err) {
                 res.status(500);
