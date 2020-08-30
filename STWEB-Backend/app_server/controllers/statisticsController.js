@@ -17,6 +17,7 @@ var Shelter = require('../models/refugio');
 var Guide = require('../models/guia');
 var Restaurant = require('../models/restaurante');
 var User = require('../models/usuario');
+var Chat = require('../models/chat');
 var statisticsController = {};
 
 checkToken = function(token) {
@@ -202,7 +203,7 @@ statisticsController.restaurantsCategoryPerRegion = async function(req, res) {
 statisticsController.usersPerProvince = async function(req, res) {
     try {
         checkToken(req.headers.authentication);
-        const users = await User.find({ admin: false }, function(err) {
+        const users = await User.find({ admin: false, activo: true }, function(err) {
             if (err) {
                 res.status(500);
                 res.json({error: err.message});
@@ -357,6 +358,105 @@ statisticsController.entriesPercentage = async function(req, res) {
         dataArray.push(entry);
 
         var statistic = new Statistic({ nombre: 'Porcentaje entradas', datos: dataArray});
+        await statistic.save(function(err, newStatistic) {
+            if (err) {
+                res.status(500);
+                res.json({error: err.message});
+            } else {
+                res.status(200);
+                res.json(newStatistic);
+            }
+        });
+    } catch(err) {
+        res.status(500);
+        res.json({error: err.message});
+    }
+}
+
+/*
+ * Obtener la cantidad de chats por hotel.
+ */
+statisticsController.chatsPerHotel = async function(req, res) {
+    try {
+        checkToken(req.headers.authentication);
+        const chats = await Chat.find(function(err) {
+            if (err) {
+                res.status(500);
+                res.json({error: err.message});
+            }
+        });
+
+        var i;
+        var hotelArray = [];
+        var countArray = [];
+        for (i = 0; i < chats.length; i++) {
+            var index = hotelArray.indexOf(chats[i].nomEntrada);
+            if (index == -1) {
+                hotelArray.push(chats[i].nomEntrada);
+                countArray.push(1);
+            } else {
+                countArray[index] += 1;
+            }
+        }
+
+        var j;
+        var dataArray = [];
+        for (j = 0; j < hotelArray.length; j++) {
+            var entry = new Data.datoModel({ nombre: hotelArray[j], valor: countArray[j]});
+            dataArray.push(entry);
+        }
+
+        var statistic = new Statistic({ nombre: 'Numero de chats por hotel', datos: dataArray});
+        await statistic.save(function(err, newStatistic) {
+            if (err) {
+                res.status(500);
+                res.json({error: err.message});
+            } else {
+                res.status(200);
+                res.json(newStatistic);
+            }
+        });
+    } catch(err) {
+        res.status(500);
+        res.json({error: err.message});
+    }
+}
+
+/* 
+ * Obtener las fechas en las que usuarios baneados pueden
+ * recuperar su cuenta.
+ */
+statisticsController.datesEndBan = async function(req, res) {
+    try {
+        checkToken(req.headers.authentication);
+        const users = await User.find({ admin: false, baneado: true, activo: true }, function(err) {
+            if (err) {
+                res.status(500);
+                res.json({error: err.message});
+            }
+        });
+
+        var i;
+        var dateArray = [];
+        var countArray = [];
+        for (i = 0; i < users.length; i++) {
+            var index = dateArray.indexOf(users[i].finBan.toString());
+            if (index == -1) {
+                dateArray.push(users[i].finBan.toString());
+                countArray.push(1);
+            } else {
+                countArray[index] += 1;
+            }
+        }
+
+        var j;
+        var dataArray = [];
+        for (j = 0; j < dateArray.length; j++) {
+            var entry = new Data.datoModel({ nombre: dateArray[j], valor: countArray[j]});
+            dataArray.push(entry);
+        }
+
+        var statistic = new Statistic({ nombre: 'Numero de usuarios que recuperan su cuenta en cada fecha', datos: dataArray});
         await statistic.save(function(err, newStatistic) {
             if (err) {
                 res.status(500);
