@@ -51,6 +51,10 @@
       {
         "name":"Tourist Offices",
         "description": "Tourist Offices interaction API"
+      },
+      {
+        "name":"Parser Data",
+        "description": "Parser Data interaction API"
       }
     ],
     "schemes": [
@@ -1691,11 +1695,239 @@
             }
           }
         } 
+      },
+      "/parserdata/guides":{
+        "post": {
+          "summary": "Delete existing guides data and import, from external source, new data",
+          "tags": [
+            "Parser Data"
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "New guides data has been saved",
+              "schema": {
+                "$ref": "#/definitions/String"
+              }
+            },
+            "500":{
+              "description":"New data could not be saved",
+              "schema":{
+                "$ref":"#/definitions/Error"
+              }
+            }
+          }
+        }  
+      },
+      "/parserdata/apartments":{
+        "post": {
+          "summary": "Delete existing apartments data and import, from external source, new data",
+          "tags": [
+            "Parser Data"
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "New apartments data has been saved",
+              "schema": {
+                "$ref": "#/definitions/String"
+              }
+            },
+            "500":{
+              "description":"New data could not be saved",
+              "schema":{
+                "$ref":"#/definitions/Error"
+              }
+            }
+          }
+        }  
+      },
+      "/parserdata/informationPoints":{
+        "post": {
+          "summary": "Delete existing information points data and import, from external source, new data",
+          "tags": [
+            "Parser Data"
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "New information points data has been saved",
+              "schema": {
+                "$ref": "#/definitions/String"
+              }
+            },
+            "500":{
+              "description":"New data could not be saved",
+              "schema":{
+                "$ref":"#/definitions/Error"
+              }
+            }
+          }
+        }  
+      },
+      "/parserdata/restaurants":{
+        "post": {
+          "summary": "Delete existing restaurants data and import, from external source, new data",
+          "tags": [
+            "Parser Data"
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "New restaurants data has been saved",
+              "schema": {
+                "$ref": "#/definitions/String"
+              }
+            },
+            "500":{
+              "description":"New data could not be saved",
+              "schema":{
+                "$ref":"#/definitions/Error"
+              }
+            }
+          }
+        }  
+      },
+      "/parserdata/ruralHouses":{
+        "post": {
+          "summary": "Delete existing rural houses data and import, from external source, new data",
+          "tags": [
+            "Parser Data"
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "New rural houses data has been saved",
+              "schema": {
+                "$ref": "#/definitions/String"
+              }
+            },
+            "500":{
+              "description":"New data could not be saved",
+              "schema":{
+                "$ref":"#/definitions/Error"
+              }
+            }
+          }
+        }  
+      },
+      "/parserdata/touristOffices":{
+        "post": {
+          "summary": "Delete existing tourist offices data and import, from external source, new data",
+          "tags": [
+            "Parser Data"
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "New tourist offices data has been saved",
+              "schema": {
+                "$ref": "#/definitions/String"
+              }
+            },
+            "500":{
+              "description":"New data could not be saved",
+              "schema":{
+                "$ref":"#/definitions/Error"
+              }
+            }
+          }
+        }  
+      },
+      "/parserdata/hotels":{
+        "post": {
+          "summary": "Delete existing hotels data and import, from external source, new data",
+          "tags": [
+            "Parser Data"
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "New hotels data has been saved",
+              "schema": {
+                "$ref": "#/definitions/String"
+              }
+            },
+            "500":{
+              "description":"New data could not be saved",
+              "schema":{
+                "$ref":"#/definitions/Error"
+              }
+            }
+          }
+        }  
+      },
+      "/parserdata/campings":{
+        "post": {
+          "summary": "Delete existing campings data and import, from external source, new data",
+          "tags": [
+            "Parser Data"
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "New campings data has been saved",
+              "schema": {
+                "$ref": "#/definitions/String"
+              }
+            },
+            "500":{
+              "description":"New data could not be saved",
+              "schema":{
+                "$ref":"#/definitions/Error"
+              }
+            }
+          }
+        }  
+      },
+      "/parserdata/shelters":{
+        "post": {
+          "summary": "Delete existing shelters data and import, from external source, new data",
+          "tags": [
+            "Parser Data"
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "New shelters data has been saved",
+              "schema": {
+                "$ref": "#/definitions/String"
+              }
+            },
+            "500":{
+              "description":"New data could not be saved",
+              "schema":{
+                "$ref":"#/definitions/Error"
+              }
+            }
+          }
+        }  
       }
     },
     "definitions": {
       "Number": {
         "type": "integer"
+      },
+      "String": {
+        "type": "string"
       },
       "Error":{
         "properties":{
