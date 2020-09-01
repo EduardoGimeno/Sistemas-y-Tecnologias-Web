@@ -112,8 +112,8 @@
       </div>
 
       <div class="card-body">
-        <div class="row" style="text-align: center">
-          <div *ngIf="entry.tipoEntry != 'Guia'">
+        <div class="row" style="width: 100%; text-align: center">
+          <div *ngIf="entry.tipoEntry != 'Guia'" style="width: inherit">
             <div class="row" style="text-align: center">
               <div *ngIf="entry.comun" style="width: 60%; text-align: center">
                 <h6>{{ entry.comun.direccion }}</h6>
@@ -135,9 +135,9 @@
               </div>
             </div>
           </div>
-          <div *ngIf="entry.tipoEntry == 'Guia'" style="text-align: center">
+          <div *ngIf="entry.tipoEntry == 'Guia'"  style="width: inherit; text-align: center">
             <h4>Idiomas</h4>
-            <table>
+            <table style="width: inherit">
               <tr>
                 <td>
                   Español
