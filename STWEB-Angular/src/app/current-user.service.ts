@@ -93,6 +93,8 @@ export class CurrentUserService {
       this.user = <UserApp>data[0];
       this.cookieService.set("session", "open");
       this.cookieService.set("token", token);
+      console.log(this.user);
+      console.log(this.user.pais);
       if (this.user.pais != null) {
         this.router.navigateByUrl('/index-user');
       }

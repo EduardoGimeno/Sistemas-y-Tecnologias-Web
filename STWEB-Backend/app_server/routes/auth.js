@@ -14,8 +14,11 @@ auth.get('/google/callback', passport.authenticate('google'),  (req, res) => {
         console.log(token)
         var responss = "Bearer " + token;
         //res.json([{"token": responss},req.user]);
-        if(req.user.pais === 'undefined'){res.redirect("https://turismoaragon.herokuapp.com/registry-google?token="+ token+"&id="+ req.user._id);}
-        else{res.redirect("https://turismoaragon.herokuapp.com/index-user?token="+ token+"&id="+ req.user._id)};
+        if(req.user.pais === undefined){
+                res.redirect("https://turismoaragon.herokuapp.com/registry-google?token="+ token+"&id="+ req.user._id);
+        } else {
+                res.redirect("https://turismoaragon.herokuapp.com/index-user?token="+ token+"&id="+ req.user._id)
+        }
     });
 
 module.exports = auth;
