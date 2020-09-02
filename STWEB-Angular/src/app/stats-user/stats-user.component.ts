@@ -3,7 +3,6 @@ import { UserApp } from '../entities/usuario';
 import {Dato} from "../entities/dato";
 import { CurrentUserService } from "../current-user.service";
 import { EntryService } from "../services/entry-service.service";
-//import { ChartsModule } from '@rinminase/ng-charts';
 
 @Component({
   selector: 'app-stats-user',
@@ -29,10 +28,6 @@ export class StatsUserComponent implements OnInit {
         };
         chartLabels2 = [];
         chartData2 = [];
-         chartColors2 = [{
-              backgroundColor: ['red', 'black', 'blue'],
-            }];
-        chartPlugins = [];
         chartLegend2 = true;
 
   user: UserApp;
@@ -44,13 +39,21 @@ export class StatsUserComponent implements OnInit {
     this.getNumbersOfEachData();
     this.getHotelesPorMunicipio();
   }
-
+  //Cambiar y coger del primer publico el array de Datos correcto.
   getHotelesPorMunicipio(){
     this.entryService.getHotelesMunicipio().subscribe(dataArr => {
-        for (let d of <[]>dataArr) {
+        for (let d of Object.entries(dataArr)) {
+           console.log(d);
            this.datosHoteles.push(new Dato(d));
         }
     });
+    for(let i of this.datosHoteles){
+      console.log(i.nombre);
+      console.log(i.valor);
+      this.chartLabels2.push(i.nombre);
+      this.chartData2.push(i.valor);
+    }
+    console.log("LLEGO 2");
   }
 
   getNumbersOfEachData() {

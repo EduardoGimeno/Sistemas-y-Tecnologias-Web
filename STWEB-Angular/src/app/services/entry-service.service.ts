@@ -28,7 +28,7 @@ export class EntryService {
   public getHotelesMunicipio() {
       let headers = new HttpHeaders({
         'authentication': this.cookieService.get("token")});
-      return this.http.get(this.urlApp + "/hotelsPerMunicipality", {headers:headers});
+      return this.http.get(this.urlApp + "/statistics/hotelsPerMunicipality", {headers:headers});
     }
 
   public getTurismosRurales(page: number) {
