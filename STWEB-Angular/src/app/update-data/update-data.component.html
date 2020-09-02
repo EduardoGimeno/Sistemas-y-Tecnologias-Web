@@ -29,7 +29,7 @@
         Inicio
       </button>
       <br>
-      <button type="button" class="buttonCustom btn btn-primary" routerLink="/stats-admin">
+      <button type="button" class="buttonCustom btn buttonCustomColor" routerLink="/stats-admin">
         <svg class="bi bi-graph-up" width="1.2em" height="1.2em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
           <path d="M0 0h1v16H0V0zm1 15h15v1H1v-1z"/>
           <path fill-rule="evenodd" d="M14.39 4.312L10.041 9.75 7 6.707l-3.646 3.647-.708-.708L7 5.293 9.959 8.25l3.65-4.563.781.624z" clip-rule="evenodd"/>
@@ -38,7 +38,7 @@
         Estadísticas
       </button>
       <br>
-      <button type="button" class="buttonCustom btn buttonCustomColor" routerLink="/update-data">
+      <button type="button" class="buttonCustom btn btn-primary" routerLink="/update-data">
         <svg width="1.2em" height="1.2em" viewBox="0 0 16 16" class="bi bi-clipboard-data" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
           <path fill-rule="evenodd" d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
           <path fill-rule="evenodd" d="M9.5 1h-3a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
@@ -47,7 +47,7 @@
         Datos
       </button>
       <br>
-      <button type="button" (click)="currentUser.logOut()" routerLink="/login" class="buttonCustom btn btn-danger"
+      <button type="button" (click)="currentService.logOut()" routerLink="/login" class="buttonCustom btn btn-danger"
               style="margin-top: 10vh; margin-bottom: 10vh">
         <svg class="bi bi-box-arrow-left" width="1.2em" height="1.2em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
           <path fill-rule="evenodd" d="M4.354 11.354a.5.5 0 000-.708L1.707 8l2.647-2.646a.5.5 0 10-.708-.708l-3 3a.5.5 0 000 .708l3 3a.5.5 0 00.708 0z" clip-rule="evenodd"/>
@@ -73,24 +73,82 @@
 
         </div>
         <div>
-          <h1>Estadísticas de los Administradores</h1>
+          <h1>Actualizar datos</h1>
         </div>
       </div>
     </div>
 
-    <div class="row">
 
-      <div class="col-12" style="height: 60vh; border-right: 1vh solid #d9d9d9;
-       border-left: 1vh solid #d9d9d9; text-align: center; padding: unset">
-        <div class="col" style="height: 15vh; width: 100%">
-          <div class="row" style="height: 40%">
-            <div class="col" style="text-align: left; margin-top: auto; margin-left: 2vh">
-              <h4>Poner estadisticas aqui</h4>
+    <div class="row" style="border-left: 1vh solid #d9d9d9;">
+
+      <div class="col-12">
+
+        <div class="row" style="margin-top: 5vh">
+          <button type="button" (click)="parserTodos()" class="btn btn-primary" style="width: 30%;
+          margin: auto">
+            <h4>Actualizar todos</h4>
+          </button>
+        </div>
+
+        <div class="row">
+          <div class="col-4" style="padding: unset; height: 60vh">
+
+            <h5 style="margin-top: 5vh">{{ hotelsString }}</h5>
+            <button type="button" (click)="parserHoteles()" class="btn btn-primary" style="width: 75%; margin: auto">
+              <h6>Actualizar hoteles</h6>
+            </button>
+
+            <h5 style="margin-top: 5vh">{{ ruralHousesString }}</h5>
+            <button type="button" (click)="parserTurismoRural()" class="btn btn-primary" style="width: 75%; margin: auto">
+              <h6>Actualizar turismo rural</h6>
+            </button>
+
+            <h5 style="margin-top: 5vh">{{ apartmentsString }}</h5>
+            <button type="button" (click)="parserApartamentos()" class="btn btn-primary" style="width: 75%; margin: auto">
+              <h6>Actualizar apartamentos</h6>
+            </button>
+
+          </div>
+
+            <div class="col-4" style="padding: unset">
+
+              <h5 style="margin-top: 5vh">{{ campingsString }}</h5>
+              <button type="button" (click)="parserCampings()" class="btn btn-primary" style="width: 75%; margin: auto">
+                <h6>Actualizar campings</h6>
+              </button>
+
+              <h5 style="margin-top: 5vh">{{ sheltersString }}</h5>
+              <button type="button" (click)="parserRefugios()" class="btn btn-primary" style="width: 75%; margin: auto">
+                <h6>Actualizar refugios</h6>
+              </button>
+
+              <h5 style="margin-top: 5vh">{{ restaurantsString }}</h5>
+              <button type="button" (click)="parserRestaurantes()" class="btn btn-primary" style="width: 75%; margin: auto">
+                <h6>Actualizar restaurantes</h6>
+              </button>
+
+            </div>
+
+            <div class="col-4" style="padding: unset">
+
+              <h5 style="margin-top: 5vh">{{ touristOfficesString }}</h5>
+              <button type="button" (click)="parserOficinasTurismo()" class="btn btn-primary" style="width: 75%; margin: auto">
+                <h6>Actualizar oficinas de turismo</h6>
+              </button>
+
+              <h5 style="margin-top: 5vh">{{ informationPointsString }}</h5>
+              <button type="button" (click)="parserPuntosInformacion()" class="btn btn-primary" style="width: 75%; margin: auto">
+                <h6>Actualizar puntos de información</h6>
+              </button>
+
+              <h5 style="margin-top: 5vh">{{ guidesString }}</h5>
+              <button type="button" (click)="parserGuias()" class="btn btn-primary" style="width: 75%; margin: auto">
+                <h6>Actualizar guías</h6>
+              </button>
+
             </div>
           </div>
-        </div>
       </div>
-
     </div>
 
   </div>

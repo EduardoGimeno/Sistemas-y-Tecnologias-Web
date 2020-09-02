@@ -4,6 +4,7 @@ import { Router } from "@angular/router";
 import {UserApp} from "../entities/usuario";
 import {UserService} from "../services/user-service.service";
 import { CurrentUserService } from "../current-user.service";
+import {EntryService} from "../services/entry-service.service";
 
 @Component({
   selector: 'app-index-admin',
@@ -28,6 +29,7 @@ export class IndexAdminComponent implements OnInit {
         this.numTotal = <number>num;
         this.numPages = (this.numTotal / 20);
     });
+    this.currentService.checkLog();
   }
 
   search() {

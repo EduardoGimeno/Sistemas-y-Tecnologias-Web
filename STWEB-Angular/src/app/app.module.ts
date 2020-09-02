@@ -38,6 +38,7 @@ import {MAT_DIALOG_DEFAULT_OPTIONS} from '@angular/material/dialog';
 
 //Para usar diagramas
 import { ChartsModule } from '@rinminase/ng-charts';
+import { UpdateDataComponent } from './update-data/update-data.component';
 
 let config = new AuthServiceConfig([
   {
@@ -65,7 +66,8 @@ export function provideConfig() {
     StatsUserComponent,
     StatsAdminComponent,
     RegistryGoogleComponent,
-    AccionUsuarioComponent
+    AccionUsuarioComponent,
+    UpdateDataComponent
   ],
   entryComponents: [AccionUsuarioComponent, IndexAdminComponent],
   imports: [

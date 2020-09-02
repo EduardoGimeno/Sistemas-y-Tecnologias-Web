@@ -269,4 +269,10 @@ export class EntryService {
     return this.http.get(this.urlApp + "/guides/search", {params:params, headers:headers});
   }
 
+  public parser(tipo: string) {
+    let headers = new HttpHeaders({
+      'authentication': this.cookieService.get("token")});
+    return this.http.post(this.urlApp + "/parserData/" + tipo, null,{headers:headers});
+  }
+
 }
