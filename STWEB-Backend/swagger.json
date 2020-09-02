@@ -55,6 +55,10 @@
       {
         "name":"Parser Data",
         "description": "Parser Data interaction API"
+      },
+      {
+        "name":"Chats",
+        "description": "Chats interaction API"
       }
     ],
     "schemes": [
@@ -1920,6 +1924,188 @@
             }
           }
         }  
+      },
+      "/chats/add":{
+        "post": {
+          "summary": "Create new chat in system",
+          "tags": [
+            "Chats"
+          ],
+          "parameters": [
+            {
+              "name": "chat",
+              "in": "body",
+              "description": "Chat that we want to create",
+              "schema": {
+                "$ref": "#/definitions/Chat"
+              }
+            }
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "New chat has been created",
+              "schema": {
+                "$ref": "#/definitions/Chat"
+              }
+            },
+            "500":{
+              "description":"Info could not be retrieved",
+              "schema":{
+                "$ref":"#/definitions/Error"
+              }
+            }
+          }
+        }
+      },
+      "/chats/getChats":{
+        "parameters":[
+          {
+            "name":"user",
+            "in":"path",
+            "required":true,
+            "description":"User's email we want to get the chats",
+            "schema":{
+              "type":"string"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "get":{
+          "summary": "Get the chats that matches the email given",
+          "tags":[
+            "Chats"
+          ],
+          "responses":{
+            "200":{
+              "description":"Chats found",
+              "schema":{
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/Chat"
+                }
+              }
+            },
+            "500":{
+              "description":"Info could not be retrieved",
+              "schema":{
+                "$ref":"#/definitions/Error"
+              }
+            }
+          }
+        }
+      },
+      "/chats/getChat":{
+        "parameters":[
+          {
+            "name":"id",
+            "in":"path",
+            "required":true,
+            "description":"Id of the chat we want info about",
+            "schema":{
+              "type":"string"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "get":{
+          "summary": "Get the chat that matches the id given",
+          "tags":[
+            "Chats"
+          ],
+          "responses":{
+            "200":{
+              "description":"Chat found",
+              "schema":{
+                "$ref": "#/definitions/Chat"
+              }
+            },
+            "500":{
+              "description":"Info could not be retrieved",
+              "schema":{
+                "$ref":"#/definitions/Error"
+              }
+            }
+          }
+        }
+      },
+      "/chats/updateEntry":{
+        "parameters":[
+          {
+            "name": "chat",
+            "in": "body",
+            "required":true,
+            "description": "Chat with new values of properties",
+            "schema": {
+              "$ref": "#/definitions/Chat"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ], 
+        "put": {
+          "summary": "Update the information of a chat from user's side",
+          "tags": [
+            "Chats"
+          ],
+          "responses": {
+            "200": {
+              "description":"Chat is updated",
+              "schema": {
+                "$ref": "#/definitions/Chat"
+              }
+            },
+            "500":{
+              "description":"Info could not be retrieved",
+              "schema":{
+                "$ref":"#/definitions/Error"
+              }
+            }
+          }
+        }
+      },
+      "/chats/updateUser":{
+        "parameters":[
+          {
+            "name": "chat",
+            "in": "body",
+            "required":true,
+            "description": "Chat with new values of properties",
+            "schema": {
+              "$ref": "#/definitions/Chat"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ], 
+        "put": {
+          "summary": "Update the information of a chat from entry's side",
+          "tags": [
+            "Chats"
+          ],
+          "responses": {
+            "200": {
+              "description":"Chat is updated",
+              "schema": {
+                "$ref": "#/definitions/Chat"
+              }
+            },
+            "500":{
+              "description":"Info could not be retrieved",
+              "schema":{
+                "$ref":"#/definitions/Error"
+              }
+            }
+          }
+        }
       }
     },
     "definitions": {
@@ -2215,7 +2401,7 @@
           "mensajes":{
             "type": "array",
             "items": {
-              "$ref": "#/definitions/Mensaje"
+              "$ref": "#/definitions/Message"
             }
           }
         },
