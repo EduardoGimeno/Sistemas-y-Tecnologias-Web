@@ -160,18 +160,18 @@
               </tr>
 
               <tr>
-                <td *ngIf="entry.espanol == true">Si</td>
-                <td *ngIf="!entry.espanol">No</td>
-                <td *ngIf="entry.ingles">Si</td>
-                <td *ngIf="!entry.ingles">No</td>
-                <td *ngIf="entry.frances">Si</td>
-                <td *ngIf="!entry.frances">No</td>
-                <td *ngIf="entry.aleman">Si</td>
-                <td *ngIf="!entry.aleman">No</td>
-                <td *ngIf="entry.italiano">Si</td>
-                <td *ngIf="!entry.italiano">No</td>
-                <td *ngIf="entry.otros">Si</td>
-                <td *ngIf="!entry.otros">No</td>
+                <td *ngIf="entry.espanol == 'true'">Si</td>
+                <td *ngIf="entry.espanol == 'false'">No</td>
+                <td *ngIf="entry.ingles == 'true'">Si</td>
+                <td *ngIf="entry.ingles == 'false'">No</td>
+                <td *ngIf="entry.frances == 'true'">Si</td>
+                <td *ngIf="entry.frances == 'false'">No</td>
+                <td *ngIf="entry.aleman == 'true'">Si</td>
+                <td *ngIf="entry.aleman == 'false'">No</td>
+                <td *ngIf="entry.italiano == 'true'">Si</td>
+                <td *ngIf="entry.italiano == 'false'">No</td>
+                <td *ngIf="entry.otros == 'true'">Si</td>
+                <td *ngIf="entry.otros == 'false'">No</td>
               </tr>
 
             </table>
