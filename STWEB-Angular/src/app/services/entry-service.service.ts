@@ -260,11 +260,16 @@ export class EntryService {
     return this.http.get(this.urlApp + "/informationPoints/search", {params:params, headers:headers});
   }
 
-  public searchGuias(idioma, page) {
+  public searchGuias(espanol, ingles, frances, italiano, aleman, otros, page) {
     let headers = new HttpHeaders({
       'authentication': this.cookieService.get("token")});
     let params = new HttpParams()
-      .set("idiom", idioma)
+      .set("spanish", espanol.toString())
+      .set("english", ingles.toString())
+      .set("french", frances.toString())
+      .set("italian", italiano.toString())
+      .set("german", aleman.toString())
+      .set("other", otros.toString())
       .set("page", page.toString());
     return this.http.get(this.urlApp + "/guides/search", {params:params, headers:headers});
   }
