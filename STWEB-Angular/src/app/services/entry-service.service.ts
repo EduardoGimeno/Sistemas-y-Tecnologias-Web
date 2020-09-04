@@ -263,6 +263,12 @@ export class EntryService {
   public searchGuias(espanol, ingles, frances, italiano, aleman, otros, page) {
     let headers = new HttpHeaders({
       'authentication': this.cookieService.get("token")});
+    if (espanol.toString() == "false") espanol = "";
+    if (ingles.toString() == "false") ingles = "";
+    if (frances.toString() == "false") frances = "";
+    if (italiano.toString() == "false") italiano = "";
+    if (aleman.toString() == "false") aleman = "";
+    if (otros.toString() == "false") otros = "";
     let params = new HttpParams()
       .set("spanish", espanol.toString())
       .set("english", ingles.toString())
