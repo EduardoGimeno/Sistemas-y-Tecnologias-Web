@@ -190,11 +190,19 @@ export class IndexUserComponent implements OnInit {
       $('#selectionComarca').prop('disabled', true);
       $('#selectionEstrellasMax').prop('disabled', true);
       $('#selectionEstrellasMin').prop('disabled', true);
-      $('#selectionIdioma').prop('disabled', false);
+      $('#ingles').prop('disabled', false);
+      $('#frances').prop('disabled', false);
+      $('#italiano').prop('disabled', false);
+      $('#aleman').prop('disabled', false);
+      $('#otros').prop('disabled', false);
     } else {
       $('#selectionProvincia').prop('disabled', false);
       $('#selectionComarca').prop('disabled', false);
-      $('#selectionIdioma').prop('disabled', true);
+      $('#ingles').prop('disabled', true);
+      $('#frances').prop('disabled', true);
+      $('#italiano').prop('disabled', true);
+      $('#aleman').prop('disabled', true);
+      $('#otros').prop('disabled', true);
     }
 
   }
@@ -212,7 +220,12 @@ export class IndexUserComponent implements OnInit {
     let estrellasMin: number = +estrellasMinString.split(" ")[0];
     let estrellasMaxString = <string>$('#selectionEstrellasMax').val();
     let estrellasMax = +estrellasMaxString.split(" ")[0];
-    let idioma = <string>$('#selectionIdioma').val();
+    let espanol = <string>$('#espanol').prop('checked');
+    let ingles = <string>$('#ingles').prop('checked');
+    let frances = <string>$('#frances').prop('checked');
+    let italiano = <string>$('#italiano').prop('checked');
+    let aleman = <string>$('#aleman').prop('checked');
+    let otros = <string>$('#otros').prop('checked');
 
     if (this.selectedIndex == 0) {
       this.entryService.searchHoteles(provincia, comarca, municipio, estrellasMin,
@@ -307,7 +320,8 @@ export class IndexUserComponent implements OnInit {
         }
       });
     } else if (this.selectedIndex == 8) {
-      this.entryService.searchGuias(idioma, this.page - 1).subscribe(data => {
+      this.entryService.searchGuias(espanol, ingles, frances, italiano, aleman, otros,
+        this.page - 1).subscribe(data => {
         for (let g of <[]>data) {
           this.showEntries.push(new Guia(g));
         }

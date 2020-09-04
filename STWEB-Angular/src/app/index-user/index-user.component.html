@@ -257,15 +257,35 @@
 
       <h6 class="textCustomColor">Idioma (Guías turísticos):</h6>
       <div class="btn-group" style="width: 85%; margin-bottom: 4vh">
-        <select id="selectionIdioma" class="custom-select" disabled="disabled">
-          <option value="">Todos</option>
-          <option value="espanol">Español</option>
-          <option value="ingles">Inglés</option>
-          <option value="frances">Frances</option>
-          <option value="italiano">Italiano</option>
-          <option value="aleman">Aleman</option>
-          <option value="otros">Otros</option>
-        </select>
+        <div class="col-4">
+
+          <input checked disabled type="checkbox" class="form-check-input" id="espanol">
+          <label class="form-check-label" for="espanol">Español</label>
+          <br>
+          <input type="checkbox" class="form-check-input" id="ingles">
+          <label class="form-check-label" for="ingles">Ingles</label>
+
+        </div>
+
+        <div class="col-4">
+
+          <input type="checkbox" class="form-check-input" id="frances">
+          <label class="form-check-label" for="frances">Frances</label>
+          <br>
+          <input type="checkbox" class="form-check-input" id="italiano">
+          <label class="form-check-label" for="italiano">Italiano</label>
+
+        </div>
+
+        <div class="col-4">
+
+          <input type="checkbox" class="form-check-input" id="aleman">
+          <label class="form-check-label" for="aleman">Aleman</label>
+          <br>
+          <input type="checkbox" class="form-check-input" id="otros">
+          <label class="form-check-label" for="otros">Otros</label>
+
+        </div>
       </div>
 
       <button type="button" class="btn btn-primary" style="width: 60%; margin: auto" (click)="search(true)">
