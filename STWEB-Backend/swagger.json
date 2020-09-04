@@ -59,6 +59,10 @@
       {
         "name":"Chats",
         "description": "Chats interaction API"
+      },
+      {
+        "name":"Statistics",
+        "description": "Statistics interaction API"
       }
     ],
     "schemes": [
@@ -107,6 +111,17 @@
         }
       },
       "/users/getAll": {
+        "parameters":[
+          {
+            "name":"page",
+            "in":"path",
+            "required":true,
+            "description":"Limit of elements to recover from the result",
+            "schema":{
+              "type": "#/definitions/Number"
+            }
+          }
+        ],
         "get": {
           "summary": "Get all users in system",
           "tags": [
@@ -234,6 +249,13 @@
             "Users"
           ],
           "parameters": [
+            {
+              "name":"page",
+              "in":"path",
+              "required":true,
+              "description":"Limit of elements to recover from the result",
+              "type": "#/definitions/Number"
+            },
             {
               "name": "email",
               "in": "path",
@@ -448,6 +470,17 @@
         } 
       },
       "/apartments/getAll":{
+        "parameters":[
+          {
+            "name":"page",
+            "in":"path",
+            "required":true,
+            "description":"Limit of elements to recover from the result",
+            "schema":{
+              "type": "#/definitions/Number"
+            }
+          }
+        ],
         "produces": [
           "application/json"
         ],
@@ -477,6 +510,15 @@
       },
       "/apartments/search":{
         "parameters":[
+          {
+            "name":"page",
+            "in":"path",
+            "required":true,
+            "description":"Limit of elements to recover from the result",
+            "schema":{
+              "type": "#/definitions/Number"
+            }
+          },
           {
             "name":"province",
             "in":"path",
@@ -594,6 +636,17 @@
         } 
       },
       "/campings/getAll":{
+        "parameters":[
+          {
+            "name":"page",
+            "in":"path",
+            "required":true,
+            "description":"Limit of elements to recover from the result",
+            "schema":{
+              "type": "#/definitions/Number"
+            }
+          }
+        ],
         "produces": [
           "application/json"
         ],
@@ -623,6 +676,15 @@
       },
       "/campings/search":{
         "parameters":[
+          {
+            "name":"page",
+            "in":"path",
+            "required":true,
+            "description":"Limit of elements to recover from the result",
+            "schema":{
+              "type": "#/definitions/Number"
+            }
+          },
           {
             "name":"province",
             "in":"path",
@@ -740,6 +802,17 @@
         } 
       },
       "/guides/getAll":{
+        "parameters":[
+          {
+            "name":"page",
+            "in":"path",
+            "required":true,
+            "description":"Limit of elements to recover from the result",
+            "schema":{
+              "type": "#/definitions/Number"
+            }
+          }
+        ],
         "produces": [
           "application/json"
         ],
@@ -769,6 +842,15 @@
       },
       "/guides/search":{
         "parameters":[
+          {
+            "name":"page",
+            "in":"path",
+            "required":true,
+            "description":"Limit of elements to recover from the result",
+            "schema":{
+              "type": "#/definitions/Number"
+            }
+          },
           {
             "name":"province",
             "in":"path",
@@ -886,6 +968,17 @@
         } 
       },
       "/hotels/getAll":{
+        "parameters":[
+          {
+            "name":"page",
+            "in":"path",
+            "required":true,
+            "description":"Limit of elements to recover from the result",
+            "schema":{
+              "type": "#/definitions/Number"
+            }
+          }
+        ],
         "produces": [
           "application/json"
         ],
@@ -915,6 +1008,15 @@
       },
       "/hotels/search":{
         "parameters":[
+          {
+            "name":"page",
+            "in":"path",
+            "required":true,
+            "description":"Limit of elements to recover from the result",
+            "schema":{
+              "type": "#/definitions/Number"
+            }
+          },
           {
             "name":"province",
             "in":"path",
@@ -1032,6 +1134,17 @@
         } 
       },
       "/informationPoints/getAll":{
+        "parameters":[
+          {
+            "name":"page",
+            "in":"path",
+            "required":true,
+            "description":"Limit of elements to recover from the result",
+            "schema":{
+              "type": "#/definitions/Number"
+            }
+          }
+        ],
         "produces": [
           "application/json"
         ],
@@ -1061,6 +1174,15 @@
       },
       "/informationPoints/search":{
         "parameters":[
+          {
+            "name":"page",
+            "in":"path",
+            "required":true,
+            "description":"Limit of elements to recover from the result",
+            "schema":{
+              "type": "#/definitions/Number"
+            }
+          },
           {
             "name":"province",
             "in":"path",
@@ -1178,6 +1300,17 @@
         } 
       },
       "/restaurants/getAll":{
+        "parameters":[
+          {
+            "name":"page",
+            "in":"path",
+            "required":true,
+            "description":"Limit of elements to recover from the result",
+            "schema":{
+              "type": "#/definitions/Number"
+            }
+          }
+        ],
         "produces": [
           "application/json"
         ],
@@ -1207,6 +1340,15 @@
       },
       "/restaurants/search":{
         "parameters":[
+          {
+            "name":"page",
+            "in":"path",
+            "required":true,
+            "description":"Limit of elements to recover from the result",
+            "schema":{
+              "type": "#/definitions/Number"
+            }
+          },
           {
             "name":"province",
             "in":"path",
@@ -1324,6 +1466,17 @@
         } 
       },
       "/ruralHouses/getAll":{
+        "parameters":[
+          {
+            "name":"page",
+            "in":"path",
+            "required":true,
+            "description":"Limit of elements to recover from the result",
+            "schema":{
+              "type": "#/definitions/Number"
+            }
+          }
+        ],
         "produces": [
           "application/json"
         ],
@@ -1353,6 +1506,15 @@
       },
       "/ruralHouses/search":{
         "parameters":[
+          {
+            "name":"page",
+            "in":"path",
+            "required":true,
+            "description":"Limit of elements to recover from the result",
+            "schema":{
+              "type": "#/definitions/Number"
+            }
+          },
           {
             "name":"province",
             "in":"path",
@@ -1470,6 +1632,17 @@
         } 
       },
       "/shelters/getAll":{
+        "parameters":[
+          {
+            "name":"page",
+            "in":"path",
+            "required":true,
+            "description":"Limit of elements to recover from the result",
+            "schema":{
+              "type": "#/definitions/Number"
+            }
+          }
+        ],
         "produces": [
           "application/json"
         ],
@@ -1499,6 +1672,15 @@
       },
       "/shelters/search":{
         "parameters":[
+          {
+            "name":"page",
+            "in":"path",
+            "required":true,
+            "description":"Limit of elements to recover from the result",
+            "schema":{
+              "type": "#/definitions/Number"
+            }
+          },
           {
             "name":"province",
             "in":"path",
@@ -1616,6 +1798,17 @@
         } 
       },
       "/touristOffices/getAll":{
+        "parameters":[
+          {
+            "name":"page",
+            "in":"path",
+            "required":true,
+            "description":"Limit of elements to recover from the result",
+            "schema":{
+              "type": "#/definitions/Number"
+            }
+          }
+        ],
         "produces": [
           "application/json"
         ],
@@ -1645,6 +1838,15 @@
       },
       "/touristOffices/search":{
         "parameters":[
+          {
+            "name":"page",
+            "in":"path",
+            "required":true,
+            "description":"Limit of elements to recover from the result",
+            "schema":{
+              "type": "#/definitions/Number"
+            }
+          },
           {
             "name":"province",
             "in":"path",
@@ -2106,6 +2308,181 @@
             }
           }
         }
+      },
+      "/statistics/hotelsPerMunicipality":{
+        "produces": [
+          "application/json"
+        ],
+        "get":{
+          "summary": "Get the number of hotels per municipality",
+          "tags":[
+            "Statistics"
+          ],
+          "responses":{
+            "200":{
+              "description":"Number of hotels per municipality",
+              "schema":{
+                "$ref":"#/definitions/Statistic"
+              }
+            },
+            "500":{
+              "description":"Info could not be retrieved",
+              "schema":{
+                "$ref":"#/definitions/Error"
+              }
+            }
+          }
+        }
+      },
+      "/statistics/guidesIdiomPercentage":{
+        "produces": [
+          "application/json"
+        ],
+        "get":{
+          "summary": "Get the percentage of guides that speak every idiom",
+          "tags":[
+            "Statistics"
+          ],
+          "responses":{
+            "200":{
+              "description":"Percentage of guides that speak every idiom",
+              "schema":{
+                "$ref":"#/definitions/Statistic"
+              }
+            },
+            "500":{
+              "description":"Info could not be retrieved",
+              "schema":{
+                "$ref":"#/definitions/Error"
+              }
+            }
+          }
+        }
+      },
+      "/statistics/restaurantsCategoryPerRegion":{
+        "produces": [
+          "application/json"
+        ],
+        "get":{
+          "summary": "Get the number of category 3 restuarants per region",
+          "tags":[
+            "Statistics"
+          ],
+          "responses":{
+            "200":{
+              "description":"Number of category 3 restaurants per region",
+              "schema":{
+                "$ref":"#/definitions/Statistic"
+              }
+            },
+            "500":{
+              "description":"Info could not be retrieved",
+              "schema":{
+                "$ref":"#/definitions/Error"
+              }
+            }
+          }
+        }
+      },
+      "/statistics/usersPerProvince":{
+        "produces": [
+          "application/json"
+        ],
+        "get":{
+          "summary": "Get the number of users per province",
+          "tags":[
+            "Statistics"
+          ],
+          "responses":{
+            "200":{
+              "description":"Number of users per province",
+              "schema":{
+                "$ref":"#/definitions/Statistic"
+              }
+            },
+            "500":{
+              "description":"Info could not be retrieved",
+              "schema":{
+                "$ref":"#/definitions/Error"
+              }
+            }
+          }
+        }
+      },
+      "/statistics/entiresPercentage":{
+        "produces": [
+          "application/json"
+        ],
+        "get":{
+          "summary": "Get the percentage of every type of entry",
+          "tags":[
+            "Statistics"
+          ],
+          "responses":{
+            "200":{
+              "description":"Percentage of every type of entry",
+              "schema":{
+                "$ref":"#/definitions/Statistic"
+              }
+            },
+            "500":{
+              "description":"Info could not be retrieved",
+              "schema":{
+                "$ref":"#/definitions/Error"
+              }
+            }
+          }
+        }
+      },
+      "/statistics/chatsPerHotel":{
+        "produces": [
+          "application/json"
+        ],
+        "get":{
+          "summary": "Get the number of chats per hotel",
+          "tags":[
+            "Statistics"
+          ],
+          "responses":{
+            "200":{
+              "description":"Number of chats per hotel",
+              "schema":{
+                "$ref":"#/definitions/Statistic"
+              }
+            },
+            "500":{
+              "description":"Info could not be retrieved",
+              "schema":{
+                "$ref":"#/definitions/Error"
+              }
+            }
+          }
+        }
+      },
+      "/statistics/datesEndBan":{
+        "produces": [
+          "application/json"
+        ],
+        "get":{
+          "summary": "Get the dates when banned users can recover their account",
+          "tags":[
+            "Statistics"
+          ],
+          "responses":{
+            "200":{
+              "description":"Dates when banned users can recover their account",
+              "schema":{
+                "$ref":"#/definitions/Statistic"
+              }
+            },
+            "500":{
+              "description":"Info could not be retrieved",
+              "schema":{
+                "$ref":"#/definitions/Error"
+              }
+            }
+          }
+        }
       }
     },
     "definitions": {
@@ -2411,6 +2788,29 @@
           "emailEntrada",
           "emailUsuario"
         ]
+      },
+      "Data": {
+        "properties":{
+          "nombre":{
+            "type":"string"
+          },
+          "valor":{
+            "$ref":"#/definitions/Number"
+          }
+        }
+      },
+      "Statistic":{
+        "properties":{
+          "nombre":{
+            "type":"string"
+          },
+          "datos":{
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/Data"
+            }
+          }
+        }
       }
     }
   }
