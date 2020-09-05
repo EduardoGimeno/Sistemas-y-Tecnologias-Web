@@ -28,7 +28,6 @@ export class StatsUserComponent implements OnInit {
         };
         chartLabels2 = [];
         chartData2 = [];
-        chartLegend2 = true;
 
   user: UserApp;
 
@@ -39,21 +38,20 @@ export class StatsUserComponent implements OnInit {
     this.getNumbersOfEachData();
     this.getHotelesPorMunicipio();
   }
-  //Cambiar y coger del primer publico el array de Datos correcto.
+
   getHotelesPorMunicipio(){
     this.entryService.getHotelesMunicipio().subscribe(dataArr => {
         for (let d of Object.entries(dataArr)) {
-           console.log(d);
-           this.datosHoteles.push(new Dato(d));
+           if(d[0]==="datos"){
+               let i: number = 0;
+               while(i<=365){
+                     this.chartLabels2.push(d[1][i].nombre);
+                     this.chartData2.push(d[1][i].valor);
+                     i++;
+               }
+           }
         }
     });
-    for(let i of this.datosHoteles){
-      console.log(i.nombre);
-      console.log(i.valor);
-      this.chartLabels2.push(i.nombre);
-      this.chartData2.push(i.valor);
-    }
-    console.log("LLEGO 2");
   }
 
   getNumbersOfEachData() {
