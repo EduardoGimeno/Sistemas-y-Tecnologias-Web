@@ -25,9 +25,17 @@ export class StatsUserComponent implements OnInit {
       datosHoteles = [];
       chartOptions2 = {
           responsive: true,
-        };
-        chartLabels2 = [];
-        chartData2 = [];
+      };
+      chartLabels2 = [];
+      chartData2 = [];
+
+    //Diagrama3
+       idiomas = [];
+       chartOptions3 = {
+         responsive: true,
+       };
+       chartLabels3 = [];
+       chartData3 = [];
 
   user: UserApp;
 
@@ -37,6 +45,7 @@ export class StatsUserComponent implements OnInit {
     this.user = this.currentUser.checkLog();
     this.getNumbersOfEachData();
     this.getHotelesPorMunicipio();
+    this.getIdiomasGuias();
   }
 
   getHotelesPorMunicipio(){
@@ -44,7 +53,7 @@ export class StatsUserComponent implements OnInit {
         for (let d of Object.entries(dataArr)) {
            if(d[0]==="datos"){
                let i: number = 0;
-               while(i<=365){
+               while(i<365){
                      this.chartLabels2.push(d[1][i].nombre);
                      this.chartData2.push(d[1][i].valor);
                      i++;
@@ -53,6 +62,22 @@ export class StatsUserComponent implements OnInit {
         }
     });
   }
+
+  getIdiomasGuias(){
+      this.entryService.getIdiomas().subscribe(dataArr => {
+          for (let d of Object.entries(dataArr)) {
+            console.log(d);
+            if(d[0]==="datos"){
+               let i: number = 0;
+               while(i<5){
+                 this.chartLabels3.push(d[1][i].nombre);
+                 this.chartData3.push(d[1][i].valor);
+                 i++;
+               }
+            }
+          }
+      });
+    }
 
   getNumbersOfEachData() {
     this.entryService.getCount("hotels").subscribe(num => {

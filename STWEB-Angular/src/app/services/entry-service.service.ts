@@ -29,6 +29,12 @@ export class EntryService {
       let headers = new HttpHeaders({
         'authentication': this.cookieService.get("token")});
       return this.http.get(this.urlApp + "/statistics/hotelsPerMunicipality", {headers:headers});
+  }
+
+  public getIdiomas() {
+        let headers = new HttpHeaders({
+          'authentication': this.cookieService.get("token")});
+        return this.http.get(this.urlApp + "/statistics/guidesIdiomPercentage", {headers:headers});
     }
 
   public getTurismosRurales(page: number) {
