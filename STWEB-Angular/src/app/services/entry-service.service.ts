@@ -35,7 +35,38 @@ export class EntryService {
         let headers = new HttpHeaders({
           'authentication': this.cookieService.get("token")});
         return this.http.get(this.urlApp + "/statistics/guidesIdiomPercentage", {headers:headers});
-    }
+  }
+
+  public getRestaurantesPorComarca() {
+    let headers = new HttpHeaders({
+     'authentication': this.cookieService.get("token")});
+    return this.http.get(this.urlApp + "/statistics/restaurantsCategoryPerRegion", {headers:headers});
+  }
+
+  public getDistribucionProvincias() {
+      let headers = new HttpHeaders({
+       'authentication': this.cookieService.get("token")});
+      return this.http.get(this.urlApp + "/statistics/usersPerProvince", {headers:headers});
+  }
+
+  public getEntradasApp() {
+        let headers = new HttpHeaders({
+         'authentication': this.cookieService.get("token")});
+        return this.http.get(this.urlApp + "/statistics/entriesPercentage", {headers:headers});
+  }
+
+  public getChatsHotels() {
+          let headers = new HttpHeaders({
+           'authentication': this.cookieService.get("token")});
+          return this.http.get(this.urlApp + "/statistics/chatsPerHotel", {headers:headers});
+  }
+
+  public getFechas() {
+            let headers = new HttpHeaders({
+             'authentication': this.cookieService.get("token")});
+            return this.http.get(this.urlApp + "/statistics/datesEndBan", {headers:headers});
+  }
+
 
   public getTurismosRurales(page: number) {
     let headers = new HttpHeaders({
