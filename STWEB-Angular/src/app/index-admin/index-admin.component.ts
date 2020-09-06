@@ -13,6 +13,8 @@ import {EntryService} from "../services/entry-service.service";
 })
 export class IndexAdminComponent implements OnInit {
 
+  pageName = "Inicio";
+
   page = 1;
   numPages = 1;
   numTotal = 0;

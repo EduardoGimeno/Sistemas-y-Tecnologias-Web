@@ -9,6 +9,9 @@ import { EntryService } from "../services/entry-service.service";
   styleUrls: ['./stats-admin.component.css']
 })
 export class StatsAdminComponent implements OnInit {
+
+  pageName = "Estadísticas";
+
   //Diagrama5
              chartOptions5 = {
                responsive: true,

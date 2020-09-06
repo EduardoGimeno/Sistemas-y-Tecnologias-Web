@@ -10,6 +10,9 @@ import { EntryService } from "../services/entry-service.service";
   styleUrls: ['./stats-user.component.css']
 })
 export class StatsUserComponent implements OnInit {
+
+  pageName = "Estadísticas";
+
   //Diagrama de tarta
   chartOptions = {
       responsive: true,

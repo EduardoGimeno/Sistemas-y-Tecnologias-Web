@@ -1,6 +1,6 @@
 <div class="container justify-content-center" style="background-color: #f7f7f7; max-width: inherit; height: 100vh">
-  <div class="row justify-content-center" style="padding-top: 5vh">
-    <h1>¡Bienvenido! </h1>
+  <div id="pageName" class="row justify-content-center" style="padding-top: 5vh">
+    <h1>{{ pageName }}</h1>
   </div>
 
   <br>
@@ -34,11 +34,11 @@
 
   <br>
   <div class="row justify-content-center">
-    <button type="button" class="btn btn-primary btn-lg" (click)="logIn()">Acceder</button>
+    <button id="login" type="button" class="btn btn-primary btn-lg" (click)="logIn()">Acceder</button>
   </div>
   <br>
   <div class="row justify-content-center">
-    <a class="text-info" routerLink="/registry">Todavía no tienes una cuenta? Regístrate</a>
+    <a id="buttonRegistry" class="text-info" routerLink="/registry">Todavía no tienes una cuenta? Regístrate</a>
   </div>
   <br>
   <div>

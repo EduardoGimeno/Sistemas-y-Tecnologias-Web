@@ -12,6 +12,8 @@ import * as $ from 'jquery';
 })
 export class ChatUserComponent implements OnInit {
 
+  pageName = "Conversaciones";
+
   user: UserApp;
   conversaciones: Conversacion[] = [];
   conversacionActive: Conversacion = new Conversacion();

@@ -20,6 +20,8 @@ import {Guia} from "../entities/guia";
 })
 export class IndexUserComponent implements OnInit {
 
+  pageName = "Inicio";
+
   user: UserApp;
 
   showEntries = [];

@@ -1,6 +1,6 @@
 <div class="container justify-content-center" style="background-color: #f7f7f7; max-width: inherit; height: 100vh">
-  <div class="row justify-content-center" style="padding-top: 4vh">
-    <h1> Regístrate en Descubre Aragón </h1>
+  <div id="pageName" class="row justify-content-center" style="padding-top: 4vh">
+    <h1>{{ pageName }}</h1>
   </div>
 
 
@@ -131,7 +131,8 @@
 <br>
 
 <div class="row justify-content-center">
-  <button type="button" (click)="registro()" class="btn btn-primary btn-lg">Confirmar Registro</button>
+  <button id="buttonVolver" style="margin-right: 5%" type="button" routerLink="/login" class="btn btn-danger">Volver</button>
+  <button id="buttonConfirmar" style="margin-left: 5%" type="button" (click)="registro()" class="btn btn-primary btn-lg">Confirmar Registro</button>
 </div>
 
 <br>

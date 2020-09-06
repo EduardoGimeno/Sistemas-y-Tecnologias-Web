@@ -13,6 +13,8 @@ import { ICountry, IState, ICity } from 'country-state-city'
 })
 export class ProfileComponent implements OnInit {
 
+  pageName = "Perfil";
+
   user: UserApp;
   provincias = [];
   constructor(public currentUser: CurrentUserService) { }

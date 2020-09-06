@@ -11,6 +11,8 @@ import {EntryService} from "../services/entry-service.service";
 })
 export class UpdateDataComponent implements OnInit {
 
+  pageName = "Actualizar datos";
+
   hotelsString = "Hoteles: ";
   ruralHousesString = "Turismo rural: ";
   apartmentsString = "Apartamentos: ";
