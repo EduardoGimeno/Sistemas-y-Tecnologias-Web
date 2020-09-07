@@ -12,43 +12,66 @@ export class StatsAdminComponent implements OnInit {
 
   pageName = "Estadísticas";
 
-  //Diagrama5
-             chartOptions5 = {
-               responsive: true,
-             };
-             chartLabels5 = [];
-             barChartColors5 = [
-              { backgroundColor: 'orange' },
-             ]
-             chartData5 = [];
-      //Diagrama6
-                 chartOptions6 = {
-                   responsive: true,
-                 };
-                 chartLabels6 = [];
-                 barChartColors6 = [{
-                  backgroundColor: ['red', '#0F0', 'orange', 'black', 'brown', 'blue', 'pink', 'green', 'purple'],
-                 }];
-                 chartData6 = [];
-      //Diagrama7
-                     chartOptions7 = {
-                       responsive: true,
-                     };
-                     chartLabels7 = [];
-                     barChartColors7 = [
-                                 { backgroundColor: 'purple' },
-                                ]
-                     chartData7 = [];
+ //Diagrama5
+              chartOptions5 = {
+                responsive: true,
+                title: {
+                  text: 'Provincias de procedencia de los usuarios',
+                  display: true,
+                  fontSize: 45
+                }
+              };
+              chartLabels5 = [];
+              barChartColors5 = [
+               { backgroundColor: 'orange' },
+              ]
+              chartData5 = [
+               { data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A' },
+              ];
 
-      //Diagrama8
-                         chartOptions8 = {
-                           responsive: true,
-                         };
-                         chartLabels8 = [];
-                         barChartColors8 = [
-                                     { backgroundColor: 'green' },
-                                    ]
-                         chartData8 = [];
+       //Diagrama6
+                  chartOptions6 = {
+                    responsive: true,
+                    title: {
+                                     text: 'Distribución de las entradas por porcentajes',
+                                     display: true,
+                                     fontSize: 45
+                                   }
+                  };
+                  chartLabels6 = [];
+                  barChartColors6 = [{
+                   backgroundColor: ['red', '#0F0', 'orange', 'black', 'brown', 'blue', 'pink', 'green', 'purple'],
+                  }];
+                  chartData6 = [];
+       //Diagrama7
+                      chartOptions7 = {
+                        responsive: true,
+                        title: {
+                                         text: 'Cantidad de chats por hotel',
+                                         display: true,
+                                         fontSize: 45
+                                       }
+                      };
+                      chartLabels7 = [];
+                      barChartColors7 = [
+                                  { backgroundColor: 'purple' },
+                                 ]
+                      chartData7 = [];
+
+       //Diagrama8
+                          chartOptions8 = {
+                            responsive: true,
+                            title: {
+                                             text: 'Fechas de recuperación de las cuentas',
+                                             display: true,
+                                             fontSize: 45
+                                           }
+                          };
+                          chartLabels8 = [];
+                          barChartColors8 = [
+                                      { backgroundColor: 'green' },
+                                     ]
+                          chartData8 = [];
   user: UserApp;
 
   constructor(public currentUser: CurrentUserService, public entryService: EntryService) { }
