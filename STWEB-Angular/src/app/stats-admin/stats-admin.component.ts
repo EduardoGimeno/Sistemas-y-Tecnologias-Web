@@ -25,9 +25,7 @@ export class StatsAdminComponent implements OnInit {
               barChartColors5 = [
                { backgroundColor: 'orange' },
               ]
-              chartData5 = [
-               { data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A' },
-              ];
+              chartData5 = [];
 
        //Diagrama6
                   chartOptions6 = {
