@@ -152,7 +152,6 @@
           <br>
           <br>
           <br>
-          <br>
           <div class="row" style="height: 40%">
             <div class="col" style="text-align: center; margin-top: auto; margin-left: 25%">
               <button type="button" (click)="update()"
@@ -160,6 +159,23 @@
             </div>
             <div *ngIf="user.contrasena" class="col" style="text-align: center; margin-top: auto; margin-right: 25%">
               <button id="buttonCambiarContrasena" type="button" routerLink="/change-password" class="btn btn-primary">Cambiar contraseña</button>
+            </div>
+          </div>
+          <br>
+          <div class="row" style="height: 40%">
+            <div class="col" style="text-align: center; margin-top: auto">
+              <button (click)="eliminarPrevious()" id="buttonDarDeBaja" type="button" class="btn btn-danger">Dar de baja esta cuenta</button>
+            </div>
+          </div>
+          <br>
+          <div *ngIf="eliminarBool" class="row" style="height: 40%">
+            <h4>¿Estás seguro de que quieres dar de baja (eliminar) esta cuenta? Esta acción no se puede deshacer</h4>
+            <div class="col" style="text-align: center; margin-top: auto; margin-left: 25%">
+              <button type="button" (click)="eliminarPrevious()"
+                      class="btn btn-primary">Cancelar</button>
+            </div>
+            <div class="col" style="text-align: center; margin-top: auto; margin-right: 25%">
+              <button (click)="eliminar()" id="buttonConfirmarEliminar" type="button" routerLink="/login" class="btn btn-danger">Confirmar</button>
             </div>
           </div>
         </div>

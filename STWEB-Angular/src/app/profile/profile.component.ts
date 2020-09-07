@@ -17,7 +17,9 @@ export class ProfileComponent implements OnInit {
 
   user: UserApp;
   provincias = [];
-  constructor(public currentUser: CurrentUserService) { }
+
+  eliminarBool = false;
+  constructor(public currentUser: CurrentUserService, public userService: UserService) { }
 
   ngOnInit(): void {
     this.user = this.currentUser.checkLog();
@@ -37,6 +39,18 @@ export class ProfileComponent implements OnInit {
     for(let provincia of provinciasDevueltas){
      this.provincias.push(provincia.name);
     }
+  }
+
+  eliminarPrevious() {
+    this.eliminarBool = !this.eliminarBool;
+  }
+
+  eliminar() {
+    this.user.activo = false;
+    this.userService.updateUser(this.user).subscribe(data => {
+      console.log(data);
+    });
+    this.currentUser.logOut();
   }
 
 }
