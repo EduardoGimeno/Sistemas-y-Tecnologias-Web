@@ -10,10 +10,18 @@ import { EntryService } from "../services/entry-service.service";
   styleUrls: ['./stats-user.component.css']
 })
 export class StatsUserComponent implements OnInit {
+
+  pageName = "Estadísticas";
+
   //Diagrama de tarta
   chartOptions = {
       responsive: true,
-    };
+      title: {
+        text: 'Cantidad de puntos de interés y establecimientos',
+        display: true,
+        fontSize: 45
+      }
+   };
     chartLabels = ['Hoteles', 'Turismo rural', 'Apartamentos', 'Campings', 'Refugios', 'Restaurantes', 'Oficinas de turismo', 'Puntos de información', 'Guías'];
     chartData = [];
     chartColors = [{
@@ -24,8 +32,13 @@ export class StatsUserComponent implements OnInit {
     //Diagrama2
       datosHoteles = [];
       chartOptions2 = {
-          responsive: true,
-      };
+            responsive: true,
+            title: {
+              text: 'Cantidad de hoteles por municipio',
+              display: true,
+              fontSize: 45
+            }
+         };
       chartLabels2 = [];
       barChartColors2 = [
           { backgroundColor: 'blue' },
@@ -34,8 +47,13 @@ export class StatsUserComponent implements OnInit {
 
     //Diagrama3
        chartOptions3 = {
-         responsive: true,
-       };
+                   responsive: true,
+                   title: {
+                     text: 'Distribución de los idiomas hablados por cada guía',
+                     display: true,
+                     fontSize: 45
+                   }
+                };
        chartLabels3 = [];
        barChartColors3 = [
                  { backgroundColor: 'yellow' },
@@ -43,8 +61,13 @@ export class StatsUserComponent implements OnInit {
        chartData3 = [];
     //Diagrama4
        chartOptions4 = {
-         responsive: true,
-       };
+                          responsive: true,
+                          title: {
+                            text: 'Cantidad de restaurantes de 3 tenedores/tazas por comarca',
+                            display: true,
+                            fontSize: 45
+                          }
+                       };
        chartLabels4 = [];
        barChartColors4 = [
                         { backgroundColor: 'red' },

@@ -13,6 +13,9 @@ import {CurrentUserService} from "../current-user.service";
   styleUrls: ['./registry.component.css']
 })
 export class RegistryComponent implements OnInit {
+
+  pageName = "Regístrate en Descubre Aragón";
+
   aviso: string;
   aviso2: string;
   aviso3: string;

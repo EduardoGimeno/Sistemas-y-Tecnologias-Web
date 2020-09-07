@@ -13,6 +13,9 @@ import { SocialUser } from "angularx-social-login";
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+
+  pageName = "¡Bienvenido!";
+
   aviso: string;
   aviso2: string;
 

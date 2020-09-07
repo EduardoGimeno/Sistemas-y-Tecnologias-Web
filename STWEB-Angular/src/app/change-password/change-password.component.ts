@@ -10,6 +10,7 @@ import {Md5} from 'ts-md5/dist/md5';
 })
 export class ChangePasswordComponent implements OnInit {
 
+  pageName = "Cambiar Contraseña";
 
   aviso: string;
   aviso2: string;
