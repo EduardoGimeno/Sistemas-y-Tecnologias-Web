@@ -8,5 +8,6 @@ var mediaController = require('../controllers/mediaController');
 var router = express.Router();
 
 router.post('/csv', mediaController.getCSV);
+router.post('/pdf', mediaController.getPDF);
 
 module.exports = router;

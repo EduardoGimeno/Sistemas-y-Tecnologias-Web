@@ -6,6 +6,9 @@
 var express = require('express');
 var url = require('url');
 const jsonexport = require('jsonexport');
+var pdf = require("pdf-creator-node");
+var fs = require('fs');
+const { options } = require('../../app');
 var mediaController = {};
 
 /*
@@ -22,6 +25,28 @@ mediaController.getCSV = function (req, res) {
             res.status(200);
             res.send(csv);
         }
+    });
+}
+mediaController.getPDF = function (req, res) {
+    var html = fs.readFileSync('app_server/templates/template.html', 'utf8');
+    var element= req.body;
+    var document = {
+        html: html,
+        data: {
+            element
+        },
+        path: "./data.pdf"
+    };
+    pdf.create(document)
+    .then(file => {
+        res.setHeader('Content-type','application/pdf');
+        res.setHeader('Content-Disposition', 'attachment; filename= data.pdf');
+        res.status(200);
+        res.send(file);
+    })
+    .catch(err => {
+        res.status(500);
+        res.json({error: err.message});
     });
 }
 

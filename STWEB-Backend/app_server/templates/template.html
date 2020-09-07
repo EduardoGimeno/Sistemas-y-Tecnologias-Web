@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <mate charest="utf-8" />
+        <title>Información Turistica</title>
+        <style>
+            ul {
+            border : 2px solid black
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Listado de entradas</h1>
+        <p>A continuación se muestra el listado de entradas resultante:</p></br>
+            {{#each element}}
+                <ul>
+                {{#each .}}
+                <li>{{@key}} : {{.}}</li>
+                {{/each}}
+                </ul>
+            {{/each}}
+    </body>
+</html>

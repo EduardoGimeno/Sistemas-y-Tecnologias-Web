@@ -63,6 +63,10 @@
       {
         "name":"Statistics",
         "description": "Statistics interaction API"
+      },
+      {
+        "name":"Media",
+        "description": "Media interaction API"
       }
     ],
     "schemes": [
@@ -2477,6 +2481,50 @@
             },
             "500":{
               "description":"Info could not be retrieved",
+              "schema":{
+                "$ref":"#/definitions/Error"
+              }
+            }
+          }
+        }
+      },
+      "/media/csv": {
+        "produces":[
+          "application/json","application/csv"
+        ],
+        "post":{
+          "summary": "Get the info sended returned in a CSV file",
+          "tags":[
+            "Media"
+          ],
+          "responses":{
+            "200":{
+              "description": "Info returned in CSV file"
+            },
+            "500":{
+              "description":"Info could not be transformed",
+              "schema":{
+                "$ref":"#/definitions/Error"
+              }
+            }
+          }
+        }
+      },
+      "/media/pdf": {
+        "produces":[
+          "application/json","application/pdf"
+        ],
+        "post":{
+          "summary": "Get the info sended returned in a PDF file",
+          "tags":[
+            "Media"
+          ],
+          "responses":{
+            "200":{
+              "description": "Info returned in PDF file"
+            },
+            "500":{
+              "description":"Info could not be transformed",
               "schema":{
                 "$ref":"#/definitions/Error"
               }
