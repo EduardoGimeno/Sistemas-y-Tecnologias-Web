@@ -42,7 +42,7 @@ mediaController.getPDF = function (req, res) {
         res.setHeader('Content-type','application/pdf');
         res.setHeader('Content-Disposition', 'attachment; filename= data.pdf');
         res.status(200);
-        res.send(file);
+        res.send(fs.readFileSync('data.pdf', 'utf8'));
     })
     .catch(err => {
         res.status(500);
