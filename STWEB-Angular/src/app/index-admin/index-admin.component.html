@@ -179,7 +179,25 @@
     <button type="button" (click)="filter(true)" class="btn btn-primary" style="width: 60%; margin: auto">
       <h2>Buscar</h2>
     </button>
+    <br>
+    <br>
+    <h5>Descargar datos de la búsqueda:</h5>
+    <br>
+    <div class="row">
 
+      <div class="col-6">
+        <button type="button" class="btn btn-primary" style="width: 60%; margin: auto" (click)="descargarCSV()">
+          <h4>CSV</h4>
+        </button>
+      </div>
+
+      <div class="col-6">
+        <button type="button" class="btn btn-primary" style="width: 60%; margin: auto" (click)="descargarPDF()">
+          <h4>PDF</h4>
+        </button>
+      </div>
+
+    </div>
   </div>
 
 </div>

@@ -323,4 +323,16 @@ export class EntryService {
     return this.http.post(this.urlApp + "/parserData/" + tipo, null,{headers:headers});
   }
 
+  public descargarCSV(entries) {
+    let headers = new HttpHeaders({
+      'authentication': this.cookieService.get("token")});
+    return this.http.post(this.urlApp + "/media/csv", entries,{headers:headers, responseType: 'text'});
+  }
+
+  public descargarPDF(entries) {
+    let headers = new HttpHeaders({
+      'authentication': this.cookieService.get("token")});
+    return this.http.post(this.urlApp + "/media/pdf", entries,{headers:headers, responseType: 'text'});
+  }
+
 }

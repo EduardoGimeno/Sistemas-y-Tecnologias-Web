@@ -23,7 +23,8 @@ export class IndexAdminComponent implements OnInit {
 
   busquedaConFiltros: boolean = false;
 
-  constructor(public userService: UserService, public router: Router, public currentService: CurrentUserService) { }
+  constructor(public userService: UserService, public router: Router, public currentService: CurrentUserService,
+              public entryService: EntryService) { }
 
   ngOnInit(): void {
     this.search();
@@ -94,6 +95,29 @@ export class IndexAdminComponent implements OnInit {
 
   logOut() {
 
+  }
+
+  descargarCSV() {
+    this.entryService.descargarCSV(this.usuarios).subscribe(data => {
+      let blob:any = new Blob([data], { type: 'text/csv; charset=utf-8' });
+      let anchor = document.createElement('a');
+      anchor.download = "entries.csv";
+      anchor.href = (window.webkitURL || window.URL).createObjectURL(blob);
+      anchor.dataset.downloadurl = ['text/csv', anchor.download, anchor.href].join(':');
+      anchor.click();
+    })
+  }
+
+  descargarPDF() {
+    this.entryService.descargarPDF(this.usuarios).subscribe(data => {
+      console.log(data);
+      let blob:any = new Blob([data], { type: 'text/pdf; charset=utf-8' });
+      let anchor = document.createElement('a');
+      anchor.download = "entries.pdf";
+      anchor.href = (window.webkitURL || window.URL).createObjectURL(blob);
+      anchor.dataset.downloadurl = ['text/pdf', anchor.download, anchor.href].join(':');
+      anchor.click();
+    })
   }
 
 }

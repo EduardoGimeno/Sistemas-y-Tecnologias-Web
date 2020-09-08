@@ -359,4 +359,27 @@ export class IndexUserComponent implements OnInit {
     }
   }
 
+  descargarCSV() {
+    this.entryService.descargarCSV(this.showEntries).subscribe(data => {
+      let blob:any = new Blob([data], { type: 'text/csv; charset=utf-8' });
+      let anchor = document.createElement('a');
+      anchor.download = "entries.csv";
+      anchor.href = (window.webkitURL || window.URL).createObjectURL(blob);
+      anchor.dataset.downloadurl = ['text/csv', anchor.download, anchor.href].join(':');
+      anchor.click();
+    })
+  }
+
+  descargarPDF() {
+    this.entryService.descargarPDF(this.showEntries).subscribe(data => {
+      console.log(data);
+      let blob:any = new Blob([data], { type: 'text/pdf; charset=utf-8' });
+      let anchor = document.createElement('a');
+      anchor.download = "entries.pdf";
+      anchor.href = (window.webkitURL || window.URL).createObjectURL(blob);
+      anchor.dataset.downloadurl = ['text/pdf', anchor.download, anchor.href].join(':');
+      anchor.click();
+    })
+  }
+
 }
