@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="109a231d-e49a-49c0-9fbe-e835707bb50d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../STWEB-Angular/src/app/index-user/index-user.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../STWEB-Angular/src/app/index-user/index-user.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../STWEB-Angular/src/app/login/login.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../STWEB-Angular/src/app/login/login.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../STWEB-Angular/src/app/accion-usuario/accion-usuario.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../STWEB-Angular/src/app/accion-usuario/accion-usuario.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../STWEB-Angular/src/app/update-data/update-data.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../STWEB-Angular/src/app/update-data/update-data.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -73,6 +73,7 @@
       <workItem from="1598950809185" duration="2472000" />
       <workItem from="1599038881956" duration="2611000" />
       <workItem from="1599320263188" duration="1227000" />
+      <workItem from="1599556144823" duration="1198000" />
     </task>
     <servers />
   </component>
@@ -83,22 +84,22 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1345" height="179" key="GridCell.Tab.0.bottom" timestamp="1597920631061">
+    <state width="1345" height="179" key="GridCell.Tab.0.bottom" timestamp="1599556757082">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1345" height="179" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1597920631061" />
-    <state width="1345" height="179" key="GridCell.Tab.0.center" timestamp="1597920631061">
+    <state width="1345" height="179" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1599556757082" />
+    <state width="1345" height="179" key="GridCell.Tab.0.center" timestamp="1599556757082">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1345" height="179" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1597920631061" />
-    <state width="1345" height="179" key="GridCell.Tab.0.left" timestamp="1597920631061">
+    <state width="1345" height="179" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1599556757082" />
+    <state width="1345" height="179" key="GridCell.Tab.0.left" timestamp="1599556757082">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1345" height="179" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1597920631061" />
-    <state width="1345" height="179" key="GridCell.Tab.0.right" timestamp="1597920631061">
+    <state width="1345" height="179" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1599556757082" />
+    <state width="1345" height="179" key="GridCell.Tab.0.right" timestamp="1599556757082">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1345" height="179" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1597920631061" />
+    <state width="1345" height="179" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1599556757082" />
     <state x="184" y="9" key="SettingsEditor" timestamp="1591922755163">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
