@@ -429,7 +429,7 @@ statisticsController.chatsPerHotel = async function(req, res) {
 statisticsController.datesEndBan = async function(req, res) {
     try {
         checkToken(req.headers.authentication);
-        const users = await User.find({ admin: false, baneado: true, activo: true }, function(err) {
+        const users = await User.find({ admin: false, baneado: true}, function(err) {
             if (err) {
                 res.status(500);
                 res.json({error: err.message});
