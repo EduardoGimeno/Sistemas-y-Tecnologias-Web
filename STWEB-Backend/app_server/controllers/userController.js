@@ -64,7 +64,7 @@ userController.getUsers = async function(req, res) {
 userController.countUsers = async function(req, res) {
     try {
         checkToken(req.headers.authentication);
-        await User.count({ admin: false }, function(err, result) {
+        await User.count({ admin: false, activo: true }, function(err, result) {
             if (err) {
                 res.status(500);
                 res.json({error: err.message});
