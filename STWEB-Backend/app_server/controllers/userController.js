@@ -45,7 +45,7 @@ userController.getUsers = async function(req, res) {
         var perPage = 20;
         var queryData = url.parse(req.url, true).query;
         var page = Math.max(0, queryData.page);
-        const users = await User.find({ admin: false, activo: true }, function(err) {
+        const users = await User.find({ admin: false }, function(err) {
             if (err) {
                 res.status(500);
                 res.json({error: err.message});
@@ -64,7 +64,7 @@ userController.getUsers = async function(req, res) {
 userController.countUsers = async function(req, res) {
     try {
         checkToken(req.headers.authentication);
-        await User.count({ admin: false, activo: true }, function(err, result) {
+        await User.count({ admin: false }, function(err, result) {
             if (err) {
                 res.status(500);
                 res.json({error: err.message});
