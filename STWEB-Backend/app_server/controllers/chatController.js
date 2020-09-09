@@ -28,7 +28,7 @@ chatController.addChat = async function(req, res) {
                 var text = "Tiene un nuevo mensaje en la aplicacion, " +
                 "puede verlo a traves del siguiente enlace: " +
                 "https://turismoaragon.herokuapp.com/chat-entry?id=" +
-                newChat.id;
+                newChat._id;
                 const send = require('gmail-send')({
                     user: 'descubrearagonSTW@gmail.com',
                     pass: 'STW-1920',
