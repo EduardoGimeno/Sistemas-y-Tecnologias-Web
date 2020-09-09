@@ -27,6 +27,10 @@ mediaController.getCSV = function (req, res) {
         }
     });
 }
+
+/*
+ * Creación de un pdf a partir de un JSON.
+ */
 mediaController.getPDF = function (req, res) {
     var html = fs.readFileSync('app_server/templates/template.html', 'utf8');
     var element= req.body;
