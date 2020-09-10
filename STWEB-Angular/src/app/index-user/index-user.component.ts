@@ -40,7 +40,15 @@ export class IndexUserComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.queryParams.subscribe(params => {
       let token = params['token'];
-      this.currentUser.setUserByToken(token);
+      if (token != undefined) {
+        this.currentUser.setUserByToken(token);
+      }
+    });
+
+    this.currentUser.getUser().subscribe(user => {
+      if (user != null) {
+        this.user = <UserApp>user[0];
+      }
     });
     this.user = this.currentUser.checkLog();
     this.disableSelections(0);

@@ -81,6 +81,11 @@ export class StatsUserComponent implements OnInit {
   constructor(public currentUser: CurrentUserService,  public entryService: EntryService) { }
 
   ngOnInit(): void {
+    this.currentUser.getUser().subscribe(user => {
+      if (user != null) {
+        this.user = <UserApp>user[0];
+      }
+    });
     this.user = this.currentUser.checkLog();
     this.getNumbersOfEachData();
     this.getHotelesPorMunicipio();

@@ -3,6 +3,7 @@ import { UserApp } from "./entities/usuario";
 import { Router } from "@angular/router";
 import { CookieService } from "ngx-cookie-service";
 import { UserService } from "./services/user-service.service";
+import {BehaviorSubject, Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +11,7 @@ import { UserService } from "./services/user-service.service";
 export class CurrentUserService {
 
   private user: UserApp = null;
+  userB = new BehaviorSubject(null);
 
   userAdmin: UserApp;
 
@@ -26,6 +28,10 @@ export class CurrentUserService {
     } else {
       cookieService.set("session", "close");
     }
+  }
+
+  getUser(): Observable<UserApp> {
+    return this.userB.asObservable();
   }
 
   public setUserAdmin(user: UserApp){
@@ -57,23 +63,18 @@ export class CurrentUserService {
   }
 
   public checkLog() {
-    /*if (this.user.nombre == "") {
-      return new Promise(resolve => {
-        this.userService.recoverUser(this.cookieService.get("token")).subscribe(data => {
-          resolve(<UserApp>data);
-        }, error => {
-          this.router.navigateByUrl('/login');
-        });
-      });
-    } else {
-      return new Promise(resolve => {
-        resolve(this.user);
-      });
-    }*/
     if (this.user == null) {
-      this.router.navigateByUrl('/login');
+      if (this.cookieService.get("session") == "open") {
+        this.userService.recoverUser(this.cookieService.get("token")).subscribe(data => {
+          this.userB.next(this.user);
+          this.user = <UserApp>data[0];
+        });
+      } else {
+        this.router.navigateByUrl('/login');
+      }
+    } else {
+      return this.user;
     }
-    return this.user;
   }
 
   public updateUser(user) {

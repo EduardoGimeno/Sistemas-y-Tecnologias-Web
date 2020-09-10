@@ -22,12 +22,21 @@ export class ChatUserComponent implements OnInit {
   constructor(public currentUser: CurrentUserService, public chatService: ChatService) { }
 
   ngOnInit(): void {
+    this.currentUser.getUser().subscribe(user => {
+      if (user != null) {
+        this.user = <UserApp>user[0];
+        this.getChats();
+      }
+    });
     this.user = this.currentUser.checkLog();
+    this.getChats();
+  }
+
+  public getChats() {
     this.chatService.getChat(this.user.email).subscribe(data => {
       this.conversaciones = <Conversacion[]>data;
       this.conversaciones[0].active = 'active';
       this.changeConversacion(0);
-      //this.conversaciones[0].mensajes.length
     });
   }
 

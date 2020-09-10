@@ -22,6 +22,11 @@ export class ProfileComponent implements OnInit {
   constructor(public currentUser: CurrentUserService, public userService: UserService) { }
 
   ngOnInit(): void {
+    this.currentUser.getUser().subscribe(user => {
+      if (user != null) {
+        this.user = <UserApp>user[0];
+      }
+    });
     this.user = this.currentUser.checkLog();
     this.getProvincias();
   }
