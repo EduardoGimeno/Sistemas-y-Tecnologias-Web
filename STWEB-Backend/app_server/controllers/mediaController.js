@@ -49,8 +49,9 @@ mediaController.getPDF = function (req, res) {
         res.setHeader('Content-type','application/pdf');
         res.setHeader('Content-Disposition', 'attachment; filename= data.pdf');
         res.status(200);
-        fileRead.pipe(res);
-        res.end();
+        /*fileRead.pipe(res);
+        res.end();*/
+        res.download('./data.pdf','data.pdf');
     })
     .catch(err => {
         res.status(500);
