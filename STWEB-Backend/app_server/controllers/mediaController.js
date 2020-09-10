@@ -43,7 +43,7 @@ mediaController.getPDF = function (req, res) {
     };
     pdf.create(document)
     .then(file => {
-        var fileRead = fs.createReadStream('./data.pdf', 'binary');
+        var fileRead = fs.createReadStream('./data.pdf');
         var stat = fs.statSync('./data.pdf');
         res.setHeader('Content-Length', stat.size);
         res.setHeader('Content-type','application/pdf');
