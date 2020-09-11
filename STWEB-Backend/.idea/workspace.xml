@@ -2,11 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="109a231d-e49a-49c0-9fbe-e835707bb50d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../STWEB-Angular/src/app/chat-user/chat-user.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../STWEB-Angular/src/app/chat-user/chat-user.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../STWEB-Angular/src/app/current-user.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../STWEB-Angular/src/app/current-user.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../STWEB-Angular/src/app/index-admin/index-admin.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../STWEB-Angular/src/app/index-admin/index-admin.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../STWEB-Angular/src/app/index-user/index-user.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../STWEB-Angular/src/app/index-user/index-user.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../STWEB-Angular/src/app/profile/profile.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../STWEB-Angular/src/app/profile/profile.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../STWEB-Angular/src/app/stats-user/stats-user.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../STWEB-Angular/src/app/stats-user/stats-user.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../STWEB-Angular/src/app/services/entry-service.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../STWEB-Angular/src/app/services/entry-service.service.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -77,6 +75,7 @@
       <workItem from="1599038881956" duration="2611000" />
       <workItem from="1599320263188" duration="1227000" />
       <workItem from="1599556144823" duration="3435000" />
+      <workItem from="1599818892972" duration="727000" />
     </task>
     <servers />
   </component>

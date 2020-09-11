@@ -379,14 +379,18 @@ export class IndexUserComponent implements OnInit {
   }
 
   descargarPDF() {
-    this.entryService.descargarPDF(this.showEntries).subscribe(data => {
-      console.log(data);
-      let blob:any = new Blob([data], { type: 'text/pdf; charset=utf-8' });
-      let anchor = document.createElement('a');
-      anchor.download = "entries.pdf";
-      anchor.href = (window.webkitURL || window.URL).createObjectURL(blob);
-      anchor.dataset.downloadurl = ['text/pdf', anchor.download, anchor.href].join(':');
-      anchor.click();
+    let entriesPDF = [];
+    if (this.showEntries[0].comun) {
+      for (let entry of this.showEntries) {
+        entriesPDF.push(entry.comun);
+      }
+    } else {
+      entriesPDF = this.showEntries;
+    }
+    this.entryService.descargarPDF(entriesPDF).subscribe(data => {
+            let file = new Blob([data], {type: 'application/pdf'});
+      let fileURL = URL.createObjectURL(file);
+      window.open(fileURL);
     })
   }
 

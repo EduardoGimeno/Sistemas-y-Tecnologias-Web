@@ -332,7 +332,7 @@ export class EntryService {
   public descargarPDF(entries) {
     let headers = new HttpHeaders({
       'authentication': this.cookieService.get("token")});
-    return this.http.post(this.urlApp + "/media/pdf", entries,{headers:headers, responseType: 'text'});
+    return this.http.post(this.urlApp + "/media/pdf", entries,{headers:headers, responseType: 'blob'});
   }
 
 }

@@ -110,13 +110,9 @@ export class IndexAdminComponent implements OnInit {
 
   descargarPDF() {
     this.entryService.descargarPDF(this.usuarios).subscribe(data => {
-      console.log(data);
-      let blob:any = new Blob([data], { type: 'text/pdf; charset=utf-8' });
-      let anchor = document.createElement('a');
-      anchor.download = "entries.pdf";
-      anchor.href = (window.webkitURL || window.URL).createObjectURL(blob);
-      anchor.dataset.downloadurl = ['text/pdf', anchor.download, anchor.href].join(':');
-      anchor.click();
+      let file = new Blob([data], {type: 'application/pdf'});
+      let fileURL = URL.createObjectURL(file);
+      window.open(fileURL);
     })
   }
 
